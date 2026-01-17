@@ -3,111 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Official 2026 Hub</title>
+    <title>V3GASBOI | Official Artist Site</title>
     <style>
-        :root { --v3-red: #E60000; --v3-white: #FFFFFF; --v3-black: #000000; }
+        :root { --v3-red: #E60000; --v3-black: #050505; --v3-white: #ffffff; }
         * { box-sizing: border-box; }
-        body { background: var(--v3-black); color: var(--v3-white); font-family: 'Inter', sans-serif; margin: 0; scroll-behavior: smooth; }
+        body { background: var(--v3-black); color: var(--v3-white); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
 
-        /* FIXED BACKGROUND */
-        .site-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), url('1000009257.jpg'); 
-            background-size: cover; background-position: center; z-index: -1;
+        /* THE HERO SECTION (VIDEO-INSPIRED BACKGROUND) */
+        .hero { 
+            height: 100vh; width: 100%; position: relative;
+            background: linear-gradient(rgba(0,0,0,0.5), var(--v3-black)), url('1000010200.png'); 
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
+        .hero h1 { font-size: 5rem; letter-spacing: 15px; text-shadow: 4px 4px var(--v3-red); margin: 0; text-transform: uppercase; font-weight: 900; }
+        .hero p { letter-spacing: 5px; color: #888; font-weight: bold; }
 
-        /* NAVIGATION MENU */
-        nav { position: fixed; top: 0; width: 100%; background: var(--v3-black); padding: 20px; display: flex; justify-content: space-around; border-bottom: 4px solid var(--v3-red); z-index: 1000; }
-        nav a { color: var(--v3-white); text-decoration: none; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        /* TOP NAVIGATION */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.9); padding: 25px; display: flex; justify-content: center; gap: 30px; border-bottom: 2px solid var(--v3-red); z-index: 1000; backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; }
+        nav a:hover { color: var(--v3-red); }
 
-        /* CONTENT CONTAINERS */
-        .container { max-width: 900px; margin: auto; padding: 120px 20px; }
-        section { padding: 80px 0; border-bottom: 1px solid #333; }
-        .red-header { color: var(--v3-red); text-transform: uppercase; letter-spacing: 5px; border-left: 6px solid var(--v3-red); padding-left: 15px; margin-bottom: 30px; }
-
-        /* MOGUL BOX STYLING */
-        .mogul-box { background: rgba(15, 15, 15, 0.95); border: 1px solid #222; padding: 40px; border-radius: 10px; margin-bottom: 30px; }
-        .red-btn { display: block; background: var(--v3-red); color: white; text-decoration: none; padding: 20px; text-align: center; font-weight: 900; text-transform: uppercase; margin-top: 15px; border: none; width: 100%; }
+        /* SECTIONS & CONTENT */
+        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+        .section-header { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 5px; color: var(--v3-red); border-bottom: 4px solid var(--v3-red); display: inline-block; margin-bottom: 40px; }
         
+        /* THE ABOUT ME BOX */
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; align-items: center; background: #111; padding: 40px; border-radius: 20px; border: 1px solid #222; }
+        .bio-text { line-height: 1.8; color: #ccc; font-size: 1.1rem; }
+
         /* MUSIC PLAYER STYLING */
-        .player-container { background: #111; border: 2px solid var(--v3-red); padding: 20px; border-radius: 10px; margin-top: 20px; }
-        audio { width: 100%; filter: invert(100%) hue-rotate(180deg) brightness(1.5); }
+        .track-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .player-card { background: #0a0a0a; border: 1px solid #222; padding: 25px; border-radius: 15px; border-left: 10px solid var(--v3-red); }
+        .player-card h3 { margin: 0 0 15px 0; color: var(--v3-red); letter-spacing: 2px; }
+        audio { width: 100%; filter: invert(1); }
+
+        /* VISUAL GALLERY */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .gallery img { width: 100%; border-radius: 10px; transition: 0.3s; filter: grayscale(50%); border: 1px solid #333; }
+        .gallery img:hover { filter: grayscale(0%); transform: scale(1.05); border-color: var(--v3-red); }
+
+        /* BOUTIQUE BUTTONS */
+        .shop-btn { display: block; background: var(--v3-red); color: white; text-decoration: none; padding: 25px; text-align: center; font-weight: 900; letter-spacing: 3px; border-radius: 5px; margin-top: 15px; border: none; transition: 0.3s; }
+        .shop-btn:hover { background: white; color: black; }
     </style>
 </head>
 <body>
-
-    <div class="site-bg"></div>
 
     <nav>
         <a href="#home">HOME</a>
         <a href="#about">ABOUT</a>
         <a href="#music">MUSIC</a>
+        <a href="#visuals">VISUALS</a>
         <a href="#shop">SHOP</a>
     </nav>
 
+    <section id="home" class="hero">
+        <h1>V3GASBOI</h1>
+        <p>LAS VEGAS LOCAL TRAP ARTIST</p>
+        
+        <div style="display: flex; gap: 30px; margin-top: 50px;">
+            <div style="background: rgba(230,0,0,0.1); border: 2px solid var(--v3-red); padding: 20px; border-radius: 10px;">
+                <h2 style="margin:0; font-size: 2rem;">4,089+</h2>
+                <p style="margin:0; font-size: 0.6rem;">GLOBAL PLAYS</p>
+            </div>
+            <div style="background: rgba(230,0,0,0.1); border: 2px solid var(--v3-red); padding: 20px; border-radius: 10px;">
+                <h2 style="margin:0; font-size: 2rem;">35</h2>
+                <p style="margin:0; font-size: 0.6rem;">COUNTRIES</p>
+            </div>
+        </div>
+    </section>
+
     <div class="container">
         
-        <section id="home" style="text-align: center;">
-            <h1 style="font-size: 5rem; letter-spacing: 15px; text-shadow: 5px 5px var(--v3-red); margin: 0;">V3GASBOI</h1>
-            <p style="color: #888; letter-spacing: 6px; margin-top: 10px;">LAS VEGAS • PRODUCTION • MOGUL</p>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 50px;">
-                <div style="border: 2px solid var(--v3-red); padding: 30px;">
-                    <h2 style="margin:0; color:var(--v3-red); font-size: 2.5rem;">4,089+</h2>
-                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem;">GLOBAL PLAYS</p>
+        <section id="about" style="padding: 100px 0;">
+            <h2 class="section-header">The About Me</h2>
+            <div class="about-grid">
+                <img src="1000010199.png" style="width: 100%; border-radius: 15px; border: 2px solid var(--v3-red);">
+                <div class="bio-text">
+                    <p>
+                        Based in the heart of Las Vegas, <strong style="color:white;">Jonas Evans</strong>—professionally known as <strong style="color:white;">V3GASBOI</strong>—is a multi-dimensional producer and trap artist. 
+                        With a verified reach across <strong style="color:white;">35 countries</strong>, his sound blends high-energy Las Vegas street style with global production innovation.
+                    </p>
+                    <p>
+                        Beyond the booth, Jonas manages a strategic fashion empire including the <strong style="color:white;">Vegas Spot</strong> boutique, proving his status as a local mogul.
+                    </p>
                 </div>
-                <div style="border: 2px solid var(--v3-red); padding: 30px;">
-                    <h2 style="margin:0; color:var(--v3-red); font-size: 2.5rem;">35</h2>
-                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem;">COUNTRIES</p>
+            </div>
+        </section>
+
+        <section id="music" style="padding: 100px 0;">
+            <h2 class="section-header">The Sound Vault</h2>
+            <div class="track-list">
+                <div class="player-card">
+                    <h3>I GOT THAT FEELING</h3>
+                    <audio controls><source src="I Got that Feeling _2 (1).m4a" type="audio/mp4"></audio>
+                </div>
+                <div class="player-card">
+                    <h3>I AIN'T GOING NOWHERE</h3>
+                    <audio controls><source src="I Ain't going Nowhere _2.m4a" type="audio/mp4"></audio>
+                </div>
+                <div class="player-card">
+                    <h3>DEVIL IN A RED DRESS</h3>
+                    <audio controls><source src="Devil in a Red Dress.m4a" type="audio/mp4"></audio>
                 </div>
             </div>
         </section>
 
-        <section id="about">
-            <h2 class="red-header">The About Me</h2>
-            <div class="mogul-box">
-                <p style="line-height: 2; color: #ddd; font-size: 1.1rem; margin-bottom: 25px;">
-                    Based in Las Vegas, <strong style="color:white;">Jonas Evans</strong> is a multi-dimensional producer and entrepreneur. 
-                    Known as <strong style="color:white;">V3GASBOI</strong>, he has reached listeners in 35 countries with over 4,000 global plays.
-                </p>
-                <p style="line-height: 2; color: #ddd; font-size: 1.1rem;">
-                    Beyond the music, he operates the <strong style="color:white;">Vegas Spot</strong> and <strong style="color:white;">Fashions to You</strong> boutiques, bridging high-end urban fashion and professional audio production.
-                </p>
+        <section id="visuals" style="padding: 100px 0;">
+            <h2 class="section-header">Visual Hub</h2>
+            <div class="gallery">
+                <img src="1000009462.jpg">
+                <img src="1000009460.jpg">
+                <img src="1000010188.png">
+                <img src="1000009257.jpg">
             </div>
         </section>
 
-        <section id="music">
-            <h2 class="red-header">The Sound Vault</h2>
-            
-            <div class="player-container">
-                <p style="color: var(--v3-red); font-weight: bold; margin-bottom: 10px;">NOW PLAYING: I GOT THAT FEELING</p>
-                <audio controls>
-                    <source src="I Got that Feeling _2 (1).m4a" type="audio/mp4">
-                </audio>
-            </div>
-
-            <div class="player-container">
-                <p style="color: var(--v3-red); font-weight: bold; margin-bottom: 10px;">I AIN'T GOING NOWHERE</p>
-                <audio controls>
-                    <source src="I Ain't going Nowhere _2.m4a" type="audio/mp4">
-                </audio>
-            </div>
-
-            <div class="player-container">
-                <p style="color: var(--v3-red); font-weight: bold; margin-bottom: 10px;">DEVIL IN A RED DRESS</p>
-                <audio controls>
-                    <source src="Devil in a Red Dress.m4a" type="audio/mp4">
-                </audio>
-            </div>
-        </section>
-
-        <section id="shop">
-            <h2 class="red-header">The Boutique</h2>
-            <a href="#" class="red-btn">SHOP VEGAS SPOT</a>
-            <a href="#" class="red-btn" style="background:white; color:black;">FASHIONS TO YOU</a>
+        <section id="shop" style="padding: 100px 0;">
+            <h2 class="section-header">The Boutique</h2>
+            <a href="#" class="shop-btn">SHOP VEGAS SPOT</a>
+            <a href="#" class="shop-btn" style="background:white; color:black;">FASHIONS TO YOU</a>
+            <a href="mailto:jonas88evans@gmail.com" class="shop-btn" style="background:var(--v3-black); border: 2px solid var(--v3-red); margin-top: 30px;">BUSINESS INQUIRIES</a>
         </section>
 
     </div>
+
 </body>
 </html>
 
