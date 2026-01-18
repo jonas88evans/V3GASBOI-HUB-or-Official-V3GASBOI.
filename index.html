@@ -3,47 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Official Gold Hub</title>
+    <title>V3GASBOI | Official Master Hub</title>
     <style>
-        :root { --v3-gold: #D4AF37; --v3-black: #050505; --v3-white: #ffffff; }
+        :root { --v3-gold: #D4AF37; --v3-black: #000000; --v3-white: #ffffff; --v3-gray: #f9f9f9; }
         * { box-sizing: border-box; }
-        body { background: var(--v3-black); color: var(--v3-white); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        body { background: var(--v3-white); color: var(--v3-black); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* LUXURY HERO SECTION */
+        /* --- KEYFRAMES FOR ANIMATION --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .reveal { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+
+        /* HERO SECTION */
         .hero { 
             height: 100vh; width: 100%; position: relative;
-            background: linear-gradient(rgba(0,0,0,0.6), var(--v3-black)), url('1000010188.png'); 
+            background: linear-gradient(rgba(255,255,255,0.7), var(--v3-white)), url('1000010188.png'); 
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-        .hero h1 { font-size: 5rem; letter-spacing: 15px; color: var(--v3-gold); text-shadow: 0 0 20px rgba(212, 175, 55, 0.5); margin: 0; text-transform: uppercase; font-weight: 900; }
-        .hero p { letter-spacing: 5px; color: #888; font-weight: bold; }
+        .hero h1 { font-size: 5.5rem; letter-spacing: 15px; color: var(--v3-black); text-shadow: 3px 3px var(--v3-gold); margin: 0; text-transform: uppercase; font-weight: 900; animation: fadeInUp 1.2s ease-out; }
+        .hero p { letter-spacing: 5px; color: var(--v3-gold); font-weight: bold; margin-top: 10px; animation: fadeInUp 1.5s ease-out; }
 
-        /* GOLD NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.95); padding: 25px; display: flex; justify-content: center; gap: 30px; border-bottom: 2px solid var(--v3-gold); z-index: 1000; }
-        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+        /* NAVIGATION */
+        nav { position: fixed; top: 0; width: 100%; background: var(--v3-black); padding: 25px; display: flex; justify-content: center; gap: 30px; border-bottom: 3px solid var(--v3-gold); z-index: 1000; }
+        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: white; transform: scale(1.1); }
 
-        /* SECTIONS & CONTAINERS */
-        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
-        .gold-header { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 5px; color: var(--v3-gold); border-bottom: 3px solid var(--v3-gold); display: inline-block; margin-bottom: 40px; }
+        /* SECTIONS */
+        .container { max-width: 1100px; margin: auto; padding: 100px 20px; }
+        .section-header { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 5px; color: var(--v3-black); border-bottom: 5px solid var(--v3-gold); display: inline-block; margin-bottom: 40px; }
         
-        /* MOGUL BIO BOX */
-        .mogul-card { background: #0a0a0a; padding: 40px; border-radius: 20px; border: 1px solid #222; border-top: 5px solid var(--v3-gold); }
-        .bio-text { line-height: 2; color: #ccc; font-size: 1.1rem; }
+        /* MOGUL BIO CARD */
+        .mogul-card { background: var(--v3-white); border: 3px solid var(--v3-gold); padding: 50px; border-radius: 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+        .stat-grid { display: flex; gap: 20px; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; text-align: center; }
+        .stat-box h4 { margin: 0; color: var(--v3-gold); font-size: 2.2rem; }
+        .stat-box p { margin: 0; font-size: 0.7rem; font-weight: 900; text-transform: uppercase; color: #888; }
 
-        /* MUSIC PLAYER LIST */
-        .track-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .player-card { background: #111; border: 1px solid var(--v3-gold); padding: 25px; border-radius: 15px; }
-        .player-card h3 { margin: 0 0 15px 0; color: var(--v3-gold); letter-spacing: 2px; }
-        audio { width: 100%; filter: invert(0.8) sepia(1) saturate(5) hue-rotate(10deg); }
+        /* SOUND VAULT */
+        .track-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .player-card { background: var(--v3-gray); border: 1px solid #eee; padding: 20px; border-radius: 12px; border-left: 10px solid var(--v3-gold); transition: 0.4s; }
+        .player-card:hover { transform: scale(1.05); background: #fff; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); }
+        .player-card h3 { margin: 0 0 10px 0; font-size: 0.85rem; letter-spacing: 1px; color: #333; }
+        audio { width: 100%; height: 35px; }
 
         /* BUTTONS */
-        .gold-btn { display: block; background: var(--v3-gold); color: black; text-decoration: none; padding: 20px; text-align: center; font-weight: 900; letter-spacing: 3px; border-radius: 5px; margin-top: 15px; transition: 0.3s; }
-        .gold-btn:hover { background: white; transform: scale(1.02); }
+        .gold-btn { display: block; background: var(--v3-black); color: var(--v3-gold); text-decoration: none; padding: 20px; text-align: center; font-weight: 900; letter-spacing: 3px; border: 2px solid var(--v3-gold); margin-top: 15px; transition: 0.3s; }
+        .gold-btn:hover { background: var(--v3-gold); color: white; box-shadow: 0 0 20px var(--v3-gold); }
 
-        /* SOCIAL BAR */
-        .social-bar { position: fixed; bottom: 0; width: 100%; background: rgba(0,0,0,0.95); border-top: 2px solid var(--v3-gold); padding: 15px; display: flex; justify-content: center; gap: 25px; z-index: 2000; }
-        .social-bar a { color: var(--v3-gold); text-decoration: none; font-weight: 900; font-size: 0.7rem; }
+        /* FIXED SOCIAL FOOTER */
+        footer { position: fixed; bottom: 0; width: 100%; background: var(--v3-black); border-top: 3px solid var(--v3-gold); padding: 15px; display: flex; justify-content: center; gap: 25px; z-index: 2000; }
+        footer a { color: var(--v3-gold); text-decoration: none; font-weight: 900; font-size: 0.7rem; letter-spacing: 1px; transition: 0.2s; }
+        footer a:hover { color: white; }
     </style>
 </head>
 <body>
@@ -51,74 +69,74 @@
     <nav>
         <a href="#home">HOME</a>
         <a href="#about">MOGUL</a>
-        <a href="#music">MUSIC</a>
+        <a href="#music">SOUNDS</a>
         <a href="#shop">SHOP</a>
     </nav>
 
     <section id="home" class="hero">
-        <h1>V3GASBOI</h1>
-        <p>LAS VEGAS • PRODUCTION • MOGUL</p>
-        
-        <div style="display: flex; gap: 30px; margin-top: 50px;">
-            <div style="border: 2px solid var(--v3-gold); padding: 20px; border-radius: 10px; background: rgba(0,0,0,0.5);">
-                <h2 style="margin:0; font-size: 2rem; color: var(--v3-gold);">4,089+</h2>
-                <p style="margin:0; font-size: 0.6rem; letter-spacing: 1px;">GLOBAL PLAYS</p>
-            </div>
-            <div style="border: 2px solid var(--v3-gold); padding: 20px; border-radius: 10px; background: rgba(0,0,0,0.5);">
-                <h2 style="margin:0; font-size: 2rem; color: var(--v3-gold);">35</h2>
-                <p style="margin:0; font-size: 0.6rem; letter-spacing: 1px;">COUNTRIES</p>
-            </div>
+        <h1 class="reveal">V3GASBOI</h1>
+        <p class="reveal delay-1">LAS VEGAS • PRODUCTION • MOGUL</p>
+        <div class="reveal delay-2" style="margin-top: 30px; background: white; padding: 10px 25px; border: 2px solid var(--v3-gold); font-weight: 900; letter-spacing: 2px;">
+            8.89K TOTAL PLAYS
         </div>
     </section>
 
     <div class="container">
         
-        <section id="about">
-            <h2 class="gold-header">The Mogul</h2>
+        <section id="about" class="reveal" style="margin-bottom: 100px;">
+            <h2 class="section-header">The Mogul</h2>
             <div class="mogul-card">
-                <p class="bio-text">
-                    Based in Las Vegas, <strong style="color:var(--v3-gold);">Jonas Evans</strong> is the architect behind the <strong style="color:white;">V3GASBOI</strong> brand. 
-                    With a reach spanning <strong style="color:var(--v3-gold);">35 countries</strong>, his music and production have become a global standard for high-energy urban sound.
-                </p>
-                <p class="bio-text">
-                    As a local entrepreneur, Jonas dominates both the booth and the boutique, managing the <strong style="color:white;">Vegas Spot</strong> and <strong style="color:white;">Fashions to You</strong> enterprises.
+                <div class="stat-grid">
+                    <div class="stat-box" style="flex:1;"><h4>8.89k</h4><p>Total Plays</p></div>
+                    <div class="stat-box" style="flex:1; border-left: 1px solid #eee; border-right: 1px solid #eee;"><h4>+1,698</h4><p>Respect</p></div>
+                    <div class="stat-box" style="flex:1;"><h4>2023</h4><p>Established</p></div>
+                </div>
+                <p style="font-size: 1.25rem; line-height: 1.8; color: #111; font-weight: 500;">
+                    Dominating the intersection of high-end production and urban luxury, <strong style="color:var(--v3-gold);">Jonas Evans</strong>—professionally known as <strong style="color:var(--v3-gold);">V3GASBOI</strong>—is the strategic architect of a global enterprise rooted in the heart of Las Vegas. 
+                    As a valuable industry member since 2023, he has amassed over <strong style="color:black;">8,890 total plays</strong> while managing the <strong style="color:black;">Vegas Spot</strong> and <strong style="color:black;">Fashions to You</strong> boutiques. 
                 </p>
             </div>
         </section>
 
-        <section id="music">
-            <h2 class="gold-header">The Vault</h2>
+        <section id="music" class="reveal" style="margin-bottom: 100px;">
+            <h2 class="section-header">Sound Vault</h2>
             <div class="track-list">
-                <div class="player-card">
-                    <h3>I GOT THAT FEELING</h3>
-                    <audio controls><source src="I Got that Feeling _2 (1).m4a" type="audio/mp4"></audio>
-                </div>
-                <div class="player-card">
-                    <h3>I AIN'T GOING NOWHERE</h3>
-                    <audio controls><source src="I Ain't going Nowhere _2.m4a" type="audio/mp4"></audio>
-                </div>
-                <div class="player-card">
-                    <h3>DEVIL IN A RED DRESS</h3>
-                    <audio controls><source src="Devil in a Red Dress.m4a" type="audio/mp4"></audio>
-                </div>
+                <div class="player-card"><h3>BITCH BOW DOWN</h3><audio controls><source src="Bitch bow Down (1).m4a" type="audio/mp4"></audio></div>
+                <div class="player-card"><h3>DAMM HOMIE</h3><audio controls><source src="DAMM Homie 50 cent Beat_1 (1).m4a" type="audio/mp4"></audio></div>
+                <div class="player-card"><h3>LIKE A BIKE</h3><audio controls><source src="Like_a_bike.m4a" type="audio/mp4"></audio></div>
+                <div class="player-card"><h3>BITCH SLOW IT DOWN</h3><audio controls><source src="Bitch Slow it Down_1 (1).m4a" type="audio/mp4"></audio></div>
+                <div class="player-card"><h3>DEVIL IN A RED DRESS</h3><audio controls><source src="Devil in a Red Dress.m4a" type="audio/mp4"></audio></div>
+                <div class="player-card"><h3>I GOT THAT FEELING</h3><audio controls><source src="I Got that Feeling _2 (1).m4a" type="audio/mp4"></audio></div>
             </div>
         </section>
 
-        <section id="shop">
-            <h2 class="gold-header">Boutique</h2>
-            <a href="#" class="gold-btn">VEGAS SPOT</a>
-            <a href="#" class="gold-btn" style="background:white;">FASHIONS TO YOU</a>
-            <a href="mailto:jonas88evans@gmail.com" class="gold-btn" style="background:transparent; color:var(--v3-gold); border: 2px solid var(--v3-gold);">BUSINESS INQUIRY</a>
+        <section id="shop" class="reveal">
+            <h2 class="section-header">Boutique</h2>
+            <a href="#" class="gold-btn">SHOP VEGAS SPOT</a>
+            <a href="#" class="gold-btn" style="background:white; color:black;">FASHIONS TO YOU</a>
         </section>
 
     </div>
 
-    <div class="social-bar">
+    <footer>
         <a href="https://www.youtube.com/@vegasboi2147" target="_blank">YOUTUBE</a>
         <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" target="_blank">SOUNDCLOUD</a>
         <a href="https://www.reverbnation.com/VegasBoiLV" target="_blank">REVERBNATION</a>
-        <a href="https://m.soundcloud.com/jonas-evans-508982390" target="_blank">JONAS SC</a>
-    </div>
+        <a href="mailto:jonas88evans@gmail.com">BUSINESS EMAIL</a>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+    </script>
 
 </body>
 </html>
