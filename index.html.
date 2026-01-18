@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3GASBOI | THE VISUAL COLOSSUS</title>
+    
+    <style>
+        :root { 
+            --black: #000; --red: #f00; --white: #fff; 
+            --glow: 0 0 100px rgba(255, 0, 0, 0.9);
+            --gap: 50vh; 
+            --border: 12px solid var(--red);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow: hidden; }
+
+        @keyframes pulse { 0%, 100% { text-shadow: var(--glow); transform: scale(1); } 50% { text-shadow: 0 0 200px var(--red); transform: scale(1.02); } }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* GIGA-TICKER */
+        .ticker-wrap { position: fixed; top: 0; width: 100%; height: 90px; background: var(--red); z-index: 10000; display: flex; align-items: center; border-bottom: 6px solid #fff; }
+        .ticker { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; font-weight: 950; text-transform: uppercase; letter-spacing: 15px; font-size: 2.2rem; }
+
+        /* NAVIGATION */
+        .menu-btn { position: fixed; top: 130px; left: 50px; z-index: 10001; background: #000; border: var(--border); color: #fff; padding: 25px 50px; border-radius: 20px; cursor: pointer; font-weight: 950; font-size: 1.8rem; box-shadow: var(--glow); }
+        .sidebar { position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; background: rgba(0,0,0,0.99); border-right: 15px solid var(--red); z-index: 9999; transition: 0.8s; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .sidebar.active { left: 0; }
+        .sidebar a { color: #fff; text-decoration: none; font-size: 4rem; font-weight: 950; margin: 25px 0; text-transform: uppercase; letter-spacing: 20px; cursor: pointer; }
+
+        /* PAGE ENGINE */
+        .page { position: fixed; inset: 0; width: 100%; height: 100vh; padding: 250px 8% 100px; overflow-y: auto; display: none; background: #000; z-index: 5000; }
+        .page.active { display: block; }
+
+        h1 { font-size: clamp(6rem, 25vw, 20rem); font-weight: 950; letter-spacing: 40px; text-align: center; animation: pulse 5s infinite; margin-bottom: 80px; }
+        h2 { font-size: 8rem; color: var(--red); margin-bottom: 80px; font-weight: 950; text-align: center; letter-spacing: 20px; }
+        
+        .card-titan { background: #050505; border: 12px solid var(--red); border-radius: 120px; padding: 120px 80px; margin-bottom: 200px; box-shadow: var(--glow); text-align: center; }
+
+        /* PHOTO GALLERY MODULE */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+        .photo-box { border: 10px solid var(--red); height: 500px; overflow: hidden; position: relative; box-shadow: var(--glow); }
+        .photo-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(100%); }
+        .photo-box:hover img { filter: grayscale(0%); transform: scale(1.1); }
+        .photo-label { position: absolute; bottom: 0; width: 100%; padding: 30px; background: rgba(255,0,0,0.8); color: #fff; font-weight: 950; text-align: center; font-size: 1.5rem; letter-spacing: 5px; }
+
+        .btn-colossus { background: var(--red); color: #fff; padding: 50px 100px; font-size: 3rem; font-weight: 950; text-transform: uppercase; border-radius: 300px; text-decoration: none; display: inline-block; box-shadow: var(--glow); border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="ticker-wrap"><div class="ticker">V3GASBOI EMPIRE • 25 YEARS OF STREET AUTHORITY • VISUAL GALLERY LIVE • SHOP 88MOB •</div></div>
+
+    <button class="menu-btn" onclick="toggleSidebar()">MENU</button>
+    <div class="sidebar" id="sidebar">
+        <a onclick="navigate('home')">HOME</a>
+        <a onclick="navigate('gallery')">GALLERY</a>
+        <a onclick="navigate('vault')">VAULT</a>
+        <a onclick="navigate('cinema')">CINEMA</a>
+        <a onclick="navigate('retail')">RETAIL</a>
+        <a onclick="navigate('hq')">HQ</a>
+    </div>
+
+    <div id="home" class="page active">
+        <h1>V3GASBOI</h1>
+        <div class="card-titan">
+            <p style="font-size: 5rem; font-weight: 950; color: var(--red); letter-spacing: 20px; margin-bottom: 40px;">LAS VEGAS EMPIRE</p>
+            <button onclick="navigate('gallery')" class="btn-colossus">VIEW THE MISSION</button>
+        </div>
+    </div>
+
+    <div id="gallery" class="page">
+        <h2>EMPIRE VISUALS</h2>
+        <div class="gallery-grid">
+            <div class="photo-box">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPrvN_K1nS-j0Z3p6qR1yXy" alt="V3GASBOI Studio">
+                <div class="photo-label">STUDIO SESSIONS</div>
+            </div>
+            <div class="photo-box">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczO0N1-kH-Z8wJq0eQ" alt="V3GASBOI Las Vegas">
+                <div class="photo-label">LAS VEGAS STREETS</div>
+            </div>
+            <div class="photo-box">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczNcO_T3zVz" alt="V3GASBOI Community">
+                <div class="photo-label">COMMUNITY MISSION</div>
+            </div>
+            <div class="photo-box">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczP0-Q" alt="V3GASBOI Retail">
+                <div class="photo-label">88MOB HQ</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vault" class="page">
+        <h2>THE VAULT</h2>
+        <div class="card-titan">
+            <p style="font-size: 15rem; font-weight: 950; color: var(--red); animation: pulse 4s infinite;">9,000+</p>
+            <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
+        </div>
+    </div>
+
+    <div id="cinema" class="page">
+        <h2>CINEMA</h2>
+        <div style="border-radius:80px; overflow:hidden; border:15px solid var(--red); height:700px; margin-bottom:100px;">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/P6pFdeZg8LI" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="retail" class="page">
+        <h2>STORE</h2>
+        <div class="card-titan" style="text-align: center;">
+            <p style="font-size: 20rem; font-weight: 950; color: var(--red); text-shadow: var(--glow);">$88.00</p>
+            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn-colossus">SHOP RETAIL</a>
+        </div>
+    </div>
+
+    <div id="hq" class="page">
+        <h2>CONTACT</h2>
+        <div class="card-titan">
+            <a href="mailto:hq@v3gasboi.com" class="btn-colossus">EMAIL HQ</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
+        function navigate(pId) {
+            const ps = document.querySelectorAll('.page');
+            ps.forEach(p => { p.style.display = 'none'; p.classList.remove('active'); });
+            const t = document.getElementById(pId);
+            t.style.display = 'block'; t.classList.add('active');
+            t.scrollTop = 0; toggleSidebar();
+        }
+    </script>
+</body>
+</html>
