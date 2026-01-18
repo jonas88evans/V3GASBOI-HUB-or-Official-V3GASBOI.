@@ -4,43 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>V3GASBOI | Official Las Vegas Mogul & Trap Artist Hub</title>
-    <meta name="description" content="Official hub for V3GASBOI (Jonas Evans). 8.89k plays, +1,698 respect. Las Vegas trap music, elite production, and home of the Vegas Spot boutique.">
-    <meta name="keywords" content="V3GASBOI, Jonas Evans, Las Vegas Trap, Vegas Music Production, Bitch bow Down, Vegas Spot Boutique, America's Next Top Hitmaker, Orbiiit">
-    <meta name="author" content="V3GASBOI">
-
+    <title>V3GASBOI | Official Master Hub</title>
+    <meta name="description" content="Official hub for V3GASBOI (Jonas Evans). 8.89k plays, +1,698 respect.">
+    
     <style>
         :root { --v3-gold: #D4AF37; --v3-black: #000000; --v3-white: #ffffff; --v3-neon: rgba(212, 175, 55, 0.6); }
         * { box-sizing: border-box; }
         body { background: var(--v3-white); color: var(--v3-black); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* AMBIENT & NEON STYLES */
+        /* AMBIENT MOTION */
         @keyframes ambientMove { 0% { background-position: 50% 50%; } 50% { background-position: 52% 48%; } 100% { background-position: 50% 50%; } }
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; background: linear-gradient(rgba(255,255,255,0.4), var(--v3-white)), url('Whisk_atmmzjzjngmwazym1szifwytqzy1qtl3gtnj1iz.jpeg'); background-size: 110%; animation: ambientMove 20s infinite; }
         
+        /* NEON HEADERS */
         h1, h2, h3 { text-transform: uppercase; font-weight: 900; text-shadow: 3px 3px 10px rgba(0,0,0,0.3), 0 0 15px var(--v3-neon); }
         h1 { font-size: clamp(3rem, 10vw, 5.5rem); letter-spacing: 12px; }
 
         nav { position: fixed; top: 0; width: 100%; background: var(--v3-black); padding: 20px; display: flex; justify-content: center; gap: 20px; border-bottom: 3px solid var(--v3-gold); z-index: 1000; }
-        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; text-shadow: 2px 2px 4px #000; letter-spacing: 2px; }
+        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; letter-spacing: 2px; }
 
         .container { max-width: 1200px; margin: auto; padding: 100px 20px; }
         .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
         .visible { opacity: 1; transform: translateY(0); }
 
         .card { background: #fff; border: 2px solid var(--v3-gold); padding: 40px; border-radius: 20px; box-shadow: 10px 10px 30px rgba(0,0,0,0.05); margin-bottom: 40px; }
-        .gold-btn { display: block; background: var(--v3-black); color: var(--v3-gold); text-decoration: none; padding: 20px; text-align: center; font-weight: 900; border: 2px solid var(--v3-gold); transition: 0.3s; }
+        .gold-btn { display: block; background: var(--v3-black); color: var(--v3-gold); text-decoration: none; padding: 20px; text-align: center; font-weight: 900; border: 2px solid var(--v3-gold); transition: 0.3s; margin-top: 10px; }
         .gold-btn:hover { box-shadow: 0 0 20px var(--v3-gold); transform: scale(1.02); }
 
-        /* VISUAL HUB GALLERY */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-item { border: 3px solid var(--v3-gold); border-radius: 12px; overflow: hidden; background: #000; transition: 0.4s; }
-        .gallery-item:hover { transform: scale(1.03); box-shadow: 0 0 20px var(--v3-gold); }
-        .gallery-item img { width: 100%; height: 350px; object-fit: cover; display: block; }
-
-        /* SCAVENGER HUNT HIDDEN ICON */
-        #secret-icon { position: absolute; bottom: 10px; right: 10px; color: var(--v3-gold); opacity: 0.1; cursor: pointer; font-size: 0.8rem; }
-        #secret-icon:hover { opacity: 1; }
+        /* REVIEWS GRID */
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .review-card { background: #fff; border: 1px solid #eee; padding: 30px; border-radius: 15px; border-top: 5px solid var(--v3-gold); box-shadow: 0 10px 20px rgba(0,0,0,0.02); transition: 0.3s; }
+        .review-card:hover { transform: scale(1.03); }
     </style>
 </head>
 <body>
@@ -48,59 +42,51 @@
     <nav>
         <a href="#home">HOME</a>
         <a href="#about">MOGUL</a>
-        <a href="#visuals">VISUALS</a>
-        <a href="#fun">INTERACT</a>
+        <a href="#reviews">RESPECT</a>
+        <a href="#music">SOUNDS</a>
     </nav>
 
     <section id="home" class="hero">
         <h1>V3GASBOI</h1>
-        <p style="letter-spacing: 5px; color: var(--v3-gold); font-weight: bold;">LAS VEGAS • PRODUCTION • MOGUL</p>
+        <p style="letter-spacing: 5px; color: var(--v3-gold); font-weight: bold; text-shadow: 2px 2px 4px #000;">LAS VEGAS • PRODUCTION • MOGUL</p>
         <div style="margin-top: 30px; background: white; padding: 10px 25px; border: 3px solid var(--v3-gold); font-weight: 900;">
             8.89K TOTAL PLAYS
         </div>
-        <div id="secret-icon" onclick="alert('MOGUL SECRET UNLOCKED: Use code VEGAS10 for 10% off at Vegas Spot!')">★</div>
     </section>
 
     <div class="container">
         <section id="about" class="reveal">
             <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">The Mogul</h2>
             <div class="card">
-                <p style="font-size: 1.3rem; line-height: 1.8; color: #222; font-weight: 500;">
-                    <strong style="color:var(--v3-gold);">Jonas Evans</strong>, the architect of <strong style="color:black;">V3GASBOI</strong>, has built a global enterprise from Las Vegas. With over <strong style="color:black;">8,890 plays</strong> and a community respect rating of <strong style="color:black;">+1,698</strong>, his brand spans 35 countries through music and the <strong>Vegas Spot</strong> boutique.
+                <p style="font-size: 1.3rem; line-height: 1.8; font-weight: 500;">
+                    <strong style="color:var(--v3-gold);">Jonas Evans</strong> is the architect of <strong style="color:black;">V3GASBOI</strong>, building a global brand from Las Vegas. With over <strong style="color:black;">8,890 plays</strong> and <strong style="color:black;">+1,698 respect</strong>, he commands the <strong>Vegas Spot</strong> and <strong>Fashions to You</strong> boutiques across 35 countries.
                 </p>
             </div>
         </section>
 
-        <section id="fun" class="reveal">
-            <h2 style="border-bottom: 5px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Mogul Interactive</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                <div class="card" style="background: #000; color: var(--v3-gold); text-align: center;">
-                    <h3>Road to 10K</h3>
-                    <div style="font-size: 2rem; margin: 20px 0;">8,890 / 10,000</div>
-                    <div style="width: 100%; background: #222; height: 10px; border-radius: 5px; overflow: hidden;">
-                        <div style="width: 88.9%; background: var(--v3-gold); height: 100%;"></div>
-                    </div>
+        <section id="reviews" class="reveal" style="margin-bottom: 100px;">
+            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Respect Earned</h2>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div style="color: var(--v3-gold); font-size: 1.2rem; margin-bottom: 10px;">★★★★★</div>
+                    <p style="font-style: italic; color: #444;">"The production quality V3GASBOI brings is elite. He’s the only one I trust with my sound in Vegas."</p>
+                    <strong style="display: block; margin-top: 15px; color: #000;">— Artist Collaborator</strong>
                 </div>
-                <div class="card">
-                    <h3>Fan Vote</h3>
-                    <p>Next AI Video?</p>
-                    <button class="gold-btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('Respect Added!')">BITCH BOW DOWN</button>
-                    <button class="gold-btn" style="width: 100%;" onclick="alert('Respect Added!')">DAMM HOMIE</button>
+                <div class="review-card">
+                    <div style="color: var(--v3-gold); font-size: 1.2rem; margin-bottom: 10px;">★★★★★</div>
+                    <p style="font-style: italic; color: #444;">"Fast shipping and the quality of the gear from Vegas Spot is unmatched. True mogul business."</p>
+                    <strong style="display: block; margin-top: 15px; color: #000;">— Vegas Spot Customer</strong>
+                </div>
+                <div class="review-card">
+                    <div style="color: var(--v3-gold); font-size: 1.2rem; margin-bottom: 10px;">★★★★★</div>
+                    <p style="font-style: italic; color: #444;">"The AI visuals he produced for my last drop were insane. Jonas is ahead of the curve."</p>
+                    <strong style="display: block; margin-top: 15px; color: #000;">— Creative Partner</strong>
                 </div>
             </div>
         </section>
 
-        <section id="visuals" class="reveal" style="margin-bottom: 100px;">
-            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Visual Hub</h2>
-            <div class="gallery">
-                <div class="gallery-item"><img src="1000010188.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">LIFESTYLE</div></div>
-                <div class="gallery-item"><img src="1000010201.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">BENTLEY STATUS</div></div>
-                <div class="gallery-item"><img src="1000010161.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">TRAP ARTIST</div></div>
-            </div>
-        </section>
-
-        <section id="disco" class="reveal">
-            <h2 style="border-bottom: 5px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Sound Vault</h2>
+        <section id="music" class="reveal">
+            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Sound Vault</h2>
             <div class="card">
                 <h3>BITCH BOW DOWN</h3>
                 <audio controls style="width:100%;"><source src="Bitch bow Down (1).m4a" type="audio/mp4"></audio>
@@ -110,10 +96,16 @@
                 <audio controls style="width:100%;"><source src="DAMM Homie 50 cent Beat_1 (1).m4a" type="audio/mp4"></audio>
             </div>
         </section>
+
+        <section id="shop" class="reveal">
+            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">The Boutique</h2>
+            <a href="#" class="gold-btn">SHOP VEGAS SPOT</a>
+            <a href="#" class="gold-btn" style="background:white; color:black;">FASHIONS TO YOU</a>
+        </section>
     </div>
 
     <footer style="background: #000; color: var(--v3-gold); padding: 60px 20px; text-align: center; border-top: 5px solid var(--v3-gold);">
-        <p>+1,698 RESPECT EARNED</p>
+        <p style="font-weight: 900; letter-spacing: 2px;">+1,698 RESPECT EARNED</p>
         <p>© 2026 V3GASBOI | LAS VEGAS, NV</p>
     </footer>
 
