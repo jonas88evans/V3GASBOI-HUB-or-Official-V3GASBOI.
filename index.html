@@ -3,171 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Official Independent Mogul Hub | Las Vegas</title>
-    <meta name="description" content="Official hub for V3GASBOI. 25 years of independent mogul authority in Las Vegas. From Lyrical Mindz to 88MOB. 9,000+ plays verified.">
-    <meta name="keywords" content="V3GASBOI, 88MOB, Lyrical Mindz, Las Vegas Music, Independent Mogul, C-BO collaboration, Vegas Hip Hop 2026">
-    <link rel="canonical" href="https://v3gasboi.com">
-    
-    <meta property="og:title" content="V3GASBOI | Official Empire Hub">
-    <meta property="og:description" content="Independent Mogul Authority since 1998. 9,000+ plays verified.">
-    <meta property="og:image" content="1000002511.jpg">
-    <meta property="og:url" content="https://v3gasboi.com">
-
+    <title>V3GASBOI | THE COLOSSUS MOGUL</title>
     <style>
         :root { 
-            --bentley-black: #050505; --luxury-red: #d40000; 
-            --pure-white: #ffffff; --red-glow: 0 0 40px rgba(212, 0, 0, 0.8);
-            --overlay-dark: rgba(0, 0, 0, 0.75);
+            --bentley-black: #000000; --luxury-red: #ff0000; 
+            --pure-white: #ffffff; --colossus-glow: 0 0 100px rgba(255, 0, 0, 1);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bentley-black); color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* MOGUL TICKER */
-        .ticker-wrap { position: fixed; top: 0; width: 100%; overflow: hidden; height: 40px; background: var(--luxury-red); border-bottom: 2px solid #fff; z-index: 5000; display: flex; align-items: center; }
-        .ticker { display: inline-block; white-space: nowrap; animation: ticker 30s linear infinite; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; }
+        /* COLOSSUS KINETIC ENGINE */
+        @keyframes colossusPulse { 0%, 100% { text-shadow: var(--colossus-glow); transform: scale(1); } 50% { text-shadow: 0 0 200px rgba(255, 0, 0, 1); transform: scale(1.08); } }
+        @keyframes colossusSlide { from { opacity: 0; transform: scale(0.8) translateY(200px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+        
+        /* GIGA TICKER */
+        .ticker-wrap { position: fixed; top: 0; width: 100%; height: 80px; background: var(--luxury-red); border-bottom: 5px solid #fff; z-index: 9999; display: flex; align-items: center; }
+        .ticker { display: inline-block; white-space: nowrap; animation: ticker 15s linear infinite; font-weight: 950; text-transform: uppercase; letter-spacing: 10px; font-size: 2.5rem; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* HEADER */
-        header { background: rgba(5, 5, 5, 0.95); padding: 25px 5%; position: fixed; width: 100%; top: 40px; z-index: 4000; border-bottom: 1px solid var(--luxury-red); display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); }
-        .logo { font-weight: 900; letter-spacing: 10px; font-size: 2rem; color: #fff; text-shadow: var(--red-glow); }
-        nav a { color: #fff; text-decoration: none; margin-left: 25px; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; border: 1px solid transparent; padding: 10px; transition: 0.3s; }
-        nav a:hover { border-color: var(--luxury-red); background: var(--luxury-red); }
+        /* COLOSSUS HEADER */
+        header { background: rgba(0, 0, 0, 0.99); padding: 50px 10%; position: fixed; width: 100%; top: 80px; z-index: 9000; border-bottom: 5px solid var(--luxury-red); display: flex; flex-direction: column; align-items: center; backdrop-filter: blur(40px); }
+        .logo { font-weight: 950; letter-spacing: 25px; font-size: 5rem; color: #fff; animation: colossusPulse 3s infinite; text-transform: uppercase; margin-bottom: 20px; }
+        
+        /* THE STADIUM CONTAINER */
+        .stadium-container { width: 100%; max-width: 1900px; margin: auto; padding-top: 350px; }
+        .colossus-label { color: var(--luxury-red); font-weight: 900; letter-spacing: 20px; text-transform: uppercase; font-size: 2rem; margin-bottom: 50px; display: block; text-align: center; }
+        
+        .colossus-card { background: #050505; border: 8px solid var(--luxury-red); border-radius: 150px; padding: 200px 100px; margin-bottom: 300px; box-shadow: var(--colossus-glow); position: relative; transition: 0.8s; }
+        .colossus-card:hover { transform: scale(1.03); background: #0a0a0a; border-color: #fff; }
+        
+        h1 { font-size: clamp(8rem, 35vw, 25rem); letter-spacing: 50px; animation: colossusPulse 4s infinite; font-weight: 950; text-align: center; line-height: 0.7; margin-bottom: 80px; }
+        h2 { font-size: clamp(5rem, 15vw, 10rem); color: #fff; margin-bottom: 100px; letter-spacing: 25px; font-weight: 950; text-transform: uppercase; text-align: center; line-height: 1; }
+        p { line-height: 1.5; font-size: 3rem; color: #fff; margin-bottom: 60px; font-weight: 700; }
 
-        /* SECTIONS & OVERLAYS */
-        .container { max-width: 1200px; margin: auto; padding: 100px 20px; }
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; text-align: center; background: url('1000002511.jpg') center/cover no-repeat; }
-        .hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(212,0,0,0.3) 0%, rgba(0,0,0,0.9) 90%); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        /* COLOSSUS BUTTON */
+        .btn-colossus { background: var(--luxury-red); color: #fff; padding: 60px 150px; font-weight: 950; font-size: 3.5rem; text-transform: uppercase; text-decoration: none; border-radius: 300px; display: block; width: fit-content; margin: 80px auto 0; box-shadow: var(--colossus-glow); border: 10px solid transparent; cursor: pointer; transition: 0.5s; text-align: center; }
+        .btn-colossus:hover { background: #fff; color: #000; transform: translateY(-30px) scale(1.1); box-shadow: 0 0 150px #fff; border-color: var(--luxury-red); }
 
-        .bio-card { 
-            position: relative; background: url('1000002513.jpg') center/cover; 
-            border-radius: 60px; min-height: 500px; overflow: hidden; border: 3px solid var(--luxury-red); 
-            margin-bottom: 80px; box-shadow: var(--red-glow); 
-        }
-        .bio-text-overlay { 
-            position: absolute; inset: 0; background: var(--overlay-dark); 
-            padding: 60px; display: flex; flex-direction: column; justify-content: center; 
-        }
+        /* GIGA MEDIA BOXES */
+        .giga-grid { display: grid; grid-template-columns: 1fr; gap: 100px; margin-top: 150px; }
+        .giga-box { border-radius: 120px; overflow: hidden; border: 10px solid var(--luxury-red); background: #000; position: relative; height: 900px; box-shadow: var(--colossus-glow); }
+        .giga-box iframe { width: 100%; height: 100%; border: none; }
+        .giga-label { position: absolute; bottom: 0; width: 100%; padding: 80px; background: linear-gradient(transparent, #000); font-weight: 950; font-size: 3rem; text-transform: uppercase; letter-spacing: 15px; text-align: center; pointer-events: none; }
 
-        h1 { font-size: clamp(4rem, 15vw, 8.5rem); text-shadow: var(--red-glow); }
-        h2 { font-size: 3rem; color: var(--luxury-red); margin-bottom: 30px; letter-spacing: 8px; font-weight: 900; text-transform: uppercase; }
-        p { line-height: 1.8; font-size: 1.2rem; color: var(--pure-white); }
-
-        /* MEDIA OVERLAY GRID */
-        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .overlay-item { 
-            position: relative; height: 450px; border-radius: 40px; overflow: hidden; 
-            border: 2px solid var(--luxury-red); transition: 0.5s; 
-        }
-        .overlay-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
-        .item-text { 
-            position: absolute; inset: 0; background: rgba(0,0,0,0.5); 
-            display: flex; flex-direction: column; justify-content: flex-end; 
-            padding: 40px; transition: 0.5s;
-        }
-        .overlay-item:hover img { opacity: 1; transform: scale(1.1); }
-        .overlay-item:hover .item-text { background: rgba(212, 0, 0, 0.4); }
-
-        /* BUTTONS */
-        .btn { 
-            background: var(--luxury-red); color: #fff; padding: 25px 60px; 
-            font-weight: 900; font-size: 1.3rem; text-transform: uppercase; 
-            text-decoration: none; border-radius: 100px; display: inline-block; 
-            box-shadow: var(--red-glow); border: none; cursor: pointer; transition: 0.4s;
-        }
-        .btn:hover { background: #fff; color: #000; transform: translateY(-5px); }
-
-        .reveal { opacity: 0; transform: translateY(40px); transition: 1s ease-out; }
-        .visible { opacity: 1; transform: translateY(0); }
+        .reveal { opacity: 0; transform: scale(0.9) translateY(150px); transition: 2s cubic-bezier(0.19, 1, 0.22, 1); }
+        .visible { opacity: 1; transform: scale(1) translateY(0); }
     </style>
 </head>
 <body>
 
     <div class="ticker-wrap">
         <div class="ticker">
-            V3GASBOI INDEPENDENT EMPIRE • 25 YEARS OF LAS VEGAS AUTHORITY • 9,000+ PLAYS VERIFIED • RETAIL SHOP LIVE • 88MOB INSIDER LIST NOW OPEN •
+            V3GASBOI COLOSSUS EMPIRE • 25 YEARS OF STREET COMMAND • 9,000+ VERIFIED PLAYS • THE ROAD TO 10,000 • MISSION: THE INDEPENDENCE CODE • SHOP: OFFICIAL 88MOB RETAIL NOW OPEN • 
         </div>
     </div>
 
     <header>
         <div class="logo">V3GASBOI</div>
-        <nav><a href="#about">BIO</a><a href="#vault">VAULT</a><a href="#shop">STORE</a></nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-overlay">
+    <div class="stadium-container">
+        <section class="reveal" style="text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+            <span class="colossus-label">LAS VEGAS MOGUL AUTHORITY</span>
             <h1>V3GASBOI</h1>
-            <p style="font-size: 2rem; letter-spacing: 10px; font-weight: 900; margin-top: 10px;">INDEPENDENT MOGUL</p>
-            <div style="margin-top: 40px; border: 3px solid var(--luxury-red); padding: 20px 50px; border-radius: 100px; background: rgba(0,0,0,0.5);">
-                <span style="font-size: 2.2rem; font-weight: 900; color: #fff;">9,000+ PLAYS VERIFIED</span>
-            </div>
-        </div>
-    </section>
-
-    <div class="container">
-        <section class="reveal" style="text-align: center; margin-bottom: 120px;">
-            <h2>The Mission</h2>
-            <div style="font-size: 2rem; font-weight: 900; font-style: italic; border-left: 10px solid var(--luxury-red); padding-left: 30px; display: inline-block; text-align: left;">
-                "To command the global independent circuit through high-performance production, unyielding street authority, and the preservation of the Lyrical Mindz legacy."
-            </div>
+            <p style="font-size: 5rem; letter-spacing: 20px; font-weight: 950; color: var(--luxury-red);">25 YEARS • 35 COUNTRIES</p>
+            <a href="#vault" class="btn-colossus">ACCESS THE VAULT</a>
         </section>
 
-        <section id="about" class="reveal">
-            <div class="bio-card">
-                <div class="bio-text-overlay">
-                    <h2>The Biography</h2>
-                    <p style="margin-bottom: 25px; font-weight: 700;">
-                        Dominating the Las Vegas circuit for over 25 years, V3GASBOI stands as the definitive voice of the independent hustle. From the foundation of Owens Ave to reaching fans in 35 countries, the journey has been built on pure professional execution. This is a legacy forged in the era of Lyrical Mindz and elevated through the 88MOB movement.
-                    </p>
-                    <p style="font-weight: 700;">
-                        As a solo mogul, V3GASBOI has bridged the gap between raw street respect and digital empire-building. His career milestones include the high-impact 2019 collaboration with West Coast icon <strong>C-BO</strong>, proving that street authority and global reach go hand-in-hand. We handle the "Whole 9 Yards"—from the studio session to the global distribution.
-                    </p>
+        <section class="reveal">
+            <span class="colossus-label">THE SUPREME CODE</span>
+            <div class="colossus-card">
+                <h2>MISSION</h2>
+                <div style="font-size: 6rem; font-weight: 950; font-style: italic; border-left: 40px solid var(--luxury-red); padding-left: 80px; text-align: left; line-height: 1.1; color: #fff;">
+                    "TO COMMAND THE GLOBAL INDEPENDENT CIRCUIT THROUGH HIGH-PERFORMANCE PRODUCTION, UNYIELDING STREET AUTHORITY, AND THE PRESERVATION OF THE LYRICAL MINDZ LEGACY."
                 </div>
             </div>
         </section>
 
-        <section id="vault" class="reveal" style="margin-bottom: 100px;">
-            <div class="overlay-item" style="height: auto; padding: 80px 40px; background: rgba(255,255,255,0.03); text-align: center; box-shadow: var(--red-glow);">
-                <h2>The Sound Vault</h2>
-                <p style="font-weight: 900; color: var(--luxury-red); margin-bottom: 30px;">9,000+ STREAMS | INDEPENDENT DATA</p>
-                <audio controls style="width: 100%; filter: invert(1); margin-bottom: 40px;"><source src="Bitch bow Down (1).m4a"></audio>
-                <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" class="btn" target="_blank">ENTER SOUNDCLOUD HQ</a>
+        <section class="reveal">
+            <span class="colossus-label">MOGUL LEGACY</span>
+            <div class="colossus-card">
+                <h2>THE BIOGRAPHY</h2>
+                <p>
+                    DOMINATING THE LAS VEGAS CIRCUIT FOR OVER 25 YEARS, V3GASBOI STANDS AS THE DEFINITIVE VOICE OF THE INDEPENDENT HUSTLE. 
+                </p>
+                <p style="color: var(--luxury-red);">
+                    FROM THE FOUNDATION OF OWENS AVE TO REACHING FANS IN 35 COUNTRIES, THE JOURNEY HAS BEEN BUILT ON PURE PROFESSIONAL EXECUTION. THIS IS A LEGACY FORGED IN THE ERA OF LYRICAL MINDZ AND ELEVATED THROUGH THE 88MOB MOVEMENT. 
+                </p>
+                <p>
+                    AS A SOLO MOGUL, V3GASBOI HAS BRIDGED THE GAP BETWEEN STREET RESPECT AND DIGITAL EMPIRE-BUILDING, INCLUDING THE LEGENDARY 2019 COLLABORATION WITH WEST COAST ICON C-BO.
+                </p>
             </div>
         </section>
 
-        <section id="media" class="reveal">
-            <h2 style="text-align: center;">Empire Gallery</h2>
-            <div class="media-grid">
-                <div class="overlay-item">
-                    <img src="1000002505.jpg" alt="V3GASBOI Vlog">
-                    <div class="item-text">
-                        <h3 style="font-size: 2rem; font-weight: 900;">VLOG SESSIONS</h3>
-                        <p style="color: var(--luxury-red); font-weight: 900;">THE ROAD TO 10K</p>
-                    </div>
+        <section class="reveal">
+            <span class="colossus-label">VISUAL COMMAND</span>
+            <h2>GIGA MEDIA</h2>
+            <div class="giga-grid">
+                <div class="giga-box">
+                    <iframe src="https://www.youtube.com/embed/P6pFdeZg8LI" allowfullscreen></iframe>
+                    <div class="giga-label">THE ROAD TO 10K</div>
                 </div>
-                <div class="overlay-item">
-                    <img src="1000002513.jpg" alt="Studio HQ">
-                    <div class="item-text">
-                        <h3 style="font-size: 2rem; font-weight: 900;">STUDIO HQ</h3>
-                        <p style="color: var(--luxury-red); font-weight: 900;">25 YEARS OF GRIND</p>
-                    </div>
+                <div class="giga-box">
+                    <iframe src="https://www.youtube.com/embed/UkWd0azv3fQ" allowfullscreen></iframe>
+                    <div class="giga-label">STUDIO HQ SESSIONS</div>
                 </div>
             </div>
         </section>
 
-        <section id="shop" class="reveal" style="margin-top: 100px;">
-            <div class="overlay-item" style="height: 600px; background: url('1000010161.png') center/cover;">
-                <div class="item-text" style="background: rgba(0,0,0,0.85); height: 100%; justify-content: center; align-items: center; text-align: center;">
-                    <h2>88MOB RETAIL</h2>
-                    <p style="font-size: 3.5rem; font-weight: 900; color: var(--luxury-red);">$88.00</p>
-                    <a href="https://www.tiktok.com/@v3gasboi" class="btn" style="margin-top: 30px;">SHOP TIKTOK DIRECT</a>
-                    <p style="margin-top: 20px; font-size: 0.9rem; text-decoration: underline;">Fulfillment from Las Vegas, NV</p>
+        <section class="reveal">
+            <span class="colossus-label">REVENUE EMPIRE</span>
+            <div class="colossus-card" style="text-align: center;">
+                <h2>88MOB GEAR</h2>
+                <div style="margin: 100px 0;">
+                    <span style="font-size: 18rem; font-weight: 950; color: var(--luxury-red); text-shadow: var(--colossus-glow);">$88.00</span>
                 </div>
+                <a href="https://www.tiktok.com/@v3gasboi" class="btn-colossus">SHOP TIKTOK DIRECT</a>
             </div>
         </section>
     </div>
 
-    <footer style="padding: 100px 0; text-align: center; border-top: 2px solid #222;">
-        <p style="font-weight: 900; color: var(--luxury-red); letter-spacing: 10px;">© 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
+    <footer style="padding: 300px 0; text-align: center; border-top: 10px solid var(--luxury-red); background: #000;">
+        <div class="logo" style="margin-bottom: 80px; font-size: 12rem;">V3GASBOI</div>
+        <p style="font-weight: 950; color: var(--luxury-red); letter-spacing: 30px; font-size: 3rem;">© 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
     </footer>
 
     <script>
