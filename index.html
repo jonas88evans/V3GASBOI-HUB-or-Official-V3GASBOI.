@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V3GASBOI | Official Master Hub</title>
     <style>
-        :root { --v3-gold: #D4AF37; --v3-black: #000000; --v3-white: #ffffff; --v3-neon: rgba(212, 175, 55, 0.6); }
+        :root { --v3-gold: #D4AF37; --v3-black: #000000; --v3-white: #ffffff; --v3-neon-glow: rgba(212, 175, 55, 0.6); }
         * { box-sizing: border-box; }
         
-        /* GLOBAL TEXT SHADOWS */
+        /* UNIVERSAL TEXT SHADOWS */
         body { 
             background: var(--v3-white); 
             color: var(--v3-black); 
@@ -16,72 +16,69 @@
             margin: 0; 
             overflow-x: hidden; 
             scroll-behavior: smooth;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.15); 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.15); /* */
         }
 
         /* AMBIENT BACKGROUND MOVEMENT */
         @keyframes ambientMove {
-            0% { background-position: 50% 50%; background-size: 110%; }
-            50% { background-position: 52% 48%; background-size: 115%; }
-            100% { background-position: 50% 50%; background-size: 110%; }
+            0% { background-position: 50% 50%; transform: scale(1); }
+            50% { background-position: 52% 48%; transform: scale(1.05); }
+            100% { background-position: 50% 50%; transform: scale(1); }
+        }
+
+        /* NEON PULSE FOR TEXT */
+        @keyframes neonPulse {
+            0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px var(--v3-neon-glow); }
+            50% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px var(--v3-neon-glow), 0 0 30px var(--v3-gold); }
+            100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px var(--v3-neon-glow); }
         }
 
         .hero { 
-            height: 100vh; width: 100%; position: relative;
-            background: linear-gradient(rgba(255,255,255,0.4), var(--v3-white)), url('Whisk_atmmzjzjngmwazym1szifwytqzy1qtl3gtnj1iz.jpeg'); 
-            background-size: cover;
-            animation: ambientMove 25s ease-in-out infinite;
+            height: 100vh; width: 100%; position: relative; overflow: hidden;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-
-        /* HEAVY NEON SHADOWS FOR HEADERS */
-        h1, h2, h3 { 
-            text-transform: uppercase; 
-            font-weight: 900; 
-            text-shadow: 4px 4px 8px rgba(0,0,0,0.4), 0 0 15px var(--v3-neon); 
+        
+        /* ANIMATED BACKGROUND LAYER */
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(255,255,255,0.4), var(--v3-white)), url('Whisk_atmmzjzjngmwazym1szifwytqzy1qtl3gtnj1iz.jpeg'); 
+            background-size: cover; background-position: center;
+            animation: ambientMove 20s ease-in-out infinite; /* */
+            z-index: -1;
         }
 
-        h1 { font-size: clamp(3rem, 10vw, 5.5rem); letter-spacing: 12px; color: var(--v3-black); margin: 0; }
+        /* NEON HEADERS */
+        h1, h2, h3 { 
+            text-transform: uppercase; font-weight: 900; 
+            animation: neonPulse 3s ease-in-out infinite; /* */
+        }
+        h1 { font-size: clamp(3rem, 10vw, 5.5rem); letter-spacing: 12px; margin: 0; color: #000; }
 
-        /* NAV STYLING */
+        /* NAVIGATION - BLACK & GOLD NEON */
         nav { position: fixed; top: 0; width: 100%; background: var(--v3-black); padding: 20px; display: flex; justify-content: center; gap: 20px; border-bottom: 3px solid var(--v3-gold); z-index: 1000; }
-        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); text-transform: uppercase; letter-spacing: 2px; }
+        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 5px var(--v3-gold); }
 
         .container { max-width: 1200px; margin: auto; padding: 100px 20px; }
         
-        /* AMBIENT REVEAL ANIMATION */
-        .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s all ease-out; }
-        .visible { opacity: 1; transform: translateY(0); }
-
+        /* CARD STYLING */
         .card { 
-            background: #fff; 
-            border: 2px solid var(--v3-gold); 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 15px 15px 30px rgba(0,0,0,0.07);
-            margin-bottom: 40px;
+            background: #fff; border: 2px solid var(--v3-gold); padding: 40px; border-radius: 20px; 
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.05); margin-bottom: 40px;
+            transition: 0.3s;
         }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 0 20px var(--v3-neon-glow); }
 
-        /* PHOTO GALLERY */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-item { border: 3px solid var(--v3-gold); border-radius: 12px; overflow: hidden; background: #000; transition: 0.4s; }
-        .gallery-item:hover { transform: scale(1.03); box-shadow: 0 0 20px var(--v3-gold); }
-        .gallery-item img { width: 100%; height: 350px; object-fit: cover; display: block; }
+        /* VISUAL HUB GALLERY */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; } /* */
+        .gallery-item { border: 3px solid var(--v3-gold); border-radius: 12px; overflow: hidden; background: #000; }
+        .gallery-item img { width: 100%; height: 350px; object-fit: cover; display: block; } /* */
 
         .gold-btn { 
-            display: block; 
-            background: var(--v3-black); 
-            color: var(--v3-gold); 
-            text-decoration: none; 
-            padding: 22px; 
-            text-align: center; 
-            font-weight: 900; 
-            border: 3px solid var(--v3-gold); 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
-            transition: 0.3s;
-            letter-spacing: 3px;
+            display: block; background: var(--v3-black); color: var(--v3-gold); text-decoration: none; 
+            padding: 22px; text-align: center; font-weight: 900; border: 3px solid var(--v3-gold); 
+            transition: 0.3s; letter-spacing: 3px;
         }
-        .gold-btn:hover { background: var(--v3-gold); color: #000; text-shadow: none; box-shadow: 0 0 25px var(--v3-gold); }
+        .gold-btn:hover { background: var(--v3-gold); color: #000; box-shadow: 0 0 25px var(--v3-gold); }
 
         footer { background: var(--v3-black); color: var(--v3-gold); padding: 60px 20px; text-align: center; border-top: 5px solid var(--v3-gold); }
     </style>
@@ -96,80 +93,55 @@
     </nav>
 
     <section id="home" class="hero">
-        <h1 class="visible">V3GASBOI</h1>
+        <div class="hero-bg"></div>
+        <h1>V3GASBOI</h1>
         <p style="letter-spacing: 5px; color: var(--v3-gold); font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
             LAS VEGAS • PRODUCTION • MOGUL
         </p>
-        <div style="margin-top: 30px; background: white; padding: 12px 30px; border: 3px solid var(--v3-gold); font-weight: 900; font-size: 1.2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        <div style="margin-top: 30px; background: white; padding: 12px 30px; border: 3px solid var(--v3-gold); font-weight: 900; font-size: 1.2rem;">
             8.89K TOTAL PLAYS
         </div>
     </section>
 
     <div class="container">
-        <section id="about" class="reveal">
-            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">The Mogul</h2>
-            <div class="card">
-                <p style="font-size: 1.3rem; line-height: 1.8; color: #222; font-weight: 500;">
-                    <strong style="color:var(--v3-gold);">Jonas Evans</strong>, the architect of <strong style="color:black;">V3GASBOI</strong>, has built a global enterprise from Las Vegas. With over <strong style="color:black;">8,890 plays</strong> and a community respect rating of <strong style="color:black;">+1,698</strong>, his brand spans 35 countries through music and the <strong>Vegas Spot</strong> boutique.
-                </p>
-            </div>
-        </section>
-
-        <section id="contests" class="reveal">
+        <section id="contests" style="margin-bottom: 100px;">
             <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Competition Legacy</h2>
             <div class="card" style="border-left: 10px solid #FF0000;">
                 <h3>America's Next Top Hitmaker</h3>
-                <p>A national contender in the <strong>2024 & 2025</strong> seasons, Jonas Evans fought for a feature in <strong>Rolling Stone</strong> and a stage at the Future of Music Showcase.</p>
+                <p>National contender in the <strong>2024 & 2025</strong> seasons, representing Las Vegas for a spot in <strong>Rolling Stone</strong>.</p>
             </div>
             <div class="card" style="border-left: 10px solid #007AFF;">
                 <h3>Orbiiit Global Creative</h3>
-                <p>Participated in elite <strong>Orbiiit</strong> global talent contests, showcasing Vegas-certified production to a worldwide community of creators.</p>
+                <p>Featured contestant on the <strong>Orbiiit</strong> global talent platform, showcasing trap production to an international community.</p>
             </div>
         </section>
 
-        <section id="visuals" class="reveal" style="margin-bottom: 100px;">
+        <section id="visuals" style="margin-bottom: 100px;">
             <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Visual Hub</h2>
             <div class="gallery">
                 <div class="gallery-item"><img src="1000010188.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">LIFESTYLE</div></div>
-                <div class="gallery-item"><img src="1000010194.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">AI PRODUCTION</div></div>
-                <div class="gallery-item"><img src="1000010273.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">STATS</div></div>
+                <div class="gallery-item"><img src="1000010201.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">BENTLEY STATUS</div></div>
+                <div class="gallery-item"><img src="1000010161.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">TRAP ARTIST</div></div>
             </div>
         </section>
 
-        <section id="music" class="reveal">
+        <section id="music" style="margin-bottom: 100px;">
             <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Sound Vault</h2>
             <div class="card">
-                <h3 style="letter-spacing: 2px;">BITCH BOW DOWN</h3>
+                <h3>BITCH BOW DOWN</h3>
                 <audio controls style="width:100%;"><source src="Bitch bow Down (1).m4a" type="audio/mp4"></audio>
             </div>
             <div class="card">
-                <h3 style="letter-spacing: 2px;">DAMM HOMIE</h3>
+                <h3>DAMM HOMIE</h3>
                 <audio controls style="width:100%;"><source src="DAMM Homie 50 cent Beat_1 (1).m4a" type="audio/mp4"></audio>
             </div>
-        </section>
-
-        <section id="shop" class="reveal">
-            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">The Boutique</h2>
-            <a href="#" class="gold-btn">SHOP VEGAS SPOT</a>
-            <a href="#" class="gold-btn" style="background:white; color:black; margin-top:20px;">FASHIONS TO YOU</a>
         </section>
     </div>
 
     <footer>
         <h3 style="color: var(--v3-gold); margin-bottom: 20px;">+1,698 RESPECT EARNED</h3>
         <p style="letter-spacing: 2px;">© 2026 V3GASBOI ENTERPRISE | VALUABLE MEMBER SINCE 2023</p>
-        <div style="margin-top: 20px;">
-            <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" target="_blank">SOUNDCLOUD</a>
-            <a href="https://www.youtube.com/@vegasboi2147" target="_blank">YOUTUBE</a>
-        </div>
     </footer>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
-    </script>
 </body>
 </html>
-
