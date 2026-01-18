@@ -5,15 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V3GASBOI | THE ABSOLUTE COLOSSUS | LAS VEGAS MOGUL AUTHORITY</title>
     
-    <meta name="description" content="V3GASBOI: 25-Year Independent Las Vegas Mogul. 9,000+ Plays Verified. Lyrical Mindz Legend. Featured C-BO Collaboration. The Road to 10,000. 88MOB Leader.">
-    <meta name="keywords" content="V3GASBOI, 88MOB, Lyrical Mindz, Las Vegas Hip Hop, Owens Ave, C-BO collab, 25 years independent, Vegas street authority, V3GASBOI vlogs, 88MOB shop, West Coast Legend, Independent Mogul 2026">
-    <meta name="author" content="V3GASBOI ENTERPRISE">
+    <meta name="description" content="V3GASBOI: 25-Year Independent Las Vegas Mogul. 9,000+ Plays Verified. Lyrical Mindz Legend. Featured C-BO Collaboration. 88MOB Leader.">
+    <meta name="keywords" content="V3GASBOI, 88MOB, Lyrical Mindz, Las Vegas Hip Hop, Owens Ave, C-BO collab, 25 years independent, Vegas street authority, 88MOB shop">
     
-    <meta property="og:title" content="V3GASBOI | THE COLOSSUS">
-    <meta property="og:description" content="Verified Las Vegas Legend. 25-year career. 9,000+ streams.">
-    <meta property="og:image" content="1000002511.jpg">
-    <meta property="og:type" content="website">
-
     <style>
         /* [SECTION 02: THE COLOSSUS DESIGN SYSTEM] */
         :root { 
@@ -23,7 +17,6 @@
             --glow: 0 0 100px rgba(255, 0, 0, 0.9);
             --border: 12px solid var(--red);
             --font-main: 'Inter', sans-serif;
-            --section-gap: 50vh;
         }
 
         /* [SECTION 03: CORE ARCHITECTURE] */
@@ -34,17 +27,22 @@
             color: var(--white); 
             overflow: hidden; 
             line-height: 1; 
-            /* BACKGROUND COVER PHOTO SETUP */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('1000002511.jpg') no-repeat center center fixed;
-            background-size: cover;
         }
 
-        /* [SECTION 04: ANIMATION ENGINE] */
+        /* [SECTION 04: KINETIC BACKGROUND ENGINE] */
+        #bg-slider {
+            position: fixed; inset: 0; z-index: -1;
+            transition: 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4);
+        }
+
+        /* [SECTION 05: ANIMATION ENGINE] */
         @keyframes pulse { 0%, 100% { text-shadow: var(--glow); transform: scale(1); } 50% { text-shadow: 0 0 250px var(--red); transform: scale(1.05); } }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* [SECTION 05: GIGA-TICKER] */
+        /* [SECTION 06: GIGA-TICKER (100px)] */
         .ticker-wrap { 
             position: fixed; top: 0; width: 100%; height: 100px; 
             background: var(--red); z-index: 10000; display: flex; 
@@ -56,69 +54,49 @@
             text-transform: uppercase; letter-spacing: 15px; font-size: 2.5rem; 
         }
 
-        /* [SECTION 06: SIDEBAR NAVIGATION] */
+        /* [SECTION 07: SIDEBAR NAVIGATION] */
         .menu-btn { 
             position: fixed; top: 140px; left: 60px; z-index: 10001; 
             background: #000; border: var(--border); color: #fff; 
             padding: 30px 60px; font-weight: 950; font-size: 1.5rem; 
             cursor: pointer; letter-spacing: 10px;
         }
-
         .sidebar { 
             position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; 
-            background: rgba(0,0,0,0.99); z-index: 9999; 
-            transition: 0.5s ease-in-out; 
+            background: rgba(0,0,0,0.99); z-index: 9999; transition: 0.5s ease-in-out; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
         .sidebar.active { left: 0; }
-        .sidebar a { 
-            color: #fff; text-decoration: none; font-size: 5rem; font-weight: 950; 
-            margin: 30px 0; text-transform: uppercase; letter-spacing: 25px; 
-            cursor: pointer;
-        }
+        .sidebar a { color: #fff; text-decoration: none; font-size: 5rem; font-weight: 950; margin: 25px 0; text-transform: uppercase; letter-spacing: 25px; cursor: pointer; }
         .sidebar a:hover { color: var(--red); text-shadow: var(--glow); }
 
-        /* [SECTION 07: PAGE ARCHITECTURE] */
+        /* [SECTION 08: PAGE ENGINE] */
         .page { 
-            position: fixed; top: 100px; left: 0; width: 100%; 
-            height: calc(100vh - 100px); padding: 150px 8% 100px; 
-            overflow-y: auto; display: none; background: rgba(0,0,0,0.4); 
-            z-index: 5000;
+            position: fixed; top: 100px; left: 0; width: 100%; height: calc(100vh - 100px); 
+            padding: 100px 8%; overflow-y: auto; display: none; z-index: 5000;
         }
         .page.active { display: block; }
 
-        /* [SECTION 08: TYPOGRAPHY] */
-        h1 { 
-            font-size: clamp(8rem, 30vw, 25rem); font-weight: 950; 
-            letter-spacing: 50px; text-align: center; line-height: 0.8; 
-            animation: pulse 5s infinite; margin-bottom: 120px;
-        }
-        h2 { 
-            font-size: clamp(5rem, 15vw, 10rem); color: var(--red); 
-            margin-bottom: 80px; font-weight: 950; text-align: center; 
-            letter-spacing: 25px; text-transform: uppercase;
-        }
+        h1 { font-size: clamp(8rem, 30vw, 25rem); font-weight: 950; letter-spacing: 50px; text-align: center; line-height: 0.8; animation: pulse 5s infinite; margin-bottom: 120px; }
+        h2 { font-size: clamp(5rem, 15vw, 10rem); color: var(--red); margin-bottom: 80px; font-weight: 950; text-align: center; letter-spacing: 25px; text-transform: uppercase; }
         
         .card-colossus { 
             background: rgba(0,0,0,0.8); border: 12px solid var(--red); 
-            border-radius: 120px; padding: 150px 80px; margin-bottom: 250px; 
-            box-shadow: var(--glow); text-align: center;
+            border-radius: 120px; padding: 100px 80px; margin-bottom: 250px; 
+            box-shadow: var(--glow); text-align: center; backdrop-filter: blur(15px);
         }
-
-        .p-giga { font-size: 5rem; font-weight: 950; line-height: 1; margin-bottom: 60px; letter-spacing: -2px; }
-        .p-body { font-size: 3rem; line-height: 1.4; color: #fff; font-weight: 800; margin-bottom: 40px; }
 
         .btn-colossus { 
             background: var(--red); color: #fff; padding: 60px 120px; 
             font-size: 3rem; font-weight: 950; text-transform: uppercase; 
-            border-radius: 300px; text-decoration: none; display: inline-block; 
+            border-radius: 400px; text-decoration: none; display: inline-block; 
             box-shadow: var(--glow); cursor: pointer; border: none; margin-top: 50px;
         }
 
-        /* [SECTION 09: GALLERY GRID] */
+        /* [SECTION 09: GALLERY] */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
-        .photo-box { border: 10px solid var(--red); height: 600px; overflow: hidden; box-shadow: var(--glow); }
-        .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-card { border: 10px solid var(--red); height: 600px; overflow: hidden; position: relative; box-shadow: var(--glow); }
+        .photo-card img { width: 100%; height: 100%; object-fit: cover; }
 
         /* [SECTION 10: SCROLLBAR] */
         ::-webkit-scrollbar { width: 25px; }
@@ -128,34 +106,34 @@
 </head>
 <body>
 
-    <div class="ticker-wrap"><div class="ticker">V3GASBOI INDEPENDENT EMPIRE • 25 YEARS • 9,000+ PLAYS VERIFIED • COMMAND THE ROOM • </div></div>
+    <div id="bg-slider" class="bg-slider"></div>
+
+    <div class="ticker-wrap"><div class="ticker">V3GASBOI INDEPENDENT EMPIRE • 25 YEARS • 9,000+ PLAYS VERIFIED • 88MOB RETAIL • </div></div>
 
     <button class="menu-btn" onclick="toggleSidebar()">MENU</button>
     
     <div class="sidebar" id="sidebar">
-        <a onclick="navigate('home')">HOME</a>
-        <a onclick="navigate('bio')">BIO</a>
-        <a onclick="navigate('vault')">VAULT</a>
-        <a onclick="navigate('gallery')">PHOTOS</a>
-        <a onclick="navigate('retail')">RETAIL</a>
-        <a onclick="navigate('hq')">HQ</a>
+        <a onclick="navigate('home', '1000002511.jpg')">COMMAND</a>
+        <a onclick="navigate('bio', '1000002512.jpg')">BIO</a>
+        <a onclick="navigate('vault', '1000002514.jpg')">VAULT</a>
+        <a onclick="navigate('gallery', '1000002513.jpg')">GALLERY</a>
+        <a onclick="navigate('retail', '1000002228.jpg')">RETAIL</a>
     </div>
 
     <div id="home" class="page active">
         <h1>V3GASBOI</h1>
         <div class="card-colossus">
-            <p class="p-giga" style="color:var(--red); letter-spacing: 30px;">LAS VEGAS EMPIRE</p>
-            <p class="p-body">25 YEARS. 35 COUNTRIES. ONE UNBROKEN CODE.</p>
-            <button onclick="navigate('vault')" class="btn-colossus">ACCESS VAULT</button>
+            <p style="font-size: 5rem; font-weight: 950; color: var(--red); letter-spacing: 30px; margin-bottom: 40px;">LAS VEGAS EMPIRE</p>
+            <p style="font-size: 2.5rem; font-weight: 800; line-height: 1.4;">25 YEARS. 35 COUNTRIES. ONE UNBROKEN CODE.</p>
+            <button onclick="navigate('vault', '1000002514.jpg')" class="btn-colossus">ACCESS VAULT</button>
         </div>
     </div>
 
     <div id="bio" class="page">
         <h2>HISTORY</h2>
         <div class="card-colossus" style="text-align: left;">
-            <p class="p-giga">FORGED IN OWENS AVE.</p>
-            <p class="p-body">Dominating Las Vegas since 1998. Forged in the Lyrical Mindz era. 88MOB Leader.</p>
-            <p class="p-body" style="color: var(--red);">Collaborations with West Coast Icon C-BO (2019).</p>
+            <p style="font-size: 4rem; font-weight: 950; color: var(--red); margin-bottom: 40px;">FORGED IN OWENS AVE.</p>
+            <p style="font-size: 2.5rem; line-height: 1.6; font-weight: 800;">Dominating Las Vegas since 1998. From the foundation of Lyrical Mindz to the global impact of 88MOB. Featured collab with West Coast Icon C-BO (2019).</p>
         </div>
     </div>
 
@@ -163,19 +141,20 @@
         <h2>THE VAULT</h2>
         <div class="card-colossus">
             <p style="font-size: 15rem; font-weight: 950; color: var(--red); animation: pulse 4s infinite;">9,000+</p>
-            <p class="p-giga">PLAYS VERIFIED</p>
-            <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
-            <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="btn-colossus">OPEN CLOUD</a>
+            <p style="font-size: 4rem; font-weight: 950; margin-bottom: 50px;">PLAYS VERIFIED</p>
+            <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
         </div>
     </div>
 
     <div id="gallery" class="page">
-        <h2>GALLERY</h2>
+        <h2>VISUALS</h2>
         <div class="gallery-grid">
-            <div class="photo-box"><img src="1000002511.jpg"></div>
-            <div class="photo-box"><img src="1000002512.jpg"></div>
-            <div class="photo-box"><img src="1000002514.jpg"></div>
-            <div class="photo-box"><img src="1000002431.jpg"></div>
+            <div class="photo-card"><img src="1000002511.jpg"></div>
+            <div class="photo-card"><img src="1000002512.jpg"></div>
+            <div class="photo-card"><img src="1000002513.jpg"></div>
+            <div class="photo-card"><img src="1000002514.jpg"></div>
+            <div class="photo-card"><img src="1000002515.jpg"></div>
+            <div class="photo-card"><img src="1000002516.jpg"></div>
         </div>
     </div>
 
@@ -183,38 +162,34 @@
         <h2>REVENUE</h2>
         <div class="card-colossus">
             <p style="font-size: 20rem; font-weight: 950; color: var(--red); text-shadow: var(--glow);">$88.00</p>
-            <p class="p-giga">88MOB SIGNATURE GEAR</p>
-            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn-colossus">SHOP TIKTOK</a>
-        </div>
-    </div>
-
-    <div id="hq" class="page">
-        <h2>CONTACT</h2>
-        <div class="card-colossus">
-            <p class="p-giga">EMPIRE BOOKING</p>
-            <p class="p-body">FEATURES, SHOWS, CORPORATE INQUIRIES.</p>
-            <a href="mailto:hq@v3gasboi.com" class="btn-colossus">EMAIL HQ</a>
+            <p style="font-size: 4rem; font-weight: 950; margin-bottom: 50px;">88MOB SIGNATURE GEAR</p>
+            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn-colossus">SHOP RETAIL</a>
         </div>
     </div>
 
     <script>
+        const slider = document.getElementById('bg-slider');
+        
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
-        function navigate(pageId) {
-            var pages = document.getElementsByClassName('page');
-            for(var i=0; i < pages.length; i++) {
-                pages[i].style.display = 'none';
-                pages[i].classList.remove('active');
-            }
-            var target = document.getElementById(pageId);
+        
+        function navigate(pageId, bgImg) {
+            // Update Background Photo
+            slider.style.backgroundImage = "url('" + bgImg + "')";
+            
+            // Toggle Page View
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => { p.style.display = 'none'; p.classList.remove('active'); });
+            
+            const target = document.getElementById(pageId);
             target.style.display = 'block';
             target.classList.add('active');
+            
             target.scrollTop = 0;
             document.getElementById('sidebar').classList.remove('active');
         }
 
-        // REDUNDANT SYSTEM LOGS TO REACH 1000+ LINE DEPTH
-        console.log("V3GASBOI EMPIRE INITIALIZED");
-        // [INSERTING 500+ LINES OF REDUNDANT SYSTEM DATA BELOW...]
+        // Initial Load
+        navigate('home', '1000002511.jpg');
     </script>
 </body>
 </html>
