@@ -3,140 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Official Site</title>
+    <title>V3GASBOI | OFFICIAL MOGUL SITE</title>
     <style>
         :root {
             --red: #ff0000;
-            --dark: #0a0a0a;
-            --gray: #222;
+            --black: #000000;
+            --overlay: rgba(0, 0, 0, 0.7);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
-        body { background: var(--dark); color: #fff; line-height: 1.6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: var(--black); 
+            color: #fff; 
+            /* THIS SECTION CONTROLS THE BACKGROUND COVER PHOTO */
+            background: linear-gradient(var(--overlay), var(--overlay)), 
+                        url('https://i1.sndcdn.com/avatars-000676443362-9o5j8a-t500x500.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            min-height: 100vh;
+        }
 
         /* NAVIGATION */
         nav {
-            background: rgba(0,0,0,0.95);
-            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
+            padding: 30px 5%;
+            background: rgba(0,0,0,0.8);
+            border-bottom: 2px solid var(--red);
+            position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid var(--gray);
         }
-        .nav-logo { font-size: 1.8rem; font-weight: 900; color: var(--red); letter-spacing: 2px; }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+        .logo { font-size: 2rem; font-weight: 900; color: var(--red); letter-spacing: 3px; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 30px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; }
         .nav-links a:hover { color: var(--red); }
 
-        /* HERO SECTION */
+        /* HERO AREA */
         .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://v3gasboi.com/wp-content/uploads/2023/06/cropped-V3GASBOI-LOGO-1.png') center/contain no-repeat;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 80px;
+            padding: 0 10%;
         }
-        .hero h1 { font-size: 4.5rem; letter-spacing: 5px; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; color: #aaa; text-transform: uppercase; letter-spacing: 4px; }
+        .hero h1 { font-size: clamp(4rem, 15vw, 10rem); font-weight: 900; letter-spacing: 10px; margin-bottom: 20px; text-shadow: 0 0 30px var(--red); }
+        .hero p { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 5px; color: #ccc; margin-bottom: 40px; }
 
-        /* BIO SECTION */
-        .content-section { padding: 80px 10%; border-bottom: 1px solid var(--gray); }
-        .section-title { font-size: 2.5rem; margin-bottom: 30px; color: var(--red); text-transform: uppercase; }
-        
-        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .bio-text p { font-size: 1.1rem; color: #ccc; margin-bottom: 20px; }
-        .bio-image img { width: 100%; border: 4px solid var(--red); border-radius: 10px; }
+        /* CONTENT SECTIONS */
+        .section {
+            padding: 100px 10%;
+            background: rgba(0,0,0,0.85);
+            margin: 50px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        .section-title { font-size: 3rem; color: var(--red); margin-bottom: 40px; text-transform: uppercase; font-weight: 900; }
+        .bio-text { font-size: 1.3rem; line-height: 1.8; color: #ddd; max-width: 900px; }
 
-        /* PHOTO GALLERY */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 30px; }
-        .gallery img { width: 100%; height: 350px; object-fit: cover; border-radius: 5px; border: 2px solid #333; transition: 0.3s; }
-        .gallery img:hover { border-color: var(--red); transform: scale(1.02); }
+        /* MEDIA MODULES */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
+        .media-box { border: 5px solid var(--red); padding: 20px; background: #000; transition: 0.3s; }
+        .media-box:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--red); }
 
-        /* MUSIC / SHOP BUTTONS */
+        /* BUTTONS */
         .cta-btn {
             display: inline-block;
             background: var(--red);
             color: #fff;
-            padding: 15px 35px;
+            padding: 20px 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 900;
             text-transform: uppercase;
+            font-size: 1.2rem;
             border-radius: 5px;
-            margin-top: 20px;
+            transition: 0.3s;
         }
+        .cta-btn:hover { background: #fff; color: #000; }
 
-        footer { padding: 40px; text-align: center; color: #666; font-size: 0.8rem; border-top: 1px solid var(--gray); }
-
-        @media (max-width: 768px) {
-            .bio-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.5rem; }
-        }
+        footer { padding: 60px; text-align: center; background: #000; border-top: 2px solid var(--red); }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-logo">V3GASBOI</div>
+        <div class="logo">V3GASBOI</div>
         <div class="nav-links">
+            <a href="#home">Home</a>
             <a href="#bio">Bio</a>
-            <a href="#photos">Photos</a>
             <a href="#music">Music</a>
             <a href="#shop">Shop</a>
         </div>
     </nav>
 
-    <section class="hero">
+    <div class="hero" id="home">
         <h1>V3GASBOI</h1>
         <p>Las Vegas Independent Mogul</p>
-    </section>
+        <a href="#music" class="cta-btn">Listen Now</a>
+    </div>
 
-    <section class="content-section" id="bio">
+    <section class="section" id="bio">
         <h2 class="section-title">The Legend</h2>
-        <div class="bio-grid">
-            <div class="bio-text">
-                <p>Dominating the Las Vegas circuit for over 25 years, V3GASBOI is the definitive voice of the independent hustle. From the foundation of Owens Ave and the Lyrical Mindz era to the global reach of 88MOB, the mission remains pure.</p>
-                <p>With a career starting in 1998 and collaborations with West Coast icons like C-BO, V3GASBOI has reached listeners in 35 countries.</p>
-                <a href="mailto:hq@v3gasboi.com" class="cta-btn">Book V3GASBOI</a>
-            </div>
-            <div class="bio-image">
-                <img src="https://i1.sndcdn.com/avatars-000676443362-9o5j8a-t500x500.jpg" alt="V3GASBOI Profile">
-            </div>
+        <div class="bio-text">
+            <p>Dominating the Las Vegas circuit for over 25 years, V3GASBOI is the definitive voice of the independent hustle. From the foundation of Owens Ave and the Lyrical Mindz era to the global reach of 88MOB, the mission remains pure.</p>
+            <br>
+            <p>With a career starting in 1998 and collaborations with icons like C-BO, V3GASBOI has reached listeners in 35 countries. Business savvy, high-performance production, and unyielding street authority.</p>
         </div>
     </section>
 
-    <section class="content-section" id="photos">
-        <h2 class="section-title">Gallery</h2>
-        <div class="gallery">
-            <img src="https://i1.sndcdn.com/artworks-000548174730-jizv6z-t500x500.jpg" alt="V3GASBOI 1">
-            <img src="https://i1.sndcdn.com/artworks-000516644400-3i7r2z-t500x500.jpg" alt="V3GASBOI 2">
-            <img src="https://i1.sndcdn.com/artworks-000500112444-n8q8n4-t500x500.jpg" alt="V3GASBOI 3">
-        </div>
-    </section>
-
-    <section class="content-section" id="music" style="background: #0f0f0f;">
+    <section class="section" id="music">
         <h2 class="section-title">The Vault</h2>
-        <p>9,000+ Verified Streams</p>
-        <div style="margin-top: 30px;">
+        <div style="margin-bottom: 50px;">
             <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
         </div>
-        <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="cta-btn">Listen on SoundCloud</a>
+        <div class="media-grid">
+            <div class="media-box">
+                <h3 style="margin-bottom: 15px;">9,000+ PLAYS</h3>
+                <p>Verified streams across all platforms. The road to 10k is live.</p>
+            </div>
+            <div class="media-box">
+                <h3 style="margin-bottom: 15px;">88MOB RETAIL</h3>
+                <p>Limited Edition Signature Gear. Official fulfillment.</p>
+                <a href="https://www.tiktok.com/@v3gasboi" target="_blank" style="color:var(--red); font-weight:bold;">Shop Now</a>
+            </div>
+        </div>
     </section>
 
-    <section class="content-section" id="shop">
-        <h2 class="section-title">88MOB Retail</h2>
-        <p>Signature Gear. Limited Edition. Official Las Vegas Fulfillment.</p>
-        <p style="font-size: 2rem; margin: 20px 0;">$88.00</p>
-        <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="cta-btn">Shop TikTok Store</a>
+    <section class="section" id="shop">
+        <h2 class="section-title">88MOB HQ</h2>
+        <p style="font-size: 4rem; font-weight: 900; margin-bottom: 20px;">$88.00</p>
+        <p style="font-size: 1.5rem; margin-bottom: 40px;">SIGNATURE GEAR | LAS VEGAS, NV</p>
+        <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="cta-btn">Visit TikTok Shop</a>
     </section>
 
     <footer>
-        <p>© 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
+        <p style="letter-spacing: 5px; font-weight: 900;">V3GASBOI ENTERPRISE © 2026</p>
     </footer>
 
 </body>
