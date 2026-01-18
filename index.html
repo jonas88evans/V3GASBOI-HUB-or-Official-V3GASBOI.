@@ -3,187 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | THE ABSOLUTE COLOSSUS | LAS VEGAS MOGUL AUTHORITY</title>
-    
-    <meta name="description" content="V3GASBOI: 25-Year Independent Las Vegas Mogul. 9,000+ Plays Verified. Lyrical Mindz Legend. Featured C-BO Collaboration. The Road to 10,000. 88MOB Leader.">
-    <meta name="keywords" content="V3GASBOI, 88MOB, Lyrical Mindz, Las Vegas Hip Hop, Owens Ave, C-BO collab, 25 years independent, Vegas street authority, V3GASBOI vlogs, 88MOB shop, West Coast Legend, Independent Mogul 2026">
-    <meta name="author" content="V3GASBOI ENTERPRISE">
+    <title>V3GASBOI | THE VISUAL COMMAND</title>
     
     <style>
-        /* [SECTION 02: THE COLOSSUS DESIGN SYSTEM] */
         :root { 
-            --black: #000000; 
-            --red: #ff0000; 
-            --white: #ffffff; 
-            --glow: 0 0 100px rgba(255, 0, 0, 0.9);
-            --border: 12px solid var(--red);
-            --font-main: 'Inter', sans-serif;
+            --red: #ff0000; --black: #000; --white: #fff;
+            --glass: rgba(0, 0, 0, 0.75);
+            --glow: 0 0 80px rgba(255, 0, 0, 0.8);
         }
 
-        /* [SECTION 03: CORE ARCHITECTURE] */
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
-        body { 
-            font-family: var(--font-main); 
-            background: var(--black); 
-            color: var(--white); 
-            overflow: hidden; 
-            line-height: 1; 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+        /* [SECTION: FULL-BLEED BACKGROUND] */
+        .video-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1; object-fit: cover; filter: brightness(0.4);
         }
 
-        /* [SECTION 04: KINETIC BACKGROUND ENGINE] */
-        .bg-slider {
-            position: fixed; inset: 0; z-index: -1;
-            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.4);
+        /* [SECTION: NAVIGATION] */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 40px 6%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+        .logo { font-size: 2.5rem; font-weight: 950; letter-spacing: 5px; color: var(--red); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { color: #fff; text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+
+        /* [SECTION: HERO COMMAND] */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center;
+        }
+        h1 { font-size: clamp(6rem, 20vw, 18rem); font-weight: 950; letter-spacing: -5px; line-height: 0.8; margin-bottom: 20px; }
+        .hero-sub { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 15px; color: var(--red); margin-bottom: 50px; }
+
+        /* [SECTION: GLASS PANELS] */
+        .section { padding: 150px 8%; min-height: 100vh; display: flex; align-items: center; }
+        .glass-card {
+            background: var(--glass); border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px); border-radius: 40px; padding: 100px 80px;
+            width: 100%; box-shadow: var(--glow); border-left: 10px solid var(--red);
         }
 
-        /* [SECTION 05: ANIMATION ENGINE] */
-        @keyframes pulse { 0%, 100% { text-shadow: var(--glow); transform: scale(1); } 50% { text-shadow: 0 0 250px var(--red); transform: scale(1.05); } }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .display-img { width: 100%; border-radius: 20px; border: 5px solid var(--red); box-shadow: var(--glow); }
 
-        /* [SECTION 06: GIGA-TICKER (100px)] */
-        .ticker-wrap { 
-            position: fixed; top: 0; width: 100%; height: 100px; 
-            background: var(--red); z-index: 10000; display: flex; 
-            align-items: center; border-bottom: 8px solid #fff;
+        /* [SECTION: BUTTONS] */
+        .btn {
+            background: var(--red); color: #fff; padding: 25px 60px;
+            font-size: 1.5rem; font-weight: 950; text-transform: uppercase;
+            border-radius: 10px; text-decoration: none; display: inline-block;
+            transition: 0.3s; margin-top: 40px;
         }
-        .ticker { 
-            display: inline-block; white-space: nowrap; 
-            animation: ticker 25s linear infinite; font-weight: 950; 
-            text-transform: uppercase; letter-spacing: 15px; font-size: 2.5rem; 
+        .btn:hover { background: #fff; color: #000; transform: scale(1.05); }
+
+        /* [SECTION: MOBILE ADAPTATION] */
+        @media (max-width: 1024px) {
+            .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 6rem; letter-spacing: 0; }
         }
-
-        /* [SECTION 07: SIDEBAR NAVIGATION] */
-        .menu-btn { 
-            position: fixed; top: 140px; left: 60px; z-index: 10001; 
-            background: #000; border: var(--border); color: #fff; 
-            padding: 30px 60px; font-weight: 950; font-size: 1.5rem; 
-            cursor: pointer; letter-spacing: 10px;
-        }
-        .sidebar { 
-            position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; 
-            background: rgba(0,0,0,0.99); z-index: 9999; transition: 0.5s; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-        .sidebar.active { left: 0; }
-        .sidebar a { color: #fff; text-decoration: none; font-size: 5rem; font-weight: 950; margin: 30px 0; text-transform: uppercase; letter-spacing: 25px; cursor: pointer; }
-
-        /* [SECTION 08: PAGE ENGINE] */
-        .page { 
-            position: fixed; top: 100px; left: 0; width: 100%; height: calc(100vh - 100px); 
-            padding: 100px 8%; overflow-y: auto; display: none; z-index: 5000;
-        }
-        .page.active { display: block; }
-
-        h1 { font-size: clamp(8rem, 30vw, 25rem); font-weight: 950; letter-spacing: 50px; text-align: center; line-height: 0.8; animation: pulse 5s infinite; margin-bottom: 120px; }
-        
-        .card-colossus { 
-            background: rgba(0,0,0,0.8); border: 12px solid var(--red); 
-            border-radius: 120px; padding: 100px 80px; margin-bottom: 250px; 
-            box-shadow: var(--glow); text-align: center; backdrop-filter: blur(10px);
-        }
-
-        .p-giga { font-size: 5rem; font-weight: 950; line-height: 1; margin-bottom: 60px; }
-        .p-body { font-size: 3rem; line-height: 1.4; color: #fff; font-weight: 800; }
-
-        .btn-colossus { 
-            background: var(--red); color: #fff; padding: 60px 120px; 
-            font-size: 3rem; font-weight: 950; text-transform: uppercase; 
-            border-radius: 300px; text-decoration: none; display: inline-block; 
-            box-shadow: var(--glow); cursor: pointer; border: none; margin-top: 50px;
-        }
-
-        /* [SECTION 09: GALLERY] */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
-        .photo-card { border: 10px solid var(--red); height: 600px; overflow: hidden; position: relative; box-shadow: var(--glow); }
-        .photo-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .photo-card:hover img { transform: scale(1.1); }
-
-        /* [SECTION 10: SCROLLBAR] */
-        ::-webkit-scrollbar { width: 25px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: var(--red); border: 8px solid #000; }
     </style>
 </head>
 <body>
 
-    <div id="bg" class="bg-slider" style="background-image: url('1000002511.jpg');"></div>
+    <video class="video-bg" autoplay muted loop playsinline>
+        <source src="1000002431.mp4" type="video/mp4">
+    </video>
 
-    <div class="ticker-wrap"><div class="ticker">V3GASBOI INDEPENDENT EMPIRE • 25 YEARS • 9,000+ PLAYS VERIFIED • ON THE ROAD TO 10K • </div></div>
+    <nav>
+        <div class="logo">V3GASBOI</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#bio">Bio</a>
+            <a href="#vault">Vault</a>
+            <a href="#shop">Shop</a>
+        </div>
+    </nav>
 
-    <button class="menu-btn" onclick="toggleSidebar()">MENU</button>
-    
-    <div class="sidebar" id="sidebar">
-        <a onclick="navigate('home', '1000002511.jpg')">COMMAND</a>
-        <a onclick="navigate('legacy', '1000002512.jpg')">LEGACY</a>
-        <a onclick="navigate('vault', '1000002514.jpg')">VAULT</a>
-        <a onclick="navigate('cinema', '1000002431.jpg')">CINEMA</a>
-        <a onclick="navigate('retail', '1000002228.jpg')">REVENUE</a>
-    </div>
-
-    <div id="home" class="page active">
+    <div class="hero" id="home">
         <h1>V3GASBOI</h1>
-        <div class="card-colossus">
-            <p class="p-giga" style="color:var(--red); letter-spacing: 30px;">LAS VEGAS EMPIRE</p>
-            <p class="p-body">9,000+ PLAYS AND COUNTING.</p>
-            <button onclick="navigate('vault', '1000002514.jpg')" class="btn-colossus">ACCESS VAULT</button>
-        </div>
+        <p class="hero-sub">The Visual Mogul</p>
+        <a href="#vault" class="btn">Launch Vault</a>
     </div>
 
-    <div id="legacy" class="page">
-        <h2 style="font-size: 8rem; color: var(--red); text-align: center; margin-bottom: 80px;">RESPECT EARNED</h2>
-        <div class="card-colossus">
-            <p class="p-giga">+1,698 SINCE 2023</p>
-            <p class="p-body">FORGED IN OWENS AVE.</p>
+    <section class="section" id="bio">
+        <div class="glass-card">
+            <div class="grid">
+                <div>
+                    <h2 style="font-size: 4rem; margin-bottom: 30px;">THE LEGEND</h2>
+                    <p style="font-size: 1.5rem; line-height: 1.6; color: #ccc;">25 years of independent authority in Las Vegas. From the Lyrical Mindz era to global 88MOB distribution. High-performance production meets unyielding street credibility.</p>
+                    <a href="mailto:hq@v3gasboi.com" class="btn">Inquire HQ</a>
+                </div>
+                <div>
+                    <img src="1000002511.jpg" class="display-img">
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="vault" class="page">
-        <h2 style="font-size: 8rem; color: var(--red); text-align: center; margin-bottom: 80px;">6 FEET DEEP</h2>
-        <div class="card-colossus">
+    <section class="section" id="vault">
+        <div class="glass-card">
+            <h2 style="font-size: 4rem; text-align: center; margin-bottom: 60px;">9,000+ PLAYS</h2>
             <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
         </div>
-    </div>
+    </section>
 
-    <div id="cinema" class="page">
-        <h2 style="font-size: 8rem; color: var(--red); text-align: center; margin-bottom: 80px;">CINEMA</h2>
-        <div class="gallery-grid">
-            <div class="photo-card"><img src="1000002516.jpg"></div>
-            <div class="photo-card"><img src="1000002512.jpg"></div>
-            <div class="photo-card"><img src="1000002505.jpg"></div>
-        </div>
-    </div>
+    <footer style="padding: 100px 8%; text-align: center; background: rgba(0,0,0,0.9);">
+        <p style="font-size: 1.2rem; letter-spacing: 5px; font-weight: 900;">V3GASBOI ENTERPRISE © 2026</p>
+    </footer>
 
-    <div id="retail" class="page">
-        <h2 style="font-size: 8rem; color: var(--red); text-align: center; margin-bottom: 80px;">REVENUE</h2>
-        <div class="card-colossus">
-            <p style="font-size: 20rem; font-weight: 950; color: var(--red);">$88.00</p>
-            <p class="p-giga">88MOB SIGNATURE GEAR</p>
-            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn-colossus">SHOP RETAIL</a>
-        </div>
-    </div>
-
-    <script>
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
-        
-        function navigate(pageId, bgImg) {
-            // Update Background
-            document.getElementById('bg').style.backgroundImage = "url('" + bgImg + "')";
-            
-            // Toggle Pages
-            var pages = document.getElementsByClassName('page');
-            for(var i=0; i < pages.length; i++) {
-                pages[i].style.display = 'none';
-                pages[i].classList.remove('active');
-            }
-            var target = document.getElementById(pageId);
-            target.style.display = 'block';
-            target.classList.add('active');
-            target.scrollTop = 0;
-            toggleSidebar();
-        }
-    </script>
 </body>
 </html>
