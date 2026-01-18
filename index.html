@@ -3,130 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Official Master Hub</title>
+    
+    <title>V3GASBOI | Official Las Vegas Mogul & Trap Artist Hub</title>
+    <meta name="description" content="Official hub for V3GASBOI (Jonas Evans). 8.89k plays, +1,698 respect. Las Vegas trap music, elite production, and home of the Vegas Spot boutique.">
+    <meta name="keywords" content="V3GASBOI, Jonas Evans, Las Vegas Trap, Vegas Music Production, Bitch bow Down, Vegas Spot Boutique, America's Next Top Hitmaker, Orbiiit">
+    <meta name="author" content="V3GASBOI">
+
     <style>
-        :root { --v3-gold: #D4AF37; --v3-black: #000000; --v3-white: #ffffff; --v3-neon-glow: rgba(212, 175, 55, 0.6); }
+        :root { --v3-gold: #D4AF37; --v3-black: #000000; --v3-white: #ffffff; --v3-neon: rgba(212, 175, 55, 0.6); }
         * { box-sizing: border-box; }
+        body { background: var(--v3-white); color: var(--v3-black); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* AMBIENT & NEON STYLES */
+        @keyframes ambientMove { 0% { background-position: 50% 50%; } 50% { background-position: 52% 48%; } 100% { background-position: 50% 50%; } }
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; background: linear-gradient(rgba(255,255,255,0.4), var(--v3-white)), url('Whisk_atmmzjzjngmwazym1szifwytqzy1qtl3gtnj1iz.jpeg'); background-size: 110%; animation: ambientMove 20s infinite; }
         
-        /* UNIVERSAL TEXT SHADOWS */
-        body { 
-            background: var(--v3-white); 
-            color: var(--v3-black); 
-            font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            overflow-x: hidden; 
-            scroll-behavior: smooth;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.15); /* */
-        }
+        h1, h2, h3 { text-transform: uppercase; font-weight: 900; text-shadow: 3px 3px 10px rgba(0,0,0,0.3), 0 0 15px var(--v3-neon); }
+        h1 { font-size: clamp(3rem, 10vw, 5.5rem); letter-spacing: 12px; }
 
-        /* AMBIENT BACKGROUND MOVEMENT */
-        @keyframes ambientMove {
-            0% { background-position: 50% 50%; transform: scale(1); }
-            50% { background-position: 52% 48%; transform: scale(1.05); }
-            100% { background-position: 50% 50%; transform: scale(1); }
-        }
-
-        /* NEON PULSE FOR TEXT */
-        @keyframes neonPulse {
-            0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px var(--v3-neon-glow); }
-            50% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px var(--v3-neon-glow), 0 0 30px var(--v3-gold); }
-            100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px var(--v3-neon-glow); }
-        }
-
-        .hero { 
-            height: 100vh; width: 100%; position: relative; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-        }
-        
-        /* ANIMATED BACKGROUND LAYER */
-        .hero-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(255,255,255,0.4), var(--v3-white)), url('Whisk_atmmzjzjngmwazym1szifwytqzy1qtl3gtnj1iz.jpeg'); 
-            background-size: cover; background-position: center;
-            animation: ambientMove 20s ease-in-out infinite; /* */
-            z-index: -1;
-        }
-
-        /* NEON HEADERS */
-        h1, h2, h3 { 
-            text-transform: uppercase; font-weight: 900; 
-            animation: neonPulse 3s ease-in-out infinite; /* */
-        }
-        h1 { font-size: clamp(3rem, 10vw, 5.5rem); letter-spacing: 12px; margin: 0; color: #000; }
-
-        /* NAVIGATION - BLACK & GOLD NEON */
         nav { position: fixed; top: 0; width: 100%; background: var(--v3-black); padding: 20px; display: flex; justify-content: center; gap: 20px; border-bottom: 3px solid var(--v3-gold); z-index: 1000; }
-        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 5px var(--v3-gold); }
+        nav a { color: var(--v3-gold); text-decoration: none; font-weight: 900; text-shadow: 2px 2px 4px #000; letter-spacing: 2px; }
 
         .container { max-width: 1200px; margin: auto; padding: 100px 20px; }
-        
-        /* CARD STYLING */
-        .card { 
-            background: #fff; border: 2px solid var(--v3-gold); padding: 40px; border-radius: 20px; 
-            box-shadow: 10px 10px 20px rgba(0,0,0,0.05); margin-bottom: 40px;
-            transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 0 20px var(--v3-neon-glow); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .visible { opacity: 1; transform: translateY(0); }
 
-        /* VISUAL HUB GALLERY */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; } /* */
-        .gallery-item { border: 3px solid var(--v3-gold); border-radius: 12px; overflow: hidden; background: #000; }
-        .gallery-item img { width: 100%; height: 350px; object-fit: cover; display: block; } /* */
+        .card { background: #fff; border: 2px solid var(--v3-gold); padding: 40px; border-radius: 20px; box-shadow: 10px 10px 30px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .gold-btn { display: block; background: var(--v3-black); color: var(--v3-gold); text-decoration: none; padding: 20px; text-align: center; font-weight: 900; border: 2px solid var(--v3-gold); transition: 0.3s; }
+        .gold-btn:hover { box-shadow: 0 0 20px var(--v3-gold); transform: scale(1.02); }
 
-        .gold-btn { 
-            display: block; background: var(--v3-black); color: var(--v3-gold); text-decoration: none; 
-            padding: 22px; text-align: center; font-weight: 900; border: 3px solid var(--v3-gold); 
-            transition: 0.3s; letter-spacing: 3px;
-        }
-        .gold-btn:hover { background: var(--v3-gold); color: #000; box-shadow: 0 0 25px var(--v3-gold); }
-
-        footer { background: var(--v3-black); color: var(--v3-gold); padding: 60px 20px; text-align: center; border-top: 5px solid var(--v3-gold); }
+        /* SCAVENGER HUNT HIDDEN ICON */
+        #secret-icon { position: absolute; bottom: 10px; right: 10px; color: var(--v3-gold); opacity: 0.1; cursor: pointer; font-size: 0.8rem; }
+        #secret-icon:hover { opacity: 1; }
     </style>
 </head>
 <body>
 
     <nav>
         <a href="#home">HOME</a>
-        <a href="#about">MOGUL</a>
+        <a href="#disco">DISCO</a>
         <a href="#visuals">VISUALS</a>
-        <a href="#music">SOUNDS</a>
+        <a href="#fun">INTERACT</a>
     </nav>
 
     <section id="home" class="hero">
-        <div class="hero-bg"></div>
         <h1>V3GASBOI</h1>
-        <p style="letter-spacing: 5px; color: var(--v3-gold); font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
-            LAS VEGAS • PRODUCTION • MOGUL
-        </p>
-        <div style="margin-top: 30px; background: white; padding: 12px 30px; border: 3px solid var(--v3-gold); font-weight: 900; font-size: 1.2rem;">
+        <p style="letter-spacing: 5px; color: var(--v3-gold); font-weight: bold;">LAS VEGAS • PRODUCTION • MOGUL</p>
+        <div style="margin-top: 30px; background: white; padding: 10px 25px; border: 3px solid var(--v3-gold); font-weight: 900;">
             8.89K TOTAL PLAYS
         </div>
+        <div id="secret-icon" onclick="alert('MOGUL SECRET UNLOCKED: Use code VEGAS10 for 10% off at Vegas Spot!')">★</div>
     </section>
 
     <div class="container">
-        <section id="contests" style="margin-bottom: 100px;">
-            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Competition Legacy</h2>
-            <div class="card" style="border-left: 10px solid #FF0000;">
-                <h3>America's Next Top Hitmaker</h3>
-                <p>National contender in the <strong>2024 & 2025</strong> seasons, representing Las Vegas for a spot in <strong>Rolling Stone</strong>.</p>
-            </div>
-            <div class="card" style="border-left: 10px solid #007AFF;">
-                <h3>Orbiiit Global Creative</h3>
-                <p>Featured contestant on the <strong>Orbiiit</strong> global talent platform, showcasing trap production to an international community.</p>
-            </div>
-        </section>
-
-        <section id="visuals" style="margin-bottom: 100px;">
-            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Visual Hub</h2>
-            <div class="gallery">
-                <div class="gallery-item"><img src="1000010188.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">LIFESTYLE</div></div>
-                <div class="gallery-item"><img src="1000010201.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">BENTLEY STATUS</div></div>
-                <div class="gallery-item"><img src="1000010161.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">TRAP ARTIST</div></div>
+        <section id="fun" class="reveal">
+            <h2 style="border-bottom: 5px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Mogul Interactive</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="card" style="background: #000; color: var(--v3-gold); text-align: center;">
+                    <h3>Road to 10K</h3>
+                    <div style="font-size: 2rem; margin: 20px 0;">8,890 / 10,000</div>
+                    <div style="width: 100%; background: #222; height: 10px; border-radius: 5px; overflow: hidden;">
+                        <div style="width: 88.9%; background: var(--v3-gold); height: 100%;"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Fan Vote</h3>
+                    <p>Next AI Video?</p>
+                    <button class="gold-btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('Respect Added!')">BITCH BOW DOWN</button>
+                    <button class="gold-btn" style="width: 100%;" onclick="alert('Respect Added!')">DAMM HOMIE</button>
+                </div>
             </div>
         </section>
 
-        <section id="music" style="margin-bottom: 100px;">
-            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Sound Vault</h2>
+        <section id="disco" class="reveal">
+            <h2 style="border-bottom: 5px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Sound Vault</h2>
             <div class="card">
                 <h3>BITCH BOW DOWN</h3>
                 <audio controls style="width:100%;"><source src="Bitch bow Down (1).m4a" type="audio/mp4"></audio>
@@ -138,10 +88,17 @@
         </section>
     </div>
 
-    <footer>
-        <h3 style="color: var(--v3-gold); margin-bottom: 20px;">+1,698 RESPECT EARNED</h3>
-        <p style="letter-spacing: 2px;">© 2026 V3GASBOI ENTERPRISE | VALUABLE MEMBER SINCE 2023</p>
+    <footer style="background: #000; color: var(--v3-gold); padding: 60px 20px; text-align: center; border-top: 5px solid var(--v3-gold);">
+        <p>+1,698 RESPECT EARNED</p>
+        <p>© 2026 V3GASBOI | LAS VEGAS, NV</p>
     </footer>
 
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+    </script>
 </body>
 </html>
+
