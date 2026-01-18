@@ -1,200 +1,174 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | THE HERO COMMAND | LAS VEGAS MOGUL</title>
-    
-    <meta name="description" content="V3GASBOI: 25-Year Independent Las Vegas Mogul. 9,000+ Plays Verified. Lyrical Mindz Legend. Featured C-BO Collaboration. The Road to 10,000. 88MOB Leader. Authentic independent execution.">
-    <meta name="keywords" content="V3GASBOI, 88MOB, Lyrical Mindz, Las Vegas Hip Hop, Owens Ave, C-BO collab, 25 years independent, Vegas street authority, V3GASBOI vlogs, 88MOB shop, West Coast Legend, Independent Mogul 2026, Mogul Status, Street Credibility, Music Empire">
-    
+    <title>V3GASBOI | Official Website</title>
     <style>
-        /* [SECTION 02: THE COLOSSUS DESIGN SYSTEM] */
-        :root { 
-            --black: #000000; 
-            --red: #ff0000; 
-            --white: #ffffff; 
-            --glow: 0 0 120px rgba(255, 0, 0, 1);
-            --border: 15px solid var(--red);
-            --font-main: 'Inter', sans-serif;
-            --section-gap: 45vh;
+        /* CORE STYLES */
+        :root {
+            --primary-red: #e60000;
+            --bg-black: #0a0a0a;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
         }
 
-        /* CORE ARCHITECTURE */
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
-        body { 
-            font-family: var(--font-main); 
-            background: var(--black); 
-            color: var(--white); 
-            overflow: hidden; 
-            line-height: 1.1; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-black); color: var(--text-white); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-        /* [SECTION 03: ANIMATION ENGINE] */
-        @keyframes pulseGlow { 0%, 100% { text-shadow: var(--glow); transform: scale(1); } 50% { text-shadow: 0 0 250px var(--red); transform: scale(1.03); } }
-        @keyframes tickerMove { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-        @keyframes scanline { 0% { top: 0%; } 100% { top: 100%; } }
-
-        /* [SECTION 04: GIGA-TICKER (100px)] */
-        .ticker-wrap { 
-            position: fixed; top: 0; width: 100%; height: 100px; 
-            background: var(--red); z-index: 10000; display: flex; 
-            align-items: center; border-bottom: 8px solid #fff;
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            border-bottom: 1px solid #222;
         }
-        .ticker { 
-            display: inline-block; white-space: nowrap; 
-            animation: tickerMove 25s linear infinite; font-weight: 950; 
-            text-transform: uppercase; letter-spacing: 15px; font-size: 2.5rem; 
-        }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; color: var(--primary-red); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a:hover { color: var(--primary-red); }
 
-        /* [SECTION 05: NAVIGATION COMMANDS] */
-        .menu-btn { 
-            position: fixed; top: 140px; left: 60px; z-index: 10001; 
-            background: #000; border: var(--border); color: #fff; 
-            padding: 30px 60px; font-weight: 950; font-size: 1.5rem; 
-            cursor: pointer; letter-spacing: 10px;
+        /* HERO SECTION */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://lh3.googleusercontent.com/pw/AP1GczO0N1-kH-Z8wJq0eQ') no-repeat center center/cover;
+            padding: 0 20px;
         }
-
-        .sidebar { 
-            position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; 
-            background: rgba(0,0,0,0.99); z-index: 9999; 
-            transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1); 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        .hero h1 { font-size: 4rem; margin-bottom: 10px; letter-spacing: 5px; }
+        .hero p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 3px; }
+        .btn {
+            background-color: var(--primary-red);
+            padding: 15px 40px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-transform: uppercase;
         }
-        .sidebar.active { left: 0; }
-        .sidebar a { 
-            color: #fff; text-decoration: none; font-size: 5rem; font-weight: 950; 
-            margin: 25px 0; text-transform: uppercase; letter-spacing: 25px; 
-            cursor: pointer;
+        .btn:hover { background-color: #ff1a1a; transform: translateY(-3px); }
+
+        /* BIO SECTION */
+        section { padding: 100px 10%; }
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--primary-red); padding-left: 20px; }
+        .bio-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .bio-text p { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-gray); }
+
+        /* PHOTO GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
-        .sidebar a:hover { color: var(--red); text-shadow: var(--glow); }
-
-        /* [SECTION 06: MULTI-PAGE ARCHITECTURE] */
-        .page { 
-            position: fixed; inset: 0; width: 100%; height: 100vh; 
-            padding: 250px 8% 100px; overflow-y: auto; display: none; 
-            background: radial-gradient(circle at center, #0a0000 0%, #000 100%); 
-            z-index: 5000;
+        .gallery-item {
+            height: 300px;
+            background-color: #111;
+            overflow: hidden;
+            border-radius: 8px;
         }
-        .page.active { display: block; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item img:hover { transform: scale(1.05); }
 
-        /* [SECTION 07: HERO PAGE STYLING] */
-        .hero-label { color: var(--red); font-weight: 950; letter-spacing: 25px; font-size: 2rem; text-align: center; display: block; margin-bottom: 40px; }
-        h1 { font-size: clamp(8rem, 30vw, 25rem); font-weight: 950; letter-spacing: 50px; text-align: center; line-height: 0.8; animation: pulseGlow 5s infinite; margin-bottom: 120px; }
-        
-        /* [SECTION 08: BIO PAGE STYLING] */
-        .card-titan { 
-            background: #050505; border: var(--border); 
-            border-radius: 120px; padding: 150px 80px; margin-bottom: 250px; 
-            box-shadow: var(--glow); position: relative; overflow: hidden;
+        /* MUSIC & SHOP CARDS */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #111; padding: 40px; border-radius: 10px; text-align: center; border: 1px solid #222; }
+        .card h3 { margin-bottom: 20px; font-size: 1.8rem; }
+        .card p { margin-bottom: 30px; color: var(--text-gray); }
+
+        /* FOOTER */
+        footer { padding: 50px; text-align: center; background: #050505; border-top: 1px solid #222; }
+        .social-icons { margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; }
+        .copyright { color: #444; font-size: 0.9rem; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .bio-content { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplified for mobile */
         }
-        .card-titan::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--red); opacity: 0.2; animation: scanline 4s linear infinite; }
-
-        .bio-title { font-size: 6rem; font-weight: 950; color: var(--red); letter-spacing: -2px; text-transform: uppercase; margin-bottom: 60px; }
-        .p-master { font-size: 3rem; line-height: 1.4; color: #fff; font-weight: 800; margin-bottom: 40px; }
-
-        .btn-colossus { 
-            background: var(--red); color: #fff; padding: 60px 120px; 
-            font-size: 3rem; font-weight: 950; text-transform: uppercase; 
-            border-radius: 400px; text-decoration: none; display: inline-block; 
-            box-shadow: var(--glow); cursor: pointer; border: none; margin-top: 50px;
-        }
-        .btn-colossus:hover { background: #fff; color: #000; }
-
-        /* [SECTION 09: SCROLLBAR LUXURY] */
-        ::-webkit-scrollbar { width: 30px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: var(--red); border: 8px solid #000; }
     </style>
 </head>
 <body>
 
-    <div class="ticker-wrap"><div class="ticker">V3GASBOI INDEPENDENT EMPIRE • 25 YEARS OF STREET AUTHORITY • 9,000+ PLAYS VERIFIED • THE ROAD TO 10,000 • MISSION: THE INDEPENDENCE CODE • SHOP 88MOB LIVE • </div></div>
+    <nav>
+        <div class="logo">V3GASBOI</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#bio">Bio</a></li>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#shop">Shop</a></li>
+        </ul>
+    </nav>
 
-    <button class="menu-btn" onclick="toggleSidebar()">MENU</button>
-    
-    <div class="sidebar" id="sidebar">
-        <a onclick="navigate('home')">01 HERO</a>
-        <a onclick="navigate('bio')">02 BIO</a>
-        <a onclick="navigate('vault')">03 VAULT</a>
-        <a onclick="navigate('cinema')">04 CINEMA</a>
-        <a onclick="navigate('retail')">05 RETAIL</a>
-        <a onclick="navigate('hq')">06 HQ</a>
-    </div>
-
-    <div id="home" class="page active">
-        <span class="hero-label">SUPREME MOGUL AUTHORITY</span>
+    <div class="hero" id="home">
         <h1>V3GASBOI</h1>
-        <div class="card-titan" style="text-align: center;">
-            <p style="font-size: 5rem; font-weight: 950; color: var(--red); letter-spacing: 30px; margin-bottom: 40px;">LAS VEGAS EMPIRE</p>
-            <p class="p-master">AUTHENTICATED INDEPENDENCE SINCE 1998.</p>
-            <button onclick="navigate('bio')" class="btn-colossus">ENTER THE HISTORY</button>
-        </div>
+        <p>Las Vegas Independent Mogul</p>
+        <a href="#music" class="btn">Listen Now</a>
     </div>
 
-    <div id="bio" class="page">
-        <span class="hero-label">HISTORICAL INTEL ARCHIVE</span>
-        <h2>THE MOGUL</h2>
-        <div class="card-titan" style="text-align: left;">
-            <p class="bio-title">FORGED IN THE STREETS OF OWENS AVE.</p>
-            <p class="p-master">Dominating the **Las Vegas** circuit for over **25 years**, **V3GASBOI** stands as the definitive voice of the independent hustle.</p>
-            <p class="p-master" style="color: var(--red);">The legacy began in the era of **Lyrical Mindz**, building a foundation on raw street respect and high-performance production.</p>
-            <p class="p-master">In 2019, the cross-border authority was cemented through a legendary collaboration with West Coast Icon **C-BO**. This mission spans 35 countries and over 9,000 verified streams.</p>
-            <p class="p-master">From community gatherings to the global reach of the **88MOB** movement, **V3GASBOI** handles the business, owns the masters, and commands the narrative.</p>
-            <button onclick="navigate('vault')" class="btn-colossus">VIEW METRICS</button>
+    <section id="bio">
+        <h2 class="section-title">Biography</h2>
+        <div class="bio-content">
+            <div class="bio-text">
+                <p>Dominating the Las Vegas circuit for over 25 years, V3GASBOI is the definitive voice of the independent hustle. From the foundation of Owens Ave and the Lyrical Mindz era to the global reach of 88MOB, the mission has remained the same: pure, professional execution.</p>
+                <p>With a career spanning since 1998 and collaborations with icons like C-BO, V3GASBOI has reached listeners in 35 countries, proving that street authority and business savvy are a powerful combination.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPrvN_K1nS-j0Z3p6qR1yXy" alt="V3GASBOI">
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="vault" class="page">
-        <h2>THE VAULT</h2>
-        <div class="card-titan" style="text-align: center;">
-            <p style="font-size: 15rem; font-weight: 950; color: var(--red);">9,000+</p>
-            <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
+    <section id="music" style="background: #0f0f0f;">
+        <h2 class="section-title">The Vault</h2>
+        <div class="feature-grid">
+            <div class="card" style="grid-column: span 2;">
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23e60000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+            </div>
+            <div class="card">
+                <h3>9,000+ Streams</h3>
+                <p>Verified plays across the network. Join the movement as we hit the road to 10,000.</p>
+                <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="btn" style="padding: 10px 20px;">SoundCloud</a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="cinema" class="page">
-        <h2>CINEMA</h2>
-        <div style="border-radius:100px; overflow:hidden; border:15px solid var(--red); height:700px;">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/P6pFdeZg8LI" allowfullscreen></iframe>
+    <section id="gallery">
+        <h2 class="section-title">Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/pw/AP1GczO0N1-kH-Z8wJq0eQ"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/pw/AP1GczNcO_T3zVz"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/pw/AP1GczP0-Q"></div>
         </div>
-    </div>
+    </section>
 
-    <div id="retail" class="page">
-        <h2>REVENUE</h2>
-        <div class="card-titan" style="text-align: center;">
-            <p style="font-size: 20rem; font-weight: 950; color: var(--red); text-shadow: var(--glow);">$88.00</p>
-            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn-colossus">SHOP RETAIL</a>
+    <section id="shop" style="background: #0f0f0f;">
+        <div class="card">
+            <h2 class="section-title" style="border:none; padding:0; text-align:center;">88MOB Retail</h2>
+            <p>Signature Gear. Limited Edition. Official Las Vegas Fulfillment.</p>
+            <p style="font-size: 2rem; color: #fff; margin-bottom: 20px;">$88.00</p>
+            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn">Shop on TikTok</a>
         </div>
-    </div>
+    </section>
 
-    <div id="hq" class="page">
-        <h2>HQ</h2>
-        <div class="card-titan" style="text-align: center;">
-            <a href="mailto:hq@v3gasboi.com" class="btn-colossus">EMAIL HQ</a>
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.tiktok.com/@v3gasboi">TikTok</a>
+            <a href="https://www.youtube.com/@v3gasboi">YouTube</a>
+            <a href="mailto:hq@v3gasboi.com">Email</a>
         </div>
-    </div>
+        <p class="copyright">&copy; 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
+    </footer>
 
-    <script>
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
-        function navigate(pId) {
-            var pages = document.getElementsByClassName('page');
-            for(var i=0; i < pages.length; i++) {
-                pages[i].style.display = 'none';
-                pages[i].classList.remove('active');
-            }
-            var target = document.getElementById(pId);
-            target.style.display = 'block';
-            target.classList.add('active');
-            target.scrollTop = 0;
-            document.getElementById('sidebar').classList.remove('active');
-        }
-
-        /* [SYSTEM CHECKS TO ENSURE 800+ LINE DEPTH AND SCALE] */
-        console.log("V3GASBOI EMPIRE INITIALIZED");
-        // DATA_SYNC: 9000_PLAYS
-        // LOCATION_LOCK: LAS_VEGAS
-        // AUTHORITY_STATUS: MOGUL
-    </script>
 </body>
 </html>
