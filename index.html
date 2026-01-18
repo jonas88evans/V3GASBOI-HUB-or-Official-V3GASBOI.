@@ -3,172 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | THE LEVIATHAN EMPIRE | LAS VEGAS MOGUL AUTHORITY</title>
+    <title>V3GASBOI | THE ABSOLUTE COLOSSUS | LAS VEGAS MOGUL AUTHORITY</title>
     
-    <meta name="description" content="V3GASBOI: 25-Year Independent Las Vegas Mogul. 9,000+ Plays Verified. The Road to 10k. 88MOB Leader. C-BO Collaboration. Lyrical Mindz Legend.">
-    <meta name="keywords" content="V3GASBOI, 88MOB, Lyrical Mindz, Las Vegas Hip Hop, Owens Ave, C-BO collab, 25 years independent, Vegas street authority, Pass Me That Cup, V3GASBOI vlogs, 88MOB shop, Mogul, Independent Artist 2026">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="V3GASBOI | THE LEVIATHAN">
+    <meta name="description" content="V3GASBOI: 25-Year Independent Las Vegas Mogul. 9,000+ Plays Verified. Lyrical Mindz Legend. Featured C-BO Collaboration. The Road to 10,000. 88MOB Leader.">
+    <meta name="keywords" content="V3GASBOI, 88MOB, Lyrical Mindz, Las Vegas Hip Hop, Owens Ave, C-BO collab, 25 years independent, Vegas street authority, Pass Me That Cup, V3GASBOI vlogs, 88MOB shop, Mogul Authority, Independent Artist 2026, West Coast Music Empire">
+    <meta name="author" content="V3GASBOI ENTERPRISE">
+    
+    <meta property="og:title" content="V3GASBOI | THE COLOSSUS">
+    <meta property="og:description" content="Verified Las Vegas Legend. 25-year career. 9,000+ streams.">
     <meta property="og:image" content="1000002511.jpg">
+    <meta property="og:type" content="website">
 
     <style>
+        /* [SECTION 02: THE COLOSSUS DESIGN SYSTEM] */
         :root { 
-            --bentley-black: #000000; --luxury-red: #ff0000; 
-            --pure-white: #ffffff; --leviathan-glow: 0 0 120px rgba(255, 0, 0, 1);
-            --glass: rgba(255, 255, 255, 0.03);
+            --black: #000000; 
+            --red: #ff0000; 
+            --white: #ffffff; 
+            --glow: 0 0 100px rgba(255, 0, 0, 0.9);
+            --titan-shadow: 0 20px 80px rgba(0,0,0,0.8);
+            --gap: 50vh; /* Fixing the spacing to be massive */
+            --border: 12px solid var(--red);
+            --font-main: 'Inter', sans-serif;
         }
+
+        /* [SECTION 03: CORE RESET & ARCHITECTURE] */
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--bentley-black); color: #fff; overflow: hidden; }
+        body { 
+            font-family: var(--font-main); 
+            background: var(--black); 
+            color: var(--white); 
+            overflow-x: hidden; 
+            line-height: 1; 
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* 2. ANIMATION CORE */
-        @keyframes pulse { 0%, 100% { text-shadow: var(--leviathan-glow); transform: scale(1); } 50% { text-shadow: 0 0 250px rgba(255, 0, 0, 1); transform: scale(1.05); } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(200px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes scanline { 0% { bottom: 100%; } 100% { bottom: 0%; } }
+        /* [SECTION 04: KINETIC ANIMATION ENGINE] */
+        @keyframes titanPulse { 0%, 100% { text-shadow: var(--glow); transform: scale(1); } 50% { text-shadow: 0 0 250px var(--red); transform: scale(1.03); } }
+        @keyframes tickerMove { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        @keyframes revealUp { from { opacity: 0; transform: translateY(150px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scanline { 0% { top: 0%; } 100% { top: 100%; } }
+        @keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
 
-        /* 3. MEGA TICKER (80px HEIGHT) */
-        .ticker-wrap { position: fixed; top: 0; width: 100%; height: 80px; background: var(--luxury-red); border-bottom: 5px solid #fff; z-index: 10000; display: flex; align-items: center; }
-        .ticker { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; font-weight: 950; text-transform: uppercase; letter-spacing: 12px; font-size: 2.2rem; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        /* [SECTION 05: GIGA-TICKER (100px)] */
+        .ticker-wrap { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            height: 100px; 
+            background: var(--red); 
+            z-index: 10000; 
+            display: flex; 
+            align-items: center; 
+            border-bottom: 8px solid #fff;
+            box-shadow: 0 15px 50px rgba(255,0,0,0.5);
+        }
+        .ticker { 
+            display: inline-block; 
+            white-space: nowrap; 
+            animation: tickerMove 25s linear infinite; 
+            font-weight: 950; 
+            text-transform: uppercase; 
+            letter-spacing: 15px; 
+            font-size: 2.5rem; 
+        }
 
-        /* 4. LEVIATHAN SIDEBAR */
-        .menu-btn { position: fixed; top: 120px; left: 50px; z-index: 9999; background: var(--luxury-red); color: #fff; border: none; padding: 35px 60px; border-radius: 30px; cursor: pointer; font-weight: 950; font-size: 2.2rem; box-shadow: var(--leviathan-glow); transition: 0.4s ease; }
-        .menu-btn:hover { background: #fff; color: #000; transform: scale(1.1) rotate(-3deg); }
+        /* [SECTION 06: SIDEBAR NAVIGATION] */
+        .menu-trigger { 
+            position: fixed; 
+            top: 140px; 
+            left: 60px; 
+            z-index: 9999; 
+            background: #000; 
+            border: var(--border); 
+            color: #fff; 
+            padding: 30px 60px; 
+            font-weight: 950; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            letter-spacing: 10px;
+            transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .menu-trigger:hover { background: var(--red); transform: scale(1.1); }
 
         .sidebar { 
-            position: fixed; top: 0; left: -700px; width: 700px; height: 100vh; 
-            background: rgba(0,0,0,0.99); border-right: 15px solid var(--luxury-red); 
-            z-index: 9998; transition: 0.9s cubic-bezier(0.19, 1, 0.22, 1); 
-            display: flex; flex-direction: column; justify-content: center; padding: 120px;
+            position: fixed; 
+            top: 0; 
+            left: -100%; 
+            width: 100%; 
+            height: 100vh; 
+            background: rgba(0,0,0,0.99); 
+            z-index: 9998; 
+            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
         }
-        .sidebar.active { left: 0; box-shadow: 150px 0 400px rgba(255,0,0,0.5); }
-        .sidebar a { color: #fff; text-decoration: none; font-size: 4.5rem; font-weight: 950; margin-bottom: 45px; text-transform: uppercase; letter-spacing: 15px; transition: 0.4s; cursor: pointer; }
-        .sidebar a:hover { color: var(--luxury-red); transform: translateX(60px); text-shadow: var(--leviathan-glow); }
+        .sidebar.active { left: 0; }
+        .sidebar a { 
+            color: #fff; 
+            text-decoration: none; 
+            font-size: 5rem; 
+            font-weight: 950; 
+            margin: 30px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 25px; 
+            transition: 0.4s;
+        }
+        .sidebar a:hover { color: var(--red); transform: translateX(50px); text-shadow: var(--glow); }
 
-        /* 5. VIRTUAL PAGE ENGINE */
-        .page { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; padding: 350px 10% 100px; overflow-y: auto; display: none; opacity: 0; transition: 1.8s cubic-bezier(0.19, 1, 0.22, 1); background: radial-gradient(circle at center, #0a0000 0%, #000 100%); }
-        .page.active { display: block; opacity: 1; }
+        /* [SECTION 07: PAGE ARCHITECTURE] */
+        .page { 
+            position: fixed; 
+            inset: 0; 
+            width: 100%; 
+            height: 100vh; 
+            padding: 300px 8% 100px; 
+            overflow-y: auto; 
+            display: none; 
+            background: radial-gradient(circle at center, #0a0000 0%, #000 100%); 
+        }
+        .page.active { display: block; z-index: 5000; }
 
-        /* 6. COLOSSUS COMPONENTS */
-        h1 { font-size: clamp(8rem, 30vw, 25rem); font-weight: 950; letter-spacing: 50px; text-align: center; animation: pulse 5s infinite; line-height: 0.7; margin-bottom: 100px; }
-        h2 { font-size: clamp(4rem, 15vw, 10rem); font-weight: 950; text-transform: uppercase; letter-spacing: 20px; margin-bottom: 60px; text-align: center; border-bottom: 10px solid var(--luxury-red); display: inline-block; width: 100%; }
+        /* [SECTION 08: TYPOGRAPHY MONUMENTS] */
+        h1 { 
+            font-size: clamp(8rem, 30vw, 25rem); 
+            font-weight: 950; 
+            letter-spacing: 50px; 
+            text-align: center; 
+            line-height: 0.8; 
+            animation: titanPulse 5s infinite; 
+            margin-bottom: 120px;
+        }
+        h2 { 
+            font-size: clamp(4rem, 15vw, 10rem); 
+            color: var(--red); 
+            margin-bottom: 80px; 
+            font-weight: 950; 
+            text-align: center; 
+            letter-spacing: 25px; 
+            text-transform: uppercase;
+        }
+        .label-red { 
+            color: var(--red); 
+            font-weight: 950; 
+            letter-spacing: 20px; 
+            text-transform: uppercase; 
+            font-size: 2rem; 
+            text-align: center; 
+            display: block; 
+            margin-bottom: 50px;
+        }
         
-        .card-leviathan { background: rgba(5,5,5,0.95); border: 12px solid var(--luxury-red); border-radius: 180px; padding: 200px 120px; margin-bottom: 250px; box-shadow: var(--leviathan-glow); position: relative; overflow: hidden; }
-        .card-leviathan::after { content: ''; position: absolute; width: 100%; height: 2px; background: var(--luxury-red); top: 0; left: 0; animation: scanline 4s linear infinite; opacity: 0.3; }
+        .card-colossus { 
+            background: #050505; 
+            border: 12px solid var(--red); 
+            border-radius: 150px; 
+            padding: 150px 100px; 
+            margin-bottom: 250px; 
+            box-shadow: var(--glow); 
+            position: relative;
+            overflow: hidden;
+        }
+        .card-colossus::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--red); opacity: 0.3; animation: scanline 4s linear infinite;
+        }
 
-        .p-titan { font-size: 4.5rem; font-weight: 950; line-height: 1; margin-bottom: 60px; letter-spacing: -2px; }
-        .p-master { font-size: 2.8rem; line-height: 1.4; color: #eee; font-weight: 800; margin-bottom: 40px; }
+        .p-giga { font-size: 5rem; font-weight: 950; line-height: 1; margin-bottom: 60px; letter-spacing: -2px; }
+        .p-master { font-size: 3rem; line-height: 1.4; color: #fff; font-weight: 800; margin-bottom: 40px; }
 
-        /* 7. MEDIA & COMMERCE ENGINE */
-        .giga-theater { border-radius: 120px; overflow: hidden; border: 15px solid var(--luxury-red); height: 950px; box-shadow: var(--leviathan-glow); margin-bottom: 150px; position: relative; }
+        /* [SECTION 09: MEDIA THEATER MODULES] */
+        .giga-theater { 
+            border-radius: 120px; 
+            overflow: hidden; 
+            border: 15px solid var(--red); 
+            height: 900px; 
+            margin-bottom: 150px; 
+            position: relative; 
+            box-shadow: var(--glow); 
+        }
         .giga-theater iframe { width: 100%; height: 100%; border: none; }
-        
-        .btn-leviathan { background: var(--luxury-red); color: #fff; padding: 80px 150px; font-size: 4rem; font-weight: 950; text-transform: uppercase; border-radius: 400px; display: inline-block; text-decoration: none; box-shadow: var(--leviathan-glow); transition: 0.6s; margin-top: 100px; }
-        .btn-leviathan:hover { background: #fff; color: #000; transform: translateY(-30px) scale(1.05); }
+        .theater-label {
+            position: absolute; bottom: 0; width: 100%; padding: 60px;
+            background: linear-gradient(transparent, #000); font-weight: 950;
+            font-size: 2.5rem; letter-spacing: 15px; text-align: center; text-transform: uppercase;
+        }
 
-        /* 8. SCROLLBAR LUXURY */
-        ::-webkit-scrollbar { width: 25px; }
+        /* [SECTION 10: REVENUE TERMINAL] */
+        .price-tag { 
+            font-size: 25rem; 
+            font-weight: 950; 
+            color: var(--red); 
+            text-shadow: var(--glow); 
+            line-height: 0.8; 
+            margin-bottom: 80px; 
+        }
+        .btn-colossus { 
+            background: var(--red); 
+            color: #fff; 
+            padding: 80px 160px; 
+            font-size: 4rem; 
+            font-weight: 950; 
+            text-transform: uppercase; 
+            border-radius: 400px; 
+            text-decoration: none; 
+            display: inline-block; 
+            box-shadow: var(--glow); 
+            cursor: pointer; 
+            border: 10px solid transparent;
+            transition: 0.5s;
+        }
+        .btn-colossus:hover { background: #fff; color: #000; transform: translateY(-30px); }
+
+        /* [SECTION 11: INTEL METRICS ENGINE] */
+        .intel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 100px; margin-top: 100px; }
+        .intel-box { text-align: center; padding: 60px; border-bottom: 5px solid var(--red); }
+        .intel-val { font-size: 10rem; font-weight: 950; color: #fff; margin-bottom: 20px; }
+        .intel-lab { font-size: 2rem; color: var(--red); font-weight: 950; letter-spacing: 10px; text-transform: uppercase; }
+
+        /* [SECTION 12: SCROLLBAR LUXURY] */
+        ::-webkit-scrollbar { width: 30px; }
         ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: var(--luxury-red); border-radius: 50px; border: 5px solid #000; }
+        ::-webkit-scrollbar-thumb { background: var(--red); border: 8px solid #000; border-radius: 50px; }
+
+        /* [SECTION 13: UTILITY CLASSES] */
+        .reveal { opacity: 0; transform: translateY(150px); transition: 1.5s ease-out; }
+        .visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <div class="ticker-wrap"><div class="ticker">V3GASBOI LEVIATHAN COMMAND • 25 YEARS OF INDEPENDENT DOMINANCE • 9,000+ PLAYS VERIFIED • THE ROAD TO 10,000 • MISSION: THE INDEPENDENCE CODE • SHOP 88MOB •</div></div>
+    <div class="ticker-wrap"><div class="ticker">V3GASBOI INDEPENDENT EMPIRE • 25 YEARS OF STREET AUTHORITY • 9,000+ PLAYS VERIFIED • THE ROAD TO 10,000 • MISSION: THE INDEPENDENCE CODE • SHOP 88MOB LIVE • COMMAND THE EMPIRE • </div></div>
 
-    <button class="menu-btn" onclick="toggleMenu()">MENU</button>
+    <button class="menu-trigger" onclick="toggleMenu()">MENU</button>
+    
     <div class="sidebar" id="sidebar">
-        <a onclick="showPage('home')">01. COMMAND</a>
-        <a onclick="showPage('legacy')">02. LEGACY</a>
-        <a onclick="showPage('vault')">03. SOUNDS</a>
-        <a onclick="showPage('theater')">04. CINEMA</a>
-        <a onclick="showPage('retail')">05. REVENUE</a>
-        <a onclick="showPage('intel')">06. INTEL</a>
-        <a onclick="showPage('hq')">07. HQ</a>
-        <p style="color:var(--luxury-red); font-weight:950; margin-top:100px; letter-spacing:20px; font-size: 2rem;">V3GASBOI</p>
+        <a onclick="showPage('home')">01 COMMAND</a>
+        <a onclick="showPage('legacy')">02 LEGACY</a>
+        <a onclick="showPage('vault')">03 VAULT</a>
+        <a onclick="showPage('vlogs')">04 CINEMA</a>
+        <a onclick="showPage('retail')">05 REVENUE</a>
+        <a onclick="showPage('intel')">06 INTEL</a>
+        <a onclick="showPage('hq')">07 HQ</a>
+        <p style="color:var(--red); font-weight:950; margin-top:100px; letter-spacing:25px; font-size: 2rem;">V3GASBOI</p>
     </div>
 
     <div id="home" class="page active">
-        <span style="letter-spacing: 20px; color: var(--luxury-red); font-weight: 900; font-size: 2rem; display: block; text-align: center; margin-bottom: 50px;">SUPREME MOGUL AUTHORITY</span>
+        <span class="label-red">CENTRAL MOGUL AUTHORITY</span>
         <h1>V3GASBOI</h1>
-        <div class="card-leviathan" style="text-align: center;">
-            <p class="p-titan" style="color:var(--luxury-red); letter-spacing: 30px;">LAS VEGAS EMPIRE</p>
-            <p class="p-master">AUTHENTICATED INDEPENDENCE SINCE 1998.</p>
-            <a onclick="showPage('vault')" class="btn-leviathan">ACCESS VAULT</a>
+        <div class="card-colossus" style="text-align: center;">
+            <p class="p-giga" style="color:var(--red); letter-spacing: 30px;">LAS VEGAS EMPIRE</p>
+            <p class="p-master">AUTHENTICATED INDEPENDENCE SINCE 1998. 35 COUNTRIES. ONE CODE.</p>
+            <button onclick="showPage('vault')" class="btn-colossus">ACCESS VAULT</button>
         </div>
     </div>
 
     <div id="legacy" class="page">
+        <span class="label-red">HISTORICAL INTEL ARCHIVE</span>
         <h2>HISTORY</h2>
-        <div class="card-leviathan">
-            <p class="p-titan">FORGED IN THE STREETS OF OWENS AVE.</p>
-            <p class="p-master">Dominating the **Las Vegas** circuit for over **25 years**, **V3GASBOI** is the cornerstone of the independent movement. From the foundation of **Lyrical Mindz** to the global reach of **88MOB**, the code remains unbroken.</p>
-            <p class="p-master" style="color: var(--luxury-red);">Featured collaborations with West Coast Legend **C-BO (2019)** solidified the cross-border street authority that spans 35 countries.</p>
-            <a onclick="showPage('theater')" class="btn-leviathan">WATCH LEGACY</a>
+        <div class="card-colossus">
+            <p class="p-giga">FORGED IN THE STREETS OF OWENS AVE.</p>
+            <p class="p-master">Dominating the **Las Vegas** circuit for over **25 years**, **V3GASBOI** stands as the definitive voice of the independent hustle.</p>
+            <p class="p-master" style="color: var(--red);">From the foundation of **Lyrical Mindz** to the global impact of **88MOB**. Featured collaborations with West Coast Icon **C-BO (2019)**.</p>
+            <p class="p-master">We handle the business. We own the masters. We own the narrative.</p>
+            <button onclick="showPage('vlogs')" class="btn-colossus">VIEW DOCUMENTARY</button>
         </div>
     </div>
 
     <div id="vault" class="page">
+        <span class="label-red">VERIFIED SOUND VAULT</span>
         <h2>THE VAULT</h2>
-        <div class="card-leviathan" style="text-align: center;">
-            <p style="font-size: 15rem; font-weight: 950; color: var(--luxury-red); animation: pulse 4s infinite;">9,000+</p>
-            <p class="p-titan">PLAYS VERIFIED</p>
+        <div class="card-colossus" style="text-align: center;">
+            <p style="font-size: 15rem; font-weight: 950; color: var(--red); animation: titanPulse 4s infinite;">9,000+</p>
+            <p class="p-giga">PLAYS VERIFIED</p>
             <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
-            <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="btn-leviathan">ENTER CLOUD HQ</a>
+            <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="btn-colossus" style="margin-top: 100px;">FULL SOUNDCLOUD</a>
         </div>
     </div>
 
-    <div id="theater" class="page">
-        <h2>CINEMA</h2>
+    <div id="vlogs" class="page">
+        <span class="label-red">GIGA-THEATER CINEMA</span>
+        <h2>VLOGS</h2>
         <div class="giga-theater">
             <iframe src="https://www.youtube.com/embed/P6pFdeZg8LI" allowfullscreen></iframe>
+            <div class="theater-label">THE ROAD TO 10,000 PLAYS</div>
         </div>
         <div class="giga-theater">
             <iframe src="https://www.youtube.com/embed/UkWd0azv3fQ" allowfullscreen></iframe>
+            <div class="theater-label">HQ STUDIO SESSIONS</div>
         </div>
     </div>
 
     <div id="retail" class="page">
+        <span class="label-red">ENTERPRISE COMMERCE TERMINAL</span>
         <h2>REVENUE</h2>
-        <div class="card-leviathan" style="text-align: center;">
-            <p style="font-size: 25rem; font-weight: 950; color: var(--luxury-red); text-shadow: var(--leviathan-glow);">$88.00</p>
-            <p class="p-titan">88MOB SIGNATURE GEAR</p>
-            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn-leviathan">SHOP TIKTOK</a>
-        </div>
-    </div>
+        <div class="card-colossus" style="text-align: center;">
+            <p class="price-tag">$88.00</p>
 
-    <div id="intel" class="page">
-        <h2>INTEL</h2>
-        <div class="card-leviathan">
-            <p class="p-titan">GLOBAL IMPACT METRICS</p>
-            <p class="p-master">• GEOGRAPHIC REACH: 35 COUNTRIES</p>
-            <p class="p-master">• STREET RATING: +1,698 VERIFIED</p>
-            <p class="p-master">• LEGACY DURATION: 25 YEARS (1998-2026)</p>
-            <p class="p-master">• INDEPENDENT STATUS: 100% OWNED</p>
-        </div>
-    </div>
-
-    <div id="hq" class="page">
-        <h2>HQ</h2>
-        <div class="card-leviathan" style="text-align: center;">
-            <p class="p-titan">DIRECT COMMAND LINE</p>
-            <p class="p-master">FOR BOOKING, FEATURES, AND CORPORATE INQUIRIES:</p>
-            <a href="mailto:hq@v3gasboi.com" class="btn-leviathan">EMAIL V3GASBOI</a>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => { page.classList.remove('active'); });
-            const target = document.getElementById(pageId);
-            target.classList.add('active');
-            target.scrollTop = 0;
-            toggleMenu();
-        }
-    </script>
-</body>
-</html>
+            
