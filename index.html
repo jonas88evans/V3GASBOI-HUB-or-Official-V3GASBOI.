@@ -3,155 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Artist Supreme & 88MOB Empire Hub</title>
-    
-    <meta name="description" content="The official Artist Supreme Hub for V3GASBOI. 8.8K plays, +1,698 respect. Featuring the 88MOB Shop, Muney Krane Spotlight, and Top Hitmaker Legacy.">
-    <meta name="keywords" content="V3GASBOI, Jonas Evans, 88MOB, Muney Krane, Young Krane, Las Vegas Mogul, Top Hitmaker 2025, Vegas Spot Boutique">
-
+    <title>V3GASBOI | 88MOB Official Supreme Empire</title>
     <style>
         :root { 
-            --v3-gold: #D4AF37; --v3-black: #000000; --v3-white: #ffffff; 
-            --v3-neon: rgba(212, 175, 55, 0.9); --v3-red: #B22222;
+            --v3-gold: #D4AF37; --v3-black: #000000; 
+            --v3-neon: rgba(212, 175, 55, 0.9);
+            --v3-text-shadow: 2px 2px 12px rgba(0,0,0,0.9), 0 0 20px var(--v3-neon);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: #fff; color: #000; scroll-behavior: smooth; line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* SUPREME MOTION FX */
-        @keyframes glowPulse { 0% { text-shadow: 0 0 10px var(--v3-neon); } 50% { text-shadow: 0 0 30px var(--v3-gold); } 100% { text-shadow: 0 0 10px var(--v3-neon); } }
-        @keyframes backgroundPan { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        /* SUPREME GLOW & SHADOW ENGINE */
+        h1, h2, h3, h4, p, a, span, li, label { text-shadow: var(--v3-text-shadow); }
 
-        /* NAVIGATION COMMAND CENTER */
-        header { background: #000; color: var(--v3-gold); padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 2000; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--v3-gold); box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
-        .logo { font-weight: 900; letter-spacing: 5px; font-size: 1.8rem; text-transform: uppercase; animation: glowPulse 4s infinite; }
-        nav a { color: var(--v3-gold); text-decoration: none; margin-left: 25px; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; transition: 0.4s; }
-        nav a:hover { color: #fff; text-shadow: 0 0 15px var(--v3-gold); }
+        /* AMBIENT PHOTO MOTION ENGINE */
+        @keyframes ambientFloat { 0% { transform: scale(1); } 50% { transform: scale(1.08) translate(-5px, -5px); } 100% { transform: scale(1); } }
+        @keyframes neonPulse { 0% { box-shadow: 0 0 15px var(--v3-neon); } 50% { box-shadow: 0 0 45px var(--v3-gold); } 100% { box-shadow: 0 0 15px var(--v3-neon); } }
+        
+        .glow-photo { width: 100%; overflow: hidden; border: 3px solid var(--v3-gold); animation: neonPulse 5s infinite; position: relative; }
+        .glow-photo img { width: 100%; display: block; animation: ambientFloat 20s infinite ease-in-out; }
 
-        /* CINEMATIC SUPREME HERO */
-        .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; color: #fff; text-align: center; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('1000010201.png'); background-size: cover; background-position: center; animation: backgroundPan 25s infinite; z-index: -1; }
-        .hero h1 { font-size: clamp(4rem, 12vw, 7rem); letter-spacing: 20px; margin-bottom: 10px; font-weight: 900; }
-        .hero-stat { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 15px 40px; border: 2px solid var(--v3-gold); display: inline-block; margin-top: 30px; font-weight: 900; letter-spacing: 3px; }
+        header { background: rgba(0,0,0,0.95); padding: 25px 5%; position: fixed; width: 100%; top: 0; z-index: 2000; border-bottom: 3px solid var(--v3-gold); display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); }
+        .logo { font-weight: 900; letter-spacing: 5px; font-size: 1.8rem; color: var(--v3-gold); }
+        nav a { color: var(--v3-gold); text-decoration: none; margin-left: 20px; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; }
 
-        /* THE SUPREME CONTAINER */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('1000010201.png'); background-size: cover; z-index: -1; animation: ambientFloat 30s infinite; }
+
         .container { max-width: 1300px; margin: auto; padding: 120px 20px; }
-        .reveal { opacity: 0; transform: translateY(60px); transition: 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+        .card { background: rgba(255,255,255,0.03); border: 1px solid var(--v3-gold); padding: 45px; backdrop-filter: blur(15px); margin-bottom: 50px; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s ease-out; }
         .visible { opacity: 1; transform: translateY(0); }
-        
-        .supreme-card { background: #fff; border: 3px solid #000; padding: 60px; border-radius: 0; position: relative; margin-bottom: 60px; transition: 0.5s; box-shadow: 20px 20px 0px var(--v3-gold); }
-        .supreme-card:hover { transform: translate(-10px, -10px); box-shadow: 30px 30px 0px var(--v3-gold); }
 
-        /* SHOP & LOOKBOOK GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px; }
-        .product-box { border: 2px solid #eee; padding: 20px; background: #fff; text-align: center; transition: 0.4s; }
-        .product-box:hover { border-color: var(--v3-gold); }
-        .product-box img { width: 100%; height: 400px; object-fit: cover; margin-bottom: 20px; border: 1px solid #000; }
-        .price-tag { font-size: 1.5rem; font-weight: 900; color: var(--v3-gold); margin: 15px 0; }
-        
-        .buy-btn { background: #000; color: var(--v3-gold); border: 2px solid var(--v3-gold); width: 100%; padding: 20px; font-weight: 900; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; }
-        .buy-btn:hover { background: var(--v3-gold); color: #000; box-shadow: 0 0 20px var(--v3-gold); }
+        .btn { background: var(--v3-gold); color: #000; padding: 20px 40px; font-weight: 900; text-transform: uppercase; text-decoration: none; display: inline-block; margin: 10px 5px; box-shadow: 0 0 25px var(--v3-neon); border-radius: 4px; }
+        .btn:hover { background: #fff; transform: scale(1.05); }
 
-        /* FOOTER SUPREME */
-        footer { background: #000; color: var(--v3-gold); padding: 100px 5%; text-align: center; border-top: 10px solid var(--v3-gold); }
-        .footer-links { margin-bottom: 40px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        input, textarea { width: 100%; padding: 20px; margin: 15px 0; background: #000; border: 1px solid var(--v3-gold); color: #fff; box-shadow: inset 0 0 10px var(--v3-neon); }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">V3GASBOI</div>
         <nav>
-            <a href="#home">HUB</a>
-            <a href="#hitmaker">HITMAKER</a>
-            <a href="#brother">88MOB</a>
-            <a href="#shop">STORE</a>
-            <a href="#music">VAULT</a>
+            <a href="#music">MUSIC</a>
+            <a href="#shop">SHOP</a>
+            <a href="#legacy">LEGACY</a>
+            <a href="#reviews">REVIEWS</a>
+            <a href="#contact">CONTACT</a>
         </nav>
     </header>
 
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="hero-bg"></div>
         <div>
-            <h1>V3GASBOI</h1>
-            <p style="letter-spacing: 12px; font-weight: 900; color: var(--v3-gold); text-transform: uppercase;">The Voice of the Vegas Streets</p>
-            <div class="hero-stat">8.8K PLAYS // ROAD TO 10K MILESTONE</div>
+            <h1 style="font-size: clamp(3rem, 10vw, 6.5rem); letter-spacing: 18px;">V3GASBOI</h1>
+            <p style="font-size: 2rem; color: var(--v3-gold); font-weight: 900;">INDEPENDENT SUPREME EMPIRE | 88MOB</p>
+            <div style="margin-top:40px; background:white; color:black; padding:18px 45px; display:inline-block; font-weight:900; border:5px solid var(--v3-gold);">ROAD TO 10,000 PLAYS: 9K STRONG</div>
+            <div style="margin-top:30px;">
+                <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" class="btn" target="_blank">LISTEN ON SOUNDCLOUD</a>
+            </div>
         </div>
     </section>
 
     <div class="container">
-        <section id="hitmaker" class="reveal">
-            <h2 style="font-size: 3rem; margin-bottom: 50px; border-left: 15px solid var(--v3-gold); padding-left: 30px;">GLOBAL PORTFOLIO</h2>
-            <div class="supreme-card" style="border-left: 20px solid var(--v3-red);">
-                <h3 style="font-size: 2rem;">America's Next Top Hitmaker</h3>
-                <p style="margin: 20px 0; font-size: 1.2rem;">Official 2024-2025 National Contender. Representing the elite Las Vegas trap sound on the path to <strong>Rolling Stone</strong> recognition.</p>
-                <div style="background: #f9f9f9; padding: 20px; border: 1px dashed #000;">
-                    <strong>Global Reach:</strong> Featured content streamed in over 35 countries via the <strong>Orbiiit</strong> Global Creative network.
+        <section id="music" class="reveal">
+            <h2 style="color:var(--v3-gold); font-size:3.5rem; margin-bottom:50px;">SOUND VAULT</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 50px;">
+                <div class="card">
+                    <div class="glow-photo"><img src="1000002511.jpg"></div>
+                    <h3 style="margin-top:25px;">PASS ME THAT CUP</h3>
+                    <audio controls style="width:100%; margin-top:20px;"><source src="Bitch bow Down (1).m4a"></audio>
                 </div>
-            </div>
-        </section>
-
-        <section id="brother" class="reveal">
-            <h2 style="font-size: 3rem; margin-bottom: 50px; border-left: 15px solid var(--v3-gold); padding-left: 30px;">88MOB LEGACY</h2>
-            <div class="supreme-card">
-                <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
-                    <div style="flex: 1; min-width: 300px;">
-                        <h3 style="font-size: 2.5rem; color: var(--v3-gold);">Muney Krane</h3>
-                        <p style="font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 20px;">AKA YOUNG KRANE</p>
-                        <p style="font-size: 1.1rem; border-top: 2px solid #eee; pt: 20px;">
-                            The next generation of the <strong>88MOB</strong> empire. Representing the family movement from the ground up alongside V3GASBOI. A verified member of the family leadership since 2023.
-                        </p>
-                    </div>
+                <div class="card">
+                    <div class="glow-photo"><img src="1000002512.jpg"></div>
+                    <h3 style="margin-top:25px;">TURN ME INTO A MONSTER</h3>
+                    <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" class="btn" style="width:100%; text-align:center;">STREAM NOW</a>
                 </div>
             </div>
         </section>
 
         <section id="shop" class="reveal">
-            <h2 style="font-size: 3rem; margin-bottom: 50px; border-left: 15px solid var(--v3-gold); padding-left: 30px;">88MOB SUPREME STORE</h2>
-            <div class="grid">
-                <div class="product-box">
-                    <img src="1000010161.png" alt="88MOB Hoodie">
-                    <h3>88MOB SIGNATURE HOODIE</h3>
-                    <p class="price-tag">$88.00</p>
-                    <button class="buy-btn">PURCHASE EXCLUSIVE</button>
+            <h2 style="color:var(--v3-gold); font-size:3.5rem; margin-bottom:50px;">88MOB SHOP</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div class="card" style="text-align:center;">
+                    <div class="glow-photo"><img src="1000010161.png"></div>
+                    <h4 style="margin-top:15px;">88MOB HOODIE</h4>
+                    <p style="color:var(--v3-gold); font-weight:900;">$88.00</p>
+                    <button class="btn" style="width:100%;">ADD TO CART</button>
                 </div>
-                <div class="product-box" style="background: #000; color: #fff;">
-                    <div style="height: 400px; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 900; color: var(--v3-gold);">DIRT TO<br>DIAMOND</div>
-                    <h3>OFFICIAL PROJECT DOWNLOAD</h3>
-                    <p class="price-tag">$15.00</p>
-                    <button class="buy-btn" style="background: #fff; color: #000;">DOWNLOAD VAULT</button>
+            </div>
+        </section>
+                <section id="legacy" class="reveal" style="margin-top:120px;">
+            <h2 style="color:var(--v3-gold); font-size:3.5rem; margin-bottom:60px; border-left: 20px solid var(--v3-gold); padding-left: 25px;">CAREER ARCHIVE</h2>
+            <div class="card">
+                <h3 style="color:var(--v3-gold); margin-bottom:20px;">2019 LEGACY FEATURE</h3>
+                <p style="font-size: 1.3rem;">V3GASBOI & Muney Krane ft. <strong>C-BO</strong> (West Coast Legend)</p>
+                <div style="margin-top:40px; border-top: 1px solid var(--v3-gold); padding-top: 30px;">
+                    <h4 style="color:var(--v3-gold);">HISTORIC ROSTER (LYRICAL MINDZ ERA)</h4>
+                    <ul style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top:15px;">
+                        <li>• Lite Skin (Christopher Pratt)</li>
+                        <li>• G-Man (Geno)</li>
+                        <li>• Robby BoBo</li>
+                        <li>• J-Bucc (PJ)</li>
+                        <li>• SliverDolla</li>
+                        <li>• T-Craze [R.I.P]</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="music" class="reveal">
-            <h2 style="font-size: 3rem; margin-bottom: 50px; border-left: 15px solid var(--v3-gold); padding-left: 30px;">THE MOGUL VAULT</h2>
-            <div class="supreme-card" style="background: #000; color: #fff; text-align: center;">
-                <h3 style="color: var(--v3-gold); font-size: 3.5rem; animation: glowPulse 2s infinite;">+1,698 RESPECT</h3>
-                <p style="letter-spacing: 5px; margin-bottom: 40px;">VERIFIED COMMUNITY AUTHORITY</p>
-                
-                <div style="text-align: left; background: #111; padding: 30px; border: 1px solid var(--v3-gold);">
-                    <h4 style="margin-bottom: 15px;">STREAMING NOW: "BITCH BOW DOWN"</h4>
-                    <audio controls style="width: 100%;"><source src="Bitch bow Down (1).m4a" type="audio/mp4"></audio>
-                </div>
+        <section id="reviews" class="reveal" style="margin-top:100px;">
+            <h2 style="color:var(--v3-gold); font-size:3.5rem; margin-bottom:50px;">TESTIMONIALS</h2>
+            <div class="card" style="text-align:center; border: 4px solid var(--v3-gold);">
+                <div style="font-size: 5rem; font-weight: 900; animation: neonPulse 3s infinite; display: inline-block; padding: 10px;">+1,698</div>
+                <p style="font-size: 1.5rem; margin-top: 20px;">VERIFIED AUTHORITY SINCE 2023</p>
+                <p style="margin-top:10px; color:#888;">"The true voice of the Vegas streets."</p>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal" style="margin-top:100px;">
+            <h2 style="color:var(--v3-gold); font-size:3.5rem; margin-bottom:50px;">CONTACT HQ</h2>
+            <div class="card">
+                <form>
+                    <input type="text" placeholder="NAME">
+                    <textarea rows="6" placeholder="BOOKING / VLOG INQUIRY"></textarea>
+                    <button type="submit" class="btn" style="width:100%;">SEND TO EMPIRE HQ</button>
+                </form>
             </div>
         </section>
     </div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="buy-btn" style="width: auto;">SOUNDCLOUD</a>
-            <a href="https://www.youtube.com/@vegasboi2147" class="buy-btn" style="width: auto; background: #fff; color: #000;">YOUTUBE</a>
-            <a href="#" class="buy-btn" style="width: auto;">88MOB PRESS KIT</a>
+    <footer style="background:#000; padding:100px 5%; text-align:center; border-top: 10px solid var(--v3-gold);">
+        <div style="margin-bottom:40px;">
+            <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" class="btn" target="_blank">SOUNDCLOUD</a>
+            <a href="https://www.youtube.com/@vegasboi2147" class="btn" target="_blank">YOUTUBE</a>
         </div>
-        <p style="font-weight: 900; letter-spacing: 5px;">© 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
-        <p style="font-size: 0.8rem; color: #444; margin-top: 20px;">VALUABLE MEMBER OF THE GLOBAL CREATIVE COMMUNITY SINCE 2023</p>
+        <p style="font-weight:900; letter-spacing:6px; color: var(--v3-gold);">© 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
     </footer>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(section => observer.observe(section));
+        const obs = new IntersectionObserver((e) => { e.forEach(en => { if(en.isIntersecting) en.target.classList.add('visible'); }); }, {threshold: 0.1});
+        document.querySelectorAll('.reveal').forEach(s => obs.observe(s));
     </script>
 </body>
 </html>
