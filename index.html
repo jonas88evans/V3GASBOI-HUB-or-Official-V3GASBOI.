@@ -3,171 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Official Website</title>
+    <title>V3GASBOI | Official Site</title>
     <style>
-        /* CORE STYLES */
         :root {
-            --primary-red: #e60000;
-            --bg-black: #0a0a0a;
-            --text-white: #ffffff;
-            --text-gray: #a0a0a0;
+            --red: #ff0000;
+            --dark: #0a0a0a;
+            --gray: #222;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-black); color: var(--text-white); line-height: 1.6; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background: var(--dark); color: #fff; line-height: 1.6; }
 
         /* NAVIGATION */
         nav {
+            background: rgba(0,0,0,0.95);
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
             position: fixed;
             width: 100%;
             top: 0;
-            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid var(--gray);
         }
-        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; color: var(--primary-red); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a:hover { color: var(--primary-red); }
+        .nav-logo { font-size: 1.8rem; font-weight: 900; color: var(--red); letter-spacing: 2px; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--red); }
 
         /* HERO SECTION */
         .hero {
-            height: 80vh;
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://v3gasboi.com/wp-content/uploads/2023/06/cropped-V3GASBOI-LOGO-1.png') center/contain no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://lh3.googleusercontent.com/pw/AP1GczO0N1-kH-Z8wJq0eQ') no-repeat center center/cover;
-            padding: 0 20px;
+            padding-top: 80px;
         }
-        .hero h1 { font-size: 4rem; margin-bottom: 10px; letter-spacing: 5px; }
-        .hero p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 3px; }
-        .btn {
-            background-color: var(--primary-red);
-            padding: 15px 40px;
-            font-weight: bold;
-            border-radius: 5px;
-            text-transform: uppercase;
-        }
-        .btn:hover { background-color: #ff1a1a; transform: translateY(-3px); }
+        .hero h1 { font-size: 4.5rem; letter-spacing: 5px; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: #aaa; text-transform: uppercase; letter-spacing: 4px; }
 
         /* BIO SECTION */
-        section { padding: 100px 10%; }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--primary-red); padding-left: 20px; }
-        .bio-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .bio-text p { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-gray); }
+        .content-section { padding: 80px 10%; border-bottom: 1px solid var(--gray); }
+        .section-title { font-size: 2.5rem; margin-bottom: 30px; color: var(--red); text-transform: uppercase; }
+        
+        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .bio-text p { font-size: 1.1rem; color: #ccc; margin-bottom: 20px; }
+        .bio-image img { width: 100%; border: 4px solid var(--red); border-radius: 10px; }
 
         /* PHOTO GALLERY */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 30px; }
+        .gallery img { width: 100%; height: 350px; object-fit: cover; border-radius: 5px; border: 2px solid #333; transition: 0.3s; }
+        .gallery img:hover { border-color: var(--red); transform: scale(1.02); }
+
+        /* MUSIC / SHOP BUTTONS */
+        .cta-btn {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            margin-top: 20px;
         }
-        .gallery-item {
-            height: 300px;
-            background-color: #111;
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .gallery-item img:hover { transform: scale(1.05); }
 
-        /* MUSIC & SHOP CARDS */
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #111; padding: 40px; border-radius: 10px; text-align: center; border: 1px solid #222; }
-        .card h3 { margin-bottom: 20px; font-size: 1.8rem; }
-        .card p { margin-bottom: 30px; color: var(--text-gray); }
+        footer { padding: 40px; text-align: center; color: #666; font-size: 0.8rem; border-top: 1px solid var(--gray); }
 
-        /* FOOTER */
-        footer { padding: 50px; text-align: center; background: #050505; border-top: 1px solid #222; }
-        .social-icons { margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; }
-        .copyright { color: #444; font-size: 0.9rem; }
-
-        /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
-            .bio-content { grid-template-columns: 1fr; }
+            .bio-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplified for mobile */
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">V3GASBOI</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#bio">Bio</a></li>
-            <li><a href="#music">Music</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#shop">Shop</a></li>
-        </ul>
+        <div class="nav-logo">V3GASBOI</div>
+        <div class="nav-links">
+            <a href="#bio">Bio</a>
+            <a href="#photos">Photos</a>
+            <a href="#music">Music</a>
+            <a href="#shop">Shop</a>
+        </div>
     </nav>
 
-    <div class="hero" id="home">
+    <section class="hero">
         <h1>V3GASBOI</h1>
         <p>Las Vegas Independent Mogul</p>
-        <a href="#music" class="btn">Listen Now</a>
-    </div>
+    </section>
 
-    <section id="bio">
-        <h2 class="section-title">Biography</h2>
-        <div class="bio-content">
+    <section class="content-section" id="bio">
+        <h2 class="section-title">The Legend</h2>
+        <div class="bio-grid">
             <div class="bio-text">
-                <p>Dominating the Las Vegas circuit for over 25 years, V3GASBOI is the definitive voice of the independent hustle. From the foundation of Owens Ave and the Lyrical Mindz era to the global reach of 88MOB, the mission has remained the same: pure, professional execution.</p>
-                <p>With a career spanning since 1998 and collaborations with icons like C-BO, V3GASBOI has reached listeners in 35 countries, proving that street authority and business savvy are a powerful combination.</p>
+                <p>Dominating the Las Vegas circuit for over 25 years, V3GASBOI is the definitive voice of the independent hustle. From the foundation of Owens Ave and the Lyrical Mindz era to the global reach of 88MOB, the mission remains pure.</p>
+                <p>With a career starting in 1998 and collaborations with West Coast icons like C-BO, V3GASBOI has reached listeners in 35 countries.</p>
+                <a href="mailto:hq@v3gasboi.com" class="cta-btn">Book V3GASBOI</a>
             </div>
-            <div class="gallery-item">
-                <img src="https://lh3.googleusercontent.com/pw/AP1GczPrvN_K1nS-j0Z3p6qR1yXy" alt="V3GASBOI">
-            </div>
-        </div>
-    </section>
-
-    <section id="music" style="background: #0f0f0f;">
-        <h2 class="section-title">The Vault</h2>
-        <div class="feature-grid">
-            <div class="card" style="grid-column: span 2;">
-                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23e60000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-            </div>
-            <div class="card">
-                <h3>9,000+ Streams</h3>
-                <p>Verified plays across the network. Join the movement as we hit the road to 10,000.</p>
-                <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="btn" style="padding: 10px 20px;">SoundCloud</a>
+            <div class="bio-image">
+                <img src="https://i1.sndcdn.com/avatars-000676443362-9o5j8a-t500x500.jpg" alt="V3GASBOI Profile">
             </div>
         </div>
     </section>
 
-    <section id="gallery">
+    <section class="content-section" id="photos">
         <h2 class="section-title">Gallery</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/pw/AP1GczO0N1-kH-Z8wJq0eQ"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/pw/AP1GczNcO_T3zVz"></div>
-            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/pw/AP1GczP0-Q"></div>
+        <div class="gallery">
+            <img src="https://i1.sndcdn.com/artworks-000548174730-jizv6z-t500x500.jpg" alt="V3GASBOI 1">
+            <img src="https://i1.sndcdn.com/artworks-000516644400-3i7r2z-t500x500.jpg" alt="V3GASBOI 2">
+            <img src="https://i1.sndcdn.com/artworks-000500112444-n8q8n4-t500x500.jpg" alt="V3GASBOI 3">
         </div>
     </section>
 
-    <section id="shop" style="background: #0f0f0f;">
-        <div class="card">
-            <h2 class="section-title" style="border:none; padding:0; text-align:center;">88MOB Retail</h2>
-            <p>Signature Gear. Limited Edition. Official Las Vegas Fulfillment.</p>
-            <p style="font-size: 2rem; color: #fff; margin-bottom: 20px;">$88.00</p>
-            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn">Shop on TikTok</a>
+    <section class="content-section" id="music" style="background: #0f0f0f;">
+        <h2 class="section-title">The Vault</h2>
+        <p>9,000+ Verified Streams</p>
+        <div style="margin-top: 30px;">
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
         </div>
+        <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="cta-btn">Listen on SoundCloud</a>
+    </section>
+
+    <section class="content-section" id="shop">
+        <h2 class="section-title">88MOB Retail</h2>
+        <p>Signature Gear. Limited Edition. Official Las Vegas Fulfillment.</p>
+        <p style="font-size: 2rem; margin: 20px 0;">$88.00</p>
+        <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="cta-btn">Shop TikTok Store</a>
     </section>
 
     <footer>
-        <div class="social-icons">
-            <a href="https://www.tiktok.com/@v3gasboi">TikTok</a>
-            <a href="https://www.youtube.com/@v3gasboi">YouTube</a>
-            <a href="mailto:hq@v3gasboi.com">Email</a>
-        </div>
-        <p class="copyright">&copy; 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
+        <p>© 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
     </footer>
 
 </body>
