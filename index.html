@@ -32,6 +32,12 @@
         .gold-btn { display: block; background: var(--v3-black); color: var(--v3-gold); text-decoration: none; padding: 20px; text-align: center; font-weight: 900; border: 2px solid var(--v3-gold); transition: 0.3s; }
         .gold-btn:hover { box-shadow: 0 0 20px var(--v3-gold); transform: scale(1.02); }
 
+        /* VISUAL HUB GALLERY */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .gallery-item { border: 3px solid var(--v3-gold); border-radius: 12px; overflow: hidden; background: #000; transition: 0.4s; }
+        .gallery-item:hover { transform: scale(1.03); box-shadow: 0 0 20px var(--v3-gold); }
+        .gallery-item img { width: 100%; height: 350px; object-fit: cover; display: block; }
+
         /* SCAVENGER HUNT HIDDEN ICON */
         #secret-icon { position: absolute; bottom: 10px; right: 10px; color: var(--v3-gold); opacity: 0.1; cursor: pointer; font-size: 0.8rem; }
         #secret-icon:hover { opacity: 1; }
@@ -41,7 +47,7 @@
 
     <nav>
         <a href="#home">HOME</a>
-        <a href="#disco">DISCO</a>
+        <a href="#about">MOGUL</a>
         <a href="#visuals">VISUALS</a>
         <a href="#fun">INTERACT</a>
     </nav>
@@ -56,6 +62,15 @@
     </section>
 
     <div class="container">
+        <section id="about" class="reveal">
+            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">The Mogul</h2>
+            <div class="card">
+                <p style="font-size: 1.3rem; line-height: 1.8; color: #222; font-weight: 500;">
+                    <strong style="color:var(--v3-gold);">Jonas Evans</strong>, the architect of <strong style="color:black;">V3GASBOI</strong>, has built a global enterprise from Las Vegas. With over <strong style="color:black;">8,890 plays</strong> and a community respect rating of <strong style="color:black;">+1,698</strong>, his brand spans 35 countries through music and the <strong>Vegas Spot</strong> boutique.
+                </p>
+            </div>
+        </section>
+
         <section id="fun" class="reveal">
             <h2 style="border-bottom: 5px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Mogul Interactive</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
@@ -72,6 +87,15 @@
                     <button class="gold-btn" style="width: 100%; margin-bottom: 10px;" onclick="alert('Respect Added!')">BITCH BOW DOWN</button>
                     <button class="gold-btn" style="width: 100%;" onclick="alert('Respect Added!')">DAMM HOMIE</button>
                 </div>
+            </div>
+        </section>
+
+        <section id="visuals" class="reveal" style="margin-bottom: 100px;">
+            <h2 style="border-bottom: 6px solid var(--v3-gold); display: inline-block; margin-bottom: 40px;">Visual Hub</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="1000010188.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">LIFESTYLE</div></div>
+                <div class="gallery-item"><img src="1000010201.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">BENTLEY STATUS</div></div>
+                <div class="gallery-item"><img src="1000010161.png"><div style="color:white; padding:10px; font-size:0.7rem; font-weight:900;">TRAP ARTIST</div></div>
             </div>
         </section>
 
