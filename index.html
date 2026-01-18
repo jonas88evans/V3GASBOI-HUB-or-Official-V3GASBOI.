@@ -3,116 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | THE ABSOLUTE COLOSSUS</title>
+    <title>V3GASBOI | Official Site</title>
     <style>
-        :root { 
-            --black: #000; --red: #ff0000; --white: #fff; 
-            --glow: 0 0 100px rgba(255, 0, 0, 0.9);
-            --font: 'Inter', sans-serif;
+        /* CORE SETTINGS */
+        :root {
+            --red: #ff0000;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #1a1a1a;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
-        body { font-family: var(--font); background: #000; color: #fff; overflow: hidden; }
-
-        /* [BACKGROUND ENGINE] */
-        #bg-slider {
-            position: fixed; inset: 0; z-index: -1;
-            background-size: cover; background-position: center;
-            transition: 1s ease-in-out; filter: brightness(0.4);
-        }
-
-        /* [NAVIGATION] */
-        .ticker-wrap { position: fixed; top: 0; width: 100%; height: 90px; background: var(--red); z-index: 10000; display: flex; align-items: center; border-bottom: 5px solid #fff; }
-        .ticker { display: inline-block; white-space: nowrap; animation: ticker 25s linear infinite; font-weight: 950; text-transform: uppercase; letter-spacing: 12px; font-size: 2rem; }
-        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
-        .menu-btn { position: fixed; top: 120px; left: 40px; z-index: 10001; background: #000; border: 4px solid var(--red); color: #fff; padding: 15px 30px; font-weight: 950; cursor: pointer; border-radius: 10px; box-shadow: var(--glow); }
-        .sidebar { position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; background: rgba(0,0,0,0.99); z-index: 9999; transition: 0.5s; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .sidebar.active { left: 0; }
-        .sidebar a { color: #fff; text-decoration: none; font-size: 4rem; font-weight: 950; margin: 20px 0; text-transform: uppercase; letter-spacing: 15px; cursor: pointer; }
-
-        /* [PAGES] */
-        .page { position: fixed; inset: 0; width: 100%; height: 100vh; padding: 200px 8% 100px; overflow-y: auto; display: none; z-index: 5000; }
-        .page.active { display: block; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--black); color: var(--white); line-height: 1.6; }
         
-        h1 { font-size: clamp(6rem, 25vw, 15rem); font-weight: 950; letter-spacing: 30px; text-align: center; line-height: 0.8; margin-bottom: 60px; text-shadow: var(--glow); }
-        .card { background: rgba(0,0,0,0.85); border: 8px solid var(--red); border-radius: 80px; padding: 100px 50px; margin-bottom: 150px; box-shadow: var(--glow); text-align: center; backdrop-filter: blur(15px); }
-        .btn { background: var(--red); color: #fff; padding: 40px 80px; font-size: 2.5rem; font-weight: 950; text-transform: uppercase; border-radius: 200px; text-decoration: none; display: inline-block; border: none; cursor: pointer; }
+        /* THE SPREAD BACKGROUND */
+        .bg-fixed {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            /* Update this link to your primary Imgur photo */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://i.imgur.com/TqNOIRY.jpg') no-repeat center center/cover;
+        }
 
-        /* [SCROLLBAR] */
-        ::-webkit-scrollbar { width: 20px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: var(--red); }
+        /* SIMPLE NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--red);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; color: var(--red); }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--red); }
+
+        /* SECTIONS */
+        section { padding: 100px 10%; min-height: 60vh; }
+        .content-box {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--red);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--red); text-transform: uppercase; }
+        p { font-size: 1.2rem; margin-bottom: 20px; }
+
+        /* PHOTO GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .gallery img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; border: 1px solid #333; }
+
+        /* BUTTONS */
+        .btn {
+            background: var(--red);
+            color: #fff;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        footer { padding: 50px; text-align: center; font-size: 0.9rem; color: #666; }
+
+        /* MOBILE FIX */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Standard for mobile simplicity */
+            h1 { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="bg-slider"></div>
+    <div class="bg-fixed"></div>
 
-    <div class="ticker-wrap"><div class="ticker">V3GASBOI INDEPENDENT EMPIRE • 25 YEARS • 9,000+ PLAYS • SHOP 88MOB • </div></div>
-
-    <button class="menu-btn" onclick="toggleSidebar()">MENU</button>
-    
-    <div class="sidebar" id="sidebar">
-        <a onclick="navigate('home', 'https://i.imgur.com/TqNOIRY.jpg')">COMMAND</a>
-        <a onclick="navigate('bio', 'https://i.imgur.com/Tz3P5N6.jpg')">BIO</a>
-        <a onclick="navigate('vault', 'https://i.imgur.com/GzBf7k9.jpg')">VAULT</a>
-        <a onclick="navigate('gallery', 'https://i.imgur.com/U8zWbK8.jpg')">GALLERY</a>
-        <a onclick="navigate('retail', 'https://i.imgur.com/2Y5E6K7.jpg')">SHOP</a>
-    </div>
-
-    <div id="home" class="page active">
-        <h1>V3GASBOI</h1>
-        <div class="card">
-            <p style="font-size: 4rem; font-weight: 950; color: var(--red); letter-spacing: 20px; margin-bottom: 30px;">LAS VEGAS MOGUL</p>
-            <button onclick="navigate('bio', 'https://i.imgur.com/Tz3P5N6.jpg')" class="btn">ENTER EMPIRE</button>
+    <nav>
+        <div class="logo">V3GASBOI</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#bio">Bio</a>
+            <a href="#music">Music</a>
+            <a href="#photos">Photos</a>
+            <a href="#shop">Shop</a>
         </div>
-    </div>
+    </nav>
 
-    <div id="bio" class="page">
-        <h2 style="font-size: 6rem; text-align: center; color: var(--red); margin-bottom: 50px;">BIO</h2>
-        <div class="card">
-            <p style="font-size: 2.5rem; line-height: 1.4;">Dominating Las Vegas since 1998. Forged in Owens Ave. 88MOB Leader. Featured collab with C-BO (2019).</p>
+    <section id="home" style="display: flex; align-items: center; justify-content: center; height: 90vh;">
+        <div style="text-align: center;">
+            <h1 style="font-size: 5rem; letter-spacing: 5px; margin-bottom: 10px;">V3GASBOI</h1>
+            <p style="letter-spacing: 8px; text-transform: uppercase;">Las Vegas Independent Mogul</p>
+            <a href="#music" class="btn" style="margin-top: 30px;">Listen Now</a>
         </div>
-    </div>
+    </section>
 
-    <div id="vault" class="page">
-        <h2 style="font-size: 6rem; text-align: center; color: var(--red); margin-bottom: 50px;">MUSIC</h2>
-        <div class="card">
-            <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
+    <section id="bio">
+        <div class="content-box">
+            <h2>The Legend</h2>
+            <p>Dominating the Las Vegas circuit for over 25 years, V3GASBOI is the definitive voice of the independent hustle. From the foundation of Owens Ave and the Lyrical Mindz era to the global reach of 88MOB, the mission has remained the same: pure, professional execution.</p>
+            <p>With a career spanning since 1998 and collaborations with icons like C-BO, V3GASBOI has reached listeners in 35 countries.</p>
         </div>
-    </div>
+    </section>
 
-    <div id="gallery" class="page">
-        <h2>GALLERY</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            <img src="https://i.imgur.com/TqNOIRY.jpg" style="width: 100%; border: 5px solid var(--red);">
-            <img src="https://i.imgur.com/Tz3P5N6.jpg" style="width: 100%; border: 5px solid var(--red);">
-            <img src="https://i.imgur.com/GzBf7k9.jpg" style="width: 100%; border: 5px solid var(--red);">
+    <section id="music">
+        <div class="content-box">
+            <h2>The Vault</h2>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/15xXTyosG8cXmuZZBn&color=%23ff0000&visual=true"></iframe>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://on.soundcloud.com/15xXTyosG8cXmuZZBn" target="_blank" class="btn">SoundCloud</a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div id="retail" class="page">
-        <h2>SHOP</h2>
-        <div class="card">
-            <p style="font-size: 15rem; font-weight: 950; color: var(--red);">$88.00</p>
-            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn">SHOP RETAIL</a>
+    <section id="photos">
+        <h2 style="text-align: center; margin-bottom: 40px;">Gallery</h2>
+        <div class="gallery">
+            <img src="https://i.imgur.com/TqNOIRY.jpg">
+            <img src="https://i.imgur.com/U8zWbK8.jpg">
+            <img src="https://i.imgur.com/GzBf7k9.jpg">
+            <img src="https://i.imgur.com/2Y5E6K7.jpg">
         </div>
-    </div>
+    </section>
 
-    <script>
-        const slider = document.getElementById('bg-slider');
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
-        function navigate(pageId, bgImg) {
-            slider.style.backgroundImage = `url(${bgImg})`;
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(p => { p.style.display = 'none'; p.classList.remove('active'); });
-            const target = document.getElementById(pageId);
-            target.style.display = 'block'; target.classList.add('active');
-            target.scrollTop = 0; document.getElementById('sidebar').classList.remove('active');
-        }
-        // Start on Home
-        navigate('home', 'https://i.imgur.com/TqNOIRY.jpg');
-    </script>
+    <section id="shop">
+        <div class="content-box" style="text-align: center;">
+            <h2>88MOB Retail</h2>
+            <p>Official Signature Gear. Limited Edition.</p>
+            <p style="font-size: 3rem; font-weight: 900; margin-bottom: 20px;">$88.00</p>
+            <a href="https://www.tiktok.com/@v3gasboi" target="_blank" class="btn">Shop on TikTok</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 V3GASBOI ENTERPRISE | LAS VEGAS, NV</p>
+    </footer>
+
 </body>
 </html>
