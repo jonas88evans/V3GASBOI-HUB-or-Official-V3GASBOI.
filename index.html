@@ -1,323 +1,267 @@
-{% comment %}
-  V3GASBOI OFFICIAL THEME ENGINE (v2026.01)
-  - DARK STREETWEAR AESTHETIC / NEON ACCENTS
-  - HIGH-PERFORMANCE MOTION FX & WEBGL-STYLE OVERLAYS
-  - FULLY RESPONSIVE FOR V3GASBOI.ONLINE
-{% endcomment %}
-
-<!doctype html>
-<html class="no-js" lang="{{ request.locale.iso_code }}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <meta name="theme-color" content="#07070b">
-
-    <title>{{ page_title }} — {{ shop.name }}</title>
-
-    {%- if page_description -%}
-      <meta name="description" content="{{ page_description | escape }}">
-    {%- endif -%}
-
-    {{ content_for_header }}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3GASBOI | The Independence Code</title>
     <style>
-      /* --- CORE DESIGN SYSTEM --- */
-      :root {
-        --bg: #07070b;
-        --bg-panel: #0d0d14;
-        --accent: #b9ff1a; /* Neon Green */
-        --accent-glow: rgba(185, 255, 26, 0.3);
-        --text-main: #f0f0f5;
-        --text-muted: #8e8e9c;
-        --border: rgba(255, 255, 255, 0.08);
-        --v3-gradient: linear-gradient(135deg, #b9ff1a 0%, #7a5cff 100%);
-        --radius: 12px;
-        --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-      }
+        :root {
+            --bg: #07070b;
+            --bg-card: #0d0d14;
+            --accent: #b9ff1a; /* Neon Green */
+            --accent-glow: rgba(185, 255, 26, 0.3);
+            --text: #f0f0f5;
+            --muted: #8e8e9c;
+            --v3-gradient: linear-gradient(135deg, #b9ff1a 0%, #7a5cff 100%);
+            --font-mono: 'JetBrains Mono', monospace;
+        }
 
-      /* --- GLOBAL RESET & FX --- */
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text-main);
-        font-family: 'Inter', -apple-system, sans-serif;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-      }
+        /* --- BASE STYLES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-      /* Scanline & Noise FX */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-        background-size: 100% 4px, 3px 100%;
-        pointer-events: none;
-        z-index: 999;
-        opacity: 0.15;
-      }
+        /* --- VEGAS SHADOW FX --- */
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.12;
+        }
 
-      .noise {
-        position: fixed;
-        inset: 0;
-        background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-        opacity: 0.05;
-        pointer-events: none;
-        z-index: 1000;
-      }
+        .noise-layer {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 101;
+        }
 
-      /* --- UI COMPONENTS --- */
-      .header {
-        height: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 40px;
-        border-bottom: 1px solid var(--border);
-        backdrop-filter: blur(12px);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
+        /* --- LAYOUT --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
 
-      .logo {
-        font-weight: 900;
-        font-size: 24px;
-        letter-spacing: -1px;
-        background: var(--v3-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-transform: uppercase;
-      }
+        header {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
 
-      .nav-links { display: flex; gap: 30px; }
-      .nav-link {
-        text-decoration: none;
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: 0.3s ease;
-      }
-      .nav-link:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            background: var(--v3-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
 
-      .cart-count {
-        background: var(--accent);
-        color: #000;
-        padding: 2px 8px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 800;
-        margin-left: 5px;
-      }
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+        }
 
-      /* --- MAIN LAYOUT ENGINE --- */
-      main { min-height: 80vh; position: relative; z-index: 1; }
+        .hero h1 {
+            font-size: clamp(45px, 10vw, 110px);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: -4px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
 
-      .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .hero-sub {
+            font-size: 20px;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-      /* --- REVEAL ANIMATIONS --- */
-      .v3-reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-      }
-      .v3-reveal.active { opacity: 1; transform: translateY(0); }
+        /* --- INTERACTIVE BUTTONS --- */
+        .v3-btn {
+            background: var(--accent);
+            color: #000;
+            padding: 20px 50px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            border-radius: 2px;
+            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
 
-      /* --- FOOTER --- */
-      .footer {
-        padding: 80px 0 40px;
-        border-top: 1px solid var(--border);
-        background: #09090f;
-        margin-top: 100px;
-      }
+        .v3-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px var(--accent-glow);
+        }
 
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-        gap: 60px;
-        margin-bottom: 60px;
-      }
+        /* --- GRID SYSTEM --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 80px 0;
+        }
 
-      .footer-tagline {
-        color: var(--text-muted);
-        font-size: 15px;
-        line-height: 1.6;
-        max-width: 300px;
-      }
+        .v3-card {
+            background: var(--bg-card);
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 4px;
+            transition: 0.5s;
+            position: relative;
+        }
 
-      .footer-heading {
-        color: var(--text-main);
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 20px;
-      }
+        .v3-card:hover {
+            border-color: var(--accent);
+            background: #11111a;
+        }
 
-      .footer-link {
-        display: block;
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-bottom: 12px;
-        font-size: 14px;
-        transition: 0.2s;
-      }
-      .footer-link:hover { color: var(--accent); transform: translateX(5px); }
+        .v3-card h2 {
+            font-size: 14px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
 
-      .copyright {
-        border-top: 1px solid var(--border);
-        padding-top: 40px;
-        text-align: center;
-        font-size: 12px;
-        color: #444;
-        font-family: var(--font-mono);
-      }
+        .v3-card p {
+            font-size: 16px;
+            color: var(--text);
+            opacity: 0.8;
+        }
 
-      /* --- BUTTONS & INPUTS --- */
-      .v3-btn {
-        background: var(--accent);
-        color: #000;
-        border: none;
-        padding: 14px 28px;
-        font-weight: 800;
-        text-transform: uppercase;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      .v3-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 25px var(--accent-glow);
-      }
+        /* --- MOTION REVEAL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
 
-      /* Mobile Adjustments */
-      @media (max-width: 768px) {
-        .header { padding: 0 20px; }
-        .nav-links { display: none; }
-        .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-      }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 120px 0 60px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .independence-code {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #333;
+            margin-top: 40px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            .hero h1 { letter-spacing: -2px; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
     </style>
-  </head>
+</head>
+<body>
 
-  <body class="template-{{ template | handle }}">
-    <div class="noise"></div>
-    
-    <header class="header">
-      <a href="/" class="logo">V3GASBOI</a>
-      
-      <nav class="nav-links">
-        <a href="/collections/all" class="nav-link">Shop</a>
-        <a href="/pages/movement" class="nav-link">Movement</a>
-        <a href="/pages/hustle" class="nav-link">The Hustle</a>
-      </nav>
+    <div class="scanlines"></div>
+    <div class="noise-layer"></div>
 
-      <div class="header-actions">
-        <a href="/cart" class="nav-link">
-          Cart <span class="cart-count">{{ cart.item_count }}</span>
-        </a>
-      </div>
-    </header>
+    <div class="container">
+        <header>
+            <a href="/" class="logo">V3GASBOI</a>
+            <div style="display: flex; gap: 20px;">
+                <a href="https://hdrfey-94.myshopify.com" class="v3-btn" style="padding: 12px 25px; font-size: 11px;">Official Store</a>
+            </div>
+        </header>
 
-    <main id="MainContent" role="main" tabindex="-1">
-      <div class="v3-reveal-container">
-        {{ content_for_layout }}
-      </div>
-    </main>
+        <section class="hero reveal">
+            <h1>THE SOUND &<br>MOVEMENT</h1>
+            <p class="hero-sub">Hustle in the shadows of the casinos</p>
+            <a href="https://hdrfey-94.myshopify.com" class="v3-btn">Unlock Independence</a>
+        </section>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div>
-            <div class="logo" style="margin-bottom: 20px;">V3GASBOI</div>
-            <p class="footer-tagline">
-              The Voice of the Vegas. The Sound & Movement. 
-              Independence Code Since 1998.
-            </p>
-          </div>
-          <div>
-            <h4 class="footer-heading">Support</h4>
-            <a href="/pages/contact" class="footer-link">Contact</a>
-            <a href="/pages/shipping" class="footer-link">Shipping</a>
-            <a href="/pages/returns" class="footer-link">Returns</a>
-          </div>
-          <div>
-            <h4 class="footer-heading">Brand</h4>
-            <a href="/pages/about" class="footer-link">Our Story</a>
-            <a href="/blogs/news" class="footer-link">Vlog</a>
-            <a href="/pages/wholesale" class="footer-link">Retail</a>
-          </div>
-          <div>
-            <h4 class="footer-heading">Social</h4>
-            <a href="#" class="footer-link">Instagram</a>
-            <a href="#" class="footer-link">YouTube</a>
-            <a href="#" class="footer-link">Spotify</a>
-          </div>
+        <div class="stats-grid">
+            <div class="v3-card reveal">
+                <h2>The Origin</h2>
+                <p>Authentic hustle of Owens Ave since 1998. Emerging from the foundational Lyrical Mindz era.</p>
+            </div>
+            <div class="v3-card reveal">
+                <h2>The Reach</h2>
+                <p>Over 9,000 verified streams across 35 countries. Global street authority.</p>
+            </div>
+            <div class="v3-card reveal">
+                <h2>The Mission</h2>
+                <p>CEO of Vegas Spot LLC, bridging the gap between digital content and e-commerce.</p>
+            </div>
         </div>
-        
-        <div class="copyright">
-          &copy; {{ 'now' | date: "%Y" }} V3GASBOI ENT. / 88MOB GLOBAL. POWERED BY INDEPENDENCE.
-        </div>
-      </div>
-    </footer>
+
+        <section class="reveal" style="text-align: center; padding: 100px 0;">
+            <h2 style="font-size: 40px; text-transform: uppercase; margin-bottom: 20px;">88MOB Global</h2>
+            <p style="color: var(--muted); max-width: 600px; margin: 0 auto;">Music production, cinematic vlogs, and signature retail.</p>
+        </section>
+
+        <footer>
+            <div class="logo">V3GASBOI</div>
+            <div class="independence-code">Independence Code: 25-Year Mogul</div>
+            <p style="margin-top: 20px; font-size: 12px; color: #444;">&copy; 2026 V3GASBOI ENT. ALL RIGHTS RESERVED.</p>
+        </footer>
+    </div>
 
     <script>
-      // --- MOTION ENGINE ---
-      document.addEventListener('DOMContentLoaded', () => {
-        // Scroll Reveal Logic
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px"
+        // --- V3GASBOI MOTION ENGINE ---
+        const revealElements = () => {
+            const elements = document.querySelectorAll('.reveal');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) {
+                    el.classList.add('active');
+                }
+            });
         };
 
-        const revealObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active');
-            }
-          });
-        }, observerOptions);
+        window.addEventListener('scroll', revealElements);
+        window.addEventListener('load', revealElements);
 
-        // Apply reveal to sections automatically
-        document.querySelectorAll('section, .product-card, .hero').forEach(el => {
-          el.classList.add('v3-reveal');
-          revealObserver.observe(el);
-        });
-
-        // Magnetic Button Effect for Logo
+        // Magnetic Logo Interaction
         const logo = document.querySelector('.logo');
         document.addEventListener('mousemove', (e) => {
-          const { clientX, clientY } = e;
-          const { left, top, width, height } = logo.getBoundingClientRect();
-          const centerX = left + width / 2;
-          const centerY = top + height / 2;
-          
-          const distance = Math.hypot(clientX - centerX, clientY - centerY);
-          
-          if (distance < 100) {
-            const x = (clientX - centerX) * 0.2;
-            const y = (clientY - centerY) * 0.2;
+            const { clientX, clientY } = e;
+            const { left, top, width, height } = logo.getBoundingClientRect();
+            const x = (clientX - (left + width/2)) * 0.15;
+            const y = (clientY - (top + height/2)) * 0.15;
             logo.style.transform = `translate(${x}px, ${y}px)`;
-          } else {
-            logo.style.transform = `translate(0, 0)`;
-          }
         });
-      });
-
-      // Quick-add cart interaction
-      async function addToCart(variantId) {
-        let formData = { 'items': [{ 'id': variantId, 'quantity': 1 }] };
-        const res = await fetch('/cart/add.js', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        });
-        if(res.ok) window.location.href = '/cart';
-      }
     </script>
-  </body>
+</body>
 </html>
