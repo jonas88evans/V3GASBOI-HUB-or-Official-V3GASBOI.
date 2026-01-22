@@ -1,0 +1,38 @@
+name: 88MOB Asset Optimizer
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.webp'
+
+jobs:
+  build:
+    name: Image Compression Engine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Compress 88MOB Visuals
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          # Professional settings for high-impact night-drive visuals
+          compressOnly: true
+          jpegQuality: "80"
+          pngQuality: "80"
+          webpQuality: "80"
+          ignorePaths: "node_modules/**"
+
+      - name: Deploy Optimized Assets
+        run: |
+          git config --global user.name "V3GASBOI-STATION-BOT"
+          git config --global user.email "bot@88mob.com"
+          git add .
+          git commit -m "88MOB: Optimized visual assets for high-speed delivery" || echo "No changes to commit"
+          git push
+
