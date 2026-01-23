@@ -1,0 +1,75 @@
+/**
+ * V3GASBOI HYPER-MOTION ENGINE v2.0
+ * 400 Lines of Motion & Streetwear FX
+ */
+
+const canvas = document.getElementById('motionCanvas');
+const ctx = canvas.getContext('2d');
+let lines = [];
+const numLines = 400; // Hyper-motion line count
+
+// Initialize Canvas and Lines
+function initMotion() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    lines = [];
+    
+    for (let i = 0; i < numLines; i++) {
+        lines.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            length: Math.random() * 100 + 50,
+            speed: Math.random() * 4 + 1,
+            opacity: Math.random() * 0.4,
+            width: Math.random() * 2
+        });
+    }
+}
+
+// Animation Loop
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#b9ff1a'; // Signature Neon Green
+    
+    lines.forEach(l => {
+        ctx.lineWidth = l.width;
+        ctx.globalAlpha = l.opacity;
+        ctx.beginPath();
+        ctx.moveTo(l.x, l.y);
+        ctx.lineTo(l.x + l.length, l.y - (l.length * 0.5));
+        ctx.stroke();
+
+        // Movement Logic (Hustle Speed)
+        l.x += l.speed;
+        l.y -= l.speed * 0.5;
+
+        // Reset lines when they leave screen
+        if (l.x > canvas.width || l.y < 0) {
+            l.x = -l.length;
+            l.y = Math.random() * canvas.height;
+        }
+    });
+    requestAnimationFrame(animate);
+}
+
+// Scroll Reveal Logic for High Impact Sections
+const revealOnScroll = () => {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < windowHeight - elementVisible) {
+            el.classList.add("active");
+        }
+    });
+};
+
+// Event Listeners
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('resize', initMotion);
+
+// Boot Engine
+initMotion();
+animate();
+
