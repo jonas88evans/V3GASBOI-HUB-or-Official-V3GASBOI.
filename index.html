@@ -270,3 +270,238 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3GASBOI | The Independence Code</title>
+    <style>
+        :root {
+            --bg: #030305;
+            --accent: #b9ff1a; /* Neon Green */
+            --v3-grad: linear-gradient(135deg, #b9ff1a 0%, #7a5cff 100%);
+            --panel: rgba(13, 13, 20, 0.9);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        /* 400 Hyper-Motion Canvas */
+        #motionCanvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; opacity: 0.5; pointer-events: none;
+        }
+
+        .container { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
+
+        /* Navigation */
+        nav {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            background: var(--v3-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        /* Hero Section with Devil in a Red Dress */
+        .hero {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(40px, 8vw, 100px);
+            font-weight: 900;
+            line-height: 0.85;
+            letter-spacing: -4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .hero-img {
+            width: 100%;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 50px rgba(185, 255, 26, 0.2);
+            transition: 0.5s;
+        }
+
+        /* High-Impact Grid */
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 100px 0;
+        }
+
+        .promo-card {
+            background: var(--panel);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 30px;
+            text-align: center;
+            transition: 0.4s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .promo-card img {
+            width: 100%;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: 0.4s;
+        }
+
+        .promo-card:hover img { filter: grayscale(0%); }
+
+        .v3-btn {
+            background: var(--accent);
+            color: #000;
+            padding: 20px 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .v3-btn:hover { box-shadow: 0 0 30px var(--accent); transform: scale(1.05); }
+
+        /* Reveal FX */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="motionCanvas"></canvas>
+
+    <div class="container">
+        <nav>
+            <a href="#" class="logo">V3GASBOI</a>
+            <a href="https://v3gasboi.online" class="v3-btn" style="padding: 12px 25px; font-size: 11px;">Shop Everywhere</a>
+        </nav>
+
+        <section class="hero reveal">
+            <div class="hero-text">
+                <p style="color: var(--accent); letter-spacing: 5px; margin-bottom: 10px;">EST. 1998 // OWENS AVE</p>
+                <h1>THE HUSTLE<br>IN THE<br>SHADOWS</h1>
+                <p style="margin: 30px 0; opacity: 0.7; max-width: 500px;">
+                    Independent Mogul. Las Vegas Pillar. Bridging the gap between the Sound and the Global Hustle.
+                </p>
+                <a href="https://v3gasboi.online" class="v3-btn">Enter Official Store</a>
+            </div>
+            <div class="hero-visual">
+                <img src="1000010524.png" alt="V3GASBOI" class="hero-img">
+            </div>
+        </section>
+
+        <div class="promo-grid">
+            <a href="https://v3gasboi.online" class="promo-card reveal">
+                <img src="1768336080318.jpg" alt="What You Thinking">
+                <h3>WHAT YOU THINKING</h3>
+                <p style="color: var(--accent); font-size: 12px; margin-top: 10px;">GET THE SOUND</p>
+            </a>
+            <a href="https://v3gasboi.online" class="promo-card reveal">
+                <img src="1768336083451.jpg" alt="Cracked Dreams">
+                <h3>CRACKED DREAMS</h3>
+                <p style="color: var(--accent); font-size: 12px; margin-top: 10px;">SHOP THE VIBE</p>
+            </a>
+            <a href="https://v3gasboi.online" class="promo-card reveal">
+                <img src="1768336100779.jpg" alt="Pass Me That Cup">
+                <h3>PASS ME THAT CUP</h3>
+                <p style="color: var(--accent); font-size: 12px; margin-top: 10px;">ESTABLISH AUTHORITY</p>
+            </a>
+        </div>
+
+        <footer style="padding: 80px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+            <div class="logo" style="font-size: 18px;">V3GASBOI ENT.</div>
+            <p style="font-size: 11px; color: #444; margin-top: 10px; letter-spacing: 3px;">88MOB GLOBAL // VEGAS SPOT LLC</p>
+        </footer>
+    </div>
+
+    <script>
+        // 400 Hyper-Motion Engine
+        const canvas = document.getElementById('motionCanvas');
+        const ctx = canvas.getContext('2d');
+        let lines = [];
+        const numLines = 400;
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            lines = [];
+            for (let i = 0; i < numLines; i++) {
+                lines.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    len: Math.random() * 80 + 20,
+                    speed: Math.random() * 4 + 1,
+                    op: Math.random() * 0.4
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#b9ff1a';
+            lines.forEach(l => {
+                ctx.globalAlpha = l.op;
+                ctx.beginPath();
+                ctx.moveTo(l.x, l.y);
+                ctx.lineTo(l.x + l.len, l.y - (l.len/2));
+                ctx.stroke();
+                l.x += l.speed;
+                l.y -= l.speed/2;
+                if (l.x > canvas.width || l.y < 0) {
+                    l.x = -l.len;
+                    l.y = Math.random() * canvas.height;
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        window.addEventListener('resize', init);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        init();
+        draw();
+    </script>
+</body>
+</html>
