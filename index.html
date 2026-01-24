@@ -1,124 +1,143 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>V3GASBOİ — Official Hub</title>
-  <style>
-    :root{
-      --bg:#0A0A0A; --border:#2A2A2A; --text:#FFFFFF; --muted:#EDEDED;
-      --red:#FF1A1A; --blue:rgba(90,170,255,.22);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    .wrap{max-width:1100px;margin:0 auto;padding:18px 14px}
-    .card{background:var(--bg);border:1px solid var(--border);border-radius:18px;overflow:hidden}
-    .ticker{border-radius:14px;margin-bottom:14px}
-    .ticker .track{white-space:nowrap}
-    .ticker .content{display:inline-flex;gap:14px;align-items:center;padding:10px 0;
-      font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px;animation:marq 18s linear infinite}
-    .ticker a{color:var(--red);text-decoration:none}
-    @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3GASBOI | 88MOB STATION</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='2' /><feDisplacementMap in='SourceGraphic' scale='15' /></filter><rect width='100' height='100' fill='black'/><text y=%2250%%22 x=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2260%22 font-weight=%22900%22 fill=%22%23ffcc00%22 filter='url(%23f)'>88</text></svg>">
 
-    .hero{position:relative;min-height:520px}
-    .hero .bg{position:absolute;inset:0;background:center/cover no-repeat;filter:contrast(1.06) saturate(1.08) brightness(1.2);transform:scale(1.02)}
-    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.42))}
-    .hero .glow{position:absolute;inset:-2px;pointer-events:none;mix-blend-mode:screen;opacity:.95;background:
-      radial-gradient(900px 340px at 18% 12%, rgba(255,26,26,.20), transparent 60%),
-      radial-gradient(900px 340px at 82% 18%, var(--blue), transparent 60%),
-      radial-gradient(700px 260px at 50% 0%, rgba(255,255,255,.10), transparent 60%)}
-    .hero .content{position:relative;padding:28px 18px;max-width:980px;text-shadow:0 10px 26px rgba(0,0,0,.65)}
-    .tag{display:inline-block;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.20);
-      letter-spacing:.14em;text-transform:uppercase;font-weight:900;font-size:12px}
-    h1{margin:14px 0 6px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;line-height:1.05;font-size:clamp(28px,6.2vw,54px)}
-    .sub{opacity:.92;letter-spacing:.10em;text-transform:uppercase;font-weight:900;font-size:13px}
-    .cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 12px}
-    .btn{display:inline-block;padding:12px 14px;border-radius:999px;text-decoration:none;font-weight:900;border:1px solid rgba(255,255,255,.25);color:#fff;background:rgba(0,0,0,.18)}
-    .btn.primary{background:var(--red);border-color:var(--red);letter-spacing:.06em;text-transform:uppercase}
-    .btn.secondary{border-color:#fff}
-    .meta{font-size:13px;opacity:.92}
-    .meta a{color:var(--red);text-decoration:none;font-weight:900}
+    <style>
+        :root {
+            --v3-gold: #ffcc00;
+            --v3-red: #ff3333;
+            --void: #000000;
+        }
 
-    .links{margin-top:14px;padding:20px 18px}
-    .links h2{margin:0 0 12px;letter-spacing:.08em;text-transform:uppercase}
-    .pillrow{display:flex;flex-wrap:wrap;gap:10px}
-    .pill{padding:10px 14px;border-radius:999px;border:1px solid var(--border);color:#fff;text-decoration:none}
-  </style>
+        body {
+            background: var(--void);
+            color: white;
+            font-family: 'Arial Black', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            /* APPLYING THE GOD-FILTER GLOBALLY */
+            filter: url(#god-filter-subtle);
+        }
+
+        /* LIQUID HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('v3gasboi_header.png');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--v3-gold);
+        }
+
+        .liquid-title {
+            font-size: clamp(3rem, 15vw, 8rem);
+            color: var(--v3-gold);
+            filter: url(#god-filter); /* HEAVY WARP */
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: -2px;
+            animation: pulse 4s infinite;
+        }
+
+        /* 88MOB SECURITY GLITCH OVERLAY */
+        #security-glitch {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--v3-red);
+            color: black;
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            font-size: 5vw;
+            font-weight: 900;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #222;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 20px 40px;
+            border: 2px solid var(--v3-gold);
+            color: var(--v3-gold);
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-gold:hover {
+            background: var(--v3-gold);
+            color: black;
+            box-shadow: 0 0 30px var(--v3-gold);
+        }
+
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 20px var(--v3-gold); }
+            50% { text-shadow: 0 0 50px var(--v3-red); }
+        }
+    </style>
 </head>
+<body oncontextmenu="triggerSecurity(); return false;">
 
-<body>
-  <div class="wrap">
-    <div class="card ticker">
-      <div class="track">
-        <div class="content">
-          <span>DEVIL IN A RED DRESS — INSTANT MP3 + WAV DOWNLOAD</span><span>•</span>
-          <span>V3GASBOİ — OFFICIAL HUB</span><span>•</span>
-          <span>BOOKING/PRESS: jonas88evans@gmail.com</span><span>•</span>
-          <a href="https://v3gasboi.online" target="_blank" rel="noopener">DOWNLOAD NOW</a>
-          <span style="display:inline-block;width:40px"></span>
-          <span>DEVIL IN A RED DRESS — INSTANT MP3 + WAV DOWNLOAD</span><span>•</span>
-          <span>V3GASBOİ — OFFICIAL HUB</span><span>•</span>
-          <span>BOOKING/PRESS: jonas88evans@gmail.com</span><span>•</span>
-          <a href="https://v3gasboi.online" target="_blank" rel="noopener">DOWNLOAD NOW</a>
-        </div>
-      </div>
-    </div>
+    <div id="security-glitch">88MOB SECURITY: ACCESS DENIED</div>
 
-    <section class="card hero">
-      <div class="bg" style="background-image:url('PASTE_YOUR_POSTER_IMAGE_URL_HERE');"></div>
-      <div class="overlay"></div>
-      <div class="glow"></div>
+    <header class="hero">
+        <h1 class="liquid-title">V3GASBOI</h1>
+        <p style="letter-spacing: 5px; font-weight: 100;">EST. 1998 // THE INDEPENDENCE CODE</p>
+        <a href="https://v3gasboii.my.canva.site/v3gasboi" class="btn-gold">Access EPK</a>
+    </header>
 
-      <div class="content">
-        <div class="tag">LAS VEGAS • OFFICIAL RELEASE HUB</div>
-        <h1>DEVIL IN A RED DRESS</h1>
-        <div class="sub">V3GASBOİ • 89109</div>
-
-        <div class="cta">
-          <a class="btn primary" href="https://v3gasboi.online" target="_blank" rel="noopener">Instant MP3 + WAV Download</a>
-          <a class="btn secondary" href="#links">Listen Everywhere</a>
-        </div>
-
-        <div class="meta">Booking / Press: <a href="mailto:jonas88evans@gmail.com">jonas88evans@gmail.com</a></div>
-      </div>
+    <section id="music">
+        <h2 style="color: var(--v3-gold); font-size: 3rem;">THE VAULT</h2>
+        <p>IM BIPOLAR OUT NOW. OWN THE MASTER. NO GATEKEEPERS.</p>
+        <a href="https://hdrfey-94.myshopify.com" class="btn-gold">Shop Shopify Store</a>
     </section>
 
-    <section id="links" class="card links">
-      <h2>Official Platforms</h2>
-      <div class="pillrow">
-        <a class="pill" href="PASTE_SPOTIFY_URL_HERE" target="_blank" rel="noopener">Spotify</a>
-        <a class="pill" href="PASTE_AMAZON_MUSIC_URL_HERE" target="_blank" rel="noopener">Amazon Music</a>
-        <a class="pill" href="PASTE_DEEZER_URL_HERE" target="_blank" rel="noopener">Deezer</a>
-        <a class="pill" href="PASTE_SOUNDCLOUD_URL_HERE" target="_blank" rel="noopener">SoundCloud</a>
-        <a class="pill" href="PASTE_AUDIOMACK_URL_HERE" target="_blank" rel="noopener">Audiomack</a>
-        <a class="pill" href="PASTE_YOUTUBE_URL_HERE" target="_blank" rel="noopener">YouTube</a>
-        <a class="pill" href="PASTE_INSTAGRAM_URL_HERE" target="_blank" rel="noopener">Instagram</a>
-        <a class="pill" href="PASTE_FACEBOOK_URL_HERE" target="_blank" rel="noopener">Facebook</a>
-      </div>
-    </section>
-  </div>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+      <defs>
+        <filter id="god-filter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2">
+            <animate attributeName="baseFrequency" dur="10s" values="0.01; 0.02; 0.01" repeatCount="indefinite" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" scale="30" />
+        </filter>
+        <filter id="god-filter-subtle">
+          <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="1">
+            <animate attributeName="baseFrequency" dur="20s" values="0.005; 0.008; 0.005" repeatCount="indefinite" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" scale="8" />
+        </filter>
+      </defs>
+    </svg>
+
+    <script>
+        function triggerSecurity() {
+            const glitch = document.getElementById('security-glitch');
+            glitch.style.display = 'flex';
+            setTimeout(() => {
+                glitch.style.display = 'none';
+            }, 500);
+        }
+    </script>
 </body>
 </html>
-<section id="links" style="background:#0A0A0A;border:1px solid #2A2A2A;border-radius:18px;padding:20px 18px;">
-  <h2 style="margin:0 0 12px;color:#FFFFFF;letter-spacing:.08em;text-transform:uppercase;">Official Links</h2>
-
-  <div style="display:flex;flex-wrap:wrap;gap:10px;">
-    <a class="pill" href="https://bnd.link/vegasbo_i" target="_blank" rel="noopener">Link Hub</a>
-    <a class="pill" href="https://v3gasboii.my.canva.site/v3gasboi" target="_blank" rel="noopener">Canva Site</a>
-    <a class="pill" href="https://open.spotify.com/artist/6LtPbqwAXeYEq7Bs7gvAlp" target="_blank" rel="noopener">Spotify</a>
-    <a class="pill" href="https://music.apple.com/us/artist/vegasboi/1762524945" target="_blank" rel="noopener">Apple Music</a>
-    <a class="pill" href="https://www.amazon.com/music/player/artists/B0DBRSPLCL/v3gasboi" target="_blank" rel="noopener">Amazon Music</a>
-    <a class="pill" href="https://www.youtube.com/@vegasboi2147" target="_blank" rel="noopener">YouTube</a>
-    <a class="pill" href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" target="_blank" rel="noopener">SoundCloud</a>
-    <a class="pill" href="https://m.soundcloud.com/jonas-evans-508982390" target="_blank" rel="noopener">SoundCloud Profile</a>
-    <a class="pill" href="https://www.reverbnation.com/VegasBoiLV" target="_blank" rel="noopener">ReverbNation</a>
-    <a class="pill" href="https://show4me.com/vegasboi" target="_blank" rel="noopener">Show4me</a>
-    <a class="pill" href="https://vegas-boi-site--jonas88evans.replit.app" target="_blank" rel="noopener">Replit Site</a>
-    <a class="pill" href="https://jonas88evans.github.io/V3GASBOI-HUB-or-Official-V3GASBOI./" target="_blank" rel="noopener">GitHub Site</a>
-  </div>
-</section>
-
-<style>
-  .pill{padding:10px 14px;border-radius:999px;border:1px solid #2A2A2A;color:#FFFFFF;text-decoration:none;display:inline-block}
-  .pill:hover{border-color:#FFFFFF}
-</style>
