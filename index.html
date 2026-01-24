@@ -1,730 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | The Independence Code</title>
-    <style>
-        :root {
-            --bg: #07070b;
-            --bg-card: #0d0d14;
-            --accent: #b9ff1a; /* Neon Green */
-            --accent-glow: rgba(185, 255, 26, 0.3);
-            --text: #f0f0f5;
-            --muted: #8e8e9c;
-            --v3-gradient: linear-gradient(135deg, #b9ff1a 0%, #7a5cff 100%);
-            --font-mono: 'JetBrains Mono', monospace;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>V3GASBOİ — Official Hub</title>
+  <style>
+    :root{
+      --bg:#0A0A0A; --border:#2A2A2A; --text:#FFFFFF; --muted:#EDEDED;
+      --red:#FF1A1A; --blue:rgba(90,170,255,.22);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .wrap{max-width:1100px;margin:0 auto;padding:18px 14px}
+    .card{background:var(--bg);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+    .ticker{border-radius:14px;margin-bottom:14px}
+    .ticker .track{white-space:nowrap}
+    .ticker .content{display:inline-flex;gap:14px;align-items:center;padding:10px 0;
+      font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px;animation:marq 18s linear infinite}
+    .ticker a{color:var(--red);text-decoration:none}
+    @keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-        /* --- BASE STYLES --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-.hero-section {
-    background-image: url('assets/v3-background.jpg');
-    background-size: cover;
-    background-position: center;
-}
-        
-        /* --- VEGAS SHADOW FX --- */
-        .scanlines {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            z-index: 100;
-            opacity: 0.12;
-        }
+    .hero{position:relative;min-height:520px}
+    .hero .bg{position:absolute;inset:0;background:center/cover no-repeat;filter:contrast(1.06) saturate(1.08) brightness(1.2);transform:scale(1.02)}
+    .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.42))}
+    .hero .glow{position:absolute;inset:-2px;pointer-events:none;mix-blend-mode:screen;opacity:.95;background:
+      radial-gradient(900px 340px at 18% 12%, rgba(255,26,26,.20), transparent 60%),
+      radial-gradient(900px 340px at 82% 18%, var(--blue), transparent 60%),
+      radial-gradient(700px 260px at 50% 0%, rgba(255,255,255,.10), transparent 60%)}
+    .hero .content{position:relative;padding:28px 18px;max-width:980px;text-shadow:0 10px 26px rgba(0,0,0,.65)}
+    .tag{display:inline-block;padding:7px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.20);
+      letter-spacing:.14em;text-transform:uppercase;font-weight:900;font-size:12px}
+    h1{margin:14px 0 6px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;line-height:1.05;font-size:clamp(28px,6.2vw,54px)}
+    .sub{opacity:.92;letter-spacing:.10em;text-transform:uppercase;font-weight:900;font-size:13px}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 12px}
+    .btn{display:inline-block;padding:12px 14px;border-radius:999px;text-decoration:none;font-weight:900;border:1px solid rgba(255,255,255,.25);color:#fff;background:rgba(0,0,0,.18)}
+    .btn.primary{background:var(--red);border-color:var(--red);letter-spacing:.06em;text-transform:uppercase}
+    .btn.secondary{border-color:#fff}
+    .meta{font-size:13px;opacity:.92}
+    .meta a{color:var(--red);text-decoration:none;font-weight:900}
 
-        .noise-layer {
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 101;
-        }
-
-        /* --- LAYOUT --- */
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
-
-        header {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            background: var(--v3-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 160px 0 100px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: clamp(45px, 10vw, 110px);
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 0.85;
-            letter-spacing: -4px;
-            margin-bottom: 30px;
-            color: #fff;
-        }
-
-        .hero-sub {
-            font-size: 20px;
-            color: var(--muted);
-            max-width: 700px;
-            margin: 0 auto 50px;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* --- INTERACTIVE BUTTONS --- */
-        .v3-btn {
-            background: var(--accent);
-            color: #000;
-            padding: 20px 50px;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            display: inline-block;
-            border-radius: 2px;
-            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .v3-btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 40px var(--accent-glow);
-        }
-
-        /* --- GRID SYSTEM --- */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin: 80px 0;
-        }
-
-        .v3-card {
-            background: var(--bg-card);
-            padding: 50px;
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 4px;
-            transition: 0.5s;
-            position: relative;
-        }
-
-        .v3-card:hover {
-            border-color: var(--accent);
-            background: #11111a;
-        }
-
-        .v3-card h2 {
-            font-size: 14px;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-        }
-
-        .v3-card p {
-            font-size: 16px;
-            color: var(--text);
-            opacity: 0.8;
-        }
-
-        /* --- MOTION REVEAL --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: 1.2s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 120px 0 60px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-        }
-
-        .independence-code {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: #333;
-            margin-top: 40px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* MOBILE OPTIMIZATION */
-        @media (max-width: 768px) {
-            .hero h1 { letter-spacing: -2px; }
-            .stats-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .links{margin-top:14px;padding:20px 18px}
+    .links h2{margin:0 0 12px;letter-spacing:.08em;text-transform:uppercase}
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px}
+    .pill{padding:10px 14px;border-radius:999px;border:1px solid var(--border);color:#fff;text-decoration:none}
+  </style>
 </head>
+
 <body>
-
-    <div class="scanlines"></div>
-    <div class="noise-layer"></div>
-
-    <div class="container">
-        <header>
-            <a href="/" class="logo">V3GASBOI</a>
-            <div style="display: flex; gap: 20px;">
-                <a href="https://hdrfey-94.myshopify.com" class="v3-btn" style="padding: 12px 25px; font-size: 11px;">Official Store</a>
-            </div>
-        </header>
-
-        <section class="hero reveal">
-            <h1>THE SOUND &<br>MOVEMENT</h1>
-            <p class="hero-sub">Hustle in the shadows of the casinos</p>
-            <a href="https://hdrfey-94.myshopify.com" class="v3-btn">Unlock Independence</a>
-        </section>
-
-        <div class="stats-grid">
-            <div class="v3-card reveal">
-                <h2>The Origin</h2>
-                <p>Authentic hustle of Owens Ave since 1998. Emerging from the foundational Lyrical Mindz era.</p>
-            </div>
-            <div class="v3-card reveal">
-                <h2>The Reach</h2>
-                <p>Over 9,000 verified streams across 35 countries. Global street authority.</p>
-            </div>
-            <div class="v3-card reveal">
-                <h2>The Mission</h2>
-                <p>CEO of Vegas Spot LLC, bridging the gap between digital content and e-commerce.</p>
-            </div>
+  <div class="wrap">
+    <div class="card ticker">
+      <div class="track">
+        <div class="content">
+          <span>DEVIL IN A RED DRESS — INSTANT MP3 + WAV DOWNLOAD</span><span>•</span>
+          <span>V3GASBOİ — OFFICIAL HUB</span><span>•</span>
+          <span>BOOKING/PRESS: jonas88evans@gmail.com</span><span>•</span>
+          <a href="https://v3gasboi.online" target="_blank" rel="noopener">DOWNLOAD NOW</a>
+          <span style="display:inline-block;width:40px"></span>
+          <span>DEVIL IN A RED DRESS — INSTANT MP3 + WAV DOWNLOAD</span><span>•</span>
+          <span>V3GASBOİ — OFFICIAL HUB</span><span>•</span>
+          <span>BOOKING/PRESS: jonas88evans@gmail.com</span><span>•</span>
+          <a href="https://v3gasboi.online" target="_blank" rel="noopener">DOWNLOAD NOW</a>
         </div>
-
-        <section class="reveal" style="text-align: center; padding: 100px 0;">
-            <h2 style="font-size: 40px; text-transform: uppercase; margin-bottom: 20px;">88MOB Global</h2>
-            <p style="color: var(--muted); max-width: 600px; margin: 0 auto;">Music production, cinematic vlogs, and signature retail.</p>
-        </section>
-
-        <footer>
-            <div class="logo">V3GASBOI</div>
-            <div class="independence-code">Independence Code: 25-Year Mogul</div>
-            <p style="margin-top: 20px; font-size: 12px; color: #444;">&copy; 2026 V3GASBOI ENT. ALL RIGHTS RESERVED.</p>
-        </footer>
+      </div>
     </div>
 
-    <script>
-        // --- V3GASBOI MOTION ENGINE ---
-        const revealElements = () => {
-            const elements = document.querySelectorAll('.reveal');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.85) {
-                    el.classList.add('active');
-                }
-            });
-        };
+    <section class="card hero">
+      <div class="bg" style="background-image:url('PASTE_YOUR_POSTER_IMAGE_URL_HERE');"></div>
+      <div class="overlay"></div>
+      <div class="glow"></div>
 
-        window.addEventListener('scroll', revealElements);
-        window.addEventListener('load', revealElements);
+      <div class="content">
+        <div class="tag">LAS VEGAS • OFFICIAL RELEASE HUB</div>
+        <h1>DEVIL IN A RED DRESS</h1>
+        <div class="sub">V3GASBOİ • 89109</div>
 
-        // Magnetic Logo Interaction
-        const logo = document.querySelector('.logo');
-        document.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const { left, top, width, height } = logo.getBoundingClientRect();
-            const x = (clientX - (left + width/2)) * 0.15;
-            const y = (clientY - (top + height/2)) * 0.15;
-            logo.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | The Independence Code</title>
-    <style>
-        :root {
-            --bg: #030305;
-            --accent: #b9ff1a; /* Neon Green */
-            --v3-grad: linear-gradient(135deg, #b9ff1a 0%, #7a5cff 100%);
-            --panel: rgba(13, 13, 20, 0.9);
-            --text: #ffffff;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden; 
-        }
-
-        /* 400 Hyper-Motion Canvas */
-        #motionCanvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; opacity: 0.5; pointer-events: none;
-        }
-
-        .container { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; padding: 0 30px; }
-
-        /* Navigation */
-        nav {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: var(--v3-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-
-        /* Hero Section with Devil in a Red Dress */
-        .hero {
-            padding: 100px 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(40px, 8vw, 100px);
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -4px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-
-        .hero-img {
-            width: 100%;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 50px rgba(185, 255, 26, 0.2);
-            transition: 0.5s;
-        }
-
-        /* High-Impact Grid */
-        .promo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 100px 0;
-        }
-
-        .promo-card {
-            background: var(--panel);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 30px;
-            text-align: center;
-            transition: 0.4s;
-            text-decoration: none;
-            color: white;
-        }
-
-        .promo-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-        }
-
-        .promo-card img {
-            width: 100%;
-            margin-bottom: 20px;
-            filter: grayscale(100%);
-            transition: 0.4s;
-        }
-
-        .promo-card:hover img { filter: grayscale(0%); }
-
-        .v3-btn {
-            background: var(--accent);
-            color: #000;
-            padding: 20px 40px;
-            font-weight: 900;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .v3-btn:hover { box-shadow: 0 0 30px var(--accent); transform: scale(1.05); }
-
-        /* Reveal FX */
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-        }
-    </style>
-</head>
-<body>
-
-    <canvas id="motionCanvas"></canvas>
-
-    <div class="container">
-        <nav>
-            <a href="#" class="logo">V3GASBOI</a>
-            <a href="https://v3gasboi.online" class="v3-btn" style="padding: 12px 25px; font-size: 11px;">Shop Everywhere</a>
-        </nav>
-
-        <section class="hero reveal">
-            <div class="hero-text">
-                <p style="color: var(--accent); letter-spacing: 5px; margin-bottom: 10px;">EST. 1998 // OWENS AVE</p>
-                <h1>THE HUSTLE<br>IN THE<br>SHADOWS</h1>
-                <p style="margin: 30px 0; opacity: 0.7; max-width: 500px;">
-                    Independent Mogul. Las Vegas Pillar. Bridging the gap between the Sound and the Global Hustle.
-                </p>
-                <a href="https://v3gasboi.online" class="v3-btn">Enter Official Store</a>
-            </div>
-            <div class="hero-visual">
-                <img src="1000010524.png" alt="V3GASBOI" class="hero-img">
-            </div>
-        </section>
-
-        <div class="promo-grid">
-            <a href="https://v3gasboi.online" class="promo-card reveal">
-                <img src="1768336080318.jpg" alt="What You Thinking">
-                <h3>WHAT YOU THINKING</h3>
-                <p style="color: var(--accent); font-size: 12px; margin-top: 10px;">GET THE SOUND</p>
-            </a>
-            <a href="https://v3gasboi.online" class="promo-card reveal">
-                <img src="1768336083451.jpg" alt="Cracked Dreams">
-                <h3>CRACKED DREAMS</h3>
-                <p style="color: var(--accent); font-size: 12px; margin-top: 10px;">SHOP THE VIBE</p>
-            </a>
-            <a href="https://v3gasboi.online" class="promo-card reveal">
-                <img src="1768336100779.jpg" alt="Pass Me That Cup">
-                <h3>PASS ME THAT CUP</h3>
-                <p style="color: var(--accent); font-size: 12px; margin-top: 10px;">ESTABLISH AUTHORITY</p>
-            </a>
+        <div class="cta">
+          <a class="btn primary" href="https://v3gasboi.online" target="_blank" rel="noopener">Instant MP3 + WAV Download</a>
+          <a class="btn secondary" href="#links">Listen Everywhere</a>
         </div>
 
-        <footer style="padding: 80px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div class="logo" style="font-size: 18px;">V3GASBOI ENT.</div>
-            <p style="font-size: 11px; color: #444; margin-top: 10px; letter-spacing: 3px;">88MOB GLOBAL // VEGAS SPOT LLC</p>
-        </footer>
-    </div>
+        <div class="meta">Booking / Press: <a href="mailto:jonas88evans@gmail.com">jonas88evans@gmail.com</a></div>
+      </div>
+    </section>
 
-    <script>
-        // 400 Hyper-Motion Engine
-        const canvas = document.getElementById('motionCanvas');
-        const ctx = canvas.getContext('2d');
-        let lines = [];
-        const numLines = 400;
-
-        function init() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            lines = [];
-            for (let i = 0; i < numLines; i++) {
-                lines.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    len: Math.random() * 80 + 20,
-                    speed: Math.random() * 4 + 1,
-                    op: Math.random() * 0.4
-                });
-            }
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = '#b9ff1a';
-            lines.forEach(l => {
-                ctx.globalAlpha = l.op;
-                ctx.beginPath();
-                ctx.moveTo(l.x, l.y);
-                ctx.lineTo(l.x + l.len, l.y - (l.len/2));
-                ctx.stroke();
-                l.x += l.speed;
-                l.y -= l.speed/2;
-                if (l.x > canvas.width || l.y < 0) {
-                    l.x = -l.len;
-                    l.y = Math.random() * canvas.height;
-                }
-            });
-            requestAnimationFrame(draw);
-        }
-
-        // Scroll Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        window.addEventListener('resize', init);
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        init();
-        draw();
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | Global Independence Hub</title>
-    <style>
-        :root {
-            --bg: #030305;
-            --accent: #b9ff1a; /* Neon Green */
-            --v3-grad: linear-gradient(135deg, #b9ff1a 0%, #7a5cff 100%);
-            --panel: rgba(13, 13, 20, 0.9);
-            --text: #ffffff;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden; 
-        }
-
-        #motionCanvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1; opacity: 0.45; pointer-events: none;
-        }
-
-        .container { position: relative; z-index: 10; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-
-        nav {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            background: var(--v3-grad);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-
-        .profile-header {
-            padding: 120px 0 60px;
-            text-align: center;
-        }
-
-        .profile-header h1 {
-            font-size: clamp(40px, 10vw, 120px);
-            font-weight: 900;
-            line-height: 0.8;
-            letter-spacing: -5px;
-            text-transform: uppercase;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 60px 0;
-        }
-
-        .stat-card {
-            background: var(--panel);
-            padding: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-        }
-
-        .stat-val { font-size: 32px; font-weight: 900; color: var(--accent); display: block; }
-        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; }
-
-        .track-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            padding-bottom: 100px;
-        }
-
-        .track-card {
-            background: #0d0d14;
-            border-radius: 4px;
-            overflow: hidden;
-            transition: 0.4s;
-            text-decoration: none;
-            color: white;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-
-        .track-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-
-        .track-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-
-        .track-info { padding: 25px; }
-
-        .v3-btn {
-            background: var(--accent);
-            color: #000;
-            padding: 18px 45px;
-            font-weight: 900;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-        }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
-</head>
-<body>
-
-    <canvas id="motionCanvas"></canvas>
-
-    <div class="container">
-        <nav>
-            <a href="#" class="logo">V3GASBOI</a>
-            <a href="https://v3gasboi.online" class="v3-btn" style="padding: 10px 20px; font-size: 11px;">Shop Store</a>
-        </nav>
-
-        <section class="profile-header reveal">
-            <p style="color: var(--accent); letter-spacing: 5px; margin-bottom: 20px;">INDEPENDENCE CODE // 88MOB</p>
-            <h1>THE VOICE OF<br>THE VEGAS</h1>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-val">9K+</span>
-                    <span class="stat-label">Verified Streams</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-val">35</span>
-                    <span class="stat-label">Countries reached</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-val">25Y</span>
-                    <span class="stat-label">Independent Mogul</span>
-                </div>
-            </div>
-        </section>
-
-        <div class="track-grid">
-            <a href="https://v3gasboi.online" class="track-card reveal">
-                <img src="1000010524.png" alt="Devil in a Red Dress" class="track-img">
-                <div class="track-info">
-                    <h3>Devil in a Red Dress</h3>
-                    <p style="font-size: 12px; opacity: 0.6; margin-top: 5px;">Listen on Spotify</p>
-                </div>
-            </a>
-            <a href="https://v3gasboi.online" class="track-card reveal">
-                <img src="1768336080318.jpg" alt="What You Thinking" class="track-img">
-                <div class="track-info">
-                    <h3>What You Thinking</h3>
-                    <p style="font-size: 12px; opacity: 0.6; margin-top: 5px;">Hustle Production</p>
-                </div>
-            </a>
-        </div>
-
-        <footer style="padding: 100px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
-            <div class="logo" style="font-size: 18px;">VEGAS SPOT LLC</div>
-            <p style="font-size: 11px; color: #444; margin-top: 10px; letter-spacing: 4px;">ESTABLISHED 1998 // OWENS AVE</p>
-        </footer>
-    </div>
-
-    <script>
-        const canvas = document.getElementById('motionCanvas');
-        const ctx = canvas.getContext('2d');
-        let lines = [];
-        const numLines = 400;
-
-        function init() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            lines = [];
-            for (let i = 0; i < numLines; i++) {
-                lines.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    len: Math.random() * 100 + 20,
-                    speed: Math.random() * 3 + 1,
-                    op: Math.random() * 0.4
-                });
-            }
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = '#b9ff1a';
-            lines.forEach(l => {
-                ctx.globalAlpha = l.op;
-                ctx.beginPath();
-                ctx.moveTo(l.x, l.y);
-                ctx.lineTo(l.x + l.len, l.y - (l.len/2));
-                ctx.stroke();
-                l.x += l.speed;
-                l.y -= l.speed/2;
-                if (l.x > canvas.width || l.y < 0) {
-                    l.x = -l.len;
-                    l.y = Math.random() * canvas.height;
-                }
-            });
-            requestAnimationFrame(draw);
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        window.addEventListener('resize', init);
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        init();
-        draw();
-    </script>
+    <section id="links" class="card links">
+      <h2>Official Platforms</h2>
+      <div class="pillrow">
+        <a class="pill" href="PASTE_SPOTIFY_URL_HERE" target="_blank" rel="noopener">Spotify</a>
+        <a class="pill" href="PASTE_AMAZON_MUSIC_URL_HERE" target="_blank" rel="noopener">Amazon Music</a>
+        <a class="pill" href="PASTE_DEEZER_URL_HERE" target="_blank" rel="noopener">Deezer</a>
+        <a class="pill" href="PASTE_SOUNDCLOUD_URL_HERE" target="_blank" rel="noopener">SoundCloud</a>
+        <a class="pill" href="PASTE_AUDIOMACK_URL_HERE" target="_blank" rel="noopener">Audiomack</a>
+        <a class="pill" href="PASTE_YOUTUBE_URL_HERE" target="_blank" rel="noopener">YouTube</a>
+        <a class="pill" href="PASTE_INSTAGRAM_URL_HERE" target="_blank" rel="noopener">Instagram</a>
+        <a class="pill" href="PASTE_FACEBOOK_URL_HERE" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
