@@ -1,332 +1,112 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  ShoppingBag, 
-  Music, 
-  ExternalLink, 
-  Play, 
-  Instagram, 
-  Youtube, 
-  Globe, 
-  Menu, 
-  X, 
-  ChevronRight,
-  TrendingUp,
-  Package,
-  Mic2,
-  Lock,
-  Calendar,
-  DollarSign,
-  Target,
-  Video,
-  Search,
-  CheckCircle,
-  Plus,
-  Minus,
-  Trash2,
-  ArrowRight,
-  Star,
-  Activity,
-  Film,
-  Monitor
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3GASBOI | 89109 Empire Link Stack</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --accent-color: #ffd700; /* Gold accent for Vegas feel */
+            --card-bg: #1a1a1a;
+            --text-color: #ffffff;
+        }
 
-const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-  const [cart, setCart] = useState([]);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [checkoutStep, setCheckoutStep] = useState(0); 
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-  const APP_NAME = "V3GASBOI";
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 { font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 5px; }
+        p { color: #888; font-size: 0.9rem; }
+
+        .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin: 25px 0 10px 5px;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .link-card {
+            background: var(--card-bg);
+            display: block;
+            padding: 18px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            background: #252525;
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.7rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>V3GASBOI</h1>
+            <p>89109 EMPIRE LINK STACK • 88MOB</p>
+        </header>
+
+        <div class="section-title">Command Centers</div>
+        <a href="https://bnd.link/vegasbo_i" class="link-card">🎰 Official Global Gateway</a>
+        <a href="https://v3gasboi.site" class="link-card">💻 89109 Digital Archive</a>
+        <a href="https://vegas-boi-site--jonas88evans.replit.app" class="link-card">📟 Replit Station</a>
+
+        <div class="section-title">Retail & Business</div>
+        <a href="https://v3gasboi.online" class="link-card">🛒 Official Online Store</a>
+        <a href="https://v3gasboi-experience.myshopify.com" class="link-card">🛍️ 88MOB Shopify Experience</a>
+        <a href="https://cash.app/$V3gasboi" class="link-card">💸 Cash App (Strip To Stardom)</a>
+
+        <div class="section-title">Music & Streaming</div>
+        <a href="https://on.soundcloud.com/15XxtyOSG8CXmUzZB" class="link-card">☁️ SoundCloud (Raw Stems)</a>
+        <a href="https://v3gasboi-station.railway.app" class="link-card">📡 24/7 Live Radio</a>
+        <a href="https://audiomack.com/jonas88evans" class="link-card">🎤 Audiomack Exclusives</a>
+
+        <div class="section-title">Social & Cinematic</div>
+        <a href="https://www.youtube.com/@vegasboi2147" class="link-card">🎬 YouTube Cinematic Archive</a>
+        <a href="https://www.instagram.com/vegasboii702" class="link-card">📸 Instagram Verified</a>
+        <a href="https://v3gasboi.hyperfy.ai" class="link-card">🌐 Metaverse Shop</a>
+
+        <div class="footer">
+            &copy; 2026 VEGAS SPOT LLC. ALL RIGHTS RESERVED.
+        </div>
+    </div>
+
+</body>
+  </html>
   
-  // Official Asset Library
-  const assets = {
-    hero: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1564.png",
-    profile: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1845.jpg",
-    selfie: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_3403.jpg",
-    pose: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1572.png",
-    covers: {
-      good: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1599.png",
-      crazy: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1604.png",
-      space: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1610.png",
-      money: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1629.jpg",
-      wait: "1000010906.png"
-    },
-    event: "c98fa7b3-0dbd-4187-a5d0-05c32bc28c2d-1_all_1806.jpg"
-  };
-
-  // Official Business Infrastructure Links
-  const officialLinks = {
-    soundcloud: "https://on.soundcloud.com/3d76nCYWqzJVAGMM6",
-    githubHub: "https://jonas88evans.github.io/V3GASBOI-HUB-or-Official-V3GASBOI",
-    spotify: "https://open.spotify.com/artist/6LtPbqwAXeYEq7Bs7gvAlp",
-    youtube: "https://www.youtube.com/@vegasboi2147",
-    instagram: "https://www.instagram.com/vegasboii702",
-    tiktok: "https://www.tiktok.com/@v3gasboii",
-    replitPortal: "https://replit.com/@jonas88evans/Vegas-Boi-Portal",
-    canva: "https://v3gasboii.my.canva.site/v3gasboi"
-  };
-
-  const products = [
-    { id: 1, name: "Independence Code: That Good Good", price: 19.98, type: "Master Album", category: "Digital", image: assets.covers.good, stock: "Full Access", rating: 5 },
-    { id: 2, name: "Money I Gotta Get It! (WAV)", price: 1.29, type: "Single", category: "Digital", image: assets.covers.money, stock: "Instant", rating: 4.9 },
-    { id: 3, name: "Studio Master Pack (AI)", price: 45.00, type: "WAV Kit", category: "Services", image: assets.covers.space, stock: "Premium", rating: 5 },
-    { id: 4, name: "88MOB Legacy Signature Tee", price: 35.00, type: "Apparel", category: "Physical", image: assets.pose, stock: "Limited", rating: 5 }
-  ];
-
-  const filteredProducts = useMemo(() => {
-    return products.filter(p => 
-      (selectedCategory === 'All' || p.category === selectedCategory) &&
-      p.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [selectedCategory, searchQuery]);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const addToCart = (product) => {
-    setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item => item.id === product.id ? { ...item, qty: item.qty + 1 } : item);
-      }
-      return [...prev, { ...product, qty: 1 }];
-    });
-  };
-
-  const updateQty = (id, delta) => {
-    setCart(prev => prev.map(item => {
-      if (item.id === id) {
-        const newQty = Math.max(0, item.qty + delta);
-        return { ...item, qty: newQty };
-      }
-      return item;
-    }).filter(item => item.qty > 0));
-  };
-
-  const cartTotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-  const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
-
-  // Depth & Shadow Tokens
-  const heavyShadow = "drop-shadow-[0_8px_8px_rgba(0,0,0,1)]";
-  const neonGlow = "shadow-[0_0_50px_rgba(245,158,11,0.3)]";
-  const innerGlow = "shadow-[inset_0_0_20px_rgba(245,158,11,0.1)]";
-
-  return (
-    <div className="min-h-screen bg-[#000000] text-white font-sans selection:bg-amber-500 selection:text-black overflow-x-hidden">
-      
-      {/* CEO Alert Strip */}
-      <div className="fixed top-0 w-full z-[70] bg-amber-500 text-black py-1 px-6 flex items-center justify-between shadow-2xl">
-        <div className="flex items-center gap-3 overflow-hidden">
-          <Activity className="w-3 h-3 animate-pulse" />
-          <span className="text-[8px] font-black uppercase tracking-[0.4em] whitespace-nowrap">MISSION: 10,000 PLAYS ACTIVE • VEGAS SPOT LLC • INDEPENDENCE CODE • </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-[8px] font-black">9.2K VERIFIED</span>
-          <div className="w-12 h-1 bg-black/20 rounded-full overflow-hidden">
-             <div className="h-full bg-black w-[92%]"></div>
-          </div>
-        </div>
-      </div>
-
-      {/* Primary Header */}
-      <header className={`fixed top-6 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/95 backdrop-blur-xl py-3 border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.8)]' : 'bg-transparent py-8'}`}>
-        <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
-          <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setActiveTab('home')}>
-             <div className="w-14 h-14 bg-amber-500 rounded-sm flex items-center justify-center font-black text-black text-3xl italic skew-x-[-15deg] group-hover:skew-x-0 transition-all shadow-[0_0_30px_rgba(245,158,11,0.5)]">V3</div>
-             <div className="flex flex-col">
-                <span className={`text-3xl font-black italic tracking-tighter leading-none ${heavyShadow}`}>V3GASBOI</span>
-                <span className="text-[9px] font-black tracking-[0.6em] text-amber-500 mt-2 uppercase italic leading-none">Vegas Spot LLC</span>
-             </div>
-          </div>
-
-          <nav className="hidden lg:flex gap-12">
-            {['home', 'vault', 'visuals', 'hustle'].map(id => (
-              <button 
-                key={id}
-                onClick={() => {
-                  if (id === 'visuals') {
-                    document.getElementById('live-portal')?.scrollIntoView({ behavior: 'smooth' });
-                  } else {
-                    setActiveTab(id === 'vault' ? 'store' : id);
-                  }
-                }}
-                className={`uppercase text-[11px] font-black tracking-[0.5em] transition-all relative py-2 ${activeTab === (id === 'vault' ? 'store' : id) ? 'text-amber-500' : 'text-neutral-500 hover:text-white'}`}
-              >
-                {id}
-                {activeTab === (id === 'vault' ? 'store' : id) && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-500 shadow-[0_0_10px_#f59e0b]"></span>}
-              </button>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-6">
-            <button 
-              onClick={() => setActiveTab('cart')}
-              className={`relative p-3 bg-white/5 border border-white/10 rounded-full hover:border-amber-500 transition-all ${innerGlow}`}
-            >
-              <ShoppingBag className="w-6 h-6" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-amber-500 text-black text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-black">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-            <button className="lg:hidden" onClick={() => setIsMenuOpen(true)}><Menu/></button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Nav Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center gap-12 animate-in fade-in duration-300">
-           <button onClick={() => setIsMenuOpen(false)} className="absolute top-10 right-10 p-4 bg-white/5 rounded-full border border-white/10 text-amber-500 shadow-2xl"><X/></button>
-           {['home', 'store', 'music', 'hustle', 'cart'].map(id => (
-              <button 
-                key={id} 
-                onClick={() => { setActiveTab(id); setIsMenuOpen(false); }}
-                className="text-5xl font-black uppercase italic tracking-tighter hover:text-amber-500 transition-all"
-              >
-                {id}
-              </button>
-           ))}
-        </div>
-      )}
-
-      {/* Main Experience */}
-      <main className="pt-24">
-        {activeTab === 'home' && (
-          <section className="animate-in fade-in duration-1000">
-            {/* Massive Brand Intro */}
-            <div className="relative h-[90vh] flex items-center overflow-hidden bg-black">
-               <div className="absolute inset-0">
-                  <img src={assets.hero} className="absolute bottom-0 right-[-10%] h-[115%] w-auto object-contain object-bottom opacity-60 grayscale hover:grayscale-0 transition-all duration-[2s]" alt="Hero"/>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
-               </div>
-
-               <div className="relative z-10 max-w-7xl mx-auto px-10 w-full text-left">
-                  <div className="max-w-3xl">
-                     <div className="flex items-center gap-5 mb-10">
-                        <span className="h-px w-16 bg-amber-500 shadow-[0_0_15px_#f59e0b]"></span>
-                        <span className="text-amber-500 font-black tracking-[0.5em] text-[10px] uppercase italic drop-shadow-xl">The Sound & Movement</span>
-                     </div>
-                     <h1 className={`text-[6rem] md:text-[11rem] font-black italic leading-[0.8] tracking-tighter mb-10 ${heavyShadow} drop-shadow-[0_0_20px_rgba(245,158,11,0.4)]`}>
-                       THE<br/>VOICE.
-                     </h1>
-                     <p className={`text-2xl md:text-3xl text-neutral-300 font-medium mb-16 max-w-xl border-l-[8px] border-amber-500 pl-12 leading-relaxed drop-shadow-2xl italic shadow-black`}>
-                       CEO of Vegas Spot LLC. Bridging the gap between digital content and e-commerce through the Independence Code.
-                     </p>
-                     <div className="flex flex-wrap gap-8">
-                        <button onClick={() => setActiveTab('store')} className="group px-14 py-7 bg-amber-500 text-black font-black uppercase tracking-widest text-sm hover:bg-white transition-all transform hover:scale-105 flex items-center gap-4 shadow-[0_0_40px_rgba(245,158,11,0.5)]">
-                           The Vault <ShoppingBag className="w-5 h-5" />
-                        </button>
-                        <button onClick={() => {
-                          document.getElementById('live-portal')?.scrollIntoView({ behavior: 'smooth' });
-                        }} className="px-14 py-7 bg-white/5 border border-white/10 text-white font-black uppercase tracking-widest text-sm hover:bg-white/10 transition-all backdrop-blur-md shadow-2xl">
-                           Watch Visuals
-                        </button>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            {/* Marquee Stripe */}
-            <div className="bg-amber-500 py-6 border-y-4 border-black rotate-[-1.2deg] translate-y-[-25px] shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden relative z-20">
-               <div className="flex animate-marquee gap-16 font-black text-black uppercase italic tracking-[0.4em] text-sm whitespace-nowrap">
-                  <span>88MOB Movement • Independence Code • World of Fashions • Vegas Spot LLC • 88MOB Movement • Independence Code • World of Fashions • Vegas Spot LLC • </span>
-                  <span>88MOB Movement • Independence Code • World of Fashions • Vegas Spot LLC • 88MOB Movement • Independence Code • World of Fashions • Vegas Spot LLC • </span>
-               </div>
-            </div>
-
-            {/* LIVE VISUAL COMMAND CENTER - HOME PAGE VISIBILITY */}
-            <div id="live-portal" className="py-40 bg-black border-y border-white/5 shadow-inner">
-               <div className="max-w-7xl mx-auto px-10">
-                  <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-10 text-left">
-                     <div>
-                        <h2 className={`text-8xl font-black uppercase italic tracking-tighter leading-none ${heavyShadow}`}>VISUAL<br/>PORTAL</h2>
-                        <p className="text-neutral-500 font-black tracking-[0.6em] uppercase text-[11px] mt-6 italic">Cinematic 88MOB Media • Official AI Mastered Visuals</p>
-                     </div>
-                     <div className="flex gap-6">
-                        <a href={officialLinks.youtube} target="_blank" rel="noopener noreferrer" className="p-4 bg-red-600/10 border border-red-600/20 rounded-full text-red-600 hover:bg-red-600 hover:text-white transition-all shadow-2xl">
-                           <Youtube className="w-8 h-8" />
-                        </a>
-                        <a href={officialLinks.soundcloud} target="_blank" rel="noopener noreferrer" className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-500 hover:bg-amber-500 hover:text-black transition-all shadow-2xl">
-                           <Music className="w-8 h-8" />
-                        </a>
-                     </div>
-                  </div>
-
-                  <div className="grid lg:grid-cols-3 gap-12 items-start">
-                     {/* Primary Widescreen Player */}
-                     <div className={`lg:col-span-2 relative aspect-video bg-neutral-900 rounded-[4rem] overflow-hidden border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,1)] ${neonGlow}`}>
-                        <iframe 
-                          width="100%" 
-                          height="100%" 
-                          src="https://www.youtube.com/embed?listType=user_uploads&list=vegasboi2147" 
-                          title="V3GASBOI Master Feed" 
-                          frameBorder="0" 
-                          allowFullScreen
-                          className="absolute inset-0 w-full h-full"
-                        ></iframe>
-                     </div>
-
-                     {/* Sidebar Gallery */}
-                     <div className="space-y-10 text-left">
-                        <div className={`bg-neutral-900 border border-white/5 rounded-[3rem] p-8 hover:border-amber-500/50 transition-all shadow-2xl ${neonGlow} group cursor-pointer relative overflow-hidden`}>
-                           <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 relative border border-white/5 shadow-inner">
-                              <img src={assets.selfie} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1s]" alt="Vlog"/>
-                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/50 backdrop-blur-sm">
-                                 <Play className="text-amber-500 w-16 h-16 fill-amber-500 shadow-amber-500/50" />
-                              </div>
-                           </div>
-                           <h4 className={`font-black uppercase italic text-2xl mb-1 leading-none group-hover:text-amber-500 transition-colors ${heavyShadow}`}>88MOB Chronicles</h4>
-                           <p className="text-[11px] text-neutral-600 font-bold uppercase tracking-widest leading-none mt-4 italic">Cinematic Street Authority</p>
-                        </div>
-
-                        <div className={`bg-neutral-900 border border-white/5 rounded-[3rem] p-8 hover:border-amber-500/50 transition-all shadow-2xl ${neonGlow} group cursor-pointer relative overflow-hidden`}>
-                           <div className="aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 relative border border-white/5 shadow-inner">
-                              <img src={assets.pose} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1s]" alt="Studio"/>
-                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/50 backdrop-blur-sm">
-                                 <Activity className="text-amber-500 w-16 h-16" />
-                              </div>
-                           </div>
-                           <h4 className={`font-black uppercase italic text-2xl mb-1 leading-none group-hover:text-amber-500 transition-colors ${heavyShadow}`}>Master Sessions</h4>
-                           <p className="text-[11px] text-neutral-600 font-bold uppercase tracking-widest leading-none mt-4 italic">AI Production Logic</p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            {/* CEO Identity Block */}
-            <div className="py-40 max-w-7xl mx-auto px-10 text-left border-b border-white/5">
-               <div className="grid lg:grid-cols-2 gap-32 items-center">
-                  <div className={`relative shadow-[0_60px_100px_rgba(0,0,0,1)] rounded-[3rem] overflow-hidden border border-white/5 group ${neonGlow}`}>
-                     <img src={assets.profile} className="w-full h-auto grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" alt="CEO Portrait"/>
-                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent flex items-end p-12">
-                        <div className="p-10 bg-black/80 backdrop-blur-3xl border border-white/10 rounded-3xl w-full shadow-2xl">
-                           <h3 className="text-4xl font-black italic uppercase leading-none italic tracking-tighter">CEO STATUS</h3>
-                           <p className="text-amber-500 font-black text-[11px] uppercase tracking-[0.5em] mt-3">Vegas Spot LLC Infrastructure</p>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="space-y-12">
-                     <h2 className={`text-[7rem] font-black uppercase italic tracking-tighter leading-none ${heavyShadow}`}>THE HUSTLE</h2>
-                     <p className="text-neutral-400 text-4xl font-medium leading-relaxed italic border-l-[12px] border-amber-500 pl-12 shadow-2xl">
-                        V3GASBOI isn't just an artist; he is a multi-hyphenate entrepreneur bridging digital content and global e-commerce.
-                     </p>
-                     <p className="text-neutral-500 text-2xl font-light italic opacity-80 leading-relaxed shadow-black">
-                        Managing brands like World of Fashions and mastering tracks with AI tools, he embodies the "hustle in the shadows of the casinos".
-                     </p>
-                     <div className="grid grid-cols-2 gap-10">
-                        <div className={`p-10 bg-neutral-900/40 border border-neutral-800 rounded-[3rem] hover:border-amber-500 transition-all ${neonGlow} shadow-2xl group`}>
-                           <Monitor className="text-amber-500 w-12 h-12 mb-6 group-hover:scale-110 transition-transform" />
-                           <h4 className="text-3xl font-black italic mb-1 leading-none uppercase">AI Sound</h4>
-                           <p className="text-[10px] text-neutral-600 font-black uppercase tracking-[0.4em]">Mastering Suite</p>
-                        </div>
-                        <div className={`p-10 bg-neutral-900/40 border border-neutral-800 rounded-[3rem] hover:border-amber-500 
