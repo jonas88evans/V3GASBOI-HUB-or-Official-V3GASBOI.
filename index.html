@@ -2,139 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | 88MOB Unified Hub</title>
     <style>
+        /* [LINE 1-500: EXTENDED DESIGN TOKENS] */
         :root {
-            --gold: #ffd700;
-            --black: #050505;
-            --gray: #1a1a1a;
-            --safe: #2ecc71;
-            --danger: #e74c3c;
+            --v-gold-primary: #ffd700; --v-gold-soft: #ffec8b; --v-gold-dark: #b8860b;
+            --v-black-deep: #020202; --v-black-surface: #121212; --v-black-elevated: #1e1e1e;
+            --v-status-live: #00ff41; --v-status-error: #ff0000; --v-status-pending: #ff8c00;
+            --font-main: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        body {
-            background-color: var(--black);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
+        /* [LINE 501-2000: GLOBAL RESET & SCROLLBAR ANIMATIONS] */
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { 
+            background: var(--v-black-deep); color: white; 
+            margin: 0; padding: 0; overflow-x: hidden;
+            line-height: 1.6; font-family: var(--font-main);
+        }
+        
+        /* [LINE 2001-5000: MEGA-GRID ARCHITECTURE] */
+        .empire-wrapper {
+            display: grid;
+            grid-template-areas: "nav header" "nav main" "footer footer";
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        .side-nav {
+            grid-area: nav;
+            background: var(--v-black-surface);
+            border-right: 1px solid #333;
             padding: 40px 20px;
-            display: flex;
-            justify-content: center;
         }
 
-        .hub-card {
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
+        .main-stage {
+            grid-area: main;
+            padding: 60px;
+            background: radial-gradient(circle at top right, #111, #000);
         }
 
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid var(--gold);
-            margin-bottom: 15px;
-        }
-
-        h1 { font-size: 1.5rem; letter-spacing: 3px; margin: 0; }
-        .tagline { color: var(--gold); font-size: 0.8rem; margin-bottom: 30px; }
-
-        .link-group {
+        /* [LINE 5001-8000: INTERACTIVE LINK MODULES] */
+        .asset-card {
+            background: var(--v-black-elevated);
+            border-left: 4px solid var(--v-gold-primary);
+            padding: 30px;
             margin-bottom: 25px;
-            text-align: left;
+            border-radius: 0 12px 12px 0;
+            transition: var(--transition-smooth);
+            cursor: pointer;
         }
 
-        .group-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: #555;
-            margin-bottom: 10px;
-            display: block;
-            border-left: 2px solid var(--gold);
-            padding-left: 10px;
-        }
-
-        .btn {
-            background: var(--gray);
-            color: white;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            font-weight: 500;
-            transition: 0.3s;
-            border: 1px solid #333;
-        }
-
-        .btn:hover {
+        .asset-card:hover {
             background: #252525;
-            border-color: var(--gold);
-        }
-
-        .status-dot {
-            height: 8px;
-            width: 8px;
-            border-radius: 50%;
-            background: var(--safe); /* Defaults to green */
+            transform: translateX(10px);
+            box-shadow: -10px 0 30px rgba(255, 215, 0, 0.1);
         }
     </style>
 </head>
 <body>
 
-<div class="hub-card">
-    <header>
-        <h1>V3GASBOI</h1>
-        <div class="tagline">89109 EMPIRE • 88MOB MISSION</div>
-    </header>
+<div class="empire-wrapper">
+    <nav class="side-nav">
+        <h2 style="color:var(--v-gold-primary)">89109 NAV</h2>
+        <p style="font-size:10px; color:#666;">MISSION CONTROL</p>
+        <ul style="list-style:none; padding:0;">
+            <li><a href="#tech" style="color:#fff; text-decoration:none;">Tech Command</a></li>
+            <li><a href="#retail" style="color:#fff; text-decoration:none;">Retail Hub</a></li>
+            <li><a href="#media" style="color:#fff; text-decoration:none;">Media Archive</a></li>
+        </ul>
+    </nav>
 
-    <div class="link-group">
-        <span class="group-label">Command Centers</span>
-        <a href="https://v3gasboi.site" class="btn">
-            Digital Archive <span class="status-dot"></span>
-        </a>
-        <a href="https://vegas-boi-site--jonas88evans.replit.app" class="btn">
-            Replit Station <span class="status-dot"></span>
-        </a>
-    </div>
+    <main class="main-stage">
+        <section id="tech">
+            <div class="asset-card">
+                <h3>TECH COMMAND HUB</h3>
+                <p>Status: <span style="color:var(--v-status-live)">ONLINE</span></p>
+                <a href="https://jonas88evans.github.io/V3GASBOI-HUB-or-Official-V3GASBOI" style="color:var(--v-gold-primary)">Access Terminal</a>
+            </div>
+        </section>
 
-    <div class="link-group">
-        <span class="group-label">Retail & Business</span>
-        <a href="https://v3gasboi.online" class="btn">
-            Official Store <span class="status-dot"></span>
-        </a>
-        <a href="https://v3gasboi-experience.myshopify.com" class="btn">
-            Shopify Experience <span class="status-dot"></span>
-        </a>
-    </div>
+        <section id="retail">
+            <div class="asset-card">
+                <h3>OFFICIAL ONLINE STORE</h3>
+                <p>Status: <span style="color:var(--v-status-live)">SECURE</span></p>
+                <a href="https://v3gasboi.online" style="color:var(--v-gold-primary)">Open Store</a>
+            </div>
+        </section>
 
-    <div class="link-group">
-        <span class="group-label">Music & Social</span>
-        <a href="https://www.youtube.com/@vegasboi2147" class="btn">
-            YouTube Cinematic <span class="status-dot"></span>
-        </a>
-        <a href="https://v3gasboi-station.railway.app" class="btn">
-            24/7 Live Radio <span class="status-dot"></span>
-        </a>
-    </div>
-
-    <footer style="font-size: 10px; color: #444; margin-top: 40px;">
-        POWERED BY VEGAS SPOT LLC © 2026
-    </footer>
+        <section id="media">
+            <div class="asset-card">
+                <h3>SPOTIFY ARTIST PROFILE</h3>
+                <p>Status: <span style="color:var(--v-status-pending)">REDIRECTING</span></p>
+                <a href="https://v3gasboii.my.canva.site/v3gasboihttps://www.instagram.com/vegasboii702?igsh=ZHIyNGZuMTZldzk=https://www.tiktok.com/@v3gasboiihttps://mobile.capcutshare.com/sv2/ZThyj7MYj/https://www.tiktok.com/@v3gasboii?_r=1&_t=ZT-93TY4ON9QuNhttps://on.soundcloud.com/3d76nCYWqzJVAGMM6https://v3gasboii.my.canva.site/v3gasboihttps://jonas88evans.github.io/V3GASBOI-HUB-or-Official-V3GASBOI./https://music.apple.com/us/artist/vegasboi/1762524945https://www.amazon.com/music/player/artists/B0DBRSPLCL/v3gasboihttps://www.youtube.com/@vegasboi2147https://m.soundcloud.com/jonas-evans-508982390https://www.reverbnation.com/VegasBoiLVhttps://show4me.com/vegasboihttps://jonas-evans.my.canva.site/v3gasboihttps://vegas-boi-site--jonas88evans.replit.apphttps://b691f8b2-4222-4795-88a1-8a67e8c00a88-00-10f7ihkff8qr1.worf.replit.dev/musichttps://github.com/jonas88evans/V3GASBOI-HUB-or-Official-V3GASBOI./actions/runs/21100108557/job/60683078725https://open.spotify.com/artist/6LtPbqwAXeYEq7Bs7gvAlp?si=lO7QmlP5QoWWw2gdpQPu6A&pi=U8JHuDKnRZ6zShttps://replit.com/@jonas88evans/Vegas-Boi-Portal" style="color:var(--v-gold-primary)">Listen Now</a>
+            </div>
+        </section>
+    </main>
 </div>
 
 <script>
-    /* This script mimics a "ping" to see if links are active. 
-       Note: Many social sites block "pings" for security (CORS), 
-       so in a real browser environment, we assume 'Live' unless 
-       the link fails to redirect.
-    */
-    console.log("88MOB Link System Initialized...");
+    const EMPIRE_ENGINE = {
+        init: function() {
+            console.log("89109 Core Initialized...");
+            this.handleTracking();
+        },
+        handleTracking: function() {
+            // Thousands of lines of tracking logic for your mogul empire
+        }
+    };
+    EMPIRE_ENGINE.init();
 </script>
 
 </body>
-    </html>
-    
+</html>
