@@ -11,18 +11,66 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             background: #000;
             color: #fff;
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 204, 0, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         .header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop') center/cover;
+            padding: 80px 20px;
             text-align: center;
             border-bottom: 3px solid #ffcc00;
+            position: relative;
+            animation: slideInDown 1s ease-out;
+            box-shadow: 
+                0 10px 50px rgba(0, 0, 0, 0.9),
+                inset 0 0 30px rgba(255, 204, 0, 0.1);
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(255, 204, 0, 0.05) 50%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .header h1 {
@@ -31,22 +79,210 @@
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 3px;
+            text-shadow: 
+                0 0 20px rgba(255, 204, 0, 0.8),
+                0 0 40px rgba(255, 204, 0, 0.5),
+                0 0 60px rgba(255, 204, 0, 0.3),
+                2px 2px 8px rgba(0, 0, 0, 0.9),
+                4px 4px 16px rgba(0, 0, 0, 0.8),
+                6px 6px 24px rgba(0, 0, 0, 0.7);
+            animation: glowPulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 
+                    0 0 20px rgba(255, 204, 0, 0.8),
+                    0 0 40px rgba(255, 204, 0, 0.5),
+                    0 0 60px rgba(255, 204, 0, 0.3),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7);
+            }
+            25% {
+                text-shadow: 
+                    0 0 30px rgba(255, 204, 0, 1),
+                    0 0 60px rgba(255, 204, 0, 0.7),
+                    0 0 90px rgba(255, 204, 0, 0.4),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7);
+            }
+            50% {
+                text-shadow: 
+                    0 0 40px rgba(255, 204, 0, 1),
+                    0 0 80px rgba(255, 204, 0, 0.8),
+                    0 0 120px rgba(255, 204, 0, 0.5),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7);
+            }
+            75% {
+                text-shadow: 
+                    0 0 30px rgba(255, 204, 0, 0.9),
+                    0 0 60px rgba(255, 204, 0, 0.6),
+                    0 0 90px rgba(255, 204, 0, 0.3),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7);
+            }
         }
         
         .header p {
-            color: #999;
+            color: #ccc;
             font-size: 1.1rem;
             font-style: italic;
+            text-shadow: 
+                0 0 15px rgba(255, 204, 0, 0.7),
+                0 0 30px rgba(255, 204, 0, 0.4),
+                2px 2px 8px rgba(0, 0, 0, 0.9),
+                4px 4px 12px rgba(0, 0, 0, 0.8),
+                -2px -2px 8px rgba(0, 0, 0, 0.9);
+            animation: slideInUp 1s ease-out 0.2s both;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .category-section {
-            margin-bottom: 50px;
+            margin-bottom: 80px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .category-section.music {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&h=400&fit=crop') center/cover;
+            background-attachment: fixed;
+            padding: 50px;
+            border-radius: 15px;
+            border-left: 6px solid #ffcc00;
+            box-shadow: 
+                0 0 30px rgba(255, 204, 0, 0.4),
+                0 0 60px rgba(255, 204, 0, 0.2),
+                inset 0 0 30px rgba(255, 204, 0, 0.1),
+                0 15px 40px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+        
+        .category-section.music::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 204, 0, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .category-section.video {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1516480537800-4d32c6a2e7d9?w=1200&h=400&fit=crop') center/cover;
+            background-attachment: fixed;
+            padding: 50px;
+            border-radius: 15px;
+            border-left: 6px solid #ffcc00;
+            box-shadow: 
+                0 0 30px rgba(255, 204, 0, 0.4),
+                0 0 60px rgba(255, 204, 0, 0.2),
+                inset 0 0 30px rgba(255, 204, 0, 0.1),
+                0 15px 40px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+        
+        .category-section.video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 204, 0, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .category-section.social {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=400&fit=crop') center/cover;
+            background-attachment: fixed;
+            padding: 50px;
+            border-radius: 15px;
+            border-left: 6px solid #ffcc00;
+            box-shadow: 
+                0 0 30px rgba(255, 204, 0, 0.4),
+                0 0 60px rgba(255, 204, 0, 0.2),
+                inset 0 0 30px rgba(255, 204, 0, 0.1),
+                0 15px 40px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+        
+        .category-section.social::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 204, 0, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .category-section.projects {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%),
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=400&fit=crop') center/cover;
+            background-attachment: fixed;
+            padding: 50px;
+            border-radius: 15px;
+            border-left: 6px solid #ffcc00;
+            box-shadow: 
+                0 0 30px rgba(255, 204, 0, 0.4),
+                0 0 60px rgba(255, 204, 0, 0.2),
+                inset 0 0 30px rgba(255, 204, 0, 0.1),
+                0 15px 40px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+        
+        .category-section.projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 204, 0, 0.15) 0%, transparent 70%);
+            pointer-events: none;
         }
         
         .category-title {
@@ -54,214 +290,294 @@
             color: #ffcc00;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ffcc00;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ffcc00;
+            text-shadow: 
+                0 0 15px rgba(255, 204, 0, 0.9),
+                0 0 30px rgba(255, 204, 0, 0.6),
+                0 0 45px rgba(255, 204, 0, 0.3),
+                2px 2px 8px rgba(0, 0, 0, 0.9),
+                4px 4px 16px rgba(0, 0, 0, 0.8),
+                6px 6px 24px rgba(0, 0, 0, 0.7),
+                -2px -2px 8px rgba(255, 204, 0, 0.3);
+            animation: titleGlow 2.5s ease-in-out infinite;
+            position: relative;
+            z-index: 3;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 
+                    0 0 15px rgba(255, 204, 0, 0.9),
+                    0 0 30px rgba(255, 204, 0, 0.6),
+                    0 0 45px rgba(255, 204, 0, 0.3),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7),
+                    -2px -2px 8px rgba(255, 204, 0, 0.3);
+            }
+            25% {
+                text-shadow: 
+                    0 0 25px rgba(255, 204, 0, 1),
+                    0 0 50px rgba(255, 204, 0, 0.8),
+                    0 0 75px rgba(255, 204, 0, 0.5),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7),
+                    -2px -2px 8px rgba(255, 204, 0, 0.4);
+            }
+            50% {
+                text-shadow: 
+                    0 0 35px rgba(255, 204, 0, 1),
+                    0 0 70px rgba(255, 204, 0, 0.8),
+                    0 0 105px rgba(255, 204, 0, 0.6),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7),
+                    -2px -2px 8px rgba(255, 204, 0, 0.5);
+            }
+            75% {
+                text-shadow: 
+                    0 0 25px rgba(255, 204, 0, 0.95),
+                    0 0 50px rgba(255, 204, 0, 0.7),
+                    0 0 75px rgba(255, 204, 0, 0.4),
+                    2px 2px 8px rgba(0, 0, 0, 0.9),
+                    4px 4px 16px rgba(0, 0, 0, 0.8),
+                    6px 6px 24px rgba(0, 0, 0, 0.7),
+                    -2px -2px 8px rgba(255, 204, 0, 0.35);
+            }
         }
         
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 25px;
+            position: relative;
+            z-index: 2;
         }
         
         .link-card {
-            background: #111;
+            background: linear-gradient(135deg, rgba(17, 17, 17, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
             border: 2px solid #333;
-            border-left: 5px solid #ffcc00;
-            padding: 20px;
-            transition: all 0.3s ease;
+            border-left: 6px solid #ffcc00;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             text-decoration: none;
             color: #fff;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             justify-content: space-between;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(255, 204, 0, 0.1),
+                inset 0 0 10px rgba(255, 204, 0, 0.05);
+            animation: cardFadeIn 0.6s ease-out;
+            min-height: 120px;
+        }
+        
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.05) 0%, transparent 50%, rgba(255, 204, 0, 0.02) 100%);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+        
+        .link-card::after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.2) 0%, rgba(255, 204, 0, 0.05) 50%, transparent 100%);
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .link-card:hover::after {
+            opacity: 1;
         }
         
         .link-card:hover {
-            background: #1a1a1a;
+            background: linear-gradient(135deg, rgba(30, 30, 30, 0.98) 0%, rgba(40, 40, 40, 0.98) 100%);
             border-color: #ffcc00;
-            transform: translateX(5px);
+            transform: translateX(8px) scale(1.03) rotateY(1deg);
+            box-shadow: 
+                0 0 30px rgba(255, 204, 0, 0.6),
+                0 0 60px rgba(255, 204, 0, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.9),
+                inset 0 0 20px rgba(255, 204, 0, 0.15);
         }
         
         .link-card-text {
             flex: 1;
+            width: 100%;
+            position: relative;
+            z-index: 2;
         }
         
         .link-card h3 {
             color: #ffcc00;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+            text-shadow: 
+                0 0 12px rgba(255, 204, 0, 0.9),
+                0 0 24px rgba(255, 204, 0, 0.6),
+                2px 2px 6px rgba(0, 0, 0, 0.9),
+                4px 4px 12px rgba(0, 0, 0, 0.8),
+                -2px -2px 6px rgba(255, 204, 0, 0.3);
+            font-weight: bold;
         }
         
         .link-card p {
-            color: #999;
-            font-size: 0.9rem;
+            color: #bbb;
+            font-size: 0.95rem;
+            text-shadow: 
+                1px 1px 4px rgba(0, 0, 0, 0.9),
+                2px 2px 8px rgba(0, 0, 0, 0.8),
+                0 0 8px rgba(255, 204, 0, 0.3);
+        }
+        
+        .link-card:hover p {
+            color: #fff;
+            text-shadow: 
+                1px 1px 4px rgba(0, 0, 0, 0.9),
+                2px 2px 8px rgba(0, 0, 0, 0.8),
+                0 0 12px rgba(255, 204, 0, 0.5);
         }
         
         .arrow {
             color: #ffcc00;
-            font-size: 1.5rem;
-            margin-left: 15px;
+            font-size: 1.8rem;
+            margin-left: auto;
+            margin-top: 10px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.6));
+            position: relative;
+            z-index: 2;
+        }
+        
+        .link-card:hover .arrow {
+            transform: translateX(10px) scale(1.3);
+            filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.9));
         }
         
         .footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=1200&h=300&fit=crop') center/cover;
+            background-attachment: fixed;
             text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #333;
+            padding: 50px 20px;
+            border-top: 3px solid #ffcc00;
             color: #666;
-            margin-top: 60px;
+            margin-top: 80px;
+            box-shadow: 
+                0 -15px 40px rgba(0, 0, 0, 0.9),
+                inset 0 0 30px rgba(255, 204, 0, 0.08);
+            position: relative;
         }
         
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.5), transparent);
+        }
+        
+        .footer p {
+            text-shadow: 
+                0 0 15px rgba(255, 204, 0, 0.7),
+                0 0 30px rgba(255, 204, 0, 0.4),
+                2px 2px 6px rgba(0, 0, 0, 0.9),
+                4px 4px 12px rgba(0, 0, 0, 0.8),
+                -2px -2px 6px rgba(0, 0, 0, 0.9);
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            animation: footerFade 2s ease-in-out infinite;
+        }
+        
+        @keyframes footerFade {
+            0%, 100% {
+                text-shadow: 
+                    0 0 15px rgba(255, 204, 0, 0.7),
+                    0 0 30px rgba(255, 204, 0, 0.4),
+                    2px 2px 6px rgba(0, 0, 0, 0.9),
+                    4px 4px 12px rgba(0, 0, 0, 0.8),
+                    -2px -2px 6px rgba(0, 0, 0, 0.9);
+            }
+            50% {
+                text-shadow: 
+                    0 0 20px rgba(255, 204, 0, 0.8),
+                    0 0 40px rgba(255, 204, 0, 0.5),
+                    2px 2px 6px rgba(0, 0, 0, 0.9),
+                    4px 4px 12px rgba(0, 0, 0, 0.8),
+                    -2px -2px 6px rgba(0, 0, 0, 0.9);
+            }
+        }
+        
+        /* Scroll animations */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        
+        /* Mobile responsive design */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .header p {
+                font-size: 0.95rem;
             }
             
             .links-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>V3GASBOI</h1>
-        <p>Official Hub | Las Vegas Authentic</p>
-    </div>
+            
+            .category-section {
+                padding: 30px !important;
+                margin-bottom: 40px;
+            }
+            
+            .category-title {
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+            }
+            
+            .link-card {
+                padding: 18px;
     
-    <div class="container">
-        <!-- MUSIC SECTION -->
-        <div class="category-section">
-            <h2 class="category-title">🎵 Music Platforms</h2>
-            <div class="links-grid">
-                <a href="https://open.spotify.com/artist/6LtPbqwAXeYEq7Bs7gvAlp" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>Spotify</h3>
-                        <p>Stream on Spotify</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://music.apple.com/us/artist/vegasboi/1762524945" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>Apple Music</h3>
-                        <p>Listen on Apple Music</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>SoundCloud</h3>
-                        <p>Raw 88MOB Feed</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://www.amazon.com/music/player/artists/B0DBRSPLCL/v3gasboii" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>Amazon Music</h3>
-                        <p>Listen on Amazon</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://www.reverbnation.com/VegasBoiLV" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>ReverbNation</h3>
-                        <p>Artist Profile</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- VIDEO SECTION -->
-        <div class="category-section">
-            <h2 class="category-title">📺 Video & Content</h2>
-            <div class="links-grid">
-                <a href="https://www.youtube.com/@vegasboi2147" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>YouTube</h3>
-                        <p>88MOB Cinematic Vlogs</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://www.tiktok.com/@v3gasboii" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>TikTok</h3>
-                        <p>Short Form Content</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://mobile.capcutshare.com/sv2/ZThyj7MYj/" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>CapCut</h3>
-                        <p>Video Edits & Clips</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://show4me.com/vegasboi" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>Show4Me</h3>
-                        <p>Media Portfolio</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- SOCIAL SECTION -->
-        <div class="category-section">
-            <h2 class="category-title">👥 Social Media</h2>
-            <div class="links-grid">
-                <a href="https://www.instagram.com/vegasboii702" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>Instagram</h3>
-                        <p>@vegasboii702</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://jonas-evans.my.canva.site/v3gasboi" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>Portfolio Site</h3>
-                        <p>Creative Portfolio</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- PROJECTS SECTION -->
-        <div class="category-section">
-            <h2 class="category-title">🚀 Projects & Portfolios</h2>
-            <div class="links-grid">
-                <a href="https://vegas-boi-site--jonas88evans.replit.app" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>Vegas Boi Portal</h3>
-                        <p>Replit Project</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-                
-                <a href="https://github.com/jonas88evans/V3GASBOI-HUB-or-Official-V3GASBOI" class="link-card" target="_blank">
-                    <div class="link-card-text">
-                        <h3>GitHub Repository</h3>
-                        <p>Source Code</p>
-                    </div>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <p>&copy; 2026 V3GASBOI | All Links Reserved | Las Vegas, Nevada</p>
-    </div>
-</body>
-        </html>
