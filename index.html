@@ -3,77 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI-HUB | 88MOB</title>
+    <title>V3GASBOI | Official Hub</title>
     <style>
-        body { background: #000; color: #fff; font-family: 'Arial', sans-serif; margin: 0; padding: 0; text-align: center; }
-        .hero-banner { width: 100%; max-height: 500px; object-fit: cover; border-bottom: 2px solid #ffcc00; }
-        .container { padding: 40px 20px; max-width: 900px; margin: auto; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        /* The Independence Code Section */
-        .bio-box { border-left: 4px solid #ffcc00; padding: 20px; text-align: left; background: #111; margin-bottom: 40px; }
-        h1, h2 { color: #ffcc00; letter-spacing: 3px; text-transform: uppercase; }
-        .highlight { background: #222; padding: 15px; border: 1px solid #444; margin: 20px 0; }
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
         
-        /* Business Pillars */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: #0a0a0a; border: 1px solid #333; padding: 25px; transition: 0.3s; }
-        .card:hover { border-color: #ffcc00; }
-        .btn { display: inline-block; background: #fff; color: #000; padding: 12px 25px; text-decoration: none; font-weight: bold; margin-top: 15px; }
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffcc00;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            color: #ffcc00;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .header p {
+            color: #999;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .category-section {
+            margin-bottom: 50px;
+        }
+        
+        .category-title {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcc00;
+        }
+        
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .link-card {
+            background: #111;
+            border: 2px solid #333;
+            border-left: 5px solid #ffcc00;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .link-card:hover {
+            background: #1a1a1a;
+            border-color: #ffcc00;
+            transform: translateX(5px);
+        }
+        
+        .link-card-text {
+            flex: 1;
+        }
+        
+        .link-card h3 {
+            color: #ffcc00;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .link-card p {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .arrow {
+            color: #ffcc00;
+            font-size: 1.5rem;
+            margin-left: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #333;
+            color: #666;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <img src="88mob-banner.png" alt="88MOB ACTIVE NODE LAS VEGAS" class="hero-banner">
-
+    <div class="header">
+        <h1>V3GASBOI</h1>
+        <p>Official Hub | Las Vegas Authentic</p>
+    </div>
+    
     <div class="container">
-        <h1>The Independence Code</h1>
-        
-        <div class="bio-box">
-            <p>V3GASBOI is a 25-year independent mogul and Las Vegas pillar, representing the authentic hustle of <strong>Owens Ave since 1998</strong>.</p>
-            <div class="highlight">
-                <strong>KEY COLLABORATION:</strong>
-                <p>2019 landmark project with West Coast legend <strong>C-BO</strong>, cementing global street authority.</p>
+        <!-- MUSIC SECTION -->
+        <div class="category-section">
+            <h2 class="category-title">🎵 Music Platforms</h2>
+            <div class="links-grid">
+                <a href="https://open.spotify.com/artist/6LtPbqwAXeYEq7Bs7gvAlp" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>Spotify</h3>
+                        <p>Stream on Spotify</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://music.apple.com/us/artist/vegasboi/1762524945" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>Apple Music</h3>
+                        <p>Listen on Apple Music</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>SoundCloud</h3>
+                        <p>Raw 88MOB Feed</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://www.amazon.com/music/player/artists/B0DBRSPLCL/v3gasboii" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>Amazon Music</h3>
+                        <p>Listen on Amazon</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://www.reverbnation.com/VegasBoiLV" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>ReverbNation</h3>
+                        <p>Artist Profile</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
             </div>
-            <p>CEO of <strong>Vegas Spot LLC</strong>, bridging digital content and e-commerce through <em>World of Fashions</em>.</p>
         </div>
-
-        <h2>Enterprise Deployments</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>88MOB Banner</h3>
-                <p>Elite music production and AI-enhanced tracks. 9,000+ verified streams across 35 countries.</p>
-                <a href="#" class="btn">ACCESS SOURCE</a>
+        
+        <!-- VIDEO SECTION -->
+        <div class="category-section">
+            <h2 class="category-title">📺 Video & Content</h2>
+            <div class="links-grid">
+                <a href="https://www.youtube.com/@vegasboi2147" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>YouTube</h3>
+                        <p>88MOB Cinematic Vlogs</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://www.tiktok.com/@v3gasboii" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>TikTok</h3>
+                        <p>Short Form Content</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://mobile.capcutshare.com/sv2/ZThyj7MYj/" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>CapCut</h3>
+                        <p>Video Edits & Clips</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://show4me.com/vegasboi" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>Show4Me</h3>
+                        <p>Media Portfolio</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
             </div>
-            <div class="card">
-                <h3>World of Fashions</h3>
-                <p>Global shipping operations and signature retail under Vegas Spot LLC.</p>
-                <a href="#" class="btn">SHOP NOW</a>
+        </div>
+        
+        <!-- SOCIAL SECTION -->
+        <div class="category-section">
+            <h2 class="category-title">👥 Social Media</h2>
+            <div class="links-grid">
+                <a href="https://www.instagram.com/vegasboii702" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>Instagram</h3>
+                        <p>@vegasboii702</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://jonas-evans.my.canva.site/v3gasboi" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>Portfolio Site</h3>
+                        <p>Creative Portfolio</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- PROJECTS SECTION -->
+        <div class="category-section">
+            <h2 class="category-title">🚀 Projects & Portfolios</h2>
+            <div class="links-grid">
+                <a href="https://vegas-boi-site--jonas88evans.replit.app" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>Vegas Boi Portal</h3>
+                        <p>Replit Project</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+                
+                <a href="https://github.com/jonas88evans/V3GASBOI-HUB-or-Official-V3GASBOI" class="link-card" target="_blank">
+                    <div class="link-card-text">
+                        <h3>GitHub Repository</h3>
+                        <p>Source Code</p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
             </div>
         </div>
     </div>
-
+    
+    <div class="footer">
+        <p>&copy; 2026 V3GASBOI | All Links Reserved | Las Vegas, Nevada</p>
+    </div>
 </body>
-</html>
-<section class="spotify-integration">
-    <div class="container">
-        <h2 class="section-title">STREAM LATEST ON SPOTIFY</h2>
-        
-        <div class="track-list">
-            <div class="track-item">
-                <span class="track-status">OFFICIAL SINGLE</span>
-                <h3>Turn Me Into A Monster</h3>
-                <a href="https://open.spotify.com/artist/your_spotify_id" class="stream-link">LISTEN NOW</a>
-            </div>
-            
-            <div class="track-item">
-                <span class="track-status">LATEST RELEASE</span>
-                <h3>Devil in a Red Dress</h3>
-                <a href="https://open.spotify.com/artist/your_spotify_id" class="stream-link">LISTEN NOW</a>
-            </div>
-        </div>
-
-        <div class="milestone-badge">
-            <p><strong>9,000+</strong> Verified Streams | <strong>35+</strong> Countries Reached</p>
-        </div>
-    </div>
-</section>
+        </html>
