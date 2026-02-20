@@ -1,225 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>89109 EMPIRE | TOTAL COMMAND</title>
-    <style>
-        :root {
-            --v-gold: #FFD700;
-            --v-black: #050505;
-            --v-white: #ffffff;
-            --v-gray: #f4f4f4;
-            --v-font: 'Helvetica Neue', Arial, sans-serif;
-            --header-height: 70px;
-        }
-
-        body { 
-            margin: 0; 
-            font-family: var(--v-font); 
-            background: var(--v-white);
-            color: var(--v-black);
-            line-height: 1.6;
-        }
-
-        /* --- PROFESSIONAL SHOP-STYLE NAVIGATION --- */
-        .main-header {
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            background: var(--v-white);
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-weight: 900;
-            letter-spacing: 3px;
-            font-size: 1.4rem;
-            text-decoration: none;
-            color: var(--v-black);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--v-black);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--v-gold); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 50vh;
-            background: var(--v-black);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero h1 { font-size: clamp(2rem, 8vw, 4rem); margin: 10px 0; letter-spacing: 15px; font-weight: 900; }
-        .hero p { color: var(--v-gold); letter-spacing: 4px; font-size: 0.9rem; }
-
-        /* --- TECH HUB GRID --- */
-        .container {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 1.2rem;
-            border-bottom: 2px solid var(--v-gold);
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 25px;
-            text-align: center;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .product-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            transform: translateY(-10px);
-            border-color: var(--v-gold);
-        }
-
-        .product-image {
-            background: var(--v-gray);
-            height: 180px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-        }
-
-        .btn-buy {
-            background: var(--v-black);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .btn-buy:hover {
-            background: var(--v-gold);
-            color: var(--v-black);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified for mobile */
-        }
-    </style>
-</head>
-<body>
-
-    <header class="main-header">
-        <a href="#" class="logo">88MOB</a>
+<section class="bio-section">
+    <div class="bio-container">
+        <h2 class="section-title">THE INDEPENDENCE CODE</h2>
         
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#tech-hub">Tech Hub</a></li>
-                <li><a href="https://v3gasboi.online">Commerce</a></li>
-                <li><a href="#">Streaming</a></li>
-                <li><a href="#">System</a></li>
-            </ul>
-        </nav>
+        <div class="bio-content">
+            <p class="lead-text">
+                V3GASBOI is a 25-year independent mogul and Las Vegas pillar, representing the authentic hustle of <strong>Owens Ave since 1998</strong>.
+            </p>
 
-        <div style="font-weight: bold; font-size: 0.8rem;">[ 89109 ]</div>
-    </header>
+            <div class="milestone-highlight">
+                <span class="gold-text">KEY COLLABORATION:</span> 
+                <p>2019 featured a landmark project with West Coast legend <strong>C-BO</strong>, cementing V3GASBOI’s global street authority.</p>
+            </div>
 
-    <section class="hero">
-        <p>ACTIVE NODE: LAS VEGAS</p>
-        <h1>V3GASBOI</h1>
-        <div style="margin-top: 20px;">
-            <span style="border: 1px solid var(--v-gold); padding: 5px 15px; color: var(--v-gold); font-size: 0.7rem;">EST. 2026</span>
-        </div>
-    </section>
+            <p>
+                Emerging from the foundational <strong>Lyrical Mindz</strong> era, the brand now operates under the <strong>88MOB</strong> banner. As the CEO of <strong>Vegas Spot LLC</strong>, V3GASBOI bridges the gap between elite music production and global e-commerce via <em>World of Fashions</em>.
+            </p>
 
-    <div class="container" id="tech-hub">
-        <div style="text-align: center;"><h2 class="section-title">GitHub Deployments</h2></div>
-        <div class="product-grid" id="github-feed">
-            <p style="text-align: center; grid-column: 1/-1;">Connecting to GitHub API...</p>
+            <div class="stats-row">
+                <div class="stat-item"><strong>9,000+</strong><span>Verified Streams</span></div>
+                <div class="stat-item"><strong>35</strong><span>Countries Reached</span></div>
+                <div class="stat-item"><strong>100%</strong><span>Ownership</span></div>
+            </div>
         </div>
     </div>
-
-    <script>
-        const GITHUB_USERNAME = 'jonas88evans'; // Change this if needed
-
-        async function loadGithubProjects() {
-            const feed = document.getElementById('github-feed');
-            
-            try {
-                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`);
-                const repos = await response.json();
-                
-                feed.innerHTML = ''; // Clear loading text
-
-                repos.forEach(repo => {
-                    const card = document.createElement('div');
-                    card.className = 'product-card';
-                    card.innerHTML = `
-                        <div class="product-image">📂</div>
-                        <h3 style="margin: 0; font-size: 1.1rem;">${repo.name.toUpperCase()}</h3>
-                        <p style="font-size: 0.8rem; color: #666; height: 50px; overflow: hidden; margin: 15px 0;">
-                            ${repo.description || 'System repository for 89109 EMPIRE deployment.'}
-                        </p>
-                        <div style="font-size: 0.7rem; font-weight: bold; margin-bottom: 10px;">
-                            LANGUAGE: ${repo.language || 'DATA'}
-                        </div>
-                        <a href="${repo.html_url}" target="_blank" class="btn-buy">ACCESS SOURCE</a>
-                    `;
-                    feed.appendChild(card);
-                });
-            } catch (error) {
-                feed.innerHTML = '<p>FAILED TO SYNC WITH GITHUB NODES.</p>';
-            }
-        }
-
-        window.onload = loadGithubProjects;
-    </script>
-</body>
-</html>
+</section>
