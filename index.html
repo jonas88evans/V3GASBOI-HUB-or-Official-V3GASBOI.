@@ -20,12 +20,17 @@
             --ghost: #f5f5f5;
         }
         
+        html {
+            font-size: 18px; /* Base font size increased */
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--midnight);
             color: var(--ghost);
             line-height: 1.6;
             overflow-x: hidden;
+            font-size: 1.125rem; /* 18px base */
         }
         
         .hero {
@@ -47,7 +52,7 @@
             right: 0;
             bottom: 0;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23FFD700" stroke-width="0.5" opacity="0.1"/></svg>');
-            background-size: px 100px;
+            background-size: 100px 100px;
             animation: pulse 4s ease-in-out infinite;
         }
         
@@ -59,11 +64,11 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
+            max-width: 1000px;
         }
         
         h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-size: clamp(4rem, 12vw, 8rem); /* Much larger */
             font-weight: 900;
             letter-spacing: -0.05em;
             text-transform: uppercase;
@@ -71,14 +76,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            line-height: 1.1;
         }
         
         .tagline {
-            font-size: 1.5rem;
+            font-size: 2rem; /* Increased from 1.5rem */
             color: var(--vegas-gold);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             font-weight: 300;
             letter-spacing: 0.2em;
         }
@@ -88,10 +94,10 @@
             justify-content: center;
             gap: 3rem;
             flex-wrap: wrap;
-            margin: 2rem 0;
-            padding: 1.5rem;
+            margin: 2.5rem 0;
+            padding: 2rem;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+            border-radius: 15px;
             backdrop-filter: blur(10px);
         }
         
@@ -100,36 +106,38 @@
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3.5rem; /* Increased from 2.5rem */
             font-weight: 900;
             color: var(--vegas-gold);
             display: block;
+            margin-bottom: 0.5rem;
         }
         
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 1.1rem; /* Increased from 0.9rem */
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             opacity: 0.8;
         }
         
         .cta-group {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
         }
         
         .btn {
-            padding: 1rem 2rem;
+            padding: 1.25rem 2.5rem; /* Larger buttons */
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            border-radius: 5px;
+            border-radius: 8px;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 3px solid transparent;
+            font-size: 1.125rem; /* 18px */
         }
         
         .btn-primary {
@@ -153,31 +161,39 @@
         }
         
         section {
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
         
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 3.5rem; /* Increased from 2.5rem */
+            margin-bottom: 2rem;
             color: var(--vegas-gold);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+        
+        section > p {
+            font-size: 1.5rem; /* Increased section intro text */
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
         }
         
         .story-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
         }
         
         .story-card {
             background: var(--steel);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--vegas-gold);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--vegas-gold);
             transition: transform 0.3s ease;
         }
         
@@ -188,25 +204,37 @@
         .story-year {
             color: var(--vegas-gold);
             font-weight: 900;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem; /* Increased */
+            margin-bottom: 1rem;
+        }
+        
+        .story-card h3 {
+            font-size: 1.75rem; /* Increased */
+            margin-bottom: 1rem;
+            color: var(--ghost);
+        }
+        
+        .story-card p {
+            font-size: 1.25rem; /* Increased */
+            line-height: 1.6;
+            opacity: 0.9;
         }
         
         .platform-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
         }
         
         .platform-card {
             background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 2rem;
+            border-radius: 15px;
             text-decoration: none;
             color: var(--ghost);
             transition: all 0.3s ease;
-            border: 1px solid #333;
+            border: 2px solid #333;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -220,62 +248,77 @@
         }
         
         .platform-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem; /* Increased */
+            margin-bottom: 1.5rem;
         }
         
         .platform-name {
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             color: var(--vegas-gold);
+            font-size: 1.5rem; /* Increased */
         }
         
         .platform-desc {
-            font-size: 0.9rem;
+            font-size: 1.125rem; /* Increased */
             opacity: 0.8;
         }
         
         .achievements-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
         }
         
         .achievement {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
+            gap: 1.5rem;
+            padding: 2rem;
             background: rgba(255, 215, 0, 0.1);
-            border-radius: 5px;
-            border-left: 4px solid var(--vegas-gold);
+            border-radius: 10px;
+            border-left: 5px solid var(--vegas-gold);
+            font-size: 1.375rem; /* Increased */
         }
         
         .achievement-year {
             font-weight: 900;
             color: var(--vegas-gold);
-            min-width: 60px;
+            min-width: 100px;
+            font-size: 1.5rem; /* Increased */
         }
         
         .business-vision {
             background: linear-gradient(135deg, #1a1a2e, #0f3460);
-            padding: 3rem;
-            border-radius: 15px;
-            margin-top: 2rem;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 3.5rem;
+            border-radius: 20px;
+            margin-top: 2.5rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .business-vision h3 {
+            font-size: 2rem; /* Increased */
+            margin-bottom: 1.5rem;
+            color: var(--vegas-gold);
+        }
+        
+        .business-vision h4 {
+            font-size: 1.5rem; /* Increased */
+            margin-bottom: 1rem;
         }
         
         .status-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.25rem;
             background: rgba(0, 255, 0, 0.2);
             color: #00ff00;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            border-radius: 25px;
+            font-size: 1rem; /* Increased */
             font-weight: 700;
             text-transform: uppercase;
-            margin-right: 0.5rem;
+            margin-right: 0.75rem;
+            margin-bottom: 0.5rem;
         }
         
         .status-badge.pending {
@@ -285,60 +328,65 @@
         
         .quotes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
         }
         
         .quote-card {
             background: var(--steel);
-            padding: 2rem;
-            border-radius: 10px;
+            padding: 2.5rem;
+            border-radius: 15px;
             position: relative;
             font-style: italic;
+            font-size: 1.375rem; /* Increased */
+            line-height: 1.6;
         }
         
         .quote-card::before {
             content: '"';
-            font-size: 4rem;
+            font-size: 5rem; /* Increased */
             color: var(--vegas-gold);
             opacity: 0.3;
             position: absolute;
-            top: -10px;
-            left: 10px;
+            top: -15px;
+            left: 15px;
         }
         
         .quote-source {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             font-style: normal;
             font-weight: 700;
             color: var(--vegas-gold);
+            font-size: 1.25rem; /* Increased */
         }
         
         .contact-form {
-            max-width: 600px;
-            margin: 2rem auto;
+            max-width: 700px;
+            margin: 2.5rem auto;
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             color: var(--vegas-gold);
             font-weight: 600;
+            font-size: 1.25rem; /* Increased */
         }
         
         input, select, textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 1.25rem;
             background: var(--steel);
-            border: 1px solid #444;
+            border: 2px solid #444;
             color: var(--ghost);
-            border-radius: 5px;
+            border-radius: 8px;
             font-family: inherit;
+            font-size: 1.125rem; /* Increased */
         }
         
         input:focus, select:focus, textarea:focus {
@@ -347,28 +395,34 @@
         }
         
         textarea {
-            min-height: 150px;
+            min-height: 180px;
             resize: vertical;
         }
         
         footer {
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             background: #050505;
-            border-top: 1px solid #333;
+            border-top: 2px solid #333;
+        }
+        
+        footer p {
+            font-size: 1.25rem; /* Increased */
+            margin-bottom: 1rem;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
         }
         
         .social-links a {
             color: var(--ghost);
-            font-size: 1.5rem;
+            font-size: 2.5rem; /* Increased */
             transition: color 0.3s ease;
+            text-decoration: none;
         }
         
         .social-links a:hover {
@@ -376,12 +430,29 @@
         }
         
         @media (max-width: 768px) {
+            html {
+                font-size: 16px; /* Slightly smaller on mobile but still readable */
+            }
+            
+            h1 {
+                font-size: clamp(3rem, 10vw, 5rem);
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
             .stats-bar {
                 gap: 1.5rem;
+                padding: 1.5rem;
             }
             
             .stat-number {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.9rem;
             }
             
             .cta-group {
@@ -392,6 +463,17 @@
             .btn {
                 width: 100%;
                 text-align: center;
+                font-size: 1rem;
+            }
+            
+            .achievement {
+                flex-direction: column;
+                text-align: center;
+                font-size: 1.125rem;
+            }
+            
+            .achievement-year {
+                min-width: auto;
             }
         }
         
@@ -538,61 +620,4 @@
                 <span>New York Music Festival — 2nd Place</span>
             </div>
             <div class="achievement">
-                <span class="achievement-year">2014</span>
-                <span>New York Music Festival — 3rd Place</span>
-            </div>
-            <div class="achievement">
-                <span class="achievement-year">2007-10</span>
-                <span>Platinum Plus Entertainment — 8 mixtapes, 2 albums, 30,000+ sales</span>
-            </div>
-            <div class="achievement">
-                <span class="achievement-year">2024-25</span>
-                <span>America's Next Top Hitmaker — Competitor</span>
-            </div>
-            <div class="achievement">
-                <span class="achievement-year">2025</span>
-                <span>5th Place — Timbaland & Scott Storch National Talent Search</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="business" style="background: #0f0f0f;">
-        <h2>88MOB Vision</h2>
-        <p>Building the blueprint for independent artists in the digital age.</p>
-        
-        <div class="business-vision">
-            <h3>Current Operations</h3>
-            <p style="margin: 1rem 0;">
-                <span class="status-badge">Active</span> AI-Assisted Production<br>
-                <span class="status-badge">Active</span> Global Digital Distribution<br>
-                <span class="status-badge">Active</span> Daily Content Creation<br>
-                <span class="status-badge pending">Development</span> Merchandise & E-commerce<br>
-                <span class="status-badge pending">Development</span> Logistics & Fulfillment
-            </p>
-            
-            <p style="margin-top: 1.5rem; opacity: 0.9;">
-                Managing global reach while mastering tracks with modern tools. The hustle never sleeps in the shadows of the casinos.
-            </p>
-            
-            <div style="margin-top: 2rem;">
-                <h4>Partnership Inquiries Welcome</h4>
-                <p style="font-size: 0.9rem; opacity: 0.8;">
-                    Investment • Distribution • Merchandise • Technology
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="press">
-        <h2>The Street Word</h2>
-        
-        <div class="quotes-grid">
-            <div class="quote-card">
-                <p>V3GASBOI is the only one keeping it real for the Vegas streets. That work ethic is undeniable.</p>
-                <div class="quote-source">— Street Authority / Las Vegas</div>
-            </div>
-            <div class="quote-card">
-                <p>Elite production and absolute ownership. 88MOB is the blueprint for independent artists in 2026.</p>
-                <div class="quote-source">— Industry Insider</div>
-            </div>
-            <div clas
+                <span class="achievement-year">2014</s
