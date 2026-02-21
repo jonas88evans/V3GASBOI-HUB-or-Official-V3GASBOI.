@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | The Independence Code - Official Worldwide Hub</title>
-    <meta name="description" content="V3GASBOI: 20+ years of hip-hop from St. Louis to Las Vegas. 9,372+ streams across 35 countries. Daily releases. Bookings open.">
+    <title>V3GASBOI | The Independence Code</title>
     <style>
         * {
             margin: 0;
@@ -14,14 +13,8 @@
         
         :root {
             --vegas-gold: #FFD700;
-            --blood-red: #DC143C;
             --midnight: #0a0a0a;
-            --steel: #2a2a2a;
             --ghost: #f5f5f5;
-        }
-        
-        html {
-            font-size: 18px; /* Base font size increased */
         }
         
         body {
@@ -29,76 +22,51 @@
             background: var(--midnight);
             color: var(--ghost);
             line-height: 1.6;
-            overflow-x: hidden;
-            font-size: 1.125rem; /* 18px base */
         }
         
+        /* HERO SECTION */
         .hero {
             min-height: 100vh;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%23FFD700" stroke-width="0.5" opacity="0.1"/></svg>');
-            background-size: 100px 100px;
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.3; }
+            padding: 3rem;
         }
         
         .hero-content {
-            position: relative;
-            z-index: 2;
             max-width: 1000px;
         }
         
         h1 {
-            font-size: clamp(4rem, 12vw, 8rem); /* Much larger */
+            font-size: clamp(5rem, 15vw, 10rem);
             font-weight: 900;
-            letter-spacing: -0.05em;
             text-transform: uppercase;
             background: linear-gradient(45deg, var(--vegas-gold), #fff, var(--vegas-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            line-height: 1;
         }
         
         .tagline {
-            font-size: 2rem; /* Increased from 1.5rem */
+            font-size: 2.5rem;
             color: var(--vegas-gold);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             font-weight: 300;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.3em;
         }
         
         .stats-bar {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 4rem;
             flex-wrap: wrap;
-            margin: 2.5rem 0;
-            padding: 2rem;
+            margin: 3rem 0;
+            padding: 2.5rem;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+            border-radius: 20px;
         }
         
         .stat {
@@ -106,15 +74,14 @@
         }
         
         .stat-number {
-            font-size: 3.5rem; /* Increased from 2.5rem */
+            font-size: 4rem;
             font-weight: 900;
             color: var(--vegas-gold);
             display: block;
-            margin-bottom: 0.5rem;
         }
         
         .stat-label {
-            font-size: 1.1rem; /* Increased from 0.9rem */
+            font-size: 1.25rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             opacity: 0.8;
@@ -122,22 +89,22 @@
         
         .cta-group {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2.5rem;
+            margin-top: 3rem;
         }
         
         .btn {
-            padding: 1.25rem 2.5rem; /* Larger buttons */
+            padding: 1.5rem 3rem;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: all 0.3s ease;
             border: 3px solid transparent;
-            font-size: 1.125rem; /* 18px */
+            font-size: 1.25rem;
         }
         
         .btn-primary {
@@ -146,8 +113,8 @@
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
         }
         
         .btn-outline {
@@ -160,290 +127,145 @@
             color: var(--midnight);
         }
         
-        section {
+        /* MUSIC/ALBUMS SECTION */
+        .music-section {
             padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        h2 {
-            font-size: 3.5rem; /* Increased from 2.5rem */
-            margin-bottom: 2rem;
-            color: var(--vegas-gold);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            line-height: 1.2;
-        }
-        
-        section > p {
-            font-size: 1.5rem; /* Increased section intro text */
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 800px;
-        }
-        
-        .story-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2.5rem;
-        }
-        
-        .story-card {
-            background: var(--steel);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border-left: 5px solid var(--vegas-gold);
-            transition: transform 0.3s ease;
-        }
-        
-        .story-card:hover {
-            transform: translateX(10px);
-        }
-        
-        .story-year {
-            color: var(--vegas-gold);
-            font-weight: 900;
-            font-size: 1.5rem; /* Increased */
-            margin-bottom: 1rem;
-        }
-        
-        .story-card h3 {
-            font-size: 1.75rem; /* Increased */
-            margin-bottom: 1rem;
-            color: var(--ghost);
-        }
-        
-        .story-card p {
-            font-size: 1.25rem; /* Increased */
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-        
-        .platform-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-        
-        .platform-card {
-            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
-            padding: 2rem;
-            border-radius: 15px;
-            text-decoration: none;
-            color: var(--ghost);
-            transition: all 0.3s ease;
-            border: 2px solid #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: #0a0a0a;
             text-align: center;
         }
         
-        .platform-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--vegas-gold);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-        }
-        
-        .platform-icon {
-            font-size: 3.5rem; /* Increased */
-            margin-bottom: 1.5rem;
-        }
-        
-        .platform-name {
-            font-weight: 700;
-            margin-bottom: 0.75rem;
+        .music-section h2 {
+            font-size: 3.5rem;
             color: var(--vegas-gold);
-            font-size: 1.5rem; /* Increased */
+            margin-bottom: 1rem;
+            text-transform: uppercase;
         }
         
-        .platform-desc {
-            font-size: 1.125rem; /* Increased */
+        .music-section > p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
             opacity: 0.8;
         }
         
-        .achievements-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         
-        .achievement {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 2rem;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
-            border-left: 5px solid var(--vegas-gold);
-            font-size: 1.375rem; /* Increased */
+        .album-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #1a1a1a;
         }
         
-        .achievement-year {
-            font-weight: 900;
-            color: var(--vegas-gold);
-            min-width: 100px;
-            font-size: 1.5rem; /* Increased */
+        .album-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
         }
         
-        .business-vision {
-            background: linear-gradient(135deg, #1a1a2e, #0f3460);
-            padding: 3.5rem;
-            border-radius: 20px;
-            margin-top: 2.5rem;
-            border: 2px solid rgba(255, 215, 0, 0.3);
+        .album-card img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
         
-        .business-vision h3 {
-            font-size: 2rem; /* Increased */
-            margin-bottom: 1.5rem;
-            color: var(--vegas-gold);
+        .album-info {
+            padding: 1.5rem;
         }
         
-        .business-vision h4 {
-            font-size: 1.5rem; /* Increased */
-            margin-bottom: 1rem;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 0.75rem 1.25rem;
-            background: rgba(0, 255, 0, 0.2);
-            color: #00ff00;
-            border-radius: 25px;
-            font-size: 1rem; /* Increased */
+        .album-title {
+            font-size: 1.5rem;
             font-weight: 700;
-            text-transform: uppercase;
-            margin-right: 0.75rem;
+            color: var(--vegas-gold);
             margin-bottom: 0.5rem;
         }
         
-        .status-badge.pending {
-            background: rgba(255, 215, 0, 0.2);
-            color: var(--vegas-gold);
+        .album-artist {
+            font-size: 1.125rem;
+            opacity: 0.8;
         }
         
-        .quotes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2.5rem;
-        }
-        
-        .quote-card {
-            background: var(--steel);
-            padding: 2.5rem;
-            border-radius: 15px;
-            position: relative;
-            font-style: italic;
-            font-size: 1.375rem; /* Increased */
-            line-height: 1.6;
-        }
-        
-        .quote-card::before {
-            content: '"';
-            font-size: 5rem; /* Increased */
-            color: var(--vegas-gold);
-            opacity: 0.3;
-            position: absolute;
-            top: -15px;
-            left: 15px;
-        }
-        
-        .quote-source {
-            margin-top: 1.5rem;
-            font-style: normal;
+        .stream-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--vegas-gold);
+            color: var(--midnight);
+            text-decoration: none;
+            border-radius: 5px;
             font-weight: 700;
-            color: var(--vegas-gold);
-            font-size: 1.25rem; /* Increased */
+            font-size: 1rem;
+            transition: transform 0.2s ease;
         }
         
-        .contact-form {
-            max-width: 700px;
-            margin: 2.5rem auto;
+        .stream-btn:hover {
+            transform: scale(1.05);
         }
         
-        .form-group {
-            margin-bottom: 2rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.75rem;
-            color: var(--vegas-gold);
-            font-weight: 600;
-            font-size: 1.25rem; /* Increased */
-        }
-        
-        input, select, textarea {
-            width: 100%;
-            padding: 1.25rem;
-            background: var(--steel);
-            border: 2px solid #444;
-            color: var(--ghost);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1.125rem; /* Increased */
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--vegas-gold);
-        }
-        
-        textarea {
-            min-height: 180px;
-            resize: vertical;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 4rem 2rem;
+        /* FOOTER SECTION */
+        .footer {
             background: #050505;
-            border-top: 2px solid #333;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 3px solid #333;
         }
         
-        footer p {
-            font-size: 1.25rem; /* Increased */
-            margin-bottom: 1rem;
+        .footer h2 {
+            font-size: 3rem;
+            color: var(--vegas-gold);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 3rem;
             margin-bottom: 2.5rem;
+            flex-wrap: wrap;
         }
         
         .social-links a {
             color: var(--ghost);
-            font-size: 2.5rem; /* Increased */
-            transition: color 0.3s ease;
+            font-size: 3rem;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         
         .social-links a:hover {
             color: var(--vegas-gold);
         }
         
+        .footer p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer .copyright {
+            font-size: 1.25rem;
+            opacity: 0.6;
+            margin-top: 2rem;
+        }
+        
+        /* Mobile */
         @media (max-width: 768px) {
-            html {
-                font-size: 16px; /* Slightly smaller on mobile but still readable */
-            }
-            
             h1 {
-                font-size: clamp(3rem, 10vw, 5rem);
+                font-size: clamp(3.5rem, 12vw, 6rem);
             }
             
-            h2 {
-                font-size: 2.5rem;
+            .tagline {
+                font-size: 1.5rem;
+                letter-spacing: 0.2em;
             }
             
             .stats-bar {
-                gap: 1.5rem;
+                gap: 2rem;
                 padding: 1.5rem;
             }
             
@@ -452,45 +274,46 @@
             }
             
             .stat-label {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
             
             .cta-group {
                 flex-direction: column;
-                width: 100%;
             }
             
             .btn {
                 width: 100%;
-                text-align: center;
-                font-size: 1rem;
-            }
-            
-            .achievement {
-                flex-direction: column;
-                text-align: center;
                 font-size: 1.125rem;
             }
             
-            .achievement-year {
-                min-width: auto;
+            .music-section h2 {
+                font-size: 2.5rem;
             }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            
+            .album-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer h2 {
+                font-size: 2rem;
+            }
+            
+            .social-links a {
+                font-size: 2.5rem;
+            }
+            
+            .footer p {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- HERO SECTION -->
     <header class="hero">
-        <div class="hero-content fade-in">
+        <div class="hero-content">
             <h1>V3GASBOI</h1>
             <p class="tagline">The Independence Code | 88MOB</p>
             
@@ -515,109 +338,94 @@
             
             <div class="cta-group">
                 <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="btn btn-primary">Stream Now</a>
-                <a href="#story" class="btn btn-outline">The Story</a>
-                <a href="#contact" class="btn btn-outline">Bookings</a>
+                <a href="#music" class="btn btn-outline">Latest Drops</a>
+                <a href="https://www.youtube.com/@vegasboi2147" class="btn btn-outline">YouTube</a>
             </div>
         </div>
     </header>
 
-    <section id="story">
-        <h2>From St. Louis to the World</h2>
-        <p>Started with my brother Krane in the Lou. Built Lyrical Minds in the desert. Hit #1 on Vegas radio. Competed nationally. Now independent and global.</p>
+    <!-- MUSIC/ALBUMS SECTION -->
+    <section class="music-section" id="music">
+        <h2>Latest Releases</h2>
+        <p>Fresh heat from the 88MOB vault</p>
         
-        <div class="story-grid">
-            <div class="story-card">
-                <div class="story-year">2002</div>
-                <h3>The Move</h3>
-                <p>Left St. Louis at 18 with Krane. Landed in Vegas with lyrics and hunger.</p>
+        <div class="album-grid">
+            <!-- Album 1 -->
+            <div class="album-card">
+                <img src="1000000195.png" alt="She Wit That Shit">
+                <div class="album-info">
+                    <div class="album-title">She Wit That Shit</div>
+                    <div class="album-artist">V3GASBOI</div>
+                    <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="stream-btn">Stream Now</a>
+                </div>
             </div>
-            <div class="story-card">
-                <div class="story-year">2007-2010</div>
-                <h3>Platinum Plus Era</h3>
-                <p>Signed label deal. Released 8 mixtapes, 2 albums. Sold 30,000+ units hand-to-hand.</p>
+            
+            <!-- Album 2 -->
+            <div class="album-card">
+                <img src="1000000196.png" alt="Fuk My Enemies">
+                <div class="album-info">
+                    <div class="album-title">Fuk My Enemies</div>
+                    <div class="album-artist">V3GASBOI</div>
+                    <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="stream-btn">Stream Now</a>
+                </div>
             </div>
-            <div class="story-card">
-                <div class="story-year">2009-2015</div>
-                <h3>Lyrical Minds</h3>
-                <p>Built collective. #1 radio hit "Steady Ballen." Lost three brothers. Group fractured. Dream didn't.</p>
+            
+            <!-- Album 3 -->
+            <div class="album-card">
+                <img src="1000000197.png" alt="The Way She Twrking">
+                <div class="album-info">
+                    <div class="album-title">The Way She Twrking</div>
+                    <div class="album-artist">V3GASBOI</div>
+                    <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="stream-btn">Stream Now</a>
+                </div>
             </div>
-            <div class="story-card">
-                <div class="story-year">2015-Now</div>
-                <h3>Solo Mission</h3>
-                <p>Became V3GASBOI. The "3" is for Tyree, T-Craze, J-BUCC. Five mixtapes. Three EPs. Daily grind.</p>
+            
+            <!-- Album 4 -->
+            <div class="album-card">
+                <img src="1000000193.png" alt="Turn Me Into A Monster">
+                <div class="album-info">
+                    <div class="album-title">Turn Me Into A Monster</div>
+                    <div class="album-artist">V3GASBOI</div>
+                    <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="stream-btn">Stream Now</a>
+                </div>
+            </div>
+            
+            <!-- Album 5 -->
+            <div class="album-card">
+                <img src="1000000194.png" alt="Smoking It To The Face">
+                <div class="album-info">
+                    <div class="album-title">Smoking It To The Face</div>
+                    <div class="album-artist">V3GASBOI</div>
+                    <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="stream-btn">Stream Now</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="platforms" style="background: #0f0f0f;">
-        <h2>Every Platform. Every Day.</h2>
-        <p>Find the music wherever you stream. New drops daily.</p>
+    <!-- FOOTER SECTION -->
+    <footer class="footer">
+        <h2>Connect Worldwide</h2>
         
-        <div class="platform-grid">
-            <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" class="platform-card">
-                <div class="platform-icon">☁️</div>
-                <div class="platform-name">SoundCloud</div>
-                <div class="platform-desc">Full catalog & mixtapes</div>
-            </a>
-            <a href="https://music.apple.com/us/artist/vegasboi/1762524945" class="platform-card">
-                <div class="platform-icon">🍎</div>
-                <div class="platform-name">Apple Music</div>
-                <div class="platform-desc">Official releases</div>
-            </a>
-            <a href="https://www.youtube.com/@vegasboi2147" class="platform-card">
-                <div class="platform-icon">📺</div>
-                <div class="platform-name">YouTube</div>
-                <div class="platform-desc">Videos & visuals</div>
-            </a>
-            <a href="https://www.tiktok.com/@v3gasboii" class="platform-card">
-                <div class="platform-icon">🎵</div>
-                <div class="platform-name">TikTok</div>
-                <div class="platform-desc">Clips & trends</div>
-            </a>
-            <a href="https://www.reverbnation.com/VegasBoiLV" class="platform-card">
-                <div class="platform-icon">🎤</div>
-                <div class="platform-name">ReverbNation</div>
-                <div class="platform-desc">Local Vegas presence</div>
-            </a>
-            <a href="https://show4me.com/vegasboi" class="platform-card">
-                <div class="platform-icon">🎸</div>
-                <div class="platform-name">Show4me</div>
-                <div class="platform-desc">Fan support hub</div>
-            </a>
-            <a href="https://tidal.com/artist/50489161/u" class="platform-card">
-                <div class="platform-icon">🌊</div>
-                <div class="platform-name">TIDAL</div>
-                <div class="platform-desc">Hi-fi streaming</div>
-            </a>
-            <a href="https://www.hitmkr.com/v3gasboi" class="platform-card">
-                <div class="platform-icon">🏆</div>
-                <div class="platform-name">Hitmkr</div>
-                <div class="platform-desc">Competition platform</div>
-            </a>
-            <a href="https://voloco.resonantcavity.com/applinks/creator?id=2198222" class="platform-card">
-                <div class="platform-icon">🎛️</div>
-                <div class="platform-name">Voloco</div>
-                <div class="platform-desc">Daily vocal drops</div>
-            </a>
-            <a href="https://soundbirth.lnk.to/WeeklyHipHopRnB" class="platform-card">
-                <div class="platform-icon">🎧</div>
-                <div class="platform-name">Spotify Playlist</div>
-                <div class="platform-desc">Weekly Hip Hop R&B</div>
-            </a>
+        <div class="social-links">
+            <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" title="SoundCloud">☁️</a>
+            <a href="https://music.apple.com/us/artist/vegasboi/1762524945" title="Apple Music">🍎</a>
+            <a href="https://www.youtube.com/@vegasboi2147" title="YouTube">📺</a>
+            <a href="https://www.tiktok.com/@v3gasboii" title="TikTok">🎵</a>
+            <a href="https://www.reverbnation.com/VegasBoiLV" title="ReverbNation">🎤</a>
+            <a href="https://show4me.com/vegasboi" title="Show4me">🎸</a>
+            <a href="https://tidal.com/artist/50489161/u" title="TIDAL">🌊</a>
+            <a href="https://www.hitmkr.com/v3gasboi" title="Hitmkr">🏆</a>
         </div>
-    </section>
-
-    <section id="achievements">
-        <h2>Verified Career Highlights</h2>
         
-        <div class="achievements-list">
-            <div class="achievement">
-                <span class="achievement-year">2010</span>
-                <span>"Steady Ballen" — #1 Las Vegas 98.5 FM (4 consecutive weeks)</span>
-            </div>
-            <div class="achievement">
-                <span class="achievement-year">2002</span>
-                <span>New York Music Festival — 2nd Place</span>
-            </div>
-            <div class="achievement">
-                <span class="achievement-year">2014</s
+        <p>Booking • Features • Press • Business</p>
+        <p><a href="mailto:booking@v3gasboi.com" style="color: var(--vegas-gold); text-decoration: none;">booking@v3gasboi.com</a></p>
+        
+        <p class="copyright">
+            © 2025 V3GASBOI. All rights reserved.<br>
+            Independent. Global. Unstoppable.
+        </p>
+    </footer>
+
+</body>
+                        </html>
+                    
