@@ -1,5 +1,5 @@
 # 🎲 V3GASBOI-HUB
-
+## Jonas Evans Jonas88evans@gmail.com
 ## The Sound & Movement | The Hustle
 **V3GASBOI** is a 25-year independent mogul and Las Vegas pillar, representing the authentic hustle of Owens Ave since 1998. Emerging from the foundational **Lyrical Mindz** era, the V3GASBOI brand represents the 'Independence Code'.
 
