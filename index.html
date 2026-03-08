@@ -3,422 +3,231 @@
 3   <head>
 4       <meta charset="UTF-8">
 5       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-6       <title>VibeSync</title>
-7       <script src="https://cdn.tailwindcss.com"></script>
-8       <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-9       <style>
-10          *{margin:0;padding:0;box-sizing:border-box}
-11          body{font-family:'Inter',sans-serif;background:#050505;color:#fff;overflow:hidden;height:100vh;width:100vw}
-12          .font-display{font-family:'Syncopate',sans-serif}
-13          #bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at center,rgba(20,20,40,0.8) 0%,#050505 100%)}
-14          #viz-canvas{position:fixed;inset:0;z-index:1;opacity:0.6}
-15          #ui{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem}
-16          .panel{background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:3rem;max-width:500px;width:100%;text-align:center;transition:all 0.5s ease}
-17          .panel:hover{border-color:rgba(255,255,255,0.15)}
-18          .title{font-size:2.5rem;font-weight:700;margin-bottom:0.5rem;background:linear-gradient(135deg,#00d4ff,#7b2cbf,#ff006e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-19          .subtitle{color:#888;font-size:0.875rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:2rem}
-20          .dropzone{border:2px dashed rgba(255,255,255,0.2);border-radius:16px;padding:2rem;cursor:pointer;transition:all 0.3s}
-21          .dropzone:hover,.dropzone.dragover{border-color:#00d4ff;background:rgba(0,212,255,0.05)}
-22          .dropzone svg{width:48px;height:48px;margin:0 auto 1rem;color:#666}
-23          .dropzone p{color:#ccc;font-size:1.125rem;margin-bottom:0.5rem}
-24          .dropzone span{color:#666;font-size:0.75rem}
-25          .hidden{display:none!important}
-26          .player-ui{width:100%;max-width:800px}
-27          .affirmation-box{margin:2rem 0;padding:2rem}
-28          .affirmation-text{font-size:clamp(1.5rem,5vw,3.5rem);font-weight:700;line-height:1.2;margin-bottom:1rem;transition:all 0.8s ease;text-shadow:0 0 40px currentColor}
-29          .affirmation-sub{font-size:1rem;color:#888;font-style:italic}
-30          .mood-tag{display:inline-block;padding:0.5rem 1rem;border-radius:9999px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;background:rgba(255,255,255,0.1)}
-31          .controls{display:flex;align-items:center;gap:1rem;margin-top:2rem;padding:1.5rem;background:rgba(0,0,0,0.3);border-radius:16px}
-32          .btn{width:56px;height:56px;border-radius:50%;background:#fff;color:#000;border:none;cursor:pointer;display:flex;align-items:center;justify-center;transition:transform 0.2s}
-33          .btn:hover{transform:scale(1.05)}
-34          .btn svg{width:24px;height:24px}
-35          .progress{flex:1;height:6px;background:rgba(255,255,255,0.1);border-radius:3px;cursor:pointer;position:relative}
-36          .progress-fill{height:100%;background:linear-gradient(90deg,#00d4ff,#7b2cbf);border-radius:3px;width:0%;transition:width 0.1s linear}
-37          .time{font-size:0.75rem;color:#666;font-family:monospace;min-width:100px;text-align:right}
-38          .top-bar{position:fixed;top:0;left:0;right:0;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;z-index:20}
-39          .back-btn{background:none;border:none;color:#888;cursor:pointer;font-size:0.875rem;display:flex;align-items:center;gap:0.5rem}
-40          .back-btn:hover{color:#fff}
-41          .save-btn{background:rgba(255,255,255,0.1);border:none;color:#fff;padding:0.75rem 1.5rem;border-radius:9999px;cursor:pointer;font-size:0.875rem;transition:all 0.3s}
-42          .save-btn:hover{background:rgba(255,255,255,0.2)}
-43          .energy-bars{display:flex;gap:3px;align-items:end;height:30px}
-44          .energy-bar{width:4px;background:linear-gradient(to top,#00d4ff,#7b2cbf);border-radius:2px;transition:height 0.1s ease}
-45      </style>
-46  </head>
-47  <body>
-48      <div id="bg"></div>
-49      <canvas id="viz-canvas"></canvas>
-50      
-51      <div id="upload-screen" class="ui">
-52          <div class="panel">
-53              <h1 class="title font-display">VIBESYNC</h1>
-54              <p class="subtitle">Music Mood Affirmations</p>
-55              <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
-56                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
-57                  <p>Drop audio file here</p>
-58                  <span>MP3 • WAV • OGG • M4A • FLAC</span>
-59              </div>
-60              <input type="file" id="file-input" accept="audio/*" class="hidden" onchange="handleFile(event)">
-61          </div>
-61      </div>
-62      
-63      <div id="player-screen" class="hidden" style="position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;">
-64          <div class="top-bar">
-65              <button class="back-btn" onclick="reset()">← Back</button>
-66              <div class="energy-bars" id="mini-viz"></div>
-67              <button class="save-btn" onclick="saveAffirmation()">Save ✓</button>
-68          </div>
-69          
-70          <div id="ui" style="flex:1;justify-content:center;">
-71              <div class="player-ui">
-72                  <div class="affirmation-box text-center">
-73                      <div class="mood-tag" id="mood-badge">Analyzing...</div>
-74                      <h2 class="affirmation-text font-display" id="affirmation">Upload music to begin</h2>
-75                      <p class="affirmation-sub" id="sub-affirmation">Your vibe is waiting</p>
-76                  </div>
-77                  
-78                  <div class="controls">
-79                      <button class="btn" id="play-btn" onclick="togglePlay()">
-80                          <svg id="icon-play" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-81                          <svg id="icon-pause" class="hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-81                      </button>
-82                      <div class="progress" id="progress-bar" onclick="seek(event)">
-83                          <div class="progress-fill" id="progress-fill"></div>
-84                      </div>
-85                      <span class="time" id="time-display">0:00 / 0:00</span>
-86                  </div>
-87              </div>
-88          </div>
-89      </div>
-90      
-91      <audio id="audio" crossorigin="anonymous"></audio>
-92      
-93      <script>
-94      const affirmations={
-95          high:{
-96              color:'#ff006e',
-97              texts:[
-98                  {main:"You are pure unstoppable force",sub:"Let the energy carry you forward"},
-99                  {main:"Your power radiates outward",sub:"Own every moment with confidence"},
-100                 {main:"You conquer what you imagine",sub:"Strength flows through your veins"},
-101                 {main:"You are fire and momentum",sub:"Burn bright, move fast"},
-102                 {main:"Your potential is infinite",sub:"Today you rise higher"}
-103             ]
-104         },
-105         calm:{
-106             color:'#00d4ff',
-107             texts:[
-108                 {main:"Peace lives within you always",sub:"Breathe in clarity, exhale doubt"},
-109                 {main:"You are exactly where you belong",sub:"Trust the gentle unfolding"},
-110                 {main:"Stillness is your superpower",sub:"In quiet, you find strength"},
-111                 {main:"You flow like water",sub:"Soft, persistent, unstoppable"},
-112                 {main:"Every breath is renewal",sub:"Be here, be now, be whole"}
-113             ]
-114         },
-115         focus:{
-116             color:'#7b2cbf',
-117             texts:[
-118                 {main:"Your mind is crystal clear",sub:"Distraction dissolves, purpose remains"},
-119                 {main:"You create with intention",sub:"Every action moves you forward"},
-120                 {main:"Clarity comes naturally",sub:"See the path, walk the path"},
-121                 {main:"You are fully present now",sub:"This moment is yours completely"},
-122                 {main:"Your vision drives you",sub:"Stay the course, trust yourself"}
-123             ]
-124         },
-125         happy:{
-126             color:'#ffaa00',
-127             texts:[
-128                 {main:"Joy radiates from your core",sub:"Smile with your entire being"},
-129                 {main:"You attract beautiful moments",sub:"Happiness is your natural state"},
-130                 {main:"Your light touches everything",sub:"Share your glow generously"},
-131                 {main:"You deserve all good things",sub:"Abundance flows to you easily"},
-132                 {main:"Today is your gift",sub:"Celebrate simply being alive"}
-133             ]
-134         }
-135     };
-136     
-137     let audio=document.getElementById('audio');
-138     let audioCtx,analyser,source;
-138     let isPlaying=false;
-139     let currentMood='calm';
-140     let currentAffIndex=0;
-141     let energyLevel=0;
-142     let bassLevel=0;
-143     let lastMoodChange=0;
-144     
-145     // Create mini visualizer bars
-146     const miniViz=document.getElementById('mini-viz');
-147     for(let i=0;i<16;i++){
-148         let bar=document.createElement('div');
-149         bar.className='energy-bar';
-150         bar.style.height='4px';
-151         miniViz.appendChild(bar);
-152     }
-153     
-154     // Drag and drop
-155     const dropzone=document.getElementById('dropzone');
-156     dropzone.addEventListener('dragover',(e)=>{e.preventDefault();dropzone.classList.add('dragover')});
-157     dropzone.addEventListener('dragleave',()=>dropzone.classList.remove('dragover'));
-158     dropzone.addEventListener('drop',(e)=>{
-159         e.preventDefault();
-160         dropzone.classList.remove('dragover');
-161         if(e.dataTransfer.files[0]?.type.includes('audio')){
-162             handleFile({target:{files:e.dataTransfer.files}});
-163         }
-164     });
-165     
-165     function handleFile(e){
-166         let file=e.target.files[0];
-167         if(!file)return;
-168         
-169         // Validate audio
-170         if(!file.type.includes('audio')){
-171             alert('Please upload an audio file');
-172             return;
-173         }
-174         
-175         // Load audio
-176         let url=URL.createObjectURL(file);
-177         audio.src=url;
-178         
-179         // Show player
-180         document.getElementById('upload-screen').classList.add('hidden');
-181         document.getElementById('player-screen').classList.remove('hidden');
-182         
-183         // Initialize audio context on first play
-184         audio.oncanplay=()=>{
-185             initAudio();
-186             togglePlay();
-187         };
-188     }
-189     
-190     function initAudio(){
-191         if(audioCtx)return;
+6       <title>Affirmation Vibe</title>
+7       <style>
+8           *{margin:0;padding:0;box-sizing:border-box}
+9           body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+10          .screen{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:absolute;transition:opacity .5s}
+11          .hidden{opacity:0;pointer-events:none}
+12          #drop{width:280px;height:280px;border:2px dashed #444;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .3s}
+13          #drop:hover{border-color:#888;transform:scale(1.02)}
+14          #drop p{margin-top:1rem;font-size:14px;color:#888}
+15          h1{font-size:clamp(2rem,10vw,6rem);font-weight:200;text-align:center;padding:0 2rem;line-height:1.1;letter-spacing:-.02em}
+16          #sub{margin-top:1.5rem;font-size:1.25rem;color:#666;font-weight:300}
+17          #mood{position:fixed;top:2rem;font-size:12px;text-transform:uppercase;letter-spacing:4px;color:#444}
+18          #controls{position:fixed;bottom:3rem;display:flex;gap:1rem;align-items:center}
+19          button{background:transparent;border:1px solid #333;color:#fff;padding:.75rem 2rem;border-radius:100px;cursor:pointer;font-size:13px;transition:all .2s}
+20          button:hover{border-color:#fff;background:rgba(255,255,255,.05)}
+21          #progress{width:150px;height:3px;background:#222;border-radius:2px;cursor:pointer}
+22          #fill{height:100%;background:#fff;border-radius:2px;width:0%;transition:width .1s}
+23          input[type="file"]{display:none}
+24          canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.2}
+25      </style>
+26  </head>
+27  <body>
+28      <canvas id="viz"></canvas>
+29      
+30      <div id="upload" class="screen">
+31          <div id="drop" onclick="document.querySelector('input').click()">
+32              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1">
+33                  <circle cx="12" cy="12" r="10"/>
+34                  <path d="M12 8v8M8 12h8"/>
+35              </svg>
+36              <p>Drop music or click</p>
+37          </div>
+38          <input type="file" accept="audio/*" onchange="load(event)">
+39      </div>
+40      
+41      <div id="player" class="screen hidden">
+42          <div id="mood">Listening</div>
+43          <h1 id="affirmation">You are exactly where you need to be</h1>
+44          <p id="sub">Breathe and receive</p>
+44          <div id="controls">
+45              <button onclick="toggle()">Play</button>
+46              <div id="progress" onclick="seek(event)"><div id="fill"></div></div>
+47              <button onclick="save()">Save</button>
+48              <button onclick="reset()">Back</button>
+49          </div>
+50      </div>
+51      
+52      <audio id="audio" crossorigin="anonymous"></audio>
+53      
+54      <script>
+55      const affirmations={
+56          high:["You are unstoppable energy","Your power radiates outward","You conquer every challenge","You are pure momentum","Your strength is infinite"],
+57          calm:["Peace flows through you now","You are exactly here","Stillness is your power","You flow like water","Every breath renews you"],
+58          focus:["Your mind is crystal clear","You create with intention","Distraction fades away","You are fully present","Trust your vision"],
+59          happy:["Joy lives within you","You attract beautiful moments","Your light shines bright","You deserve all good things","Today is your gift"]
+60      };
+61      
+62      let audio=document.getElementById('audio');
+63      let ctx,analyser,source,playing=false;
+64      let currentMood='calm';
+65      let currentIndex=0;
+66      
+67      function load(e){
+68          let file=e.target.files[0];
+69          if(!file||!file.type.includes('audio'))return alert('Please upload audio file');
+70          
+71          audio.src=URL.createObjectURL(file);
+72          document.getElementById('upload').classList.add('hidden');
+73          document.getElementById('player').classList.remove('hidden');
+74          
+75          initAudio();
+76          toggle();
+77          updateAffirmation();
+78      }
+79      
+80      function initAudio(){
+81          if(ctx)return;
+82          
+83          try{
+84              ctx=new(window.AudioContext||window.webkitAudioContext)();
+85              analyser=ctx.createAnalyser();
+86              analyser.fftSize=256;
+87              
+88              source=ctx.createMediaElementSource(audio);
+89              source.connect(analyser);
+90              analyser.connect(ctx.destination);
+91              
+92              drawViz();
+93              detectMoodLoop();
+94          }catch(err){
+95              console.error('Audio init failed:',err);
+96          }
+97      }
+98      
+99      function drawViz(){
+100         let canvas=document.getElementById('viz');
+101         let c=canvas.getContext('2d');
+102         canvas.width=window.innerWidth;
+103         canvas.height=window.innerHeight;
+104         
+105         function frame(){
+106             requestAnimationFrame(frame);
+107             
+108             let data=new Uint8Array(analyser.frequencyBinCount);
+109             analyser.getByteFrequencyData(data);
+110             
+111             c.fillStyle='rgba(10,10,10,.15)';
+112             c.fillRect(0,0,canvas.width,canvas.height);
+113             
+114             let w=canvas.width/data.length;
+115             for(let i=0;i<data.length;i++){
+115                 let h=(data[i]/255)*canvas.height*.5;
+116                 c.fillStyle=`hsla(${200+i},70%,60%,${data[i]/500})`;
+117                 c.fillRect(i*w,canvas.height-h,w,h);
+118             }
+119         }
+120         frame();
+121     }
+122     
+123     function detectMoodLoop(){
+124         setInterval(()=>{
+125             if(!playing||!analyser)return;
+126             
+127             let data=new Uint8Array(analyser.frequencyBinCount);
+128             analyser.getByteFrequencyData(data);
+129             
+130             let sum=0,bass=0;
+131             for(let i=0;i<data.length;i++){
+132                 sum+=data[i];
+133                 if(i<20)bass+=data[i];
+134             }
+135             
+136             let avg=sum/data.length;
+137             let newMood=avg>130?'high':avg>90?'focus':avg>50?'happy':'calm';
+138             
+139             if(newMood!==currentMood){
+140                 currentMood=newMood;
+141                 updateAffirmation();
+142             }
+143         },3000);
+144     }
+145     
+146     function updateAffirmation(){
+147         let list=affirmations[currentMood];
+148         let text=list[Math.floor(Math.random()*list.length)];
+149         
+150         document.getElementById('affirmation').textContent=text;
+151         document.getElementById('mood').textContent=currentMood+' energy';
+152         
+153         // Color based on mood
+154         const colors={high:'#ff6b6b',calm:'#4ecdc4',focus:'#a78bfa',happy:'#fbbf24'};
+155         document.getElementById('affirmation').style.color=colors[currentMood];
+156     }
+157     
+157     function toggle(){
+158         if(!ctx)return;
+159         if(ctx.state==='suspended')ctx.resume();
+160         
+161         if(playing){
+162             audio.pause();
+163             playing=false;
+164         }else{
+165             audio.play().then(()=>{
+166                 playing=true;
+167             }).catch(err=>console.error('Play failed:',err));
+168         }
+169     }
+170     
+171     function seek(e){
+172         let rect=e.currentTarget.getBoundingClientRect();
+173         let pct=(e.clientX-rect.left)/rect.width;
+174         audio.currentTime=pct*audio.duration;
+175     }
+176     
+177     function save(){
+178         let text=document.getElementById('affirmation').textContent;
+179         let blob=new Blob([text+'\n\n— '+new Date().toLocaleString()],{type:'text/plain'});
+180         let url=URL.createObjectURL(blob);
+181         let a=document.createElement('a');
+182         a.href=url;
+183         a.download='my-affirmation.txt';
+184         a.click();
+185         URL.revokeObjectURL(url);
+186     }
+187     
+188     function reset(){
+189         audio.pause();
+190         audio.currentTime=0;
+191         playing=false;
 192         
-193         try{
-194             audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-195             analyser=audioCtx.createAnalyser();
-196             analyser.fftSize=512;
-197             analyser.smoothingTimeConstant=0.8;
-198             
-199             source=audioCtx.createMediaElementSource(audio);
-200             source.connect(analyser);
-201             analyser.connect(audioCtx.destination);
-202             
-203             drawVisualizer();
-204         }catch(e){
-205             console.error('Audio context failed:',e);
-206         }
-207     }
-208     
-209     function drawVisualizer(){
-210         if(!analyser)return;
-211         
-212         let canvas=document.getElementById('viz-canvas');
-213         let ctx=canvas.getContext('2d');
-214         canvas.width=window.innerWidth;
-215         canvas.height=window.innerHeight;
-216         
-217         let bufferLength=analyser.frequencyBinCount;
-218         let dataArray=new Uint8Array(bufferLength);
-219         
-219         function animate(){
-220             requestAnimationFrame(animate);
-221             
-222             analyser.getByteFrequencyData(dataArray);
-223             
-224             // Calculate energy levels
-225             let total=0;
-226             let bass=0;
-227             let mid=0;
-228             let treble=0;
-229             
-230             for(let i=0;i<bufferLength;i++){
-231                 let val=dataArray[i];
-232                 total+=val;
-233                 if(i<50)bass+=val;
-234                 else if(i<200)mid+=val;
-235                 else treble+=val;
-236             }
-237             
-238             let avg=total/bufferLength;
-239             energyLevel=avg;
-240             bassLevel=bass/50;
-241             
-242             // Detect mood
-243             detectMood(avg,bass,mid,treble);
-244             
-245             // Clear with fade
-246             ctx.fillStyle='rgba(5,5,5,0.2)';
-247             ctx.fillRect(0,0,canvas.width,canvas.height);
-248             
-249             // Draw frequency bars
-250             let barWidth=(canvas.width/bufferLength)*2.5;
-251             let x=0;
-252             
-253             for(let i=0;i<bufferLength;i++){
-254                 let barHeight=(dataArray[i]/255)*canvas.height*0.6;
-255                 
-256                 // Color based on frequency
-257                 let r=i<50?255:100;
-258                 let g=i<200?100:200;
-259                 let b=255;
-260                 let alpha=(dataArray[i]/255)*0.5;
-261                 
-262                 ctx.fillStyle=`rgba(${r},${g},${b},${alpha})`;
-263                 ctx.fillRect(x,canvas.height-barHeight,barWidth,barHeight);
-264                 
-265                 x+=barWidth+1;
-266             }
-267             
-268             // Update mini viz
-269             let bars=document.querySelectorAll('.energy-bar');
-270             bars.forEach((bar,i)=>{
-271                 let idx=Math.floor(i*(bufferLength/bars.length));
-272                 let h=(dataArray[idx]/255)*30;
-273                 bar.style.height=Math.max(4,h)+'px';
-274                 bar.style.opacity=0.3+(energyLevel/255);
-275             });
-276         }
-277         
-278         animate();
-279     }
-280     
-281     function detectMood(avg,bass,mid,treble){
-282         let now=Date.now();
-283         if(now-lastMoodChange<3000)return; // Don't change too fast
-284         
-285         let newMood='calm';
-286         
-287         // Detection logic
-288         if(avg>180&&bass>150){
-289             newMood='high';
-290         }else if(avg>140&&treble>100){
-291             newMood='happy';
-292         }else if(avg>80&&avg<140&&mid>80){
-293             newMood='focus';
-294         }else if(avg<60){
-295             newMood='calm';
-296         }
-297         
-298         if(newMood!==currentMood){
-299             currentMood=newMood;
-300             lastMoodChange=now;
-301             updateAffirmation();
-302         }
-303     }
-304     
-305     function updateAffirmation(){
-306         let moodData=affirmations[currentMood];
-307         let texts=moodData.texts;
-308         
-309         // Pick random text
-310         let idx=Math.floor(Math.random()*texts.length);
-311         let text=texts[idx];
-312         
-313         // Update UI
-314         let affEl=document.getElementById('affirmation');
-315         let subEl=document.getElementById('sub-affirmation');
-316         let badge=document.getElementById('mood-badge');
-317         
-318         // Fade out
-319         affEl.style.opacity=0;
-320         subEl.style.opacity=0;
-321         
-322         setTimeout(()=>{
-323             affEl.textContent=text.main;
-324             subEl.textContent=text.sub;
-325             affEl.style.color=moodData.color;
-326             badge.textContent=currentMood+' vibe';
-327             badge.style.color=moodData.color;
-328             badge.style.borderColor=moodData.color;
-329             
-330             // Fade in
-331             affEl.style.opacity=1;
-332             subEl.style.opacity=1;
-333         },300);
-334     }
-335     
-336     function togglePlay(){
-337         if(!audioCtx){
-338             initAudio();
-339             return;
-339         }
-340         
-341         if(audioCtx.state==='suspended'){
-342             audioCtx.resume();
-343         }
-344         
-345         if(isPlaying){
-346             audio.pause();
-347             document.getElementById('icon-play').classList.remove('hidden');
-348             document.getElementById('icon-pause').classList.add('hidden');
-349             isPlaying=false;
-350         }else{
-351             audio.play().then(()=>{
-352                 document.getElementById('icon-play').classList.add('hidden');
-353                 document.getElementById('icon-pause').classList.remove('hidden');
-354                 isPlaying=true;
-355                 
-356                 // First affirmation
-357                 if(document.getElementById('affirmation').textContent==='Upload music to begin'){
-358                     updateAffirmation();
-359                 }
-360             }).catch(e=>{
-361                 console.error('Play failed:',e);
-362             });
-363         }
-364     }
-365     
-366     function seek(e){
-367         let rect=e.currentTarget.getBoundingClientRect();
-368         let pct=(e.clientX-rect.left)/rect.width;
-369         if(audio.duration){
-370             audio.currentTime=pct*audio.duration;
-371         }
-372     }
-373     
-374     function reset(){
-375         audio.pause();
-376         audio.currentTime=0;
-377         isPlaying=false;
-378         currentMood='calm';
-379         
-380         document.getElementById('icon-play').classList.remove('hidden');
-381         document.getElementById('icon-pause').classList.add('hidden');
-382         document.getElementById('upload-screen').classList.remove('hidden');
-383         document.getElementById('player-screen').classList.add('hidden');
-384         document.getElementById('file-input').value='';
-385         
-386         document.getElementById('affirmation').textContent='Upload music to begin';
-387         document.getElementById('affirmation').style.color='#fff';
-388         document.getElementById('sub-affirmation').textContent='Your vibe is waiting';
-389         document.getElementById('mood-badge').textContent='Analyzing...';
-390     }
-391     
-392     function saveAffirmation(){
-393         let main=document.getElementById('affirmation').textContent;
-394         let sub=document.getElementById('sub-affirmation').textContent;
-395         let mood=currentMood;
-396         
-397         let content=`MY VIBESYNC AFFIRMATION\n\n${main}\n${sub}\n\nMood: ${mood}\nDate: ${new Date().toLocaleString()}`;
-398         
-399         let blob=new Blob([content],{type:'text/plain'});
-400         let url=URL.createObjectURL(blob);
-401         let a=document.createElement('a');
-402         a.href=url;
-403         a.download=`affirmation-${mood}-${Date.now()}.txt`;
-404         document.body.appendChild(a);
-405         a.click();
-406         document.body.removeChild(a);
-407         URL.revokeObjectURL(url);
-408     }
-409     
-410     // Time update
-411     audio.ontimeupdate=()=>{
-412         if(audio.duration){
-413             let pct=(audio.currentTime/audio.duration)*100;
-414             document.getElementById('progress-fill').style.width=pct+'%';
-415             
-416             let cur=formatTime(audio.currentTime);
-417             let tot=formatTime(audio.duration);
-418             document.getElementById('time-display').textContent=`${cur} / ${to
+193         document.getElementById('player').classList.add('hidden');
+194         document.getElementById('upload').classList.remove('hidden');
+195         document.querySelector('input').value='';
+196         
+197         document.getElementById('affirmation').textContent='You are exactly where you need to be';
+198         document.getElementById('affirmation').style.color='#fff';
+199         document.getElementById('mood').textContent='Listening';
+200     }
+201     
+202     audio.ontimeupdate=()=>{
+203         if(audio.duration){
+204             document.getElementById('fill').style.width=(audio.currentTime/audio.duration*100)+'%';
+205         }
+206     };
+207     
+208     // Drag and drop
+209     let dropzone=document.getElementById('drop');
+210     dropzone.ondragover=e=>{e.preventDefault();dropzone.style.borderColor='#888'};
+211     dropzone.ondragleave=()=>dropzone.style.borderColor='#444';
+212     dropzone.ondrop=e=>{
+213         e.preventDefault();
+214         dropzone.style.borderColor='#444';
+215         if(e.dataTransfer.files[0]?.type.includes('audio')){
+216             document.querySelector('input').files=e.dataTransfer.files;
+217             load({target:{files:e.dataTransfer.files}});
+218         }
+219     };
+220     
+221     // Resize canvas
+222     window.onresize=()=>{
+223         let c=document.getElementById('viz');
+224         c.width=window.innerWidth;
+225         c.height=window.innerHeight;
+226     };
+227     </script>
+228 </body>
+229 </html>
+  
