@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI | The Independence Code is Global 🌍🎰</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>V3GASBOI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,28 +13,21 @@
         }
 
         :root {
-            --pure-white: #FFFFFF;
-            --off-white: #FAFAFA;
-            --light-gray: #F5F5F5;
-            --medium-gray: #E0E0E0;
-            --dark-gray: #2D2D2D;
-            --charcoal: #1A1A1A;
-            --vegas-red: #DC2626;
-            --bright-red: #EF4444;
-            --soft-red: #FEE2E2;
-            --gold: #D97706;
+            --black: #0a0a0a;
+            --dark: #111;
+            --darker: #1a1a1a;
+            --gray: #333;
+            --red: #dc2626;
+            --gold: #d97706;
+            --white: #fff;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--pure-white);
-            color: var(--charcoal);
-            line-height: 1.6;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.4;
             overflow-x: hidden;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         /* Navigation */
@@ -42,628 +35,679 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 50px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
+            padding: 12px 20px;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
-            padding: 15px 50px;
-            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--gray);
         }
 
         .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 900;
-            color: var(--charcoal);
+            color: var(--red);
             text-transform: uppercase;
-            letter-spacing: 4px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--vegas-red), var(--gold));
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
+            letter-spacing: 2px;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 20px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--dark-gray);
+            color: var(--white);
             text-decoration: none;
+            font-size: 0.75rem;
             font-weight: 600;
-            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--vegas-red);
-            transition: width 0.3s ease;
+            letter-spacing: 1px;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--vegas-red);
+            color: var(--red);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section with Effects */
+        /* Hero */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            background: var(--pure-white);
-            padding: 120px 20px 80px;
+            background: var(--black);
+            padding: 80px 20px 40px;
             overflow: hidden;
         }
 
-        /* Gradient Orbs */
         .gradient-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float-orb 20s infinite ease-in-out;
+            filter: blur(60px);
+            opacity: 0.3;
         }
 
         .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(255, 100, 100, 0.1));
-            top: -200px;
-            right: -100px;
-            animation-delay: 0s;
+            width: 400px;
+            height: 400px;
+            background: var(--red);
+            top: -100px;
+            right: -50px;
         }
 
         .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(217, 119, 6, 0.12), rgba(255, 180, 50, 0.08));
-            bottom: -150px;
-            left: -100px;
-            animation-delay: 5s;
-        }
-
-        .orb-3 {
             width: 300px;
             height: 300px;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), transparent);
-            top: 40%;
-            left: 20%;
-            animation-delay: 10s;
-        }
-
-        @keyframes float-orb {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-
-        /* Noise Texture Overlay */
-        .noise-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.03;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Grid Lines */
-        .grid-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(220, 38, 38, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(220, 38, 38, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-        }
-
-        /* Floating Geometric Shapes */
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .shape {
-            position: absolute;
-            opacity: 0.06;
-            animation: float-shape 25s infinite ease-in-out;
-        }
-
-        .shape:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--vegas-red);
-            transform: rotate(45deg);
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            width: 150px;
-            height: 150px;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            animation-delay: 8s;
-        }
-
-        .shape:nth-child(3) {
-            bottom: 30%;
-            left: 25%;
-            width: 80px;
-            height: 80px;
-            background: var(--vegas-red);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            animation-delay: 16s;
-        }
-
-        .shape:nth-child(4) {
-            top: 40%;
-            right: 30%;
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--charcoal);
-            animation-delay: 4s;
-        }
-
-        @keyframes float-shape {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.06; }
-            50% { transform: translateY(-40px) rotate(180deg); opacity: 0.1; }
-        }
-
-        /* Light Leak Effect */
-        .light-leak {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-                from 0deg at 50% 50%,
-                transparent 0deg,
-                rgba(255, 255, 255, 0.1) 60deg,
-                transparent 120deg,
-                rgba(220, 38, 38, 0.05) 180deg,
-                transparent 240deg,
-                rgba(217, 119, 6, 0.05) 300deg,
-                transparent 360deg
-            );
-            animation: rotate-leak 30s linear infinite;
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
-        @keyframes rotate-leak {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            background: var(--gold);
+            bottom: -50px;
+            left: -50px;
         }
 
         .hero-content {
             text-align: center;
             z-index: 2;
-            max-width: 900px;
-            position: relative;
+            max-width: 600px;
         }
 
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 28px;
-            background: rgba(254, 226, 226, 0.6);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            color: var(--vegas-red);
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(220,38,38,0.2);
+            border: 1px solid var(--red);
+            color: var(--red);
+            font-size: 0.65rem;
             font-weight: 700;
-            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            animation: float 6s ease-in-out infinite;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.1);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
 
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 900;
-            margin-bottom: 25px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            line-height: 1.1;
-            color: var(--charcoal);
-            letter-spacing: -2px;
-            position: relative;
+            line-height: 1;
+            letter-spacing: -1px;
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--vegas-red) 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--red);
             display: block;
-            margin-top: 10px;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--dark-gray);
-            margin-bottom: 30px;
-            font-weight: 300;
-            letter-spacing: 4px;
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 16px;
+            font-weight: 400;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
         .hero-description {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            margin-bottom: 50px;
-            color: var(--dark-gray);
-            max-width: 600px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            color: #aaa;
+            max-width: 450px;
             margin-left: auto;
             margin-right: auto;
-            font-weight: 400;
         }
 
         .cta-group {
             display: flex;
-            gap: 20px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 18px 40px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
+            padding: 12px 24px;
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             border: none;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            gap: 6px;
         }
 
         .btn-primary {
-            background: var(--charcoal);
-            color: var(--pure-white);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-            z-index: -1;
+            background: var(--red);
+            color: var(--white);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            background: var(--vegas-red);
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
+            background: #b91c1c;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--charcoal);
-            border: 2px solid var(--medium-gray);
-            backdrop-filter: blur(10px);
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--gray);
         }
 
         .btn-secondary:hover {
-            border-color: var(--vegas-red);
-            color: var(--vegas-red);
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--red);
+            color: var(--red);
         }
 
-        /* Links Section with Background */
+        /* Bio Section */
+        .bio-section {
+            padding: 40px 20px;
+            background: var(--dark);
+            border-top: 1px solid var(--gray);
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .bio-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .bio-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .bio-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .bio-content {
+            margin-bottom: 30px;
+        }
+
+        .bio-text {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #aaa;
+            text-align: center;
+        }
+
+        .bio-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .bio-stat {
+            text-align: center;
+        }
+
+        .bio-stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--red);
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .bio-stat-label {
+            font-size: 0.65rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Quotes */
+        .quotes-section {
+            margin-bottom: 30px;
+        }
+
+        .quotes-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .quotes-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .quote-card {
+            background: var(--darker);
+            padding: 16px;
+            border-left: 3px solid var(--red);
+            margin-bottom: 12px;
+        }
+
+        .quote-text {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            font-size: 0.7rem;
+            color: var(--red);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            margin-bottom: 20px;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .testimonials-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .testimonial-card {
+            background: var(--darker);
+            padding: 16px;
+            border: 1px solid var(--gray);
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-text {
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-author h4 {
+            font-size: 0.75rem;
+            color: var(--white);
+        }
+
+        .testimonial-author p {
+            font-size: 0.65rem;
+            color: #666;
+        }
+
+        /* Links Section */
         .links-section {
-            padding: 100px 20px;
-            background: var(--off-white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Subtle Pattern Background */
-        .pattern-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.4;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(220, 38, 38, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(217, 119, 6, 0.03) 0%, transparent 50%);
-            background-size: 100px 100px;
-        }
-
-        /* Diagonal Lines */
-        .diagonal-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(220, 38, 38, 0.02) 10px,
-                rgba(220, 38, 38, 0.02) 11px
-            );
-            pointer-events: none;
+            padding: 40px 20px;
+            background: var(--black);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 70px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 24px;
         }
 
         .section-header h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--charcoal);
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: var(--red);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
         .section-header p {
-            font-size: 1.1rem;
-            color: var(--dark-gray);
-            max-width: 500px;
-            margin: 0 auto;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
         }
 
         .links-grid {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            position: relative;
-            z-index: 2;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
         }
 
         .link-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid var(--medium-gray);
-            padding: 35px;
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            background: var(--darker);
+            border: 1px solid var(--gray);
+            padding: 16px;
             text-decoration: none;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .link-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--vegas-red), var(--gold));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
         }
 
         .link-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border-color: transparent;
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .link-card:hover::before {
-            transform: scaleX(1);
+            border-color: var(--red);
+            background: var(--dark);
+            transform: translateX(4px);
         }
 
         .link-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--light-gray);
-            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            background: var(--black);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            transition: all 0.3s;
-        }
-
-        .link-card:hover .link-icon {
-            background: var(--soft-red);
-            transform: scale(1.1);
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .link-content h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            color: var(--charcoal);
+            font-size: 0.8rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .link-content p {
+            font-size: 0.7rem;
+            color: #666;
+        }
+
+        /* Email */
+        .capture-section {
+            padding: 40px 20px;
+            background: var(--dark);
+            text-align: center;
+            border-top: 1px solid var(--gray);
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .capture-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .capture-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
             margin-bottom: 8px;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        .capture-section p {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 16px;
+            background: var(--black);
+            border: 1px solid var(--gray);
+            color: var(--white);
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        .email-input:focus {
+            border-color: var(--red);
+        }
+
+        .success-message {
+            display: none;
+            padding: 12px;
+            background: #15803d;
+            color: white;
+            font-size: 0.8rem;
+            margin-top: 12px;
+        }
+
+        /* Stats */
+        .social-proof {
+            padding: 30px 20px;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--red);
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: #666;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .link-content p {
-            color: var(--dark-gray);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .link-arrow {
-            position: absolute;
-            bottom: 25px;
-            right: 25px;
-            width: 40px;
-            height: 40px;
-            background: var(--light-gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--charcoal);
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .link-card:hover .link-arrow {
-            background: var(--vegas-red);
-            color: white;
-            transform: translateX(5px);
-        }
-
-        /* Platform Specific Glows */
-        .link-card.soundcloud:hover { box-shadow: 0 20px 60px rgba(255, 85, 0, 0.2); }
-        .link-card.apple:hover { box-shadow: 0 20px 60px rgba(250, 45, 100, 0.2); }
-        .link-card.show4me:hover { box-shadow: 0 20px 60px rgba(138, 43, 226, 0.2); }
-        .link-card.canva:hover { box-shadow: 0 20px 60px rgba(0, 180, 200, 0.2); }
-        .link-card.godaddy:hover { box-shadow: 0 20px 60px rgba(3, 125, 78, 0.2); }
-        .link-card.youtube:hover { box-shadow: 0 20px 60px rgba(255, 0, 0, 0.2); }
-        .link-card.tidal:hover { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); }
-        .link-card.hitmkr:hover { box-shadow: 0 20px 60px rgba(255, 193, 7, 0.2); }
-        .link-card.voloco:hover { box-shadow: 0 20px 60px rgba(101, 31, 255, 0.2); }
-
-        /* Email Capture Section */
-        .capture-section {
-            padding: 100px 20px;
-            background: var(--pure-white);
+        /* Footer */
+        footer {
+            padding: 30px 20px;
+            background: var(--dark);
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            border-top: 1px solid var(--gray);
         }
 
-        /* Animated Gradient Border Top */
-        .capture-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--vegas-red), var(--gold), var(--vegas-red));
-            background-size: 200% 100%;
-            animation: gradient-shift 3s linear infinite;
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--red);
+            margin-bottom: 16px;
+            display: inline-block;
+            font-weight: 900;
         }
 
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+        .hashtag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
-        /* Floating Particles */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            overflow: hidden;
+        .hashtag {
+            font-size: 0.65rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(220, 38, 38, 0.2);
-            border-radius: 50%;
-            animation: particle-float 15s infinite;
+        .footer-text {
+            font-size: 0.7rem;
+            color: #444;
         }
 
-        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
-        .particle:nth-child(2) { left: 30%; top: 60%; animation-delay: 3s; }
-        .particle:nth-child(3) { left: 50%; top: 30%; animation-delay: 6s; }
-        .particle:nth-child(4) { left: 70%; top: 70%; animation-delay: 9s; }
-        .particle:nth-child(5) { left: 90%; top: 40%; animation-delay: 12s; }
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
 
-        @keyframes particle-float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translat
+    <nav>
+        <div class="logo">V3GASBOI</div>
+        <ul class="nav-links">
+            <li><a href="#bio">Bio</a></li>
+            <li><a href="#links">Links</a></li>
+            <li><a href="#join">Join</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">The Independence Code is Global</div>
+            <h1>Digital Artist<span class="highlight">From Las Vegas</span></h1>
+            <p class="hero-subtitle">#88Mob • It's That Easy</p>
+            <p class="hero-description">Welcome to the movement. V3GASBOI represents the independent grind, the Vegas hustle, and the global sound.</p>
+            <div class="cta-group">
+                <a href="#links" class="btn btn-primary">Stream Now</a>
+                <a href="#bio" class="btn btn-secondary">My Story</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bio-section" id="bio">
+        <div class="bio-container">
+            <div class="bio-header">
+                <h2>The Story</h2>
+            </div>
+            
+            <div class="bio-content">
+                <p class="bio-text">V3GASBOI emerged from the neon-lit streets of Las Vegas, carrying the spirit of the independent hustle to the global stage. What started in the 702 became a worldwide movement—the #88Mob. From bedroom recordings to professional studios, from local shows to digital platforms reaching millions. The Independence Code isn't just a slogan—it's a way of life.</p>
+                
+                <div class="bio-stats">
+                    <div class="bio-stat">
+                        <div class="bio-stat-number">9</div>
+                        <div class="bio-stat-label">Platforms</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-number">88</div>
+                        <div class="bio-stat-label">Mob Strong</div>
+                    </div>
+                    <div class="bio-stat">
+                        <div class="bio-stat-number">702</div>
+                        <div class="bio-stat-label">Vegas Born</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quotes-section">
+                <div class="quotes-header">
+                    <h3>From Vegas Boi</h3>
+                </div>
+                
+                <div class="quote-card">
+                    <p class="quote-text">"The grind don't stop when the lights go out in Vegas. That's when the real work begins."</p>
+                    <p class="quote-author">— V3GASBOI</p>
+                </div>
+                
+                <div class="quote-card">
+                    <p class="quote-text">"Independence means you own your masters, your moves, and your mindset."</p>
+                    <p class="quote-author">— V3GASBOI</p>
+                </div>
+                
+                <div class="quote-card">
+                    <p class="quote-text">"From the Strip to the world. Don't matter where you start, matter where you finish."</p>
+                    <p class="quote-author">— V3GASBOI</p>
+                </div>
+                
+                <div class="quote-card">
+                    <p class="quote-text">"They sleeping on me now, but they gonna wake up to my shit everywhere."</p>
+                    <p class="quote-author">— V3GASBOI</p>
+                </div>
+            </div>
+
+            <div class="testimonials-section">
+                <div class="testimonials-header">
+                    <h3>Mob Reviews</h3>
+                </div>
+                
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Pure Vegas energy. Every track hits different. Been following since day one."</p>
+                        <div class="testimonial-author">
+                            <h4>Jonas D.</h4>
+                            <p>Day 1 Supporter</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"The Independence Code changed how I approach my music career. #88Mob"</p>
+                        <div class="testimonial-author">
+                            <h4>Mike K.</h4>
+                            <p>Producer, LA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">"Finally an artist who understands the hustle. Vegas bred something special."</p>
+                        <div class="testimonial-author">
+                            <h4>Sarah R.</h4>
+                            <p>Music Blogger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="links-section" id="links">
+        <div class="section-header">
+            <h2>Stream Everywhere</h2>
+            <p>Find V3GASBOI on every platform</p>
+        </div>
+
+        <div class="links-grid">
+            <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" target="_blank" class="link-card">
+                <div class="link-icon">☁️</div>
+                <div class="link-content">
+                    <h3>SoundCloud</h3>
+                    <p>Exclusive tracks</p>
+                </div>
+            </a>
+
+            <a href="https://music.apple.com/us/artist/vegasboi/1762524945" target="_blank" class="link-card">
