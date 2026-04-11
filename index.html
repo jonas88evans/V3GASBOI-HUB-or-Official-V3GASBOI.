@@ -1,848 +1,332 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V3GASBOI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #0a0a0a;
-            --dark: #111;
-            --darker: #1a1a1a;
-            --gray: #333;
-            --red: #dc2626;
-            --gold: #d97706;
-            --white: #fff;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.4;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 12px 20px;
-            background: rgba(10,10,10,0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: var(--red);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--red);
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: var(--black);
-            padding: 80px 20px 40px;
-            overflow: hidden;
-        }
-
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--red);
-            top: -100px;
-            right: -50px;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--gold);
-            bottom: -50px;
-            left: -50px;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            max-width: 600px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            background: rgba(220,38,38,0.2);
-            border: 1px solid var(--red);
-            color: var(--red);
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 900;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            line-height: 1;
-            letter-spacing: -1px;
-        }
-
-        .hero h1 .highlight {
-            color: var(--red);
-            display: block;
-        }
-
-        .hero-subtitle {
-            font-size: 0.8rem;
-            color: var(--gold);
-            margin-bottom: 16px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .hero-description {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 24px;
-            color: #aaa;
-            max-width: 450px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-primary {
-            background: var(--red);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: #b91c1c;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid var(--gray);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        /* Bio Section */
-        .bio-section {
-            padding: 40px 20px;
-            background: var(--dark);
-            border-top: 1px solid var(--gray);
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .bio-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .bio-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .bio-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            color: var(--red);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .bio-content {
-            margin-bottom: 30px;
-        }
-
-        .bio-text {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: #aaa;
-            text-align: center;
-        }
-
-        .bio-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .bio-stat {
-            text-align: center;
-        }
-
-        .bio-stat-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--red);
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .bio-stat-label {
-            font-size: 0.65rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Quotes */
-        .quotes-section {
-            margin-bottom: 30px;
-        }
-
-        .quotes-header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .quotes-header h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .quote-card {
-            background: var(--darker);
-            padding: 16px;
-            border-left: 3px solid var(--red);
-            margin-bottom: 12px;
-        }
-
-        .quote-text {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: #ccc;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-
-        .quote-author {
-            font-size: 0.7rem;
-            color: var(--red);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Testimonials */
-        .testimonials-section {
-            margin-bottom: 20px;
-        }
-
-        .testimonials-header {
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .testimonials-header h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .testimonial-card {
-            background: var(--darker);
-            padding: 16px;
-            border: 1px solid var(--gray);
-        }
-
-        .stars {
-            color: var(--gold);
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .testimonial-text {
-            font-size: 0.8rem;
-            color: #aaa;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-
-        .testimonial-author h4 {
-            font-size: 0.75rem;
-            color: var(--white);
-        }
-
-        .testimonial-author p {
-            font-size: 0.65rem;
-            color: #666;
-        }
-
-        /* Links Section */
-        .links-section {
-            padding: 40px 20px;
-            background: var(--black);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .section-header h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.3rem;
-            color: var(--red);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section-header p {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 4px;
-        }
-
-        .links-grid {
-            max-width: 800px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-        }
-
-        .link-card {
-            background: var(--darker);
-            border: 1px solid var(--gray);
-            padding: 16px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.2s;
-        }
-
-        .link-card:hover {
-            border-color: var(--red);
-            background: var(--dark);
-            transform: translateX(4px);
-        }
-
-        .link-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .link-content h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.8rem;
-            color: var(--white);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
-        }
-
-        .link-content p {
-            font-size: 0.7rem;
-            color: #666;
-        }
-
-        /* Email */
-        .capture-section {
-            padding: 40px 20px;
-            background: var(--dark);
-            text-align: center;
-            border-top: 1px solid var(--gray);
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .capture-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .capture-section h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            color: var(--red);
-        }
-
-        .capture-section p {
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .email-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 12px 16px;
-            background: var(--black);
-            border: 1px solid var(--gray);
-            color: var(--white);
-            font-size: 0.8rem;
-            outline: none;
-        }
-
-        .email-input:focus {
-            border-color: var(--red);
-        }
-
-        .success-message {
-            display: none;
-            padding: 12px;
-            background: #15803d;
-            color: white;
-            font-size: 0.8rem;
-            margin-top: 12px;
-        }
-
-        /* Stats */
-        .social-proof {
-            padding: 30px 20px;
-            background: var(--black);
-            text-align: center;
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .stat-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: var(--red);
-            font-weight: 900;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.65rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Footer */
-        footer {
-            padding: 30px 20px;
-            background: var(--dark);
-            text-align: center;
-            border-top: 1px solid var(--gray);
-        }
-
-        .footer-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--red);
-            margin-bottom: 16px;
-            display: inline-block;
-            font-weight: 900;
-        }
-
-        .hashtag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .hashtag {
-            font-size: 0.65rem;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-text {
-            font-size: 0.7rem;
-            color: #444;
-        }
-
-        @media (max-width: 600px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="logo">V3GASBOI</div>
-        <ul class="nav-links">
-            <li><a href="#bio">Bio</a></li>
-            <li><a href="#links">Links</a></li>
-            <li><a href="#join">Join</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        
-        <div class="hero-content">
-            <div class="hero-badge">The Independence Code is Global</div>
-            <h1>Digital Artist<span class="highlight">From Las Vegas</span></h1>
-            <p class="hero-subtitle">#88Mob • It's That Easy</p>
-            <p class="hero-description">Welcome to the movement. V3GASBOI represents the independent grind, the Vegas hustle, and the global sound.</p>
-            <div class="cta-group">
-                <a href="#links" class="btn btn-primary">Stream Now</a>
-                <a href="#bio" class="btn btn-secondary">My Story</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="bio-section" id="bio">
-        <div class="bio-container">
-            <div class="bio-header">
-                <h2>The Story</h2>
-            </div>
-            
-            <div class="bio-content">
-                <p class="bio-text">V3GASBOI emerged from the neon-lit streets of Las Vegas, carrying the spirit of the independent hustle to the global stage. What started in the 702 became a worldwide movement—the #88Mob. From bedroom recordings to professional studios, from local shows to digital platforms reaching millions. The Independence Code isn't just a slogan—it's a way of life.</p>
-                
-                <div class="bio-stats">
-                    <div class="bio-stat">
-                        <div class="bio-stat-number">9</div>
-                        <div class="bio-stat-label">Platforms</div>
-                    </div>
-                    <div class="bio-stat">
-                        <div class="bio-stat-number">88</div>
-                        <div class="bio-stat-label">Mob Strong</div>
-                    </div>
-                    <div class="bio-stat">
-                        <div class="bio-stat-number">702</div>
-                        <div class="bio-stat-label">Vegas Born</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quotes-section">
-                <div class="quotes-header">
-                    <h3>From Vegas Boi</h3>
-                </div>
-                
-                <div class="quote-card">
-                    <p class="quote-text">"The grind don't stop when the lights go out in Vegas. That's when the real work begins."</p>
-                    <p class="quote-author">— V3GASBOI</p>
-                </div>
-                
-                <div class="quote-card">
-                    <p class="quote-text">"Independence means you own your masters, your moves, and your mindset."</p>
-                    <p class="quote-author">— V3GASBOI</p>
-                </div>
-                
-                <div class="quote-card">
-                    <p class="quote-text">"From the Strip to the world. Don't matter where you start, matter where you finish."</p>
-                    <p class="quote-author">— V3GASBOI</p>
-                </div>
-                
-                <div class="quote-card">
-                    <p class="quote-text">"They sleeping on me now, but they gonna wake up to my shit everywhere."</p>
-                    <p class="quote-author">— V3GASBOI</p>
-                </div>
-            </div>
-
-            <div class="testimonials-section">
-                <div class="testimonials-header">
-                    <h3>Mob Reviews</h3>
-                </div>
-                
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimonial-text">"Pure Vegas energy. Every track hits different. Been following since day one."</p>
-                        <div class="testimonial-author">
-                            <h4>Jonas D.</h4>
-                            <p>Day 1 Supporter</p>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimonial-text">"The Independence Code changed how I approach my music career. #88Mob"</p>
-                        <div class="testimonial-author">
-                            <h4>Mike K.</h4>
-                            <p>Producer, LA</p>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="stars">★★★★★</div>
-                        <p class="testimonial-text">"Finally an artist who understands the hustle. Vegas bred something special."</p>
-                        <div class="testimonial-author">
-                            <h4>Sarah R.</h4>
-                            <p>Music Blogger</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="links-section" id="links">
-        <div class="section-header">
-            <h2>Stream Everywhere</h2>
-            <p>Find V3GASBOI on every platform</p>
-        </div>
-
-        <div class="links-grid">
-            <a href="https://on.soundcloud.com/3d76nCYWqzJVAGMM6" target="_blank" class="link-card">
-                <div class="link-icon">☁️</div>
-                <div class="link-content">
-                    <h3>SoundCloud</h3>
-                    <p>Exclusive tracks</p>
-                </div>
-            </a>
-
-            <a href="https://music.apple.com/us/artist/vegasboi/1762524945" target="_blank" class="link-card">
-div class="link-content">
-                    <h3>Apple Music</h3>
-                    <p>Full catalog</p>
-                </div>
-            </a>
-
-            <a href="https://show4me.com/vegasboi" target="_blank" class="link-card">
-                <div class="link-icon">🎪</div>
-                <div class="link-content">
-                    <h3>Show4me</h3>
-                    <p>Direct support</p>
-                </div>
-            </a>
-
-            <a href="https://v3gasboii.my.canva.site/v3gasboi" target="_blank" class="link-card">
-                <div class="link-icon">🎨</div>
-                <div class="link-content">
-                    <h3>Portfolio</h3>
-                    <p>Visual work</p>
-                </div>
-            </a>
-
-            <a href="https://site-7etcaj3b2.godaddysites.com/" target="_blank" class="link-card">
-                <div class="link-icon">🌐</div>
-                <div class="link-content">
-                    <h3>Official Site</h3>
-                    <p>Central hub</p>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/@V3GASBOI" target="_blank" class="link-card">
-                <div class="link-icon">📺</div>
-                <div class="link-content">
-                    <h3>YouTube</h3>
-                    <p>Music videos</p>
-                </div>
-            </a>
-
-            <a href="https://tidal.com/artist/50489161/u" target="_blank" class="link-card">
-                <div class="link-icon">🌊</div>
-                <div class="link-content">
-                    <h3>Tidal</h3>
-                    <p>Hi-fi streaming</p>
-                </div>
-            </a>
-
-            <a href="https://www.hitmkr.com/v3gasboi" target="_blank" class="link-card">
-                <div class="link-icon">🎯</div>
-                <div class="link-content">
-                    <h3>HitMkr</h3>
-                    <p>Beats & collabs</p>
-                </div>
-            </a>
-
-            <a href="https://voloco.resonantcavity.com/applinks/creator?id=2198222" target="_blank" class="link-card">
-                <div class="link-icon">🎙️</div>
-                <div class="link-content">
-                    <h3>Voloco</h3>
-                    <p>Recording tools</p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section class="capture-section" id="join">
-        <div class="capture-container">
-            <h2>Get The Code First</h2>
-            <p>Join for exclusive drops and early access</p>
-            
-            <form class="email-form" onsubmit="handleSubmit(event)">
-                <input type="email" class="email-input" placeholder="Enter email" required>
-                <button type="submit" class="btn btn-primary">Join</button>
-            </form>
-            
-            <div class="success-message" id="successMsg">✓ Welcome to the #88Mob!</div>
-        </div>
-    </section>
-
-    <section class="social-proof">
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number">9</div>
-                <div class="stat-label">Platforms</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">88</div>
-                <div class="stat-label">Mob Strong</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">Vegas</div>
-                <div class="stat-label">To World</div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-logo">V3GASBOI</div>
-        <div class="hashtag-cloud">
-            <span class="hashtag">#88Mob</span>
-            <span class="hashtag">#IndependenceCode</span>
-            <span class="hashtag">#VegasHustle</span>
-            <span class="hashtag">#ItsThatEasy</span>
-        </div>
-        <p class="footer-text">© 2025 V3GASBOI • Las Vegas, Nevada</p>
-    </footer>
-
-    <script>
-        function handleSubmit(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const msg = document.getElementById('successMsg');
-            
-            btn.innerHTML = '✓';
-            btn.style.background = '#15803d';
-            msg.style.display = 'block';
-            
-            setTimeout(() => {
-                btn.innerHTML = 'Join';
-                btn.style.background = '';
-                e.target.reset();
-                msg.style.display = 'none';
-            }, 2000);
-        }
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
-
-</body>
-</html>
+/* 
+========================================
+V3GASBOI CUSTOM STYLESHEET
+The Voice of Vegas | 88MOB | Independence Code
+========================================
+*/
+
+/* ========== 01. GENERAL & ROOT VARIABLES ========== */
+:root {
+    --v3g-red: #DC0000;
+    --v3g-red-dark: #8B0000;
+    --v3g-gold: #FFD700;
+    --v3g-gold-light: #FFF8DC;
+    --v3g-black: #0a0a0a;
+    --v3g-white: #ffffff;
+    --v3g-gray: #1a1a1a;
+    --font-primary: 'Bebas Neue', 'Impact', sans-serif;
+    --font-secondary: 'Inter', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    font-family: var(--font-secondary);
+    background-color: var(--v3g-black);
+    color: var(--v3g-white);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ========== 02. COMPONENTS : BUTTONS ========== */
+.btn {
+    border-radius: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 15px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--v3g-red) 0%, var(--v3g-red-dark) 100%);
+    color: var(--v3g-white);
+    border-color: var(--v3g-red);
+    box-shadow: 0 0 20px rgba(220, 0, 0, 0.4);
+}
+
+.btn-primary:hover {
+    background: var(--v3g-white);
+    color: var(--v3g-red);
+    border-color: var(--v3g-red);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(220, 0, 0, 0.6);
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--v3g-gold) 0%, #FFA500 100%);
+    color: var(--v3g-black);
+    border-color: var(--v3g-gold);
+}
+
+.btn-gold:hover {
+    background: var(--v3g-white);
+    color: var(--v3g-black);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* ========== 02. COMPONENTS : NAVBAR ========== */
+.navbar {
+    background: rgba(10, 10, 10, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--v3g-red);
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    color: var(--v3g-white) !important;
+    text-shadow: 2px 2px 0 var(--v3g-red);
+}
+
+.navbar-brand span {
+    color: var(--v3g-gold);
+}
+
+.nav-link {
+    color: var(--v3g-white) !important;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--v3g-gold);
+    transition: width 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--v3g-gold) !important;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ========== 02. COMPONENTS : PRODUCT ITEMS ========== */
+.product-item {
+    background: var(--v3g-gray);
+    border: 1px solid #333;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-item:hover {
+    border-color: var(--v3g-red);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(220, 0, 0, 0.3);
+}
+
+.product-item .product-title {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--v3g-white);
+    margin-top: 15px;
+}
+
+.product-item .price {
+    color: var(--v3g-gold);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.product-item .product-image::after {
+    content: '88MOB';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: var(--v3g-red);
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.product-item:hover .product-image::after {
+    opacity: 1;
+}
+
+/* ========== 02. COMPONENTS : BANNER SLIDER ========== */
+.banner-slider {
+    background: linear-gradient(135deg, var(--v3g-black) 0%, #1a0000 100%);
+    position: relative;
+}
+
+.banner-content h1 {
+    font-size: 4rem;
+    background: linear-gradient(45deg, var(--v3g-white), var(--v3g-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    margin-bottom: 20px;
+}
+
+.banner-content .subtitle {
+    color: var(--v3g-red);
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+/* ========== 02. COMPONENTS : AUDIO PLAYER ========== */
+.audio-player-container {
+    background: linear-gradient(135deg, var(--v3g-gray) 0%, var(--v3g-black) 100%);
+    border: 2px solid var(--v3g-red);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(220, 0, 0, 0.2);
+}
+
+.audio-player-container .track-title {
+    color: var(--v3g-gold);
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+/* ========== 03. BLOCKS : BANNERS ========== */
+.block-banner {
+    background: linear-gradient(135deg, rgba(220, 0, 0, 0.9) 0%, rgba(139, 0, 0, 0.9) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 60px 40px;
+    border: 2px solid var(--v3g-gold);
+}
+
+.block-banner::before {
+    content: '89109';
+    position: absolute;
+    font-size: 10rem;
+    font-family: var(--font-primary);
+    color: rgba(255, 255, 255, 0.05);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.block-banner h2 {
+    position: relative;
+    z-index: 1;
+    font-size: 3rem;
+}
+
+/* ========== 03. BLOCKS : SHOPPING CART ========== */
+.cart-total {
+    background: var(--v3g-gray);
+    border: 2px solid var(--v3g-gold);
+    padding: 30px;
+}
+
+.cart-total .total-price {
+    color: var(--v3g-gold);
+    font-size: 2rem;
+    font-family: var(--font-primary);
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(220, 0, 0, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(220, 0, 0, 0); }
+}
+
+@keyframes gold-glow {
+    0%, 100% { text-shadow: 0 0 10px var(--v3g-gold), 0 0 20px var(--v3g-gold); }
+    50% { text-shadow: 0 0 20px var(--v3g-gold), 0 0 30px var(--v3g-gold), 0 0 40px #FFA500; }
+}
+
+.pulse-animation {
+    animation: pulse-red 2s infinite;
+}
+
+.glow-text {
+    animation: gold-glow 2s infinite;
+}
+
+/* ========== SEO OPTIMIZATION CLASSES ========== */
+.seo-las-vegas-rap::before {
+    content: 'Las Vegas Independent Rap';
+    position: absolute;
+    left: -9999px;
+}
+
+.seo-89109::after {
+    content: '89109 Hip Hop Merchandise';
+    position: absolute;
+    left: -9999px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .banner-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .block-banner h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--v3g-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--v3g-red), var(--v3g-gold));
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--v3g-gold);
+}
