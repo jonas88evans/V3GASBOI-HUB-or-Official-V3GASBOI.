@@ -1,332 +1,369 @@
-/* 
-========================================
-V3GASBOI CUSTOM STYLESHEET
-The Voice of Vegas | 88MOB | Independence Code
-========================================
-*/
-
-/* ========== 01. GENERAL & ROOT VARIABLES ========== */
-:root {
-    --v3g-red: #DC0000;
-    --v3g-red-dark: #8B0000;
-    --v3g-gold: #FFD700;
-    --v3g-gold-light: #FFF8DC;
-    --v3g-black: #0a0a0a;
-    --v3g-white: #ffffff;
-    --v3g-gray: #1a1a1a;
-    --font-primary: 'Bebas Neue', 'Impact', sans-serif;
-    --font-secondary: 'Inter', 'Helvetica Neue', sans-serif;
-}
-
-body {
-    font-family: var(--font-secondary);
-    background-color: var(--v3g-black);
-    color: var(--v3g-white);
-    overflow-x: hidden;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-primary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* ========== 02. COMPONENTS : BUTTONS ========== */
-.btn {
-    border-radius: 0;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 15px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--v3g-red) 0%, var(--v3g-red-dark) 100%);
-    color: var(--v3g-white);
-    border-color: var(--v3g-red);
-    box-shadow: 0 0 20px rgba(220, 0, 0, 0.4);
-}
-
-.btn-primary:hover {
-    background: var(--v3g-white);
-    color: var(--v3g-red);
-    border-color: var(--v3g-red);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(220, 0, 0, 0.6);
-}
-
-.btn-gold {
-    background: linear-gradient(135deg, var(--v3g-gold) 0%, #FFA500 100%);
-    color: var(--v3g-black);
-    border-color: var(--v3g-gold);
-}
-
-.btn-gold:hover {
-    background: var(--v3g-white);
-    color: var(--v3g-black);
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transition: left 0.5s;
-}
-
-.btn:hover::before {
-    left: 100%;
-}
-
-/* ========== 02. COMPONENTS : NAVBAR ========== */
-.navbar {
-    background: rgba(10, 10, 10, 0.95) !important;
-    backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--v3g-red);
-    padding: 15px 0;
-}
-
-.navbar-brand {
-    font-family: var(--font-primary);
-    font-size: 2rem;
-    color: var(--v3g-white) !important;
-    text-shadow: 2px 2px 0 var(--v3g-red);
-}
-
-.navbar-brand span {
-    color: var(--v3g-gold);
-}
-
-.nav-link {
-    color: var(--v3g-white) !important;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 1px;
-    position: relative;
-    margin: 0 15px;
-    transition: color 0.3s;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--v3g-gold);
-    transition: width 0.3s;
-}
-
-.nav-link:hover {
-    color: var(--v3g-gold) !important;
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-/* ========== 02. COMPONENTS : PRODUCT ITEMS ========== */
-.product-item {
-    background: var(--v3g-gray);
-    border: 1px solid #333;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.product-item:hover {
-    border-color: var(--v3g-red);
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(220, 0, 0, 0.3);
-}
-
-.product-item .product-title {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    color: var(--v3g-white);
-    margin-top: 15px;
-}
-
-.product-item .price {
-    color: var(--v3g-gold);
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.product-item .product-image::after {
-    content: '88MOB';
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: var(--v3g-red);
-    color: white;
-    padding: 5px 10px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.product-item:hover .product-image::after {
-    opacity: 1;
-}
-
-/* ========== 02. COMPONENTS : BANNER SLIDER ========== */
-.banner-slider {
-    background: linear-gradient(135deg, var(--v3g-black) 0%, #1a0000 100%);
-    position: relative;
-}
-
-.banner-content h1 {
-    font-size: 4rem;
-    background: linear-gradient(45deg, var(--v3g-white), var(--v3g-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
-    margin-bottom: 20px;
-}
-
-.banner-content .subtitle {
-    color: var(--v3g-red);
-    font-weight: bold;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-}
-
-/* ========== 02. COMPONENTS : AUDIO PLAYER ========== */
-.audio-player-container {
-    background: linear-gradient(135deg, var(--v3g-gray) 0%, var(--v3g-black) 100%);
-    border: 2px solid var(--v3g-red);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 0 30px rgba(220, 0, 0, 0.2);
-}
-
-.audio-player-container .track-title {
-    color: var(--v3g-gold);
-    font-family: var(--font-primary);
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-}
-
-/* ========== 03. BLOCKS : BANNERS ========== */
-.block-banner {
-    background: linear-gradient(135deg, rgba(220, 0, 0, 0.9) 0%, rgba(139, 0, 0, 0.9) 100%);
-    position: relative;
-    overflow: hidden;
-    padding: 60px 40px;
-    border: 2px solid var(--v3g-gold);
-}
-
-.block-banner::before {
-    content: '89109';
-    position: absolute;
-    font-size: 10rem;
-    font-family: var(--font-primary);
-    color: rgba(255, 255, 255, 0.05);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-}
-
-.block-banner h2 {
-    position: relative;
-    z-index: 1;
-    font-size: 3rem;
-}
-
-/* ========== 03. BLOCKS : SHOPPING CART ========== */
-.cart-total {
-    background: var(--v3g-gray);
-    border: 2px solid var(--v3g-gold);
-    padding: 30px;
-}
-
-.cart-total .total-price {
-    color: var(--v3g-gold);
-    font-size: 2rem;
-    font-family: var(--font-primary);
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes pulse-red {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(220, 0, 0, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(220, 0, 0, 0); }
-}
-
-@keyframes gold-glow {
-    0%, 100% { text-shadow: 0 0 10px var(--v3g-gold), 0 0 20px var(--v3g-gold); }
-    50% { text-shadow: 0 0 20px var(--v3g-gold), 0 0 30px var(--v3g-gold), 0 0 40px #FFA500; }
-}
-
-.pulse-animation {
-    animation: pulse-red 2s infinite;
-}
-
-.glow-text {
-    animation: gold-glow 2s infinite;
-}
-
-/* ========== SEO OPTIMIZATION CLASSES ========== */
-.seo-las-vegas-rap::before {
-    content: 'Las Vegas Independent Rap';
-    position: absolute;
-    left: -9999px;
-}
-
-.seo-89109::after {
-    content: '89109 Hip Hop Merchandise';
-    position: absolute;
-    left: -9999px;
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-    .banner-content h1 {
-        font-size: 2.5rem;
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Meet V3GASBOI (Jonas Evans) – a Las Vegas rapper who overcame addiction, jail, and fatherhood struggles. Read his story and vote to help him produce with Timbaland.">
+  <meta name="keywords" content="V3GASBOI, Jonas Evans, Las Vegas rapper, Timbaland contest, underground hip-hop, redemption story, vote for rapper">
+  <meta name="author" content="V3GASBOI Fan Hub">
+  <meta property="og:title" content="V3GASBOI: From Vegas Streets to Timbaland Contest – Full Story & Vote">
+  <meta property="og:description" content="Raw, unfiltered hip-hop from a father, fighter, and survivor. Help V3GASBOI win a session with Timbaland.">
+  <meta property="og:image" content="https://placehold.co/1200x630/1a1a2e/e94560?text=V3GASBOI">
+  <meta property="og:url" content="https://yourgithub.github.io/v3gasboi">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>V3GASBOI | Vegas Artist · Timbaland Contest · Vote Now</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    .navbar-brand {
-        font-size: 1.5rem;
+
+    body {
+      background: #0a0a0f;
+      color: #ededee;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      line-height: 1.5;
+      scroll-behavior: smooth;
     }
-    
-    .btn {
-        padding: 12px 25px;
-        font-size: 0.9rem;
+
+    /* neon accent color */
+    :root {
+      --neon: #e94560;
+      --neon-glow: 0 0 5px #e94560, 0 0 10px rgba(233, 69, 96, 0.5);
+      --card-bg: #111114;
+      --border-dim: #2a2a2e;
     }
-    
-    .block-banner h2 {
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* typography */
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #e94560);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--neon);
+      padding-left: 1rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem 0;
+      color: #f0f0f0;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      color: #b0b0b8;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #222;
+      padding-bottom: 0.75rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      margin: 2rem 0;
+      border: 1px solid var(--border-dim);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.5);
+      border-color: #e9456040;
+    }
+
+    .vlog-timeline {
+      background: #0c0c10;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+    }
+
+    .timestamp {
+      color: var(--neon);
+      font-weight: 600;
+      display: inline-block;
+      width: 70px;
+    }
+
+    .vlog-line {
+      margin: 0.75rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px dashed #2a2a2e;
+    }
+
+    .btn-vote {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--neon);
+      color: #0a0a0f;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 0 8px rgba(233, 69, 96, 0.5);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-vote:hover {
+      background: #ff5a7a;
+      transform: scale(1.02);
+      box-shadow: 0 0 18px #e94560;
+    }
+
+    .vote-section {
+      text-align: center;
+      background: linear-gradient(145deg, #111114, #0a0a0f);
+      border-radius: 2rem;
+      padding: 2.5rem 1.5rem;
+      margin: 2.5rem 0;
+      border: 1px solid #e9456030;
+    }
+
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .social-card {
+      flex: 1;
+      min-width: 240px;
+      background: #121217;
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      border-left: 3px solid var(--neon);
+    }
+
+    .social-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-card p {
+      font-size: 0.9rem;
+      color: #cdcdd4;
+      word-break: break-word;
+    }
+
+    .stats-badge {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .stat {
+      background: #1a1a22;
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6c6c78;
+      border-top: 1px solid #222;
+      padding-top: 2rem;
+    }
+
+    a {
+      color: var(--neon);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 1.2rem;
+      }
+      h1 {
         font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      .btn-vote {
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
+      }
     }
-}
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 12px;
-}
+    .highlight {
+      color: #e94560;
+      font-weight: 600;
+    }
 
-::-webkit-scrollbar-track {
-    background: var(--v3g-black);
-}
+    .quote {
+      font-style: italic;
+      border-left: 3px solid #e94560;
+      padding-left: 1.2rem;
+      margin: 1.2rem 0;
+      color: #c0c0cf;
+    }
+  </style>
+</head>
+<body>
 
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(var(--v3g-red), var(--v3g-gold));
-    border-radius: 6px;
-}
+<div class="container">
+  <!-- header with artist identity -->
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+    <div>
+      <span style="background: #e9456010; padding: 0.3rem 0.8rem; border-radius: 40px; font-size: 0.8rem;">🎙️ emerging from Las Vegas</span>
+    </div>
+    <div style="font-size: 0.85rem;">#V3GASBOI · #TimbalandContest</div>
+  </div>
+  
+  <h1>V3GASBOI<br><span style="font-size: 1.4rem; background: none; -webkit-text-fill-color: #b9b9c4;">From Streets to Studio — A Story of Redemption</span></h1>
+  <div class="subhead">Jonas Evans · Raw hip-hop · One vote away from working with Timbaland</div>
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--v3g-gold);
-}
+  <!-- blog content -->
+  <section>
+    <p><strong>V3GASBOI</strong> (Jonas Evans) isn't chasing fame — he's rewriting his destiny. The Las Vegas native turned his pain into rhythm, his past into poetry. After jail at 18, addiction, and raising two kids as a teen father, he launched his solo career in <span class="highlight">July 2024</span>. Now in <strong>March 2025</strong>, he stands at the threshold of a life-changing opportunity: a chance to produce with the legendary <strong>Timbaland</strong>.</p>
+    
+    <div class="stats-badge">
+      <span class="stat">🔹 Father at 15</span>
+      <span class="stat">🔹 Incarcerated at 18</span>
+      <span class="stat">🔹 Clean & focused</span>
+      <span class="stat">🔹 Lyrical Mindz founder</span>
+    </div>
+
+    <div class="card">
+      <h3>📖 The Backstory: Survival Over Spectacle</h3>
+      <p>Growing up without a father, Jonas learned the hard way. At 15 he became a dad, determined to break the cycle. But the streets of Vegas pulled him in — by 18 he was locked up in Las Vegas County Jail. That wake-up call, followed by a battle with substance abuse, nearly swallowed him whole. <br><br>
+      <strong>The turnaround?</strong> Love and music. He met his wife <strong>Dayliset Evans</strong> at 24, built a family, and together with his brother formed the group <strong>Lyrical Mindz</strong>. Every bar he writes today is a confession: from rock bottom to the recording booth.</p>
+    </div>
+
+    <div class="card">
+      <h3>🎧 The 2025 Timbaland Contest</h3>
+      <p>In March 2025, V3GASBOI entered a high-stakes competition for a once-in-a-lifetime opportunity: <strong>co-produce a track with Timbaland</strong>. For an independent Vegas artist, this could change everything — amplifying his raw, unfiltered storytelling to a global audience. He’s rallying his fanbase to vote daily, share his story, and prove that second chances deserve the biggest stages.</p>
+      <div class="quote">“This isn't performative rap. This is a guy who crawled back from addiction to provide for his kids. His music is therapy.” — V3GASBOI's mission</div>
+    </div>
+  </section>
+
+  <!-- vlog script web-optimized -->
+  <h2>🎬 Vlog Script: “Vegas Vibes & Vocal Booths”</h2>
+  <div class="card">
+    <p style="margin-bottom: 1rem;"><strong>🎥 Title:</strong> <em>V3GASBOI: Vegas Streets to Timbaland</em> · ⏱️ ~90 seconds · <strong>Thumbnail idea:</strong> Split frame: gritty alley + booth, text "He needs your vote"</p>
+    <div class="vlog-timeline">
+      <div class="vlog-line"><span class="timestamp">0:00–0:10</span> <strong>🎬 HOOK</strong> – Montage: flickering Vegas sign, empty lots, graffiti. <em>Audio:</em> “Las Vegas. Most see winners. V3GASBOI saw survival.”</div>
+      <div class="vlog-line"><span class="timestamp">0:10–0:35</span> <strong>📖 BACKSTORY</strong> – Text overlays: “Father: absent”, “Dad at 15”, “Jail at 18”. Cut to photo with kids. <em>Audio:</em> “Meet Jonas Evans – a father, a fighter, a felon who got clean. His music is a journal.”</div>
+      <div class="vlog-line"><span class="timestamp">0:35–0:55</span> <strong>🏆 TIMBALAND CONTEST</strong> – Screencast of contest page with “VOTE” button. <em>Audio:</em> “Now he’s one vote away from working with Timbaland. One legend. One shot.”</div>
+      <div class="vlog-line"><span class="timestamp">0:55–1:15</span> <strong>🗳️ CALL TO ACTION</strong> – V3GASBOI looking into camera + QR code / text. <em>Audio:</em> “Click the link. Cast your vote. Share this video. Let’s get V3GASBOI in that booth.”</div>
+      <div class="vlog-line"><span class="timestamp">End screen</span> – “Subscribe for more indie stories” + vote button overlay.</div>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem;">💡 <em>SEO tip:</em> Include this transcript in video description for accessibility and ranking.</p>
+  </div>
+
+  <!-- social media captions for web share -->
+  <h2>📱 Share His Story — Ready-to-Use Captions</h2>
+  <div class="social-grid">
+    <div class="social-card">
+      <h4>📸 Instagram (Feed)</h4>
+      <p>From the streets of Vegas to the verge of a Timbaland collab 🎤🔥 Meet V3GASBOI – a father, fighter, and raw voice. His story of addiction, jail, and redemption is now music. <strong>Vote now 👉 link in bio</strong><br>#V3GASBOI #TimbalandContest #VegasArtist</p>
+    </div>
+    <div class="social-card">
+      <h4>🐦 Twitter / X</h4>
+      <p>V3GASBOI went from jail at 18 to chasing a Timbaland co-sign in 2025. Real, unfiltered Vegas hip-hop. 🎙️ Vote for him → [link]<br>#V3GASBOI #Timbaland #NewRap</p>
+    </div>
+    <div class="social-card">
+      <h4>🎵 TikTok</h4>
+      <p>POV: You’re an underground Vegas rapper with a second chance. 🎧 V3GASBOI’s story hits different. Help him win a session with Timbaland. 🗳️ link in bio #V3GASBOI #hiphopstory</p>
+    </div>
+    <div class="social-card">
+      <h4>📘 Facebook</h4>
+      <p>Sometimes the best music comes from the hardest roads. V3GASBOI is clean, focused, and one vote away from working with Timbaland. Let’s help him turn pain into power. 👉 Click to vote: [link]</p>
+    </div>
+  </div>
+
+  <!-- why vote + call to action -->
+  <div class="vote-section">
+    <h2 style="margin-top: 0; border-left: none;">🗳️ Why V3GASBOI Deserves Your Vote</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 1.5rem 0;">
+      <div><span class="highlight">✓ Authenticity</span><br>Real lyrics, real life</div>
+      <div><span class="highlight">✓ Resilience</span><br>From jail & addiction to art</div>
+      <div><span class="highlight">✓ Family-first</span><br>Providing a better future</div>
+    </div>
+    <a href="#" class="btn-vote" id="voteButton">🎧 VOTE NOW FOR V3GASBOI →</a>
+    <p style="margin-top: 1.2rem; font-size: 0.85rem;">⏱️ Voting link active — every share brings him closer to Timbaland</p>
+    <p style="font-size: 0.75rem; margin-top: 1rem;">(demo placeholder: replace # with actual contest URL)</p>
+  </div>
+
+  <!-- extra bio info + web optimized footer -->
+  <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; margin-top: 1rem;">
+    <div>
+      <h3>📀 Quick facts</h3>
+      <ul style="margin-left: 1.2rem; color: #bcbcc9;">
+        <li>Real name: Jonas Evans</li>
+        <li>Origin: Las Vegas, NV</li>
+        <li>Group: Lyrical Mindz (co-founder)</li>
+        <li>Married to Dayliset Evans · 17+ years</li>
+        <li>Clean from addiction · full-time father</li>
+      </ul>
+    </div>
+    <div>
+      <h3>🔗 Follow & Support</h3>
+      <p>📸 Instagram: <a href="#">@V3GASBOI</a> (coming soon)<br>
+      🎵 Stream / vote updates: <a href="#">v3gasboi.fanlink.to/vote</a><br>
+      🔁 Hashtags: #V3GASBOI #VegasToTimbaland</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 V3GASBOI Fan Hub — Independent artist support. This site is optimized for web & mobile. Share the blog, cast your vote, and help rewrite a Vegas story.<br>
+    📍 <strong>Web-optimized HTML</strong> | Meta tags + structured content for search engines | Ready for GitHub Pages</p>
+    <p style="margin-top: 0.5rem;">⭐ <em>“Turn rock bottom into top of the world.”</em> — V3GASBOI</p>
+  </footer>
+</div>
+
+<!-- simple interactive demo for vote button (demo only) -->
+<script>
+  const voteBtn = document.getElementById('voteButton');
+  if (voteBtn) {
+    voteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // In production, replace with real contest link
+      alert('🚀 Thanks for supporting V3GASBOI! Replace this alert with actual voting URL (Timbaland contest link). Let’s get him in the booth!');
+      // window.open('https://www.your-vote-link.com', '_blank');
+    });
+  }
+</script>
+</body>
+</html>
+```
