@@ -1,450 +1,421 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V3GASBOI — Official Folio + AI Command Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --red: #e8000a;
-    --gold: #d4a017;
-    --white: #f5f0e8;
-    --black: #080808;
-    --charcoal: #111111;
-    --dim: #1a1a1a;
-    --muted: #888;
-    --neon: #ff3c00;
-    --cyan: #00ffff;
-    --magenta: #ff00ff;
-    --purple: #b366ff;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 200;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 48px;
-    background: linear-gradient(to bottom, rgba(8,8,8,0.97), transparent);
-    backdrop-filter: blur(4px);
-  }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: .15em; }
-  .nav-logo span { color: var(--red); }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a {
-    font-family: 'Barlow Condensed', sans-serif; font-size: .72rem;
-    font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--muted); text-decoration: none; transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-links a.ai-link { color: var(--cyan); }
-  .nav-links a.ai-link:hover { color: #fff; text-shadow: 0 0 10px var(--cyan); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    justify-content: flex-end; padding: 0 48px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(232,0,10,.12) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(212,160,23,.06) 0%, transparent 60%),
-      linear-gradient(160deg, #0a0a0a 0%, #080808 50%, #0d0505 100%);
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(232,0,10,.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,0,10,.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
-  }
-  .hero-tag {
-    font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 600;
-    letter-spacing: .3em; color: var(--red); text-transform: uppercase;
-    margin-bottom: 16px; position: relative; display: flex; align-items: center; gap: 12px;
-  }
-  .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--red); }
-  .hero-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 14vw, 12rem); line-height: .85; letter-spacing: .02em; position: relative;
-  }
-  .hero-name .v3 { color: var(--white); }
-  .hero-name .gas { color: var(--red); }
-  .hero-name .boi { color: var(--gold); }
-  .hero-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(1rem, 2.5vw, 1.6rem); font-weight: 300;
-    letter-spacing: .25em; color: var(--muted); text-transform: uppercase;
-    margin-top: 16px; margin-bottom: 48px;
-  }
-  .hero-stats { display: flex; gap: 48px; position: relative; }
-  .hero-stat { display: flex; flex-direction: column; gap: 4px; }
-  .hero-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--white); line-height: 1; }
-  .hero-stat-num span { color: var(--red); }
-  .hero-stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
-  .hero-divider { width: 1px; background: rgba(255,255,255,.08); align-self: stretch; }
-  .scroll-hint {
-    position: absolute; bottom: 32px; right: 48px;
-    font-family: 'Barlow Condensed', sans-serif; font-size: .65rem;
-    letter-spacing: .25em; color: var(--muted); text-transform: uppercase;
-    writing-mode: vertical-rl; display: flex; align-items: center; gap: 8px;
-  }
-  .scroll-hint::before {
-    content: ''; width: 1px; height: 40px;
-    background: linear-gradient(to bottom, transparent, var(--muted));
-    animation: scrollLine 2s ease-in-out infinite;
-  }
-  @keyframes scrollLine { 0%,100%{opacity:.3} 50%{opacity:1} }
-
-  /* ── SECTION BASE ── */
-  section { padding: 100px 48px; max-width: 1400px; margin: 0 auto; }
-  .section-label {
-    font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 600;
-    letter-spacing: .35em; text-transform: uppercase; color: var(--red);
-    margin-bottom: 48px; display: flex; align-items: center; gap: 16px;
-  }
-  .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.06); }
-
-  /* ── ABOUT ── */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .about-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,6vw,5.5rem); line-height: .9; margin-bottom: 32px; }
-  .about-title em { font-style: normal; color: var(--red); }
-  .about-body { font-size: 1rem; line-height: 1.8; color: rgba(245,240,232,.7); max-width: 480px; }
-  .about-body p+p { margin-top: 16px; }
-  .about-right { display: flex; flex-direction: column; gap: 24px; }
-  .badge {
-    border: 1px solid rgba(255,255,255,.08); padding: 20px 24px;
-    background: rgba(255,255,255,.02); position: relative; overflow: hidden; transition: border-color .3s;
-  }
-  .badge::before { content: ''; position: absolute; top:0; left:0; width:3px; height:100%; background: var(--red); }
-  .badge:hover { border-color: rgba(232,0,10,.3); }
-  .badge-title { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .badge-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .05em; }
-
-  /* ── METRICS ── */
-  .metrics-full {
-    background: linear-gradient(135deg, #0d0d0d, #111);
-    border: 1px solid rgba(255,255,255,.05);
-    padding: 60px; margin: 0 48px; max-width: none;
-  }
-  .metrics-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
-  .metrics-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,5vw,4rem); line-height: 1; }
-  .metrics-title span { color: var(--red); }
-  .metrics-period { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; letter-spacing: .25em; color: var(--muted); text-transform: uppercase; }
-  .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,.04); margin-bottom: 48px; }
-  .metric-cell { background: var(--charcoal); padding: 32px 28px; transition: background .3s; }
-  .metric-cell:hover { background: #161616; }
-  .metric-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,4vw,3.8rem); line-height: 1; color: var(--white); margin-bottom: 8px; }
-  .metric-num .accent { color: var(--red); }
-  .metric-num .gold { color: var(--gold); }
-  .metric-desc { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); line-height: 1.4; }
-  .platforms-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-  .platform-card {
-    border: 1px solid rgba(255,255,255,.06); padding: 28px;
-    background: rgba(255,255,255,.015); transition: all .3s; position: relative; overflow: hidden;
-  }
-  .platform-card::after {
-    content: ''; position: absolute; bottom:0; left:0; right:0; height:2px;
-    background: var(--red); transform: scaleX(0); transition: transform .3s; transform-origin: left;
-  }
-  .platform-card:hover { border-color: rgba(232,0,10,.2); }
-  .platform-card:hover::after { transform: scaleX(1); }
-  .platform-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .1em; color: var(--muted); margin-bottom: 16px; text-transform: uppercase; }
-  .platform-stat { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--white); line-height: 1; margin-bottom: 4px; }
-  .platform-stat span { color: var(--red); font-size: 1.4rem; }
-  .platform-note { font-size: .8rem; color: var(--muted); line-height: 1.5; }
-
-  /* ── STRIP RAP ── */
-  .striprap-section { background: linear-gradient(180deg, var(--black) 0%, #0a0303 50%, var(--black) 100%); padding: 100px 0; overflow: hidden; }
-  .striprap-inner { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
-  .striprap-marquee { overflow: hidden; margin: 0 -48px 60px; white-space: nowrap; }
-  .striprap-marquee-track { display: inline-block; animation: marquee 20s linear infinite; }
-  .striprap-marquee span { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem,10vw,8rem); letter-spacing: .05em; color: rgba(255,255,255,.03); padding: 0 32px; }
-  .striprap-marquee span.accent { color: rgba(232,0,10,.15); }
-  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-  .striprap-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
-  .striprap-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem,7vw,6rem); line-height: .9; margin-bottom: 32px; }
-  .striprap-title span { color: var(--red); }
-  .striprap-body { font-size: 1rem; line-height: 1.85; color: rgba(245,240,232,.65); margin-bottom: 32px; }
-  .striprap-quote { border-left: 3px solid var(--red); padding: 20px 24px; background: rgba(232,0,10,.04); font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 300; line-height: 1.6; color: rgba(245,240,232,.8); font-style: italic; }
-  .striprap-pillars { display: flex; flex-direction: column; gap: 16px; }
-  .pillar { display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start; padding: 20px; border: 1px solid rgba(255,255,255,.05); background: rgba(255,255,255,.015); transition: all .3s; }
-  .pillar:hover { border-color: rgba(232,0,10,.2); background: rgba(232,0,10,.03); }
-  .pillar-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: rgba(232,0,10,.3); line-height: 1; }
-  .pillar-title { font-family: 'Barlow Condensed', sans-serif; font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--white); margin-bottom: 6px; }
-  .pillar-text { font-size: .85rem; color: var(--muted); line-height: 1.5; }
-
-  /* ── CERTS ── */
-  .certs-intro { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
-  .certs-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,5vw,4.5rem); line-height: .9; }
-  .certs-title span { color: var(--red); }
-  .certs-total { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 600; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; text-align: right; }
-  .certs-total strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold); letter-spacing: .05em; }
-  .certs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-  .cert-card { border: 1px solid rgba(255,255,255,.06); padding: 28px; background: rgba(255,255,255,.015); position: relative; overflow: hidden; transition: all .3s; }
-  .cert-card::before { content: ''; position: absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(to right, var(--red), transparent); }
-  .cert-card:hover { border-color: rgba(232,0,10,.2); background: rgba(232,0,10,.03); }
-  .cert-institution { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .cert-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; line-height: 1.3; color: var(--white); margin-bottom: 16px; }
-  .cert-meta { display: flex; justify-content: space-between; align-items: flex-end; }
-  .cert-details { display: flex; flex-direction: column; gap: 4px; }
-  .cert-detail { font-size: .78rem; color: rgba(245,240,232,.5); }
-
-  /* ══════════════════════════════════════════════
-     AI COMMAND HUB — FULL SECTION
-  ══════════════════════════════════════════════ */
-  .ai-hub-section {
-    background: #050810;
-    border-top: 1px solid rgba(0,255,255,.08);
-    border-bottom: 1px solid rgba(0,255,255,.08);
-    padding: 100px 0;
-    max-width: none;
-    margin: 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* AI grid background */
-  .ai-hub-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,255,255,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,255,.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-  }
-
-  .ai-hub-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 48px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* AI Hub Header */
-  .ai-hub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 48px;
-    border-bottom: 1px solid rgba(0,255,255,.08);
-    padding-bottom: 32px;
-  }
-
-  .ai-hub-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--cyan) 0%, #6699ff 50%, var(--magenta) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .ai-hub-sub {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: .72rem;
-    letter-spacing: .25em;
-    color: rgba(0,255,255,.4);
-  }
-
-  .ai-status-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: .7rem;
-    letter-spacing: .2em;
-    color: var(--cyan);
-    border: 1px solid rgba(0,255,255,.2);
-    padding: 8px 16px;
-    background: rgba(0,255,255,.04);
-  }
-
-  .ai-status-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--cyan);
-    animation: blink 1.2s infinite;
-  }
-
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-
-  /* Tab Nav */
-  .ai-tabs {
-    display: flex;
-    gap: 2px;
-    margin-bottom: 32px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .ai-tabs::-webkit-scrollbar { display: none; }
-
-  .ai-tab {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: .68rem;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    padding: 12px 20px;
-    border: none;
-    background: rgba(255,255,255,.02);
-    color: rgba(255,255,255,.3);
-    cursor: pointer;
-    transition: all .25s;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    border-top: 1px solid rgba(255,255,255,.04);
-    border-left: 1px solid rgba(255,255,255,.04);
-    border-right: 1px solid rgba(255,255,255,.04);
-  }
-
-  .ai-tab:hover { color: rgba(255,255,255,.7); background: rgba(0,255,255,.04); }
-
-  .ai-tab.active {
-    color: var(--cyan);
-    background: rgba(0,255,255,.06);
-    border-bottom-color: var(--cyan);
-    border-top-color: rgba(0,255,255,.2);
-  }
-
-  /* Tab Panels */
-  .ai-panel { display: none; animation: fadeUp .3s ease; }
-  .ai-panel.active { display: block; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-  /* ── PANEL: OMNIFUSION ── */
-  .fusion-layout {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 24px;
-    align-items: start;
-  }
-
-  .fusion-engines {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .engine-card {
-    border: 1px solid #0d2040;
-    background: linear-gradient(135deg, #060c1a, #080f20);
-    padding: 18px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color .3s, box-shadow .3s;
-  }
-
-  .engine-card.active-engine {
-    border-color: var(--cyan);
-    box-shadow: 0 0 16px rgba(0,255,255,.15);
-    animation: enginePulse 2s infinite;
-  }
-
-  .engine-card.done-engine { border-color: rgba(0,255,255,.3); box-shadow: 0 0 10px rgba(0,255,255,.08); }
-  .engine-card.narrative-done { border-color: rgba(255,0,255,.3); box-shadow: 0 0 10px rgba(255,0,255,.08); }
-  .engine-card.visual-done { border-color: rgba(179,102,255,.3); box-shadow: 0 0 10px rgba(179,102,255,.08); }
-  .engine-card.audio-done { border-color: rgba(212,160,23,.3); box-shadow: 0 0 10px rgba(212,160,23,.08); }
-
-  @keyframes enginePulse {
-    0%,100%{box-shadow:0 0 10px rgba(0,255,255,.1)}
-    50%{box-shadow:0 0 24px rgba(0,255,255,.3)}
-  }
-
-  .engine-corner-tl {
-    position: absolute; top:0; left:0;
-    width:10px; height:10px;
-    border-top: 2px solid currentColor;
-    border-left: 2px solid currentColor;
-  }
-  .engine-corner-br {
-    position: absolute; bottom:0; right:0;
-    width:10px; height:10px;
-    border-bottom: 2px solid currentColor;
-    border-right: 2px solid currentColor;
-  }
-
-  .engine-header {
-    display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
-  }
-
-  .engine-icon { font-size: 16px; line-height: 1; }
-
-  .engine-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: .58rem; letter-spacing: .2em; font-weight: 700;
-    flex: 1;
-  }
-
-  .engine-status-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: #1e2d48;
-    transition: background .3s;
-  }
-
-  .engine-status-dot.processing { background: var(--cyan); animation: blink .6s infinite; }
-  .engine-status-dot.done-cyan { background: var(--cyan); }
-  .engine-status-dot.done-mag { background: var(--magenta); }
-  .engine-status-dot.done-purple { background: var(--purple); }
-  .engine-status-dot.done-gold { background: var(--gold); }
-
-  .engine-body { font-family: 'Share Tech Mono', monospace; font-size: .7rem; color: #3a5070; }
-  .engine-body.has-data { color: #a0b8d0; }
-  .engine-result-key { color: rgba(0,255,255,.5); font-size: .58rem; letter-spacing: .2em; display: block; margin-bottom: 2px; margin-top: 8px; }
-  .engine-result-key:first-child { margin-top: 0; }
-  .engine-result-val { color: #c8d8f0; font-size: .72rem; line-height: 1.4; }
-
-  .bar-loader { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
-  .bar-track { height: 4px; background: #0d1628; border-radius: 1px; overflow: hidden; }
-  .bar-fill {
-    height: 100%; border-radius: 1px;
-    animation: barAnim .8s ease both;
-  }
-  @keyframes barAnim { from{width:0} to{width:var(--w)} }
-
-  /* Fusion sidebar */
-  .fusion-sidebar { display: flex; flex-direction: column; gap: 16px; }
-
-  .fusion-input-box {
-    border: 1px solid #0d2040;
-    background: linear-gradient(135deg, #060c1a, #080f1e);
-    padding: 18px;
-    position: relative;
-  }
-
-  .fusion-input-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: .6rem; letter-spacing: .3em; color: rgba(0,255,255,.5);
-    margin-bottom: 8px;
-  }
-
-  .fusion-textarea {
     width: 100%; background: transparent; border: none;
     border-bottom: 1px solid #0d2040; color: #c8d8f0;
     font-size: .9rem; font-family: 'Barlow Condensed', sans-serif;
     font-weight: 600; letter-spacing: .05em; outline: none;
-    resize: none; padding:
+    resize: none; padding: 8px 0 16px 0;
+    transition: border-bottom-color 0.3s;
+  }
+
+  .fusion-textarea:focus {
+    border-bottom-color: var(--cyan);
+  }
+
+  .fusion-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--red) 0%, #b30007 100%);
+    border: none;
+    padding: 16px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: .78rem;
+    letter-spacing: .25em;
+    color: var(--white);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .fusion-btn:hover {
+    box-shadow: 0 0 20px rgba(232,0,10,0.4);
+    transform: translateY(-1px);
+  }
+
+  .fusion-btn span {
+    font-size: 0.9rem;
+  }
+
+  /* ── CONSOLE OUTPUT ── */
+  .fusion-console {
+    border: 1px solid #0d2040;
+    background: #03060c;
+    padding: 20px;
+    height: 380px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .78rem;
+    line-height: 1.6;
+    color: #8fa0b8;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .console-line {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(13,32,64,0.3);
+  }
+
+  .console-line:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .console-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: .65rem;
+    letter-spacing: .1em;
+  }
+
+  .meta-tag-claude { color: var(--red); }
+  .meta-tag-gpt4o { color: var(--cyan); }
+  .meta-tag-mistral { color: var(--gold); }
+  .meta-time { color: rgba(255,255,255,0.2); }
+
+  .console-text {
+    color: #e2ecf8;
+  }
+
+  .console-text span.highlight {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ── RESPONSIVE RESPONSIVENESS ── */
+  @media(max-width: 1024px) {
+    .fusion-layout { grid-template-columns: 1fr; }
+    .about-grid, .striprap-content { grid-template-columns: 1fr; gap: 48px; }
+    .metrics-grid { grid-template-columns: repeat(2,1fr); }
+    .platforms-row, .certs-grid { grid-template-columns: 1fr; }
+    nav { padding: 18px 24px; }
+    section, .metrics-full, .striprap-inner, .ai-hub-inner { padding: 60px 24px; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">V<span>3</span>GASBOI</div>
+    <ul class="nav-links">
+      <li><a href="#about">Philosophy</a></li>
+      <li><a href="#metrics">Data Matrix</a></li>
+      <li><a href="#striprap">Strip Rap</a></li>
+      <li><a href="#certs">Credentials</a></li>
+      <li><a href="#ai-hub" class="ai-link">// AI Command Hub</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-tag">Independent Mogul // 88MOB Movement</div>
+    <h1 class="hero-name"><span class="v3">V</span><span class="gas">3</span><span class="boi">GASBOI</span></h1>
+    <div class="hero-sub">Master Producer • Mix & Master Engineer • Developer</div>
+    
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">V4<span>.0</span></div>
+        <div class="hero-stat-label">AI Orchestrator Stack</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100<span>%</span></div>
+        <div class="hero-stat-label">Independent Infrastructure</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">88<span>MOB</span></div>
+        <div class="hero-stat-label">Cultural Catalyst</div>
+      </div>
+    </div>
+    <div class="scroll-hint">DECRYPT SYSTEM CONTENT</div>
+  </header>
+
+  <section id="about" class="about-grid">
+    <div>
+      <div class="section-label">01 // Executive Intent</div>
+      <h2 class="about-title">Bypassing the <em>Gatekeepers</em>.</h2>
+      <div class="about-body">
+        <p>Major labels historically looked through Las Vegas instead of looking at it. This systemic omission didn't break the environment—it forged an uncompromised DIY ethos. True culture isn't imported from standard coastal industry machines; it is built out of the daily concrete grit and survival hustle of Owens Ave.</p>
+        <p>By blending custom technical engineering infrastructures with uncompromising musical production paradigms, the objective is to build an un-gatekeepable local network designed to aggregate isolated regional camps into a unified commercial force.</p>
+      </div>
+    </div>
+    <div class="about-right" style="margin-top: 56px;">
+      <div class="badge">
+        <div class="badge-title">Primary Operation Sphere</div>
+        <div class="badge-val">Las Vegas Local Market & Regional Sub-Circuits</div>
+      </div>
+      <div class="badge">
+        <div class="badge-title">Sonic Classification</div>
+        <div class="badge-val">Strip Rap — Authentic Regional Bounce & Dark Textures</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="metrics" class="metrics-full">
+    <div class="metrics-header">
+      <h2 class="metrics-title">Distribution <span>Analytics</span>.</h2>
+      <div class="metrics-period">Live ingestion feed via TuneCore / UnitedMasters / Songstats</div>
+    </div>
+    
+    <div class="metrics-grid">
+      <div class="metric-cell">
+        <div class="metric-num"><span class="accent">11</span></div>
+        <div class="metric-desc">Academic Milestones Verified</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">100<span class="accent">%</span></div>
+        <div class="metric-desc">Autonomous Project Execution</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num"><span class="gold">24</span>/7</div>
+        <div class="metric-desc">Hustle Mentality Dynamic Ingestion</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-num">0<span class="accent">.0</span></div>
+        <div class="metric-desc">External Label Dependency</div>
+      </div>
+    </div>
+
+    <div class="platforms-row">
+      <div class="platform-card">
+        <div class="platform-name">E-Commerce Node // The Jump Off</div>
+        <div class="platform-stat">Live<span>Shopify</span></div>
+        <div class="platform-note">Direct-to-consumer digital monetization funnel, dropshipping infrastructure, and Google Shopping feed orchestration sync.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">Audio Node // Engineering</div>
+        <div class="platform-stat">HD<span>Post</span></div>
+        <div class="platform-note">Cloud audio optimization via localized processing matrix setups, Voloco tracking pipelines, and master mix bus chains.</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-name">Media Node // Broadcast</div>
+        <div class="platform-stat">01<span>Pod</span></div>
+        <div class="platform-note">"Straight from Las Vegas Local Hip-Hop Jam" podcast network. Giving direct voice to the unrepresented underground.</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="striprap" class="striprap-section">
+    <div class="striprap-inner">
+      <div class="striprap-marquee">
+        <div class="striprap-marquee-track">
+          <span>STRIP RAP</span> <span class="accent">OWENS AVE HUSTLE</span> <span>STRIP RAP</span> <span class="accent">88MOB INFRASTRUCTURE</span> <span>STRIP RAP</span> <span class="accent">OWENS AVE HUSTLE</span> <span>STRIP RAP</span> <span class="accent">88MOB INFRASTRUCTURE</span>
+        </div>
+      </div>
+      
+      <div class="striprap-content">
+        <div>
+          <h2 class="striprap-title">The Real Defining <span>Force</span>.</h2>
+          <div class="striprap-body">
+            <p>Vegas sits at a brutal cultural crossroads. West Coast bounce proximity shapes the low-end foundation, while heavy Southern trap cadences bleed directly into the vocal schemes. The ultimate signature identity comes from internal spatial tension: massive wealth and deep poverty existing directly side by side.</p>
+            <p>It is the harsh structural juxtaposition of the hyper-glamourized Strip looking right over the stark street realities of the Eastside and North Vegas. That precise systemic gap is where authentic music is born.</p>
+          </div>
+          <div class="striprap-quote">
+            "The story of Vegas rap hasn't been fully told. The artists building now are writing it."
+          </div>
+        </div>
+        
+        <div class="striprap-pillars">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <div>
+              <div class="pillar-title">Sonic Identity</div>
+              <div class="pillar-text">Heavy 808 sub-structures, crisp transient-forward top ends optimized for mobile environments, and localized lyrical narratives.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <div>
+              <div class="pillar-title">De-fragmentation</div>
+              <div class="pillar-text">Building intentional bridges between isolated regional camps to build collective independent market leverage.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="certs">
+    <div class="certs-intro">
+      <div>
+        <div class="section-label">04 // Validated Foundations</div>
+        <h2 class="certs-title">Verified <span>Competencies</span>.</h2>
+      </div>
+      <div class="certs-total">
+        System Load
+        <strong>11 Verified</strong>
+      </div>
+    </div>
+    
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-institution">Saylor Academy Matrix</div>
+        <div class="cert-name">Digital Marketing & Growth Mechanics</div>
+        <div class="cert-meta">
+          <div class="cert-details">
+            <div class="cert-detail">Status: 100% Complete</div>
+            <div class="cert-detail">Scope: Funnel Architecture</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-institution">Saylor Academy Matrix</div>
+        <div class="cert-name">Business Law & Intellectual Frameworks</div>
+        <div class="cert-meta">
+          <div class="cert-details">
+            <div class="cert-detail">Status: 100% Complete</div>
+            <div class="cert-detail">Scope: Copyright & Infrastructure</div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-institution">Saylor Academy Matrix</div>
+        <div class="cert-name">Operations & Scale Management</div>
+        <div class="cert-meta">
+          <div class="cert-details">
+            <div class="cert-detail">Status: 100% Complete</div>
+            <div class="cert-detail">Scope: Logistics & System Efficiency</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai-hub" class="ai-hub-section">
+    <div class="ai-hub-inner">
+      <div class="ai-hub-header">
+        <div>
+          <h2 class="ai-hub-title">AI FUSION ORCHESTRATOR</h2>
+          <div class="ai-hub-sub">SYSTEM STACK v4.0 // MULTI-MODEL SYNTAX ROUTING</div>
+        </div>
+        <div class="ai-status-badge">
+          <div class="ai-status-dot"></div>
+          <span>12 MINDS ACTIVE // LIVE LINK</span>
+        </div>
+      </div>
+
+      <div class="ai-tabs">
+        <button class="ai-tab active">All Engines</button>
+        <button class="ai-tab">Vegas Culture</button>
+        <button class="ai-tab">Rap Lyrics</button>
+        <button class="ai-tab">Music AI</button>
+        <button class="ai-tab">Marketing Strategy</button>
+        <button class="ai-tab">System Settings</button>
+      </div>
+
+      <div class="ai-panel active">
+        <div class="fusion-layout">
+          
+          <div class="fusion-engines">
+            
+            <div class="engine-card done-engine">
+              <div class="engine-corner-tl" style="color: var(--red);"></div>
+              <div class="engine-corner-br" style="color: var(--red);"></div>
+              <div class="engine-header">
+                <span class="engine-icon">🎯</span>
+                <div class="engine-label" style="color: var(--white);">CLAUDE — SONNET <span style="color: var(--red);">[LIVE API]</span></div>
+                <div class="engine-status-dot done-cyan"></div>
+              </div>
+              <div class="engine-body has-data">
+                <span class="engine-result-key">PHILOSOPHICAL SYNTHESIS:</span>
+                <p class="engine-result-val">"Vegas rap operates on a localized spatial tension—the hyper-glamourized commercial Strip versus the raw neighborhood realities. Independence is structural survival code here."</p>
+                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: var(--red); --w: 97%;"></div></div></div>
+              </div>
+            </div>
+
+            <div class="engine-card done-engine">
+              <div class="engine-corner-tl" style="color: var(--cyan);"></div>
+              <div class="engine-corner-br" style="color: var(--cyan);"></div>
+              <div class="engine-header">
+                <span class="engine-icon">🧠</span>
+                <div class="engine-label" style="color: var(--white);">GPT-4o — ENGINEER <span style="color: var(--cyan);">[SIMULATED]</span></div>
+                <div class="engine-status-dot done-cyan"></div>
+              </div>
+              <div class="engine-body has-data">
+                <span class="engine-result-key">STRUCTURAL GAP ANALYSIS:</span>
+                <p class="engine-result-val">"Scene bottleneck localized: Fragmentation. Camp-to-camp isolation limits regional scaling capacity. Solution requires automated direct independent infrastructure."</p>
+                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: var(--cyan); --w: 95%;"></div></div></div>
+              </div>
+            </div>
+
+            <div class="engine-card active-engine">
+              <div class="engine-corner-tl" style="color: var(--gold);"></div>
+              <div class="engine-corner-br" style="color: var(--gold);"></div>
+              <div class="engine-header">
+                <span class="engine-icon">🌪️</span>
+                <div class="engine-label" style="color: var(--white);">MISTRAL — 8x22B <span style="color: var(--gold);">[PROCESSING]</span></div>
+                <div class="engine-status-dot processing"></div>
+              </div>
+              <div class="engine-body has-data">
+                <span class="engine-result-key">SPEED CADENCE STRATEGY:</span>
+                <p class="engine-result-val">"Speed is strategy. Hesitation is death. Mapping low-end transient profiles over West Coast fundamental sub-structures..."</p>
+                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: var(--gold); --w: 72%;"></div></div></div>
+              </div>
+            </div>
+
+            <div class="engine-card done-engine">
+              <div class="engine-corner-tl" style="color: rgba(255,255,255,0.2);"></div>
+              <div class="engine-corner-br" style="color: rgba(255,255,255,0.2);"></div>
+              <div class="engine-header">
+                <span class="engine-icon">🦙</span>
+                <div class="engine-label" style="color: rgba(255,255,255,0.4);">LLAMA 3 — ENGINE</div>
+                <div class="engine-status-dot done-cyan" style="background: #3a5070;"></div>
+              </div>
+              <div class="engine-body has-data">
+                <span class="engine-result-key">SYSTEM OUTPUT FILTER:</span>
+                <p class="engine-result-val" style="color: #627d98; font-style: italic;">⚠️ [Llama 3 Engine Standby: Internal Proxy Threshold Safely Patched. Stream Intercept Clear.]</p>
+                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: #3a5070; --w: 100%;"></div></div></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="fusion-sidebar">
+            <div class="fusion-input-box">
+              <div class="engine-corner-tl" style="color: var(--cyan);"></div>
+              <div class="fusion-input-label">INTERACTION CORE ENTRY POINT</div>
+              <textarea class="fusion-textarea" placeholder="Input operational directive, lyric prompt, or audio routing logic matrix..."></textarea>
+              <button class="fusion-btn">
+                <span>FUSE ORCHESTRATION</span> ➔
+              </button>
+            </div>
+
+            <div class="fusion-console">
+              <div class="console-line">
+                <div class="console-meta">
+                  <span class="meta-tag-claude">[CLAUDE // RESPONSE_LINK]</span>
+                  <span class="meta-time">07:53:11</span>
+                </div>
+                <div class="console-text">Unified sonic footprint optimized for club transducers and mobile players deployed. Mapping <span class="highlight">88MOB infrastructure routing protocols</span>.</div>
+              </div>
+              <div class="console-line">
+                <div class="console-meta">
+                  <span class="meta-tag-gpt4o">[SYSTEM // DETECT]</span>
+                  <span class="meta-time">07:53:14</span>
+                </div>
+                <div class="console-text">JSON leak on Llama 3 response node successfully contained. Safely route parsed payload text to client state variables.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding: 40px 48px; border-top: 1px solid rgba(255,255,255,.03); text-align: center; font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: var(--muted); letter-spacing: .2em; text-transform: uppercase;">
+    © 2026 V3GASBOI // DOUBLE DOWN RECORDS. ALL RIGHTS RESERVED. POWERED BY AI FUSION ORCHESTRATOR.
+  </footer>
+
+</body>
+      </html>
+  
