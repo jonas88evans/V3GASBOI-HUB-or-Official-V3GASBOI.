@@ -1,421 +1,550 @@
-    width: 100%; background: transparent; border: none;
-    border-bottom: 1px solid #0d2040; color: #c8d8f0;
-    font-size: .9rem; font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600; letter-spacing: .05em; outline: none;
-    resize: none; padding: 8px 0 16px 0;
-    transition: border-bottom-color 0.3s;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>OmniFusion AI — V3GASBOI</title>
+  <meta name="description" content="Interactive Immersive Holographic AI Engine by V3GASBOI">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    :root {
+      --bg: #050508;
+      --surface: rgba(15,15,25,0.7);
+      --accent: #ff0033;
+      --accent-glow: rgba(255,0,51,0.4);
+      --text: #e8e8e8;
+      --muted: #666;
+      --border: rgba(255,255,255,0.06);
+    }
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      touch-action: manipulation;
+    }
 
-  .fusion-textarea:focus {
-    border-bottom-color: var(--cyan);
-  }
+    /* Holographic Canvas */
+    #holo-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-  .fusion-btn {
-    width: 100%;
-    background: linear-gradient(135deg, var(--red) 0%, #b30007 100%);
-    border: none;
-    padding: 16px;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: .78rem;
-    letter-spacing: .25em;
-    color: var(--white);
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 12px;
-  }
+    /* UI Layer */
+    .ui-layer {
+      position: relative; z-index: 10;
+      height: 100%;
+      display: flex; flex-direction: column;
+    }
 
-  .fusion-btn:hover {
-    box-shadow: 0 0 20px rgba(232,0,10,0.4);
-    transform: translateY(-1px);
-  }
+    /* Header */
+    .header {
+      padding: 12px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(180deg, rgba(0,0,0,0.8), transparent);
+    }
+    .logo {
+      font-size: 1.1rem; font-weight: 800;
+      letter-spacing: 2px; color: var(--accent);
+      text-shadow: 0 0 20px var(--accent-glow);
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #0f0; box-shadow: 0 0 10px #0f0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-  .fusion-btn span {
-    font-size: 0.9rem;
-  }
+    /* Main Chat Area */
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex; flex-direction: column;
+      gap: 12px;
+      scroll-behavior: smooth;
+    }
+    .msg {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 0.95rem; line-height: 1.5;
+      word-break: break-word;
+      animation: msgIn 0.3s ease;
+    }
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .msg.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--accent), #cc0022);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+    .msg.ai {
+      align-self: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+      backdrop-filter: blur(12px);
+    }
+    .msg.ai.streaming::after {
+      content: '▋';
+      animation: blink 0.7s infinite;
+      color: var(--accent);
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-  /* ── CONSOLE OUTPUT ── */
-  .fusion-console {
-    border: 1px solid #0d2040;
-    background: #03060c;
-    padding: 20px;
-    height: 380px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: .78rem;
-    line-height: 1.6;
-    color: #8fa0b8;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
+    /* AI Avatar / Hologram Zone */
+    .holo-zone {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px; height: 200px;
+      z-index: 5; pointer-events: none;
+      opacity: 0.6;
+    }
+    .holo-ring {
+      position: absolute; inset: 0;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: holoSpin 8s linear infinite;
+    }
+    .holo-ring:nth-child(2) {
+      inset: 15px;
+      animation-duration: 12s;
+      animation-direction: reverse;
+      opacity: 0.2;
+    }
+    .holo-ring:nth-child(3) {
+      inset: 30px;
+      animation-duration: 6s;
+      opacity: 0.15;
+    }
+    @keyframes holoSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .holo-core {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px; height: 60px;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      border-radius: 50%;
+      animation: holoPulse 2s ease-in-out infinite;
+    }
+    @keyframes holoPulse {
+      0%,100%{ transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
+      50%{ transform: translate(-50%,-50%) scale(1.3); opacity: 0.4; }
+    }
 
-  .console-line {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(13,32,64,0.3);
-  }
+    /* Input Bar */
+    .input-bar {
+      padding: 12px 16px 24px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.9), transparent);
+      display: flex; gap: 10px; align-items: flex-end;
+    }
+    .input-wrap {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 8px;
+      backdrop-filter: blur(12px);
+    }
+    .input-wrap input {
+      flex: 1;
+      background: none; border: none; outline: none;
+      color: var(--text); font-size: 1rem;
+    }
+    .input-wrap input::placeholder { color: var(--muted); }
+    .btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 0 20px var(--accent-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:active { transform: scale(0.92); box-shadow: 0 0 30px var(--accent-glow); }
+    .btn-voice {
+      background: transparent;
+      border: 1px solid var(--border);
+      box-shadow: none;
+      color: var(--muted);
+    }
+    .btn-voice.recording {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 20px var(--accent-glow);
+      animation: recPulse 1s infinite;
+    }
+    @keyframes recPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
 
-  .console-line:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
+    /* Model Selector */
+    .model-bar {
+      display: flex; gap: 8px; padding: 0 16px 8px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .model-bar::-webkit-scrollbar { display: none; }
+    .model-chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.8rem; white-space: nowrap;
+      cursor: pointer; transition: all 0.2s;
+      backdrop-filter: blur(8px);
+    }
+    .model-chip.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
 
-  .console-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: .65rem;
-    letter-spacing: .1em;
-  }
+    /* Typing indicator */
+    .typing {
+      display: flex; gap: 4px; padding: 8px 0;
+    }
+    .typing span {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: typingBounce 1.4s infinite ease-in-out;
+    }
+    .typing span:nth-child(1) { animation-delay: 0s; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce {
+      0%,80%,100%{ transform: scale(0.6); opacity: 0.4; }
+      40%{ transform: scale(1); opacity: 1; }
+    }
 
-  .meta-tag-claude { color: var(--red); }
-  .meta-tag-gpt4o { color: var(--cyan); }
-  .meta-tag-mistral { color: var(--gold); }
-  .meta-time { color: rgba(255,255,255,0.2); }
+    /* Menu Drawer */
+    .drawer {
+      position: fixed; top: 0; right: -100%;
+      width: 80%; max-width: 320px; height: 100%;
+      background: rgba(5,5,8,0.95);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+      padding: 60px 24px 24px;
+      transition: right 0.3s ease;
+      border-left: 1px solid var(--border);
+    }
+    .drawer.open { right: 0; }
+    .drawer-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 99; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .drawer-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .drawer-item .sub { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
 
-  .console-text {
-    color: #e2ecf8;
-  }
+    /* Menu Button */
+    .menu-btn {
+      background: none; border: none;
+      color: var(--text); font-size: 1.5rem;
+      padding: 4px;
+    }
 
-  .console-text span.highlight {
-    color: var(--gold);
-    font-weight: 700;
-  }
+    /* Scrollbar */
+    .chat-area::-webkit-scrollbar { width: 4px; }
+    .chat-area::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-  /* ── RESPONSIVE RESPONSIVENESS ── */
-  @media(max-width: 1024px) {
-    .fusion-layout { grid-template-columns: 1fr; }
-    .about-grid, .striprap-content { grid-template-columns: 1fr; gap: 48px; }
-    .metrics-grid { grid-template-columns: repeat(2,1fr); }
-    .platforms-row, .certs-grid { grid-template-columns: 1fr; }
-    nav { padding: 18px 24px; }
-    section, .metrics-full, .striprap-inner, .ai-hub-inner { padding: 60px 24px; margin: 0; }
-  }
-</style>
+    /* Mobile optimizations */
+    @media (max-width: 480px) {
+      .msg { max-width: 90%; font-size: 0.9rem; }
+      .holo-zone { width: 150px; height: 150px; }
+    }
+  </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-logo">V<span>3</span>GASBOI</div>
-    <ul class="nav-links">
-      <li><a href="#about">Philosophy</a></li>
-      <li><a href="#metrics">Data Matrix</a></li>
-      <li><a href="#striprap">Strip Rap</a></li>
-      <li><a href="#certs">Credentials</a></li>
-      <li><a href="#ai-hub" class="ai-link">// AI Command Hub</a></li>
-    </ul>
-  </nav>
+  <!-- Holographic Background -->
+  <canvas id="holo-canvas"></canvas>
 
-  <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-tag">Independent Mogul // 88MOB Movement</div>
-    <h1 class="hero-name"><span class="v3">V</span><span class="gas">3</span><span class="boi">GASBOI</span></h1>
-    <div class="hero-sub">Master Producer • Mix & Master Engineer • Developer</div>
-    
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">V4<span>.0</span></div>
-        <div class="hero-stat-label">AI Orchestrator Stack</div>
-      </div>
-      <div class="hero-divider"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">100<span>%</span></div>
-        <div class="hero-stat-label">Independent Infrastructure</div>
-      </div>
-      <div class="hero-divider"></div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">88<span>MOB</span></div>
-        <div class="hero-stat-label">Cultural Catalyst</div>
-      </div>
-    </div>
-    <div class="scroll-hint">DECRYPT SYSTEM CONTENT</div>
-  </header>
+  <!-- Hologram Core -->
+  <div class="holo-zone" id="holoZone">
+    <div class="holo-ring"></div>
+    <div class="holo-ring"></div>
+    <div class="holo-ring"></div>
+    <div class="holo-core"></div>
+  </div>
 
-  <section id="about" class="about-grid">
-    <div>
-      <div class="section-label">01 // Executive Intent</div>
-      <h2 class="about-title">Bypassing the <em>Gatekeepers</em>.</h2>
-      <div class="about-body">
-        <p>Major labels historically looked through Las Vegas instead of looking at it. This systemic omission didn't break the environment—it forged an uncompromised DIY ethos. True culture isn't imported from standard coastal industry machines; it is built out of the daily concrete grit and survival hustle of Owens Ave.</p>
-        <p>By blending custom technical engineering infrastructures with uncompromising musical production paradigms, the objective is to build an un-gatekeepable local network designed to aggregate isolated regional camps into a unified commercial force.</p>
-      </div>
-    </div>
-    <div class="about-right" style="margin-top: 56px;">
-      <div class="badge">
-        <div class="badge-title">Primary Operation Sphere</div>
-        <div class="badge-val">Las Vegas Local Market & Regional Sub-Circuits</div>
-      </div>
-      <div class="badge">
-        <div class="badge-title">Sonic Classification</div>
-        <div class="badge-val">Strip Rap — Authentic Regional Bounce & Dark Textures</div>
-      </div>
-    </div>
-  </section>
+  <!-- UI Layer -->
+  <div class="ui-layer">
 
-  <section id="metrics" class="metrics-full">
-    <div class="metrics-header">
-      <h2 class="metrics-title">Distribution <span>Analytics</span>.</h2>
-      <div class="metrics-period">Live ingestion feed via TuneCore / UnitedMasters / Songstats</div>
-    </div>
-    
-    <div class="metrics-grid">
-      <div class="metric-cell">
-        <div class="metric-num"><span class="accent">11</span></div>
-        <div class="metric-desc">Academic Milestones Verified</div>
+    <!-- Header -->
+    <div class="header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="menu-btn" onclick="toggleDrawer()">☰</button>
+        <div class="logo">OMNIFUSION</div>
       </div>
-      <div class="metric-cell">
-        <div class="metric-num">100<span class="accent">%</span></div>
-        <div class="metric-desc">Autonomous Project Execution</div>
-      </div>
-      <div class="metric-cell">
-        <div class="metric-num"><span class="gold">24</span>/7</div>
-        <div class="metric-desc">Hustle Mentality Dynamic Ingestion</div>
-      </div>
-      <div class="metric-cell">
-        <div class="metric-num">0<span class="accent">.0</span></div>
-        <div class="metric-desc">External Label Dependency</div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-size:0.75rem;color:var(--muted);" id="modelLabel">GPT-4o</span>
+        <div class="status-dot"></div>
       </div>
     </div>
 
-    <div class="platforms-row">
-      <div class="platform-card">
-        <div class="platform-name">E-Commerce Node // The Jump Off</div>
-        <div class="platform-stat">Live<span>Shopify</span></div>
-        <div class="platform-note">Direct-to-consumer digital monetization funnel, dropshipping infrastructure, and Google Shopping feed orchestration sync.</div>
-      </div>
-      <div class="platform-card">
-        <div class="platform-name">Audio Node // Engineering</div>
-        <div class="platform-stat">HD<span>Post</span></div>
-        <div class="platform-note">Cloud audio optimization via localized processing matrix setups, Voloco tracking pipelines, and master mix bus chains.</div>
-      </div>
-      <div class="platform-card">
-        <div class="platform-name">Media Node // Broadcast</div>
-        <div class="platform-stat">01<span>Pod</span></div>
-        <div class="platform-note">"Straight from Las Vegas Local Hip-Hop Jam" podcast network. Giving direct voice to the unrepresented underground.</div>
-      </div>
+    <!-- Model Selector -->
+    <div class="model-bar" id="modelBar">
+      <div class="model-chip active" data-model="gpt-4o" onclick="setModel(this)">GPT-4o</div>
+      <div class="model-chip" data-model="claude-3-5" onclick="setModel(this)">Claude 3.5</div>
+      <div class="model-chip" data-model="gemini-1.5" onclick="setModel(this)">Gemini 1.5</div>
+      <div class="model-chip" data-model="llama-3" onclick="setModel(this)">Llama 3</div>
+      <div class="model-chip" data-model="mistral" onclick="setModel(this)">Mistral</div>
+      <div class="model-chip" data-model="deepseek" onclick="setModel(this)">DeepSeek</div>
     </div>
-  </section>
 
-  <div id="striprap" class="striprap-section">
-    <div class="striprap-inner">
-      <div class="striprap-marquee">
-        <div class="striprap-marquee-track">
-          <span>STRIP RAP</span> <span class="accent">OWENS AVE HUSTLE</span> <span>STRIP RAP</span> <span class="accent">88MOB INFRASTRUCTURE</span> <span>STRIP RAP</span> <span class="accent">OWENS AVE HUSTLE</span> <span>STRIP RAP</span> <span class="accent">88MOB INFRASTRUCTURE</span>
-        </div>
+    <!-- Chat Area -->
+    <div class="chat-area" id="chatArea">
+      <div class="msg ai">Welcome to OmniFusion AI. I'm your holographic intelligence engine. What can I do for you today?</div>
+    </div>
+
+    <!-- Input Bar -->
+    <div class="input-bar">
+      <button class="btn btn-voice" id="voiceBtn" onclick="toggleVoice()">🎤</button>
+      <div class="input-wrap">
+        <input type="text" id="userInput" placeholder="Ask anything..." onkeypress="if(event.key==='Enter')sendMessage()">
       </div>
-      
-      <div class="striprap-content">
-        <div>
-          <h2 class="striprap-title">The Real Defining <span>Force</span>.</h2>
-          <div class="striprap-body">
-            <p>Vegas sits at a brutal cultural crossroads. West Coast bounce proximity shapes the low-end foundation, while heavy Southern trap cadences bleed directly into the vocal schemes. The ultimate signature identity comes from internal spatial tension: massive wealth and deep poverty existing directly side by side.</p>
-            <p>It is the harsh structural juxtaposition of the hyper-glamourized Strip looking right over the stark street realities of the Eastside and North Vegas. That precise systemic gap is where authentic music is born.</p>
-          </div>
-          <div class="striprap-quote">
-            "The story of Vegas rap hasn't been fully told. The artists building now are writing it."
-          </div>
-        </div>
-        
-        <div class="striprap-pillars">
-          <div class="pillar">
-            <div class="pillar-num">01</div>
-            <div>
-              <div class="pillar-title">Sonic Identity</div>
-              <div class="pillar-text">Heavy 808 sub-structures, crisp transient-forward top ends optimized for mobile environments, and localized lyrical narratives.</div>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-num">02</div>
-            <div>
-              <div class="pillar-title">De-fragmentation</div>
-              <div class="pillar-text">Building intentional bridges between isolated regional camps to build collective independent market leverage.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button class="btn" onclick="sendMessage()">➤</button>
+    </div>
+
+  </div>
+
+  <!-- Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-item">
+      <div>API Keys</div>
+      <div class="sub">Configure your AI model keys</div>
+    </div>
+    <div class="drawer-item">
+      <div>Voice Settings</div>
+      <div class="sub">Speech recognition & synthesis</div>
+    </div>
+    <div class="drawer-item">
+      <div>Hologram Style</div>
+      <div class="sub">Visual effects & animations</div>
+    </div>
+    <div class="drawer-item">
+      <div>Conversation History</div>
+      <div class="sub">Save & export chats</div>
+    </div>
+    <div class="drawer-item">
+      <div>About V3GASBOI</div>
+      <div class="sub">The Voice of Vegas #88Mob</div>
     </div>
   </div>
 
-  <section id="certs">
-    <div class="certs-intro">
-      <div>
-        <div class="section-label">04 // Validated Foundations</div>
-        <h2 class="certs-title">Verified <span>Competencies</span>.</h2>
-      </div>
-      <div class="certs-total">
-        System Load
-        <strong>11 Verified</strong>
-      </div>
-    </div>
-    
-    <div class="certs-grid">
-      <div class="cert-card">
-        <div class="cert-institution">Saylor Academy Matrix</div>
-        <div class="cert-name">Digital Marketing & Growth Mechanics</div>
-        <div class="cert-meta">
-          <div class="cert-details">
-            <div class="cert-detail">Status: 100% Complete</div>
-            <div class="cert-detail">Scope: Funnel Architecture</div>
-          </div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-institution">Saylor Academy Matrix</div>
-        <div class="cert-name">Business Law & Intellectual Frameworks</div>
-        <div class="cert-meta">
-          <div class="cert-details">
-            <div class="cert-detail">Status: 100% Complete</div>
-            <div class="cert-detail">Scope: Copyright & Infrastructure</div>
-          </div>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-institution">Saylor Academy Matrix</div>
-        <div class="cert-name">Operations & Scale Management</div>
-        <div class="cert-meta">
-          <div class="cert-details">
-            <div class="cert-detail">Status: 100% Complete</div>
-            <div class="cert-detail">Scope: Logistics & System Efficiency</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <script>
+    // ===== HOLOGRAPHIC PARTICLE ENGINE =====
+    const canvas = document.getElementById('holo-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: 0, y: 0 };
 
-  <section id="ai-hub" class="ai-hub-section">
-    <div class="ai-hub-inner">
-      <div class="ai-hub-header">
-        <div>
-          <h2 class="ai-hub-title">AI FUSION ORCHESTRATOR</h2>
-          <div class="ai-hub-sub">SYSTEM STACK v4.0 // MULTI-MODEL SYNTAX ROUTING</div>
-        </div>
-        <div class="ai-status-badge">
-          <div class="ai-status-dot"></div>
-          <span>12 MINDS ACTIVE // LIVE LINK</span>
-        </div>
-      </div>
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
 
-      <div class="ai-tabs">
-        <button class="ai-tab active">All Engines</button>
-        <button class="ai-tab">Vegas Culture</button>
-        <button class="ai-tab">Rap Lyrics</button>
-        <button class="ai-tab">Music AI</button>
-        <button class="ai-tab">Marketing Strategy</button>
-        <button class="ai-tab">System Settings</button>
-      </div>
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.z = Math.random() * 2 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.life = Math.random() * 100 + 50;
+        this.maxLife = this.life;
+        this.size = Math.random() * 2 + 0.5;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life--;
+        if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        const alpha = (this.life / this.maxLife) * 0.6;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * this.z, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 0, 51, ${alpha})`;
+        ctx.fill();
+      }
+    }
 
-      <div class="ai-panel active">
-        <div class="fusion-layout">
-          
-          <div class="fusion-engines">
-            
-            <div class="engine-card done-engine">
-              <div class="engine-corner-tl" style="color: var(--red);"></div>
-              <div class="engine-corner-br" style="color: var(--red);"></div>
-              <div class="engine-header">
-                <span class="engine-icon">🎯</span>
-                <div class="engine-label" style="color: var(--white);">CLAUDE — SONNET <span style="color: var(--red);">[LIVE API]</span></div>
-                <div class="engine-status-dot done-cyan"></div>
-              </div>
-              <div class="engine-body has-data">
-                <span class="engine-result-key">PHILOSOPHICAL SYNTHESIS:</span>
-                <p class="engine-result-val">"Vegas rap operates on a localized spatial tension—the hyper-glamourized commercial Strip versus the raw neighborhood realities. Independence is structural survival code here."</p>
-                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: var(--red); --w: 97%;"></div></div></div>
-              </div>
-            </div>
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
 
-            <div class="engine-card done-engine">
-              <div class="engine-corner-tl" style="color: var(--cyan);"></div>
-              <div class="engine-corner-br" style="color: var(--cyan);"></div>
-              <div class="engine-header">
-                <span class="engine-icon">🧠</span>
-                <div class="engine-label" style="color: var(--white);">GPT-4o — ENGINEER <span style="color: var(--cyan);">[SIMULATED]</span></div>
-                <div class="engine-status-dot done-cyan"></div>
-              </div>
-              <div class="engine-body has-data">
-                <span class="engine-result-key">STRUCTURAL GAP ANALYSIS:</span>
-                <p class="engine-result-val">"Scene bottleneck localized: Fragmentation. Camp-to-camp isolation limits regional scaling capacity. Solution requires automated direct independent infrastructure."</p>
-                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: var(--cyan); --w: 95%;"></div></div></div>
-              </div>
-            </div>
+    function animate() {
+      ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      
+      // Draw connection lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255, 0, 51, ${0.1 * (1 - dist / 120)})`;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
 
-            <div class="engine-card active-engine">
-              <div class="engine-corner-tl" style="color: var(--gold);"></div>
-              <div class="engine-corner-br" style="color: var(--gold);"></div>
-              <div class="engine-header">
-                <span class="engine-icon">🌪️</span>
-                <div class="engine-label" style="color: var(--white);">MISTRAL — 8x22B <span style="color: var(--gold);">[PROCESSING]</span></div>
-                <div class="engine-status-dot processing"></div>
-              </div>
-              <div class="engine-body has-data">
-                <span class="engine-result-key">SPEED CADENCE STRATEGY:</span>
-                <p class="engine-result-val">"Speed is strategy. Hesitation is death. Mapping low-end transient profiles over West Coast fundamental sub-structures..."</p>
-                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: var(--gold); --w: 72%;"></div></div></div>
-              </div>
-            </div>
+    // ===== CHAT ENGINE =====
+    const chatArea = document.getElementById('chatArea');
+    const userInput = document.getElementById('userInput');
+    const holoZone = document.getElementById('holoZone');
+    let currentModel = 'gpt-4o';
+    let isProcessing = false;
 
-            <div class="engine-card done-engine">
-              <div class="engine-corner-tl" style="color: rgba(255,255,255,0.2);"></div>
-              <div class="engine-corner-br" style="color: rgba(255,255,255,0.2);"></div>
-              <div class="engine-header">
-                <span class="engine-icon">🦙</span>
-                <div class="engine-label" style="color: rgba(255,255,255,0.4);">LLAMA 3 — ENGINE</div>
-                <div class="engine-status-dot done-cyan" style="background: #3a5070;"></div>
-              </div>
-              <div class="engine-body has-data">
-                <span class="engine-result-key">SYSTEM OUTPUT FILTER:</span>
-                <p class="engine-result-val" style="color: #627d98; font-style: italic;">⚠️ [Llama 3 Engine Standby: Internal Proxy Threshold Safely Patched. Stream Intercept Clear.]</p>
-                <div class="bar-loader"><div class="bar-track"><div class="bar-fill" style="background: #3a5070; --w: 100%;"></div></div></div>
-              </div>
-            </div>
+    function setModel(el) {
+      document.querySelectorAll('.model-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      currentModel = el.dataset.model;
+      document.getElementById('modelLabel').textContent = el.textContent;
+    }
 
-          </div>
+    function addMessage(text, isUser) {
+      const div = document.createElement('div');
+      div.className = `msg ${isUser ? 'user' : 'ai'}`;
+      div.textContent = text;
+      chatArea.appendChild(div);
+      chatArea.scrollTop = chatArea.scrollHeight;
+      return div;
+    }
 
-          <div class="fusion-sidebar">
-            <div class="fusion-input-box">
-              <div class="engine-corner-tl" style="color: var(--cyan);"></div>
-              <div class="fusion-input-label">INTERACTION CORE ENTRY POINT</div>
-              <textarea class="fusion-textarea" placeholder="Input operational directive, lyric prompt, or audio routing logic matrix..."></textarea>
-              <button class="fusion-btn">
-                <span>FUSE ORCHESTRATION</span> ➔
-              </button>
-            </div>
+    function showTyping() {
+      const div = document.createElement('div');
+      div.className = 'msg ai';
+      div.id = 'typingIndicator';
+      div.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+      chatArea.appendChild(div);
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
 
-            <div class="fusion-console">
-              <div class="console-line">
-                <div class="console-meta">
-                  <span class="meta-tag-claude">[CLAUDE // RESPONSE_LINK]</span>
-                  <span class="meta-time">07:53:11</span>
-                </div>
-                <div class="console-text">Unified sonic footprint optimized for club transducers and mobile players deployed. Mapping <span class="highlight">88MOB infrastructure routing protocols</span>.</div>
-              </div>
-              <div class="console-line">
-                <div class="console-meta">
-                  <span class="meta-tag-gpt4o">[SYSTEM // DETECT]</span>
-                  <span class="meta-time">07:53:14</span>
-                </div>
-                <div class="console-text">JSON leak on Llama 3 response node successfully contained. Safely route parsed payload text to client state variables.</div>
-              </div>
-            </div>
-          </div>
+    function removeTyping() {
+      const el = document.getElementById('typingIndicator');
+      if (el) el.remove();
+    }
 
-        </div>
-      </div>
-    </div>
-  </section>
+    async function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text || isProcessing) return;
+      userInput.value = '';
+      addMessage(text, true);
+      isProcessing = true;
+      showTyping();
+      holoZone.style.opacity = '1';
+      holoZone.style.transform = 'translate(-50%, -50%) scale(1.2)';
 
-  <footer style="padding: 40px 48px; border-top: 1px solid rgba(255,255,255,.03); text-align: center; font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: var(--muted); letter-spacing: .2em; text-transform: uppercase;">
-    © 2026 V3GASBOI // DOUBLE DOWN RECORDS. ALL RIGHTS RESERVED. POWERED BY AI FUSION ORCHESTRATOR.
-  </footer>
+      try {
+        const response = await fetch('https://your-backend-url.com/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text, model: currentModel })
+        });
+        const data = await response.json();
+        removeTyping();
+        const msgEl = addMessage('', false);
+        msgEl.classList.add('streaming');
+        const reply = data.reply || 'I am processing your request through the holographic matrix...';
+        let i = 0;
+        const typeInterval = setInterval(() => {
+          msgEl.textContent += reply[i];
+          i++;
+          chatArea.scrollTop = chatArea.scrollHeight;
+          if (i >= reply.length) {
+            clearInterval(typeInterval);
+            msgEl.classList.remove('streaming');
+            isProcessing = false;
+            holoZone.style.opacity = '0.6';
+            holoZone.style.transform = 'translate(-50%, -50%) scale(1)';
+          }
+        }, 15);
+      } catch (err) {
+        removeTyping();
+        addMessage('Connection to the AI matrix failed. Check your backend or try again.', false);
+        isProcessing = false;
+        holoZone.style.opacity = '0.6';
+        holoZone.style.transform = 'translate(-50%, -50%) scale(1)';
+      }
+    }
 
+    // ===== VOICE =====
+    let recognition;
+    let isRecording = false;
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.onresult = (e) => {
+        userInput.value = e.results[0][0].transcript;
+        toggleVoice();
+        sendMessage();
+      };
+      recognition.onerror = () => { toggleVoice(); };
+    }
+
+    function toggleVoice() {
+      const btn = document.getElementById('voiceBtn');
+      if (!recognition) {
+        addMessage('Voice not supported on this device.', false);
+        return;
+      }
+      isRecording = !isRecording;
+      btn.classList.toggle('recording', isRecording);
+      if (isRecording) recognition.start();
+      else recognition.stop();
+    }
+
+    // ===== DRAWER =====
+    function toggleDrawer() {
+      document.getElementById('drawer').classList.toggle('open');
+      document.getElementById('drawerOverlay').classList.toggle('open');
+    }
+
+    // ===== SERVICE WORKER (PWA) =====
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(()=>{});
+    }
+  </script>
 </body>
-      </html>
-  
+    </html>
+    
