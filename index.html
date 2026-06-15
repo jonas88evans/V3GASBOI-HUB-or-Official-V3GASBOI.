@@ -1,521 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>OmniFusion AI — V3GASBOI</title>
-  <meta name="description" content="Interactive Immersive Holographic AI Engine by V3GASBOI #88Mob #IndependenceCode">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    :root {
-      --bg: #050508;
-      --surface: rgba(15,15,25,0.7);
-      --accent: #ff0033;
-      --accent-glow: rgba(255,0,51,0.4);
-      --text: #e8e8e8;
-      --muted: #666;
-      --border: rgba(255,255,255,0.06);
-      --success: #00ff66;
-      --warning: #ffaa00;
-    }
-    html, body {
-      width: 100%; height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      overflow: hidden;
-      touch-action: manipulation;
-    }
-
-    #holo-canvas {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0; pointer-events: none;
-    }
-
-    .ui-layer { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; }
-
-    .header {
-      padding: 12px 16px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: linear-gradient(180deg, rgba(0,0,0,0.8), transparent);
-    }
-    .logo {
-      font-size: 1.1rem; font-weight: 800;
-      letter-spacing: 2px; color: var(--accent);
-      text-shadow: 0 0 20px var(--accent-glow);
-    }
-    .status-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #333; box-shadow: 0 0 10px #333;
-      transition: all 0.3s;
-    }
-    .status-dot.online {
-      background: var(--success); box-shadow: 0 0 10px var(--success);
-      animation: pulse 2s infinite;
-    }
-    .status-dot.warning {
-      background: var(--warning); box-shadow: 0 0 10px var(--warning);
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-    .chat-area {
-      flex: 1; overflow-y: auto; padding: 16px;
-      display: flex; flex-direction: column; gap: 12px;
-      scroll-behavior: smooth;
-    }
-    .msg {
-      max-width: 85%; padding: 12px 16px; border-radius: 18px;
-      font-size: 0.95rem; line-height: 1.5; word-break: break-word;
-      animation: msgIn 0.3s ease;
-    }
-    @keyframes msgIn {
-      from { opacity: 0; transform: translateY(10px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .msg.user {
-      align-self: flex-end;
-      background: linear-gradient(135deg, var(--accent), #cc0022);
-      color: #fff; border-bottom-right-radius: 4px;
-    }
-    .msg.ai {
-      align-self: flex-start;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
-      backdrop-filter: blur(12px);
-    }
-    .msg.ai.streaming::after {
-      content: '▋'; animation: blink 0.7s infinite; color: var(--accent);
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .msg.error {
-      align-self: flex-start;
-      background: rgba(255,0,51,0.1);
-      border: 1px solid rgba(255,0,51,0.3);
-      color: #ff6688;
-    }
-    .msg.system {
-      align-self: center;
-      background: rgba(255,170,0,0.1);
-      border: 1px solid rgba(255,170,0,0.3);
-      color: #ffcc66;
-      font-size: 0.8rem; max-width: 90%;
-    }
-
-    .holo-zone {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 200px; height: 200px;
-      z-index: 5; pointer-events: none;
-      opacity: 0.6; transition: all 0.5s ease;
-    }
-    .holo-zone.thinking {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.3);
-    }
-    .holo-ring {
-      position: absolute; inset: 0;
-      border: 2px solid var(--accent);
-      border-radius: 50%; opacity: 0.3;
-      animation: holoSpin 8s linear infinite;
-    }
-    .holo-ring:nth-child(2) { inset: 15px; animation-duration: 12s; animation-direction: reverse; opacity: 0.2; }
-    .holo-ring:nth-child(3) { inset: 30px; animation-duration: 6s; opacity: 0.15; }
-    @keyframes holoSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .holo-core {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px; height: 60px;
-      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
-      border-radius: 50%;
-      animation: holoPulse 2s ease-in-out infinite;
-    }
-    @keyframes holoPulse {
-      0%,100%{ transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
-      50%{ transform: translate(-50%,-50%) scale(1.3); opacity: 0.4; }
-    }
-
-    .input-bar {
-      padding: 12px 16px 24px;
-      background: linear-gradient(0deg, rgba(0,0,0,0.9), transparent);
-      display: flex; gap: 10px; align-items: flex-end;
-    }
-    .input-wrap {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 10px 16px;
-      display: flex; align-items: center; gap: 8px;
-      backdrop-filter: blur(12px);
-    }
-    .input-wrap input {
-      flex: 1; background: none; border: none; outline: none;
-      color: var(--text); font-size: 1rem;
-    }
-    .input-wrap input::placeholder { color: var(--muted); }
-    .btn {
-      width: 44px; height: 44px; border-radius: 50%; border: none;
-      background: var(--accent); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 0 20px var(--accent-glow);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:active { transform: scale(0.92); box-shadow: 0 0 30px var(--accent-glow); }
-    .btn:disabled { opacity: 0.5; pointer-events: none; }
-    .btn-voice {
-      background: transparent; border: 1px solid var(--border);
-      box-shadow: none; color: var(--muted);
-    }
-    .btn-voice.recording {
-      background: var(--accent); color: #fff;
-      box-shadow: 0 0 20px var(--accent-glow);
-      animation: recPulse 1s infinite;
-    }
-    @keyframes recPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
-
-    .model-bar {
-      display: flex; gap: 8px; padding: 0 16px 8px;
-      overflow-x: auto; scrollbar-width: none;
-    }
-    .model-bar::-webkit-scrollbar { display: none; }
-    .model-chip {
-      padding: 6px 14px; border-radius: 20px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--muted); font-size: 0.8rem;
-      white-space: nowrap; cursor: pointer;
-      transition: all 0.2s; backdrop-filter: blur(8px);
-    }
-    .model-chip.active {
-      border-color: var(--accent); color: var(--accent);
-      box-shadow: 0 0 15px var(--accent-glow);
-    }
-
-    .typing {
-      display: flex; gap: 4px; padding: 8px 0;
-    }
-    .typing span {
-      width: 6px; height: 6px; background: var(--accent);
-      border-radius: 50%;
-      animation: typingBounce 1.4s infinite ease-in-out;
-    }
-    .typing span:nth-child(1) { animation-delay: 0s; }
-    .typing span:nth-child(2) { animation-delay: 0.2s; }
-    .typing span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typingBounce {
-      0%,80%,100%{ transform: scale(0.6); opacity: 0.4; }
-      40%{ transform: scale(1); opacity: 1; }
-    }
-
-    .drawer {
-      position: fixed; top: 0; right: -100%;
-      width: 80%; max-width: 320px; height: 100%;
-      background: rgba(5,5,8,0.95);
-      backdrop-filter: blur(20px);
-      z-index: 100; padding: 60px 24px 24px;
-      transition: right 0.3s ease;
-      border-left: 1px solid var(--border);
-    }
-    .drawer.open { right: 0; }
-    .drawer-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 99; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .drawer-overlay.open { opacity: 1; pointer-events: auto; }
-    .drawer-item {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-      color: var(--text); font-size: 1rem; cursor: pointer;
-    }
-    .drawer-item .sub { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
-
-    .menu-btn {
-      background: none; border: none;
-      color: var(--text); font-size: 1.5rem; padding: 4px;
-    }
-
-    .api-key-input {
-      width: 100%; padding: 10px 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 8px; color: var(--text);
-      font-size: 0.85rem; margin-top: 8px;
-    }
-    .api-key-input::placeholder { color: var(--muted); }
-    .save-btn {
-      width: 100%; padding: 10px;
-      background: var(--accent); color: #fff;
-      border: none; border-radius: 8px;
-      margin-top: 10px; font-weight: 600;
-    }
-
-    .chat-area::-webkit-scrollbar { width: 4px; }
-    .chat-area::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-
-    @media (max-width: 480px) {
-      .msg { max-width: 90%; font-size: 0.9rem; }
-      .holo-zone { width: 150px; height: 150px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="V3GASBOI — The Voice of Vegas. AI-powered music marketing, content generation, and independent artist tools.">
+<title>V3GASBOI — The Voice of Vegas</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  
+  :root {
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff00ff;
+    --neon-red: #ff0040;
+    --neon-green: #00ff88;
+    --bg-dark: #050508;
+    --bg-card: #0a0a12;
+    --bg-elevated: #11111a;
+  }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background: var(--bg-dark);
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .bg-grid {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .bg-glow {
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,0,255,0.08), transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+    z-index: 0;
+    animation: floatGlow 8s ease-in-out infinite;
+  }
+  
+  .bg-glow-2 {
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,255,0.06), transparent 70%);
+    bottom: -150px; left: -150px;
+    pointer-events: none;
+    z-index: 0;
+    animation: floatGlow 10s ease-in-out infinite reverse;
+  }
+  
+  @keyframes floatGlow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -30px) scale(1.1); }
+  }
+  
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(5,5,8,0.9), transparent);
+    backdrop-filter: blur(10px);
+  }
+  
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--neon-cyan);
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(0,255,255,0.3);
+  }
+  
+  .nav-logo span { color: var(--neon-magenta); }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover { color: var(--neon-cyan); }
+  
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+  }
+  
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255,0,255,0.08);
+    border: 1px solid rgba(255,0,255,0.2);
+    border-radius: 50px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--neon-magenta);
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+  
+  .hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, var(--neon-cyan), var(--neon-magenta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+  }
+  
+  .hero-subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    color: #888;
+    letter-spacing: 4px;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-desc {
+    max-width: 500px;
+    font-size: 1rem;
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, var(--neon-magenta), #9900cc);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255,0,255,0.3);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px rgba(255,0,255,0.5);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: var(--neon-cyan);
+    border: 1px solid var(--neon-cyan);
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(0,255,255,0.05);
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+  }
+  
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 600px;
+    width: 100%;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0,255,255,0.3);
+  }
+  
+  .stat-label {
+    font-size: 0.65rem;
+    color: #666;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 1px;
+    margin-top: 0.3rem;
+  }
+  
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: 3px;
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+    font-family: 'Share Tech Mono', monospace;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .feature-card:hover {
+    border-color: rgba(0,255,255,0.15);
+    transform: translateY(-4px);
+  }
+  
+  .feature-card:hover::before {
+    opacity: 1;
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feature-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: var(--neon-cyan);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .feature-desc {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.6;
+  }
+  
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .app-card {
+    background: var(--bg-elevated);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+    position: relative;
+  }
+  
+  .app-card:hover {
+    border-color: rgba(255,0,255,0.2);
+    box-shadow: 0 0 30px rgba(255,0,255,0.05);
+    transform: translateY(-2px);
+  }
+  
+  .app-status {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.6rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 1px;
+  }
+  
+  .status-live {
+    background: rgba(0,255,136,0.1);
+    color: var(--neon-green);
+    border: 1px solid rgba(0,255,136,0.2);
+  }
+  
+  .status-beta {
+    background: rgba(255,0,255,0.1);
+    color: var(--neon-magenta);
+    border: 1px solid rgba(255,0,255,0.2);
+  }
+  
+  .app-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .app-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  
+  .app-desc {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.5;
+    flex: 1;
+  }
+  
+  .app-arrow {
+    color: var(--neon-cyan);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    text-align: right;
+  }
+  
+  .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .hashtag {
+    padding: 0.4rem 0.8rem;
+    background: rgba(0,255,255,0.03);
+    border: 1px solid rgba(0,255,255,0.1);
+    border-radius: 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--neon-cyan);
+    letter-spacing: 1px;
+  }
+  
+  .footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  .footer-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: var(--neon-cyan);
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-tagline {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: color 0.3s;
+  }
+  
+  .footer-link:hover { color: var(--neon-cyan); }
+  
+  .footer-copy {
+    color: #333;
+    font-size: 0.7rem;
+    font-family: 'Share Tech Mono', monospace;
+  }
+  
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .stats { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; width: 100%; }
+    .btn { width: 100%; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-  <canvas id="holo-canvas"></canvas>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="bg-glow-2"></div>
 
-  <div class="holo-zone" id="holoZone">
-    <div class="holo-ring"></div>
-    <div class="holo-ring"></div>
-    <div class="holo-ring"></div>
-    <div class="holo-core"></div>
+<nav class="nav">
+  <div class="nav-logo">V3<span>GAS</span>BOI</div>
+  <div class="nav-links">
+    <a href="#apps" class="nav-link">APPS</a>
+    <a href="#features" class="nav-link">FEATURES</a>
+    <a href="terms.html" class="nav-link">TERMS</a>
+    <a href="privacy.html" class="nav-link">PRIVACY</a>
   </div>
+</nav>
 
-  <div class="ui-layer">
-    <div class="header">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <button class="menu-btn" onclick="toggleDrawer()">☰</button>
-        <div class="logo">OMNIFUSION</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <span style="font-size:0.75rem;color:var(--muted);" id="modelLabel">GPT-4o</span>
-        <div class="status-dot" id="statusDot"></div>
-      </div>
-    </div>
-
-    <div class="model-bar" id="modelBar">
-      <div class="model-chip active" data-model="gpt-4o" onclick="setModel(this)">GPT-4o</div>
-      <div class="model-chip" data-model="gemini-1.5" onclick="setModel(this)">Gemini 1.5</div>
-      <div class="model-chip" data-model="together" onclick="setModel(this)">Llama 3</div>
-    </div>
-
-    <div class="chat-area" id="chatArea">
-      <div class="msg ai">Welcome to OmniFusion AI. I'm your holographic intelligence engine. Tap ☰ to add API keys, or use Demo Mode.</div>
-    </div>
-
-    <div class="input-bar">
-      <button class="btn btn-voice" id="voiceBtn" onclick="toggleVoice()">🎤</button>
-      <div class="input-wrap">
-        <input type="text" id="userInput" placeholder="Ask anything..." onkeypress="if(event.key==='Enter')sendMessage()">
-      </div>
-      <button class="btn" id="sendBtn" onclick="sendMessage()">➤</button>
-    </div>
+<section class="hero">
+  <div class="hero-badge">
+    <span>⚡</span>
+    <span>AI-POWERED INDEPENDENT ARTIST</span>
   </div>
-
-  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
-  <div class="drawer" id="drawer">
-    <div class="drawer-item" onclick="showApiKeys()">
-      <div>🔑 API Keys</div>
-      <div class="sub">Add keys for real AI responses</div>
+  
+  <h1>THE VOICE<br>OF VEGAS</h1>
+  
+  <div class="hero-subtitle">/// OMNIFUSION AI ENGINE ///</div>
+  
+  <p class="hero-desc">
+    V3GASBOI is an independent digital music artist and entrepreneur operating under the persona "The Voice of Vegas." Built on the Independence Code philosophy — complete creative control, zero gatekeepers.
+  </p>
+  
+  <div class="hero-cta">
+    <a href="alexa-vegas.html" class="btn btn-primary">🎙️ Launch Voice AI</a>
+    <a href="index.html" class="btn btn-secondary">🎨 OmniFusion Dashboard</a>
+  </div>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">76</div>
+      <div class="stat-label">TRACKS RELEASED</div>
     </div>
-    <div class="drawer-item" onclick="useDemoMode()">
-      <div>🎮 Demo Mode</div>
-      <div class="sub">Simulated responses (no key needed)</div>
+    <div class="stat">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">AI PROVIDERS</div>
     </div>
-    <div class="drawer-item" onclick="clearChat()">
-      <div>🗑️ Clear Chat</div>
-      <div class="sub">Reset conversation</div>
-    </div>
-    <div class="drawer-item" onclick="exportChat()">
-      <div>💾 Export Chat</div>
-      <div class="sub">Save as text file</div>
-    </div>
-    <div class="drawer-item">
-      <div>ℹ️ About V3GASBOI</div>
-      <div class="sub">The Voice of Vegas #88Mob #IndependenceCode</div>
-    </div>
-    <div id="apiKeySection" style="margin-top:20px;display:none;">
-      <div style="color:var(--muted);font-size:0.8rem;margin-bottom:8px;">Enter API keys (stored on YOUR device only):</div>
-      <input class="api-key-input" id="openaiKey" placeholder="OpenAI Key (sk-...)">
-      <input class="api-key-input" id="geminiKey" placeholder="Gemini Key (AIza...)">
-      <input class="api-key-input" id="togetherKey" placeholder="Together AI Key">
-      <button class="save-btn" onclick="saveApiKeys()">💾 Save Keys</button>
-      <div style="color:var(--muted);font-size:0.7rem;margin-top:10px;">
-        Free keys: together.ai ($5 free) | ai.google.dev (free tier)
-      </div>
+    <div class="stat">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">RADIO STATION</div>
     </div>
   </div>
+</section>
 
-  <script>
-    // ===== STATE =====
-    let currentModel = 'gpt-4o';
-    let isProcessing = false;
-    let demoMode = false;
-    let apiKeys = JSON.parse(localStorage.getItem('omnifusion_keys') || '{}');
-    let chatHistory = JSON.parse(localStorage.getItem('omnifusion_chat') || '[]');
+<section class="section" id="features">
+  <h2 class="section-title">THE ENGINE</h2>
+  <div class="section-subtitle">/// MULTIMODAL AI ORCHESTRATION ///</div>
+  
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <div class="feature-title">NARRATIVE AI</div>
+      <div class="feature-desc">5 LLM providers — Claude 3.5, Groq LPU, Gemini Flash, GPT-4o, Llama 3.1. Generate viral hooks, marketing copy, and campaign narratives in seconds.</div>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <div class="feature-title">VISUAL SYNTHESIZER</div>
+      <div class="feature-desc">DALL-E 3, Replicate FLUX, and Midjourney V6 integration. Generate album artwork, social media assets, and visual concepts from text prompts.</div>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🔊</div>
+      <div class="feature-title">AUDIO FIELD</div>
+      <div class="feature-desc">ElevenLabs voice synthesis and Gemini TTS. Generate voice hooks, sonic branding, and audio previews for your releases.</div>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🌍</div>
+      <div class="feature-title">TREND INGESTION</div>
+      <div class="feature-desc">Perplexity AI-powered real-time trend analysis. Know what's hot before the algorithm shifts. Cultural resonance scoring included.</div>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🎵</div>
+      <div class="feature-title">TIKTOK INTEGRATED</div>
+      <div class="feature-desc">Login Kit, Share Kit, and Content Posting API. Authenticate with TikTok, share generated content, and schedule posts directly from the app.</div>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">📡</div>
+      <div class="feature-title">24/7 RADIO</div>
+      <div class="feature-desc">Automated radio station streaming V3GASBOI catalog 24/7. Built on Mixxx automation and Railway deployment. Global reach, zero downtime.</div>
+    </div>
+  </div>
+</section>
 
-    // ===== HOLOGRAPHIC ENGINE =====
-    const canvas = document.getElementById('holo-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+<section class="section" id="apps">
+  <h2 class="section-title">THE SUITE</h2>
+  <div class="section-subtitle">/// V3GASBOI DIGITAL ECOSYSTEM ///</div>
+  
+  <div class="apps-grid">
+    <a href="alexa-vegas.html" class="app-card">
+      <div class="app-status status-live">LIVE</div>
+      <div class="app-icon">🎙️</div>
+      <div class="app-name">HEY VEGAS</div>
+      <div class="app-desc">Voice-activated AI assistant. Say "Hey Vegas" and generate content hands-free. Like Alexa, but for artists.</div>
+      <div class="app-arrow">→</div>
+    </a>
+    
+    <a href="index.html" class="app-card">
+      <div class="app-status status-live">LIVE</div>
+      <div class="app-icon">⚡</div>
+      <div class="app-name">OMNIFUSION DASHBOARD</div>
+      <div class="app-desc">Full multimodal control panel. Run all 4 AI engines in parallel. Batch processing, webhooks, and Stripe payments.</div>
+      <div class="app-arrow">→</div>
+    </a>
+    
+    <a href="https://v3gasboi.shop" class="app-card" target="_blank">
+      <div class="app-status status-live">LIVE</div>
+      <div class="app-icon">🛒</div>
+      <div class="app-name">V3GASBOI SHOP</div>
+      <div class="app-desc">Shopify-powered store for digital albums, merch, and exclusive content. SEO-optimized product descriptions.</div>
+      <div class="app-arrow">→</div>
+    </a>
+    
+    <a href="#" class="app-card" onclick="alert('Coming soon')">
+      <div class="app-status status-beta">BETA</div>
+      <div class="app-icon">📊</div>
+      <div class="app-name">CHARTMETRIC DASH</div>
+      <div class="app-desc">Real-time analytics from Chartmetric. Track streams, playlist adds, and audience growth across platforms.</div>
+      <div class="app-arrow">→</div>
+    </a>
+    
+    <a href="#" class="app-card" onclick="alert('Coming soon')">
+      <div class="app-status status-beta">BETA</div>
+      <div class="app-icon">🎬</div>
+      <div class="app-name">LYRIC VIDEO FACTORY</div>
+      <div class="app-desc">AI-generated lyric videos with CapCut automation. Viral-ready formats for TikTok, Reels, and Shorts.</div>
+      <div class="app-arrow">→</div>
+    </a>
+    
+    <a href="#" class="app-card" onclick="alert('Coming soon')">
+      <div class="app-status status-beta">BETA</div>
+      <div class="app-icon">🏢</div>
+      <div class="app-name">DOUBLE-UP RECORDS</div>
+      <div class="app-desc">Artist portal and label infrastructure. Barrier-to-entry exclusivity for signed artists. Full booking and distribution.</div>
+      <div class="app-arrow">→</div>
+    </a>
+  </div>
+  
+  <div class="hashtags">
+    <span class="hashtag">#88Mob</span>
+    <span class="hashtag">#IndependenceCode</span>
+    <span class="hashtag">#VegasHustle</span>
+    <span class="hashtag">#ItsThatEasy</span>
+    <span class="hashtag">#TheVoiceOfVegas</span>
+  </div>
+</section>
 
-    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resize); resize();
+<footer class="footer">
+  <div class="footer-logo">V3GASBOI</div>
+  <div class="footer-tagline">The Voice of Vegas | Independent Since Day One</div>
+  
+  <div class="footer-links">
+    <a href="terms.html" class="footer-link">Terms</a>
+    <a href="privacy.html" class="footer-link">Privacy</a>
+    <a href="mailto:v3gasboi@gmail.com" class="footer-link">Contact</a>
+    <a href="https://tiktok.com/@v3gasboii" class="footer-link" target="_blank">TikTok</a>
+    <a href="https://open.spotify.com" class="footer-link" target="_blank">Spotify</a>
+  </div>
+  
+  <div class="footer-copy">
+    © 2026 V3gasboi | Built with OmniFusion AI Engine v4.0.0 MEGA<br>
+    #88Mob #IndependenceCode #VegasHustle
+  </div>
+</footer>
 
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.z = Math.random() * 2 + 0.5;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.life = Math.random() * 100 + 50;
-        this.maxLife = this.life;
-        this.size = Math.random() * 2 + 0.5;
-      }
-      update() {
-        this.x += this.vx; this.y += this.vy; this.life--;
-        if (this.life <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-      }
-      draw() {
-        const alpha = (this.life / this.maxLife) * 0.6;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * this.z, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 0, 51, ${alpha})`;
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 80; i++) particles.push(new Particle());
-
-    function animate() {
-      ctx.fillStyle = 'rgba(5, 5, 8, 0.15)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(255, 0, 51, ${0.1 * (1 - dist / 120)})`;
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // ===== CHAT FUNCTIONS =====
-    const chatArea = document.getElementById('chatArea');
-    const userInput = document.getElementById('userInput');
-    const holoZone = document.getElementById('holoZone');
-    const sendBtn = document.getElementById('sendBtn');
-    const statusDot = document.getElementById('statusDot');
-
-    function setModel(el) {
-      document.querySelectorAll('.model-chip').forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
-      currentModel = el.dataset.model;
-      document.getElementById('modelLabel').textContent = el.textContent;
-    }
-
-    function addMessage(text, type) {
-      const div = document.createElement('div');
-      div.className = `msg ${type}`;
-      if (type === 'ai' && text === '') div.classList.add('streaming');
-      div.textContent = text;
-      chatArea.appendChild(div);
-      chatArea.scrollTop = chatArea.scrollHeight;
-      chatHistory.push({ text, type, time: Date.now() });
-      localStorage.setItem('omnifusion_chat', JSON.stringify(chatHistory.slice(-100)));
-      return div;
-    }
-
-    function showTyping() {
-      const div = document.createElement('div');
-      div.className = 'msg ai';
-      div.id = 'typingIndicator';
-      div.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
-      chatArea.appendChild(div);
-      chatArea.scrollTop = chatArea.scrollHeight;
-    }
-
-    function removeTyping() {
-      const el = document.getElementById('typingIndicator');
-      if (el) el.remove();
-    }
-
-    // ===== DEMO MODE =====
-    const demoResponses = {
-      'hey': "What's good! This is OmniFusion AI, the holographic engine built for V3GASBOI. I'm running in demo mode right now — add an API key in the menu for real AI power.",
-      'hello': "Yo! OmniFusion AI here. The Voice of Vegas #88Mob. I'm in demo mode — tap the menu and add your API key to unlock the full matrix.",
-      'hi': "Hey! I'm your holographic AI assistant. Currently in demo mode. Add an API key (Together AI or Gemini) for real responses.",
-      'what': "I'm OmniFusion AI — an interactive holographic intelligence engine built for mobile. I can chat, generate images, and more. Right now I'm in demo mode because no API key is configured.",
-      'who': "I'm OmniFusion AI, created by V3GASBOI — The Voice of Vegas. I'm a holographic AI engine running in your browser. Add an API key for full power.",
-      'help': "Here's how to use me:\n\n1. Tap ☰ menu → API Keys\n2. Add a free key from together.ai or ai.google.dev\n3. Start chatting with real AI\n\nOr stay in demo mode for simulated responses.",
-      'default': (q) => `You asked: "${q}"\n\nI'm in demo mode right now. To get real AI responses, add an API key:\n\n• Together AI: together.ai (free $5 credit)\n• Google Gemini: ai.google.dev (free tier)\n\nTap ☰ → API Keys to configure.`
-    };
-
-    function getDemoResponse(text) {
-      const lower = text.toLowerCase().trim();
-      for (const key in demoResponses) {
-        if (lower.includes(key) && key !== 'default') return demoResponses[key];
-      }
-      return demoResponses['default'](text);
-    }
-
-    // ===== REAL AI API CALLS (verified endpoints from docs) =====
-    async function callGemini(text, key) {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text }] }] })
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error.message);
-      return data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response';
-    }
-
-    async function callTogether(text, key) {
-      const res = await fetch('https://api.together.xyz/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'meta-llama/Llama-3.3-70B-Instruct-Turbo', messages: [{ role: 'user', content: text }] })
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error.message);
-      return data.choices?.[0]?.message?.content || 'No response';
-    }
-
-    async function callOpenAI(text, key) {
-      const res = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'gpt-4o', messages: [{ role: 'user', content: text }] })
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error.message);
-      return data.choices?.[0]?.message?.content || 'No response';
-    }
-
-    // ===== MAIN SEND =====
-    async function sendMessage() {
-      const text = userInput.value.trim();
-      if (!text || isProcessing) return;
-      userInput.value = '';
-      addMessage(text, 'user');
-      isProcessing = true;
-      sendBtn.disabled = true;
-      showTyping();
-      holoZone.classList.add('thinking');
-      statusDot.classList.add('online');
-
-      try {
-        let reply = '';
-
-        if (demoMode) {
-          await new Promise(r => setTimeout(r, 1000));
-          reply = getDemoResponse(text);
-        } else {
-          const key = curr
+</body>
+  </html>
+  
